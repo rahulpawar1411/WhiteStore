@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Propelpad White Store Network | Pristine Cold-Chain Infrastructure</title>
+<!-- Tailwind CSS v3 with Forms and Container Queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              cream: '#FAF7F2',
+              pink: '#F6D6D6',
+              teal: '#2C6B74',
+              tealDark: '#1D4B52',
+              coral: '#F49D8C',
+              apricot: '#F8CE9F',
+              mint: '#B8DFD8',
+              slate: '#475569',
+              dark: '#1E293B'
+            }
+          },
+          fontFamily: {
+            display: ['Cabinet Grotesk', 'Outfit', 'system-ui', 'sans-serif'],
+            body: ['Plus Jakarta Sans', 'Inter', 'system-ui', 'sans-serif']
+          },
+          borderRadius: {
+            '4xl': '2rem',
+            '5xl': '2.5rem'
+          }
+        }
+      }
+    }
+  </script>
+<!-- Google Fonts: Plus Jakarta Sans & Outfit -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Core Layout & Custom Styling -->
+<style data-purpose="custom-typography-and-decorations">
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #FAF7F2;
+      color: #1E293B;
+      overflow-x: hidden;
+    }
+    h1, h2, h3, h4, .font-heading {
+      font-family: 'Outfit', sans-serif;
+      letter-spacing: -0.02em;
+    }
+
+    /* Arched Ribbon Hanging Motif Inspired by reference */
+    .arch-pillar {
+      border-bottom-left-radius: 9999px;
+      border-bottom-right-radius: 9999px;
+    }
+    .arch-pillar-up {
+      border-top-left-radius: 9999px;
+      border-top-right-radius: 9999px;
+    }
+
+    /* Floating subtle animation */
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-8px) rotate(3deg); }
+    }
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.6; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.05); }
+    }
+
+    .animate-float-slow {
+      animation: floatSlow 6s ease-in-out infinite;
+    }
+    .animate-float-delayed {
+      animation: floatSlow 7s ease-in-out 2s infinite;
+    }
+    .animate-glow {
+      animation: pulseGlow 3s ease-in-out infinite;
+    }
+
+    /* Confetti dots pattern */
+    .confetti-dot {
+      position: absolute;
+      border-radius: 9999px;
+      pointer-events: none;
+    }
+
+    /* Scroll reveal transitions */
+    .reveal-item {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+    .reveal-item.is-revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body class="selection:bg-brand-coral selection:text-white">
+<!-- BEGIN: Floating Navigation Header -->
+<header class="fixed top-4 inset-x-0 z-50 px-4 pointer-events-none" data-purpose="sticky-pill-navigation">
+<div class="max-w-6xl mx-auto flex items-center justify-between pointer-events-auto bg-white/85 backdrop-blur-md px-6 py-3.5 rounded-full shadow-[0_10px_30px_rgba(44,107,116,0.08)] border border-brand-pink/60 transition-all duration-300">
+<!-- Brand Logo -->
+<a class="flex items-center gap-2.5 group" href="#">
+<div class="w-10 h-10 rounded-full bg-brand-coral flex items-center justify-center text-white font-bold text-lg shadow-sm group-hover:scale-105 transition-transform">
+          ❄️
+        </div>
+<div>
+<span class="text-xl font-heading font-extrabold tracking-tight text-brand-teal">Propelpad</span>
+<span class="block text-[10px] uppercase font-bold tracking-widest text-brand-coral -mt-1">White Stores</span>
+</div>
+</a>
+<!-- Navigation Pill Links -->
+<nav class="hidden md:flex items-center gap-1 bg-[#FAF7F2] p-1.5 rounded-full border border-brand-pink/40 text-sm font-semibold text-brand-slate">
+<a class="px-4 py-2 rounded-full hover:bg-white hover:text-brand-teal hover:shadow-xs transition-all" href="#network">Network</a>
+<a class="px-4 py-2 rounded-full hover:bg-white hover:text-brand-teal transition-all" href="#advantage">Advantage</a>
+<a class="px-4 py-2 rounded-full hover:bg-white hover:text-brand-teal transition-all" href="#intelligence">Tech &amp; FIFO</a>
+<a class="px-4 py-2 rounded-full hover:bg-white hover:text-brand-teal transition-all" href="#hygiene">Sanitary</a>
+<a class="px-4 py-2 rounded-full hover:bg-white hover:text-brand-teal transition-all" href="#expansion">Expansion</a>
+</nav>
+<!-- CTA Button -->
+<div class="flex items-center gap-3">
+<a class="inline-flex items-center gap-2 bg-brand-coral hover:bg-[#eb8c7a] text-white px-6 py-2.5 rounded-full font-bold text-sm shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5 active:translate-y-0" href="#contact">
+<span>Partner With Us</span>
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewbox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</a>
+</div>
+</div>
+</header>
+<!-- END: Floating Navigation Header -->
+<!-- BEGIN: Hero Section With Arched Motif Backdrop -->
+<section class="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-brand-cream" data-purpose="hero-section">
+<!-- Arched Architectural Backdrop Motif (Direct Style Tribute to Image 2) -->
+<div class="absolute top-0 inset-x-0 h-[480px] md:h-[580px] flex justify-center pointer-events-none opacity-90 -z-0">
+<div class="w-full max-w-6xl flex justify-center items-start gap-3 sm:gap-6 px-4">
+<div class="w-16 sm:w-28 md:w-36 h-[320px] md:h-[430px] bg-brand-pink arch-pillar"></div>
+<div class="w-20 sm:w-36 md:w-44 h-[380px] md:h-[500px] bg-brand-teal arch-pillar"></div>
+<div class="w-20 sm:w-36 md:w-44 h-[440px] md:h-[560px] bg-brand-coral arch-pillar"></div>
+<div class="w-20 sm:w-36 md:w-44 h-[390px] md:h-[490px] bg-brand-apricot arch-pillar"></div>
+<div class="w-16 sm:w-28 md:w-36 h-[330px] md:h-[420px] bg-brand-mint arch-pillar"></div>
+</div>
+</div>
+<!-- Floating Confetti Elements (Artisanal Gelato Vibe) -->
+<div class="confetti-dot w-3 h-3 bg-brand-coral top-48 left-12 animate-float-slow"></div>
+<div class="confetti-dot w-4 h-4 bg-brand-teal top-64 right-16 animate-float-delayed"></div>
+<div class="confetti-dot w-2.5 h-2.5 bg-brand-apricot top-80 left-1/4 animate-float-slow"></div>
+<div class="confetti-dot w-3 h-3 bg-brand-mint top-36 right-1/4 animate-float-delayed"></div>
+<div class="max-w-5xl mx-auto px-4 sm:px-6 relative z-10 text-center">
+<!-- Pill Badge -->
+<div class="reveal-item inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/95 text-brand-teal text-xs sm:text-sm font-bold shadow-md border border-brand-mint/60 mb-8 backdrop-blur-sm">
+<span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+<span>India's 1st Certified FSSAI Sub-Zero White Store Network</span>
+</div>
+<!-- Main Headline -->
+<h1 class="reveal-item text-4xl sm:text-6xl md:text-7xl font-heading font-black text-white md:text-white drop-shadow-[0_4px_16px_rgba(29,75,82,0.4)] leading-[1.08] mb-6 tracking-tight">
+        Delivering Fresh Products.<br/>
+<span class="text-white underline decoration-brand-apricot decoration-wavy decoration-2">Every Single Time.</span>
+</h1>
+<!-- Subtitle Card -->
+<div class="reveal-item max-w-3xl mx-auto bg-white/90 backdrop-blur-md rounded-3xl p-6 sm:p-7 shadow-xl border border-white/80 mb-9 text-brand-slate text-base sm:text-lg leading-relaxed">
+        Premium sub-zero micro-fulfilment infrastructure for artisanal gelato, gourmet desserts, and cold-chain FMCG. Accelerate doorstep deliveries within <span class="font-bold text-brand-teal">10 to 30 minutes</span> while maintaining an unbroken <span class="font-bold text-brand-coral">-18°C chain-of-custody</span>.
+      </div>
+<!-- CTA Action Buttons -->
+<div class="reveal-item flex flex-wrap items-center justify-center gap-4 mb-14">
+<a class="px-8 py-4 bg-brand-teal hover:bg-brand-tealDark text-white font-extrabold text-base rounded-full shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-0.5" href="#contact">
+          Deploy Your Brand Now
+        </a>
+<a class="px-8 py-4 bg-white hover:bg-brand-pink/30 text-brand-teal font-extrabold text-base rounded-full shadow-md border border-brand-teal/20 hover:border-brand-teal transition-all" href="#network">
+          Explore 9 Active Hubs
+        </a>
+</div>
+<!-- Pill Proof Points -->
+<div class="reveal-item grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 max-w-4xl mx-auto">
+<div class="bg-white/80 backdrop-blur-md border border-brand-pink/50 rounded-2xl p-4 text-center shadow-xs">
+<div class="text-2xl sm:text-3xl font-heading font-black text-brand-teal">9</div>
+<div class="text-xs uppercase tracking-wider font-bold text-brand-slate/80 mt-1">White Stores</div>
+</div>
+<div class="bg-white/80 backdrop-blur-md border border-brand-coral/40 rounded-2xl p-4 text-center shadow-xs">
+<div class="text-2xl sm:text-3xl font-heading font-black text-brand-coral">13+</div>
+<div class="text-xs uppercase tracking-wider font-bold text-brand-slate/80 mt-1">Partner Brands</div>
+</div>
+<div class="bg-white/80 backdrop-blur-md border border-brand-apricot/60 rounded-2xl p-4 text-center shadow-xs">
+<div class="text-2xl sm:text-3xl font-heading font-black text-brand-dark">Mumbai &amp; Thane</div>
+<div class="text-xs uppercase tracking-wider font-bold text-brand-slate/80 mt-1">Dense Urban Grid</div>
+</div>
+<div class="bg-white/80 backdrop-blur-md border border-brand-mint/60 rounded-2xl p-4 text-center shadow-xs">
+<div class="text-2xl sm:text-3xl font-heading font-black text-emerald-600">99.8%</div>
+<div class="text-xs uppercase tracking-wider font-bold text-brand-slate/80 mt-1">Uptime SLA</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Hero Section With Arched Motif Backdrop -->
+<!-- BEGIN: Facility Showcase & Interactive Live Telemetry -->
+<section class="relative -mt-6 z-20 max-w-6xl mx-auto px-4 sm:px-6">
+<div class="reveal-item bg-white rounded-5xl p-4 sm:p-6 shadow-2xl border border-brand-mint/40 overflow-hidden">
+<!-- Facility Header Bar -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 px-2 border-b border-brand-cream">
+<div class="flex items-center gap-3">
+<div class="w-3.5 h-3.5 rounded-full bg-emerald-500 animate-pulse"></div>
+<span class="font-heading font-bold text-base text-brand-teal uppercase tracking-wider">Live Facility Feed: Santacruz Hub #02</span>
+</div>
+<div class="flex flex-wrap items-center gap-2 text-xs font-semibold">
+<span class="px-3 py-1.5 rounded-full bg-brand-cream text-brand-slate border border-brand-pink/50">Hasselblad Optics</span>
+<span class="px-3 py-1.5 rounded-full bg-brand-mint/30 text-brand-teal border border-brand-mint">FSSAI Hospital-Grade Clean</span>
+<span class="px-3 py-1.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200">ISO 22000 Ready</span>
+</div>
+</div>
+<!-- Facility Image Container -->
+<div class="relative mt-4 rounded-4xl overflow-hidden shadow-inner group">
+<img alt="Propelpad Ultra-Modern Cold-Chain White Store Facility with Gleaming Epoxy Floors and Glass-Front Refrigeration" class="w-full h-[380px] sm:h-[480px] md:h-[560px] object-cover transition-transform duration-700 group-hover:scale-[1.02]" src="https://lh3.googleusercontent.com/aida/AEtjO1Ux-ZESVQHxSJzDOMHjRQqGmGRQIkx4qG0A95g1U8DsYM8u2doMl5lez8ovNrszf2DvB61Xtyh35teIZhRt8BS20v7MErtrDlEAjpp6Ov9AxaWZ9tFWxfhSwunSbuMmAqCwAa6L_yvybtB8lbB9DPtY6HYuqH1WL5uUuofmcH236JckEmkTCbKsOYz7KuVm5iVArFGA_aajhjltFr5v5dp6dO35ufwsXT2E39QaHmiye9T0PElRjw3cHVc"/>
+<!-- Overlay Gradients -->
+<div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-black/20 pointer-events-none"></div>
+<!-- Telemetry Floating Glass Pills -->
+<div class="absolute bottom-6 inset-x-6 flex flex-wrap items-center justify-between gap-4">
+<!-- Pill Telemetry: Core Temperature -->
+<div class="bg-black/60 backdrop-blur-md text-white border border-white/20 px-5 py-3 rounded-3xl flex items-center gap-3 shadow-lg">
+<div class="w-10 h-10 rounded-2xl bg-cyan-500/20 text-cyan-300 flex items-center justify-center font-bold text-lg">
+              ❄️
+            </div>
+<div>
+<div class="text-[11px] font-bold text-cyan-200 uppercase tracking-widest">Refrigeration Core</div>
+<div class="text-xl sm:text-2xl font-heading font-extrabold text-white">-18.4°C Vault</div>
+</div>
+</div>
+<!-- Pill Telemetry: Pack & Dispatch Speed -->
+<div class="bg-black/60 backdrop-blur-md text-white border border-white/20 px-5 py-3 rounded-3xl flex items-center gap-3 shadow-lg">
+<div class="w-10 h-10 rounded-2xl bg-amber-500/20 text-amber-300 flex items-center justify-center font-bold text-lg">
+              ⚡
+            </div>
+<div>
+<div class="text-[11px] font-bold text-amber-200 uppercase tracking-widest">Average Prep Speed</div>
+<div class="text-xl sm:text-2xl font-heading font-extrabold text-white">1m 24s Pack Time</div>
+</div>
+</div>
+<!-- Pill Telemetry: Channel Sync -->
+<div class="hidden md:flex bg-black/60 backdrop-blur-md text-white border border-white/20 px-5 py-3 rounded-3xl items-center gap-3 shadow-lg">
+<div class="w-10 h-10 rounded-2xl bg-emerald-500/20 text-emerald-300 flex items-center justify-center font-bold text-lg">
+              🔄
+            </div>
+<div>
+<div class="text-[11px] font-bold text-emerald-200 uppercase tracking-widest">API Sync Rate</div>
+<div class="text-xl sm:text-2xl font-heading font-extrabold text-white">99.8% Channel Sync</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Facility Showcase & Interactive Live Telemetry -->
+<!-- BEGIN: Live Operational Metrics Strip -->
+<section class="py-16 max-w-6xl mx-auto px-4 sm:px-6">
+<div class="text-center max-w-2xl mx-auto mb-10">
+<span class="text-xs uppercase tracking-widest font-extrabold text-brand-teal bg-brand-mint/40 px-4 py-1.5 rounded-full">Audited Real-Time Telemetry</span>
+<h2 class="text-3xl sm:text-4xl font-heading font-extrabold text-brand-dark mt-3">Network Performance Metrics</h2>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-6 gap-3 sm:gap-4">
+<div class="reveal-item bg-white p-5 rounded-3xl border border-brand-pink/60 text-center shadow-xs hover:shadow-md transition-shadow">
+<div class="text-3xl font-heading font-black text-brand-teal">9</div>
+<p class="text-xs font-bold text-brand-slate mt-1">White Stores</p>
+<span class="text-[10px] text-emerald-600 font-semibold bg-emerald-50 px-2 py-0.5 rounded-full inline-block mt-2">Active 24x7</span>
+</div>
+<div class="reveal-item bg-white p-5 rounded-3xl border border-brand-coral/40 text-center shadow-xs hover:shadow-md transition-shadow">
+<div class="text-3xl font-heading font-black text-brand-coral">13+</div>
+<p class="text-xs font-bold text-brand-slate mt-1">Partner Brands</p>
+<span class="text-[10px] text-brand-coral font-semibold bg-brand-pink/30 px-2 py-0.5 rounded-full inline-block mt-2">Gelato &amp; Cakes</span>
+</div>
+<div class="reveal-item bg-white p-5 rounded-3xl border border-brand-apricot/60 text-center shadow-xs hover:shadow-md transition-shadow">
+<div class="text-3xl font-heading font-black text-amber-500">4.4★</div>
+<p class="text-xs font-bold text-brand-slate mt-1">Merchant Rating</p>
+<span class="text-[10px] text-brand-dark font-semibold bg-brand-apricot/30 px-2 py-0.5 rounded-full inline-block mt-2">Google &amp; Apps</span>
+</div>
+<div class="reveal-item bg-white p-5 rounded-3xl border border-brand-mint/60 text-center shadow-xs hover:shadow-md transition-shadow">
+<div class="text-3xl font-heading font-black text-emerald-600">95%</div>
+<p class="text-xs font-bold text-brand-slate mt-1">Pick Accuracy</p>
+<span class="text-[10px] text-emerald-700 font-semibold bg-emerald-50 px-2 py-0.5 rounded-full inline-block mt-2">Barcode Scanned</span>
+</div>
+<div class="reveal-item bg-white p-5 rounded-3xl border border-brand-pink/60 text-center shadow-xs hover:shadow-md transition-shadow">
+<div class="text-3xl font-heading font-black text-brand-teal">99.8%</div>
+<p class="text-xs font-bold text-brand-slate mt-1">Power Uptime</p>
+<span class="text-[10px] text-cyan-700 font-semibold bg-cyan-50 px-2 py-0.5 rounded-full inline-block mt-2">Dual DG Backup</span>
+</div>
+<div class="reveal-item bg-white p-5 rounded-3xl border border-brand-coral/40 text-center shadow-xs hover:shadow-md transition-shadow">
+<div class="text-3xl font-heading font-black text-brand-coral">1m 38s</div>
+<p class="text-xs font-bold text-brand-slate mt-1">Prep Speed</p>
+<span class="text-[10px] text-rose-700 font-semibold bg-rose-50 px-2 py-0.5 rounded-full inline-block mt-2">Rider Handover</span>
+</div>
+</div>
+</section>
+<!-- END: Live Operational Metrics Strip -->
+<!-- BEGIN: Food Commerce Opportunity -->
+<section class="py-16 md:py-24 bg-white relative" data-purpose="opportunity-section" id="advantage">
+<div class="max-w-6xl mx-auto px-4 sm:px-6">
+<div class="text-center max-w-3xl mx-auto mb-16">
+<span class="text-xs uppercase tracking-widest font-extrabold text-brand-coral bg-brand-pink/40 px-4 py-1.5 rounded-full">Macro Shifts in Quick Commerce</span>
+<h2 class="text-3xl sm:text-5xl font-heading font-black text-brand-dark mt-4">The Premium Cold-Chain Imperative</h2>
+<p class="text-brand-slate text-base sm:text-lg mt-4">Desserts and frozen foods fail when handled by generic ambient logistics hubs. Propelpad transforms quick commerce with specialized hyper-clean infrastructure.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+<!-- Pillar Card 1 -->
+<div class="reveal-item bg-brand-cream/80 border border-brand-pink p-8 rounded-4xl flex flex-col justify-between hover:-translate-y-1 transition-transform">
+<div>
+<div class="w-14 h-14 rounded-2xl bg-brand-pink flex items-center justify-center text-3xl mb-6 shadow-xs">
+              ⏱️
+            </div>
+<h3 class="text-2xl font-heading font-bold text-brand-dark mb-3">10 to 30 Min Delivery Guarantee</h3>
+<p class="text-brand-slate leading-relaxed text-sm">Customers won't wait 90 minutes for ice cream or artisan frozen meals. Our strategically distributed micro-vaults position inventory within 2.5 km of prime consumption hubs.</p>
+</div>
+<div class="mt-8 pt-4 border-t border-brand-pink/40 text-xs font-bold text-brand-teal uppercase tracking-wider">
+            Zero Rider Idle Time
+          </div>
+</div>
+<!-- Pillar Card 2 -->
+<div class="reveal-item bg-brand-cream/80 border border-brand-mint p-8 rounded-4xl flex flex-col justify-between hover:-translate-y-1 transition-transform">
+<div>
+<div class="w-14 h-14 rounded-2xl bg-brand-mint flex items-center justify-center text-3xl mb-6 shadow-xs">
+              🧊
+            </div>
+<h3 class="text-2xl font-heading font-bold text-brand-dark mb-3">Eliminating Central Depot Melt Risk</h3>
+<p class="text-brand-slate leading-relaxed text-sm">Traditional 45-minute van deliveries cause ice recrystallization and ruin artisanal gelato textures. Propelpad guarantees unbroken sub-zero chain right up to rider handover.</p>
+</div>
+<div class="mt-8 pt-4 border-t border-brand-mint/40 text-xs font-bold text-brand-teal uppercase tracking-wider">
+            Zero Texture Degeneration
+          </div>
+</div>
+<!-- Pillar Card 3 -->
+<div class="reveal-item bg-brand-cream/80 border border-brand-apricot p-8 rounded-4xl flex flex-col justify-between hover:-translate-y-1 transition-transform">
+<div>
+<div class="w-14 h-14 rounded-2xl bg-brand-apricot flex items-center justify-center text-3xl mb-6 shadow-xs">
+              🌙
+            </div>
+<h3 class="text-2xl font-heading font-bold text-brand-dark mb-3">3.8x Late-Night Impulse Surge</h3>
+<p class="text-brand-slate leading-relaxed text-sm">Over 48% of gourmet dessert revenue happens between 9 PM and 2 AM. Our automated 24/7 dark-to-white store shifts unlock high-margin nighttime order velocity.</p>
+</div>
+<div class="mt-8 pt-4 border-t border-brand-apricot/40 text-xs font-bold text-brand-teal uppercase tracking-wider">
+            24/7 Dispatch Availability
+          </div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Food Commerce Opportunity -->
+<!-- BEGIN: Dark Store vs White Store Comparison Matrix -->
+<section class="py-16 md:py-24 bg-brand-cream relative">
+<div class="max-w-5xl mx-auto px-4 sm:px-6">
+<div class="text-center max-w-2xl mx-auto mb-14">
+<span class="text-xs uppercase tracking-widest font-extrabold text-brand-teal bg-brand-mint/40 px-4 py-1.5 rounded-full">Operational Audit</span>
+<h2 class="text-3xl sm:text-5xl font-heading font-black text-brand-dark mt-3">Dark Store vs. White Store</h2>
+<p class="text-brand-slate text-sm sm:text-base mt-3">Why gourmet brands choose Propelpad White Stores over cramped conventional dark warehouses.</p>
+</div>
+<div class="reveal-item bg-white rounded-4xl shadow-xl border border-brand-mint/50 overflow-hidden">
+<div class="grid grid-cols-1 md:grid-cols-12 divide-y md:divide-y-0 md:divide-x divide-gray-100">
+<!-- Conventional Dark Store (Negative) -->
+<div class="md:col-span-5 p-6 sm:p-8 bg-rose-50/20">
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-rose-100 text-rose-800 rounded-full text-xs font-bold mb-6">
+<span>⚠️ Conventional Dark Store</span>
+</div>
+<ul class="space-y-5 text-sm text-brand-slate">
+<li class="flex items-start gap-3">
+<span class="text-rose-500 font-bold">✕</span>
+<span><strong>Cross-Contamination Risk:</strong> Frozen food sits next to laundry detergents, raw onions, and spices.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="text-rose-500 font-bold">✕</span>
+<span><strong>Temperature Fluctuations:</strong> Frequent door openings with standard chest freezers causing thermal spikes to -6°C.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="text-rose-500 font-bold">✕</span>
+<span><strong>High Product Spoilage:</strong> Recrystallized gelato, collapsed ice creams, damaged packaging resulting in negative reviews.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="text-rose-500 font-bold">✕</span>
+<span><strong>Zero SKU Traceability:</strong> Expired lots shipped due to lack of strict automated FIFO/FEFO barcode control.</span>
+</li>
+</ul>
+</div>
+<!-- Propelpad White Store (Positive) -->
+<div class="md:col-span-7 p-6 sm:p-8 bg-white relative">
+<div class="inline-flex items-center gap-2 px-3.5 py-1 bg-brand-mint text-brand-teal font-extrabold rounded-full text-xs mb-6 shadow-xs">
+<span>✨ Propelpad White Store Standard</span>
+</div>
+<ul class="space-y-5 text-sm text-brand-slate">
+<li class="flex items-start gap-3">
+<span class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold text-xs shrink-0">✓</span>
+<span><strong>Hospital-Grade Cleanroom Flooring:</strong> Seamless anti-bacterial white epoxy flooring with zero odor cross-absorption.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold text-xs shrink-0">✓</span>
+<span><strong>Automated -18°C Telemetry:</strong> Continuous IoT temperature sensors with automated alerts and dual DG emergency failover.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold text-xs shrink-0">✓</span>
+<span><strong>Pristine Product Integrity:</strong> Micro-climate insulated dispatch staging areas prevent melting before rider handover.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold text-xs shrink-0">✓</span>
+<span><strong>Automated FEFO / FIFO Picking:</strong> Every jar &amp; carton scanned via optical barcode reader preventing aged stock leakage.</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Dark Store vs White Store Comparison Matrix -->
+<!-- BEGIN: Operational Intelligence Dashboard -->
+<section class="py-16 md:py-24 bg-white relative" data-purpose="intelligence-dashboard" id="intelligence">
+<div class="max-w-6xl mx-auto px-4 sm:px-6">
+<div class="text-center max-w-3xl mx-auto mb-14">
+<span class="text-xs uppercase tracking-widest font-extrabold text-brand-teal bg-brand-mint/40 px-4 py-1.5 rounded-full">Propelpad OS</span>
+<h2 class="text-3xl sm:text-5xl font-heading font-black text-brand-dark mt-3">Operational Intelligence Suite</h2>
+<p class="text-brand-slate text-sm sm:text-base mt-3">Live control center engineered to prevent stockouts while eliminating expired inventory waste.</p>
+</div>
+<!-- Tab Buttons -->
+<div class="flex flex-wrap justify-center gap-2 mb-8" data-purpose="tab-buttons">
+<button class="tab-trigger active px-5 py-2.5 rounded-full font-bold text-xs sm:text-sm bg-brand-teal text-white shadow-md transition-all" data-tab="velocity">SKU Velocity &amp; Demand</button>
+<button class="tab-trigger px-5 py-2.5 rounded-full font-bold text-xs sm:text-sm bg-brand-cream text-brand-slate hover:bg-brand-pink/30 transition-all" data-tab="expiry">Expiry &amp; FEFO Alerts</button>
+<button class="tab-trigger px-5 py-2.5 rounded-full font-bold text-xs sm:text-sm bg-brand-cream text-brand-slate hover:bg-brand-pink/30 transition-all" data-tab="heatmap">Peak Micro-Heatmap</button>
+</div>
+<!-- Tab Display Container -->
+<div class="reveal-item bg-brand-cream rounded-4xl p-6 sm:p-10 border border-brand-pink/50 shadow-lg">
+<!-- Tab 1: Velocity -->
+<div class="tab-panel" id="tab-velocity">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+<div>
+<h3 class="text-2xl font-heading font-bold text-brand-dark">Top Performer SKU Run-Rates</h3>
+<p class="text-xs text-brand-slate">Real-time daily pint velocity across Mumbai Hub Network</p>
+</div>
+<span class="text-xs font-bold text-brand-teal bg-brand-mint/60 px-4 py-1.5 rounded-full">Updated 4m ago</span>
+</div>
+<!-- Bar Visualizers -->
+<div class="space-y-4">
+<div>
+<div class="flex justify-between text-xs font-bold text-brand-slate mb-1">
+<span>Belgian Chocolate Gelato (500ml)</span>
+<span class="text-brand-teal">842 Pints / Day (92% Fill)</span>
+</div>
+<div class="w-full h-4 bg-white rounded-full overflow-hidden p-0.5 border border-brand-pink/50">
+<div class="h-full bg-brand-teal rounded-full" style="width: 92%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-xs font-bold text-brand-slate mb-1">
+<span>Sicilian Pistachio Pint</span>
+<span class="text-brand-coral">710 Pints / Day (84% Fill)</span>
+</div>
+<div class="w-full h-4 bg-white rounded-full overflow-hidden p-0.5 border border-brand-pink/50">
+<div class="h-full bg-brand-coral rounded-full" style="width: 84%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-xs font-bold text-brand-slate mb-1">
+<span>Alphonso Mango Sorbet</span>
+<span class="text-amber-500">595 Pints / Day (73% Fill)</span>
+</div>
+<div class="w-full h-4 bg-white rounded-full overflow-hidden p-0.5 border border-brand-pink/50">
+<div class="h-full bg-brand-apricot rounded-full" style="width: 73%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-xs font-bold text-brand-slate mb-1">
+<span>Greek Berry Swirl Tub</span>
+<span class="text-emerald-600">420 Pints / Day (58% Fill)</span>
+</div>
+<div class="w-full h-4 bg-white rounded-full overflow-hidden p-0.5 border border-brand-pink/50">
+<div class="h-full bg-brand-mint rounded-full" style="width: 58%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Tab 2: Expiry & Alerts -->
+<div class="tab-panel hidden" id="tab-expiry">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
+<div>
+<h3 class="text-2xl font-heading font-bold text-brand-dark">FEFO Automated Expiry Interceptor</h3>
+<p class="text-xs text-brand-slate">Batches within 45 days of shelf expiration are prioritized or flagged</p>
+</div>
+<span class="text-xs font-bold text-emerald-800 bg-emerald-100 px-3 py-1 rounded-full">0 Bad Deliveries</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+<div class="bg-white p-5 rounded-3xl border border-brand-pink">
+<div class="text-xs font-bold text-brand-coral uppercase">Batch #GP-9021</div>
+<div class="text-lg font-bold text-brand-dark mt-1">Hazelnut Praline</div>
+<div class="text-xs text-brand-slate mt-2">Remaining Shelf: 41 Days</div>
+<div class="mt-4 text-[11px] font-bold text-brand-teal bg-brand-cream px-2.5 py-1 rounded-lg inline-block">Auto-Promoted to Primary Pick</div>
+</div>
+<div class="bg-white p-5 rounded-3xl border border-brand-mint">
+<div class="text-xs font-bold text-emerald-600 uppercase">Batch #GP-8840</div>
+<div class="text-lg font-bold text-brand-dark mt-1">Dark Roasted Mocha</div>
+<div class="text-xs text-brand-slate mt-2">Remaining Shelf: 68 Days</div>
+<div class="mt-4 text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg inline-block">Healthy Buffer</div>
+</div>
+<div class="bg-white p-5 rounded-3xl border border-brand-apricot">
+<div class="text-xs font-bold text-amber-600 uppercase">Batch #GP-9104</div>
+<div class="text-lg font-bold text-brand-dark mt-1">Wild Strawberry Parfait</div>
+<div class="text-xs text-brand-slate mt-2">Remaining Shelf: 92 Days</div>
+<div class="mt-4 text-[11px] font-bold text-amber-700 bg-amber-50 px-2.5 py-1 rounded-lg inline-block">Standard Rotation</div>
+</div>
+</div>
+</div>
+<!-- Tab 3: Heatmap -->
+<div class="tab-panel hidden" id="tab-heatmap">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
+<div>
+<h3 class="text-2xl font-heading font-bold text-brand-dark">Mumbai Peak Dispatch Surge Times</h3>
+<p class="text-xs text-brand-slate">Hour-by-hour order volumes across western &amp; central corridors</p>
+</div>
+</div>
+<div class="grid grid-cols-4 sm:grid-cols-8 gap-2 text-center text-xs">
+<div class="bg-white p-3 rounded-2xl border border-brand-pink/40"><span class="block text-brand-slate/60">12 PM</span><span class="font-bold text-brand-slate">Normal</span></div>
+<div class="bg-white p-3 rounded-2xl border border-brand-pink/40"><span class="block text-brand-slate/60">2 PM</span><span class="font-bold text-brand-slate">Normal</span></div>
+<div class="bg-brand-apricot/40 p-3 rounded-2xl border border-brand-apricot"><span class="block text-brand-slate/60">4 PM</span><span class="font-bold text-amber-700">Elevated</span></div>
+<div class="bg-brand-pink/60 p-3 rounded-2xl border border-brand-pink"><span class="block text-brand-slate/60">6 PM</span><span class="font-bold text-brand-coral">Busy</span></div>
+<div class="bg-brand-coral p-3 rounded-2xl text-white font-bold"><span class="block text-white/80">8 PM</span><span>High</span></div>
+<div class="bg-brand-teal p-3 rounded-2xl text-white font-bold ring-2 ring-brand-coral"><span class="block text-white/80">10 PM</span><span>Peak Surge</span></div>
+<div class="bg-brand-teal p-3 rounded-2xl text-white font-bold"><span class="block text-white/80">11:30 PM</span><span>Super Surge</span></div>
+<div class="bg-brand-mint/60 p-3 rounded-2xl border border-brand-mint"><span class="block text-brand-slate/60">1 AM</span><span class="font-bold text-brand-teal">Steady</span></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Operational Intelligence Dashboard -->
+<!-- BEGIN: Buying Efficiency & FIFO Architecture -->
+<section class="py-16 md:py-24 bg-brand-cream">
+<div class="max-w-6xl mx-auto px-4 sm:px-6">
+<div class="text-center max-w-3xl mx-auto mb-16">
+<span class="text-xs uppercase tracking-widest font-extrabold text-brand-coral bg-brand-pink/40 px-4 py-1.5 rounded-full">Inventory Science</span>
+<h2 class="text-3xl sm:text-5xl font-heading font-black text-brand-dark mt-3">Smart Buying Efficiency &amp; FIFO</h2>
+<p class="text-brand-slate text-sm sm:text-base mt-3">5 foundational pillars stopping dead stock, minimizing working capital lock-in, and preventing batch write-offs.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+<!-- Pillar 1 -->
+<div class="reveal-item bg-white p-6 rounded-3xl border border-brand-pink flex flex-col justify-between hover:shadow-lg transition-all">
+<div>
+<div class="w-10 h-10 rounded-full bg-brand-pink flex items-center justify-center font-bold text-brand-coral mb-4">01</div>
+<h4 class="font-heading font-bold text-lg text-brand-dark mb-2">Zero Over-Buying</h4>
+<p class="text-xs text-brand-slate leading-relaxed">Dynamic reorder point algorithms prevent tie-ups in slow-moving dessert varieties.</p>
+</div>
+<div class="mt-6 text-[11px] font-bold text-brand-teal bg-brand-cream p-2 rounded-xl text-center">Auto MOQ Trigger</div>
+</div>
+<!-- Pillar 2 -->
+<div class="reveal-item bg-white p-6 rounded-3xl border border-brand-teal/30 flex flex-col justify-between hover:shadow-lg transition-all">
+<div>
+<div class="w-10 h-10 rounded-full bg-brand-teal/20 flex items-center justify-center font-bold text-brand-teal mb-4">02</div>
+<h4 class="font-heading font-bold text-lg text-brand-dark mb-2">7-Day Run Cadence</h4>
+<p class="text-xs text-brand-slate leading-relaxed">Continuous 7-day velocity monitoring aligns production directly with real demand.</p>
+</div>
+<div class="mt-6 text-[11px] font-bold text-brand-teal bg-brand-cream p-2 rounded-xl text-center">Rolling Run-Rates</div>
+</div>
+<!-- Pillar 3 -->
+<div class="reveal-item bg-white p-6 rounded-3xl border border-brand-coral/40 flex flex-col justify-between hover:shadow-lg transition-all">
+<div>
+<div class="w-10 h-10 rounded-full bg-brand-coral/20 flex items-center justify-center font-bold text-brand-coral mb-4">03</div>
+<h4 class="font-heading font-bold text-lg text-brand-dark mb-2">Seasonal Shifts</h4>
+<p class="text-xs text-brand-slate leading-relaxed">Machine learned adjustments for monsoons, festival weekends, and summer spikes.</p>
+</div>
+<div class="mt-6 text-[11px] font-bold text-brand-teal bg-brand-cream p-2 rounded-xl text-center">Festival Buffers</div>
+</div>
+<!-- Pillar 4 -->
+<div class="reveal-item bg-white p-6 rounded-3xl border border-brand-apricot/60 flex flex-col justify-between hover:shadow-lg transition-all">
+<div>
+<div class="w-10 h-10 rounded-full bg-brand-apricot/30 flex items-center justify-center font-bold text-amber-700 mb-4">04</div>
+<h4 class="font-heading font-bold text-lg text-brand-dark mb-2">Strict FEFO / FIFO</h4>
+<p class="text-xs text-brand-slate leading-relaxed">Every item is optical barcode scanned. Older good batches are always dispatched first.</p>
+</div>
+<div class="mt-6 text-[11px] font-bold text-brand-teal bg-brand-cream p-2 rounded-xl text-center">Zero Expired Stock</div>
+</div>
+<!-- Pillar 5 -->
+<div class="reveal-item bg-white p-6 rounded-3xl border border-brand-mint/60 flex flex-col justify-between hover:shadow-lg transition-all">
+<div>
+<div class="w-10 h-10 rounded-full bg-brand-mint/40 flex items-center justify-center font-bold text-brand-teal mb-4">05</div>
+<h4 class="font-heading font-bold text-lg text-brand-dark mb-2">Stock Depth SLA</h4>
+<p class="text-xs text-brand-slate leading-relaxed">Guaranteed minimum 14-day stock depth without congesting cold storage footprint.</p>
+</div>
+<div class="mt-6 text-[11px] font-bold text-brand-teal bg-brand-cream p-2 rounded-xl text-center">Optimal Footprint</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Buying Efficiency & FIFO Architecture -->
+<!-- BEGIN: Sanitary & Food Safety Assurance -->
+<section class="py-16 md:py-24 bg-white relative" id="hygiene">
+<div class="max-w-6xl mx-auto px-4 sm:px-6">
+<div class="text-center max-w-3xl mx-auto mb-16">
+<span class="text-xs uppercase tracking-widest font-extrabold text-brand-teal bg-brand-mint/40 px-4 py-1.5 rounded-full">Certified Standards</span>
+<h2 class="text-3xl sm:text-5xl font-heading font-black text-brand-dark mt-3">Sanitary &amp; Food Safety Excellence</h2>
+<p class="text-brand-slate text-sm sm:text-base mt-3">Strict adherence to FSSAI cleanroom protocols and sub-zero sanitation ensures flawless trust for your brand.</p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+<!-- Standard 1 -->
+<div class="reveal-item flex items-start gap-4 p-5 rounded-3xl bg-brand-cream/60 border border-brand-pink/50">
+<div class="w-12 h-12 rounded-2xl bg-brand-coral/20 text-brand-coral flex items-center justify-center text-xl shrink-0">
+            🧼
+          </div>
+<div>
+<h4 class="font-heading font-bold text-base text-brand-dark">Anti-Microbial White Epoxy</h4>
+<p class="text-xs text-brand-slate mt-1">Joint-free seamless laboratory floors preventing bacterial lodgement.</p>
+</div>
+</div>
+<!-- Standard 2 -->
+<div class="reveal-item flex items-start gap-4 p-5 rounded-3xl bg-brand-cream/60 border border-brand-mint/50">
+<div class="w-12 h-12 rounded-2xl bg-brand-mint text-brand-teal flex items-center justify-center text-xl shrink-0">
+            🛡️
+          </div>
+<div>
+<h4 class="font-heading font-bold text-base text-brand-dark">FSSAI Certified Protocols</h4>
+<p class="text-xs text-brand-slate mt-1">All 9 white stores operate under strict food safety and handling certification.</p>
+</div>
+</div>
+<!-- Standard 3 -->
+<div class="reveal-item flex items-start gap-4 p-5 rounded-3xl bg-brand-cream/60 border border-brand-apricot/50">
+<div class="w-12 h-12 rounded-2xl bg-brand-apricot/30 text-amber-700 flex items-center justify-center text-xl shrink-0">
+            💨
+          </div>
+<div>
+<h4 class="font-heading font-bold text-base text-brand-dark">HEPA Air Filtration &amp; Curtains</h4>
+<p class="text-xs text-brand-slate mt-1">Positive air pressure &amp; cold air curtains at entryways keep dust &amp; warm air out.</p>
+</div>
+</div>
+<!-- Standard 4 -->
+<div class="reveal-item flex items-start gap-4 p-5 rounded-3xl bg-brand-cream/60 border border-brand-teal/30">
+<div class="w-12 h-12 rounded-2xl bg-brand-teal/20 text-brand-teal flex items-center justify-center text-xl shrink-0">
+            🧤
+          </div>
+<div>
+<h4 class="font-heading font-bold text-base text-brand-dark">Trained Food-Grade Pickers</h4>
+<p class="text-xs text-brand-slate mt-1">Mandatory thermal gloves, hairnets, and sanitized pick aprons across shifts.</p>
+</div>
+</div>
+<!-- Standard 5 -->
+<div class="reveal-item flex items-start gap-4 p-5 rounded-3xl bg-brand-cream/60 border border-brand-pink/50">
+<div class="w-12 h-12 rounded-2xl bg-brand-pink text-brand-coral flex items-center justify-center text-xl shrink-0">
+            🌡️
+          </div>
+<div>
+<h4 class="font-heading font-bold text-base text-brand-dark">IoT Thermal Data Loggers</h4>
+<p class="text-xs text-brand-slate mt-1">Every second logged on cloud servers. Instant SMS alerts if temp shifts by 1°C.</p>
+</div>
+</div>
+<!-- Standard 6 -->
+<div class="reveal-item flex items-start gap-4 p-5 rounded-3xl bg-brand-cream/60 border border-brand-mint/50">
+<div class="w-12 h-12 rounded-2xl bg-brand-mint/40 text-brand-teal flex items-center justify-center text-xl shrink-0">
+            🔋
+          </div>
+<div>
+<h4 class="font-heading font-bold text-base text-brand-dark">Zero-Interruption Diesel DG</h4>
+<p class="text-xs text-brand-slate mt-1">Automatic transfer switches ignite back-up power within 8 seconds of grid loss.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Sanitary & Food Safety Assurance -->
+<!-- BEGIN: Partner Brand Wall (Inspired by reference styling) -->
+<section class="py-16 md:py-24 bg-brand-cream relative overflow-hidden">
+<!-- Playful Confetti Dots -->
+<div class="confetti-dot w-3 h-3 bg-brand-coral top-10 left-10 animate-float-slow"></div>
+<div class="confetti-dot w-4 h-4 bg-brand-teal bottom-10 right-10 animate-float-delayed"></div>
+<div class="max-w-6xl mx-auto px-4 sm:px-6">
+<div class="text-center max-w-2xl mx-auto mb-14">
+<span class="text-xs uppercase tracking-widest font-extrabold text-brand-teal bg-white px-4 py-1.5 rounded-full shadow-xs">Trusted Ecosystem</span>
+<h2 class="text-3xl sm:text-5xl font-heading font-black text-brand-dark mt-3">13+ Leading Cold Brands Live</h2>
+<p class="text-brand-slate text-sm sm:text-base mt-3">From handcrafted Italian gelatos to probiotic frozen yogurts and cloud patisseries.</p>
+</div>
+<!-- Brand Circular Badges Grid (Inspired by Circular Flavor Badges in Image 2) -->
+<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 sm:gap-6">
+<div class="reveal-item bg-white p-5 rounded-3xl border border-brand-pink/50 text-center flex flex-col items-center hover:scale-105 transition-transform shadow-xs">
+<div class="w-16 h-16 rounded-full bg-brand-pink/40 flex items-center justify-center text-2xl mb-3 shadow-inner">🍦</div>
+<span class="font-heading font-bold text-xs sm:text-sm text-brand-dark">Gelato Classico</span>
+<span class="text-[10px] text-brand-slate/70 mt-1">Italian Style</span>
+</div>
+<div class="reveal-item bg-white p-5 rounded-3xl border border-brand-coral/40 text-center flex flex-col items-center hover:scale-105 transition-transform shadow-xs">
+<div class="w-16 h-16 rounded-full bg-brand-coral/20 flex items-center justify-center text-2xl mb-3 shadow-inner">🍫</div>
+<span class="font-heading font-bold text-xs sm:text-sm text-brand-dark">Melt &amp; Co.</span>
+<span class="text-[10px] text-brand-slate/70 mt-1">Artisan Chocolates</span>
+</div>
+<div class="reveal-item bg-white p-5 rounded-3xl border border-brand-apricot/50 text-center flex flex-col items-center hover:scale-105 transition-transform shadow-xs">
+<div class="w-16 h-16 rounded-full bg-brand-apricot/30 flex items-center justify-center text-2xl mb-3 shadow-inner">🥭</div>
+<span class="font-heading font-bold text-xs sm:text-sm text-brand-dark">FrootiCraft</span>
+<span class="text-[10px] text-brand-slate/70 mt-1">Pure Fruit Sorbets</span>
+</div>
+<div class="reveal-item bg-white p-5 rounded-3xl border border-brand-mint/50 text-center flex flex-col items-center hover:scale-105 transition-transform shadow-xs">
+<div class="w-16 h-16 rounded-full bg-brand-mint/40 flex items-center justify-center text-2xl mb-3 shadow-inner">🥣</div>
+<span class="font-heading font-bold text-xs sm:text-sm text-brand-dark">Yoguruto</span>
+<span class="text-[10px] text-brand-slate/70 mt-1">Probiotic Fro-Yo</span>
+</div>
+<div class="reveal-item bg-white p-5 rounded-3xl border border-brand-teal/30 text-center flex flex-col items-center hover:scale-105 transition-transform shadow-xs">
+<div class="w-16 h-16 rounded-full bg-brand-teal/20 flex items-center justify-center text-2xl mb-3 shadow-inner">🍰</div>
+<span class="font-heading font-bold text-xs sm:text-sm text-brand-dark">Cloud Creamery</span>
+<span class="text-[10px] text-brand-slate/70 mt-1">Ice Cream Cakes</span>
+</div>
+<div class="reveal-item bg-white p-5 rounded-3xl border border-brand-pink/50 text-center flex flex-col items-center hover:scale-105 transition-transform shadow-xs">
+<div class="w-16 h-16 rounded-full bg-brand-pink/50 flex items-center justify-center text-2xl mb-3 shadow-inner">☕</div>
+<span class="font-heading font-bold text-xs sm:text-sm text-brand-dark">Caffè Crema</span>
+<span class="text-[10px] text-brand-slate/70 mt-1">Cold Brew Pours</span>
+</div>
+<div class="reveal-item bg-white p-5 rounded-3xl border border-brand-apricot/50 text-center flex flex-col items-center hover:scale-105 transition-transform shadow-xs">
+<div class="w-16 h-16 rounded-full bg-brand-apricot/20 flex items-center justify-center text-2xl mb-3 shadow-inner">🥥</div>
+<span class="font-heading font-bold text-xs sm:text-sm text-brand-dark">CocoNectar</span>
+<span class="text-[10px] text-brand-slate/70 mt-1">Vegan Ice Sweets</span>
+</div>
+<div class="reveal-item bg-white p-5 rounded-3xl border border-brand-mint/50 text-center flex flex-col items-center hover:scale-105 transition-transform shadow-xs">
+<div class="w-16 h-16 rounded-full bg-brand-mint/30 flex items-center justify-center text-2xl mb-3 shadow-inner">🍓</div>
+<span class="font-heading font-bold text-xs sm:text-sm text-brand-dark">BerryBloom</span>
+<span class="text-[10px] text-brand-slate/70 mt-1">Organic Crumbles</span>
+</div>
+<div class="reveal-item bg-white p-5 rounded-3xl border border-brand-coral/40 text-center flex flex-col items-center hover:scale-105 transition-transform shadow-xs">
+<div class="w-16 h-16 rounded-full bg-brand-coral/20 flex items-center justify-center text-2xl mb-3 shadow-inner">🥐</div>
+<span class="font-heading font-bold text-xs sm:text-sm text-brand-dark">BakeFreeze</span>
+<span class="text-[10px] text-brand-slate/70 mt-1">Frozen Croissants</span>
+</div>
+<div class="reveal-item bg-white p-5 rounded-3xl border border-brand-teal/30 text-center flex flex-col items-center hover:scale-105 transition-transform shadow-xs">
+<div class="w-16 h-16 rounded-full bg-brand-teal/15 flex items-center justify-center text-2xl mb-3 shadow-inner">🧇</div>
+<span class="font-heading font-bold text-xs sm:text-sm text-brand-dark">WaffleJoy</span>
+<span class="text-[10px] text-brand-slate/70 mt-1">Ready Toasties</span>
+</div>
+<div class="reveal-item bg-white p-5 rounded-3xl border border-brand-pink/50 text-center flex flex-col items-center hover:scale-105 transition-transform shadow-xs">
+<div class="w-16 h-16 rounded-full bg-brand-pink/30 flex items-center justify-center text-2xl mb-3 shadow-inner">🍨</div>
+<span class="font-heading font-bold text-xs sm:text-sm text-brand-dark">Zini Pops</span>
+<span class="text-[10px] text-brand-slate/70 mt-1">Gelato Sticks</span>
+</div>
+<div class="reveal-item bg-white p-5 rounded-3xl border border-brand-apricot/50 text-center flex flex-col items-center hover:scale-105 transition-transform shadow-xs">
+<div class="w-16 h-16 rounded-full bg-brand-apricot/40 flex items-center justify-center text-2xl mb-3 shadow-inner">🍮</div>
+<span class="font-heading font-bold text-xs sm:text-sm text-brand-dark">Flan &amp; Creme</span>
+<span class="text-[10px] text-brand-slate/70 mt-1">Cold Custards</span>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Partner Brand Wall -->
+<!-- BEGIN: Mumbai & Thane Network Map -->
+<section class="py-16 md:py-24 bg-white relative" data-purpose="active-network" id="network">
+<div class="max-w-6xl mx-auto px-4 sm:px-6">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
+<div>
+<span class="text-xs uppercase tracking-widest font-extrabold text-brand-coral bg-brand-pink/40 px-4 py-1.5 rounded-full">Dense Operational Grid</span>
+<h2 class="text-3xl sm:text-5xl font-heading font-black text-brand-dark mt-3">9 Active Hubs Across Mumbai &amp; Thane</h2>
+<p class="text-brand-slate text-sm sm:text-base mt-2">Strategically blanketed to provide 95% urban pincode coverage within 20 minutes.</p>
+</div>
+<div class="flex items-center gap-2 bg-brand-cream px-4 py-2 rounded-full border border-brand-pink text-xs font-bold text-brand-teal shrink-0">
+<span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
+<span>All 9 Hubs Fully Operational</span>
+</div>
+</div>
+<!-- Topological Grid Hub Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+<!-- Hub 1 -->
+<div class="reveal-item bg-brand-cream/60 p-6 rounded-3xl border border-brand-mint hover:bg-white hover:shadow-xl transition-all group">
+<div class="flex justify-between items-start mb-4">
+<span class="text-xs font-extrabold px-3 py-1 rounded-full bg-brand-mint text-brand-teal">Store #01</span>
+<span class="text-xs font-bold text-emerald-600">● Live 24x7</span>
+</div>
+<h3 class="text-xl font-heading font-bold text-brand-dark group-hover:text-brand-teal transition-colors">Santacruz West</h3>
+<p class="text-xs text-brand-slate mt-1">Covers Bandra, Santacruz, Khar &amp; BKC Corridor</p>
+<div class="mt-4 pt-3 border-t border-brand-mint/40 flex justify-between text-[11px] font-semibold text-brand-slate">
+<span>Pincodes: 400054, 400050</span>
+<span class="text-brand-teal font-bold">-18.6°C</span>
+</div>
+</div>
+<!-- Hub 2 -->
+<div class="reveal-item bg-brand-cream/60 p-6 rounded-3xl border border-brand-pink hover:bg-white hover:shadow-xl transition-all group">
+<div class="flex justify-between items-start mb-4">
+<span class="text-xs font-extrabold px-3 py-1 rounded-full bg-brand-pink text-brand-coral">Store #02</span>
+<span class="text-xs font-bold text-emerald-600">● Live 24x7</span>
+</div>
+<h3 class="text-xl font-heading font-bold text-brand-dark group-hover:text-brand-teal transition-colors">Versova &amp; Andheri W</h3>
+<p class="text-xs text-brand-slate mt-1">Covers Lokhandwala, Juhu, Versova Beach road</p>
+<div class="mt-4 pt-3 border-t border-brand-pink/40 flex justify-between text-[11px] font-semibold text-brand-slate">
+<span>Pincodes: 400053, 400061</span>
+<span class="text-brand-coral font-bold">-18.2°C</span>
+</div>
+</div>
+<!-- Hub 3 -->
+<div class="reveal-item bg-brand-cream/60 p-6 rounded-3xl border border-brand-apricot hover:bg-white hover:shadow-xl transition-all group">
+<div class="flex justify-between items-start mb-4">
+<span class="text-xs font-extrabold px-3 py-1 rounded-full bg-brand-apricot/40 text-amber-800">Store #03</span>
+<span class="text-xs font-bold text-emerald-600">● Live 24x7</span>
+</div>
+<h3 class="text-xl font-heading font-bold text-brand-dark group-hover:text-brand-teal transition-colors">Fort &amp; Colaba</h3>
+<p class="text-xs text-brand-slate mt-1">South Mumbai Financial District, Marine Drive</p>
+<div class="mt-4 pt-3 border-t border-brand-apricot/40 flex justify-between text-[11px] font-semibold text-brand-slate">
+<span>Pincodes: 400001, 400005</span>
+<span class="text-amber-700 font-bold">-18.4°C</span>
+</div>
+</div>
+<!-- Hub 4 -->
+<div class="reveal-item bg-brand-cream/60 p-6 rounded-3xl border border-brand-teal/30 hover:bg-white hover:shadow-xl transition-all group">
+<div class="flex justify-between items-start mb-4">
+<span class="text-xs font-extrabold px-3 py-1 rounded-full bg-brand-teal/20 text-brand-teal">Store #04</span>
+<span class="text-xs font-bold text-emerald-600">● Live 24x7</span>
+</div>
+<h3 class="text-xl font-heading font-bold text-brand-dark group-hover:text-brand-teal transition-colors">Vakola &amp; Santacruz E</h3>
+<p class="text-xs text-brand-slate mt-1">Airport strip, Kalina, Kurla West gateway</p>
+<div class="mt-4 pt-3 border-t border-brand-teal/20 flex justify-between text-[11px] font-semibold text-brand-slate">
+<span>Pincodes: 400055, 400098</span>
+<span class="text-brand-teal font-bold">-18.5°C</span>
+</div>
+</div>
+<!-- Hub 5 -->
+<div class="reveal-item bg-brand-cream/60 p-6 rounded-3xl border border-brand-mint hover:bg-white hover:shadow-xl transition-all group">
+<div class="flex justify-between items-start mb-4">
+<span class="text-xs font-extrabold px-3 py-1 rounded-full bg-brand-mint text-brand-teal">Store #05</span>
+<span class="text-xs font-bold text-emerald-600">● Live 24x7</span>
+</div>
+<h3 class="text-xl font-heading font-bold text-brand-dark group-hover:text-brand-teal transition-colors">Chembur Central</h3>
+<p class="text-xs text-brand-slate mt-1">Eastern Suburbs, Ghatkopar East, Deonar</p>
+<div class="mt-4 pt-3 border-t border-brand-mint/40 flex justify-between text-[11px] font-semibold text-brand-slate">
+<span>Pincodes: 400071, 400077</span>
+<span class="text-brand-teal font-bold">-18.1°C</span>
+</div>
+</div>
+<!-- Hub 6 -->
+<div class="reveal-item bg-brand-cream/60 p-6 rounded-3xl border border-brand-pink hover:bg-white hover:shadow-xl transition-all group">
+<div class="flex justify-between items-start mb-4">
+<span class="text-xs font-extrabold px-3 py-1 rounded-full bg-brand-pink text-brand-coral">Store #06</span>
+<span class="text-xs font-bold text-emerald-600">● Live 24x7</span>
+</div>
+<h3 class="text-xl font-heading font-bold text-brand-dark group-hover:text-brand-teal transition-colors">Oshiwara &amp; Goregaon</h3>
+<p class="text-xs text-brand-slate mt-1">Link Road, Malad West edge, Goregaon Hub</p>
+<div class="mt-4 pt-3 border-t border-brand-pink/40 flex justify-between text-[11px] font-semibold text-brand-slate">
+<span>Pincodes: 400102, 400062</span>
+<span class="text-brand-coral font-bold">-18.7°C</span>
+</div>
+</div>
+<!-- Hub 7 -->
+<div class="reveal-item bg-brand-cream/60 p-6 rounded-3xl border border-brand-apricot hover:bg-white hover:shadow-xl transition-all group">
+<div class="flex justify-between items-start mb-4">
+<span class="text-xs font-extrabold px-3 py-1 rounded-full bg-brand-apricot/40 text-amber-800">Store #07</span>
+<span class="text-xs font-bold text-emerald-600">● Live 24x7</span>
+</div>
+<h3 class="text-xl font-heading font-bold text-brand-dark group-hover:text-brand-teal transition-colors">Dahisar &amp; Borivali</h3>
+<p class="text-xs text-brand-slate mt-1">North Western Suburbs, Kandivali West</p>
+<div class="mt-4 pt-3 border-t border-brand-apricot/40 flex justify-between text-[11px] font-semibold text-brand-slate">
+<span>Pincodes: 400068, 400092</span>
+<span class="text-amber-700 font-bold">-18.3°C</span>
+</div>
+</div>
+<!-- Hub 8 -->
+<div class="reveal-item bg-brand-cream/60 p-6 rounded-3xl border border-brand-teal/30 hover:bg-white hover:shadow-xl transition-all group">
+<div class="flex justify-between items-start mb-4">
+<span class="text-xs font-extrabold px-3 py-1 rounded-full bg-brand-teal/20 text-brand-teal">Store #08</span>
+<span class="text-xs font-bold text-emerald-600">● Live 24x7</span>
+</div>
+<h3 class="text-xl font-heading font-bold text-brand-dark group-hover:text-brand-teal transition-colors">Khopat, Thane City</h3>
+<p class="text-xs text-brand-slate mt-1">Naupada, Majiwada, Ghodbunder Rd entry</p>
+<div class="mt-4 pt-3 border-t border-brand-teal/20 flex justify-between text-[11px] font-semibold text-brand-slate">
+<span>Pincodes: 400601, 400602</span>
+<span class="text-brand-teal font-bold">-18.6°C</span>
+</div>
+</div>
+<!-- Hub 9 -->
+<div class="reveal-item bg-brand-cream/60 p-6 rounded-3xl border border-brand-mint hover:bg-white hover:shadow-xl transition-all group">
+<div class="flex justify-between items-start mb-4">
+<span class="text-xs font-extrabold px-3 py-1 rounded-full bg-brand-mint text-brand-teal">Store #09</span>
+<span class="text-xs font-bold text-emerald-600">● Live 24x7</span>
+</div>
+<h3 class="text-xl font-heading font-bold text-brand-dark group-hover:text-brand-teal transition-colors">Hiranandani Estate</h3>
+<p class="text-xs text-brand-slate mt-1">Ghodbunder Road premium residential clusters</p>
+<div class="mt-4 pt-3 border-t border-brand-mint/40 flex justify-between text-[11px] font-semibold text-brand-slate">
+<span>Pincodes: 400607, 400615</span>
+<span class="text-brand-teal font-bold">-18.8°C</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Mumbai & Thane Network Map -->
+<!-- BEGIN: Planned India Expansion (FY 26-27) -->
+<section class="py-16 md:py-24 bg-brand-cream relative" id="expansion">
+<div class="max-w-6xl mx-auto px-4 sm:px-6">
+<div class="text-center max-w-2xl mx-auto mb-16">
+<span class="text-xs uppercase tracking-widest font-extrabold text-brand-coral bg-brand-pink/50 px-4 py-1.5 rounded-full">National Rollout Roadmap</span>
+<h2 class="text-3xl sm:text-5xl font-heading font-black text-brand-dark mt-3">19 Planned Hubs Across India</h2>
+<p class="text-brand-slate text-sm sm:text-base mt-3">Scaling our sub-zero White Store infrastructure to top metropolitan regions in FY 26–27.</p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+<!-- Bengaluru -->
+<div class="reveal-item bg-white p-6 rounded-3xl border border-brand-teal/30 hover:-translate-y-1 transition-transform">
+<div class="text-xs font-extrabold text-brand-teal bg-brand-mint/40 px-3 py-1 rounded-full inline-block mb-4">5 White Stores</div>
+<h3 class="text-xl font-heading font-bold text-brand-dark">Bengaluru</h3>
+<p class="text-xs text-brand-slate mt-2 leading-relaxed">Indiranagar, Koramangala, Whitefield, HSR Layout, Bellandur.</p>
+<div class="mt-6 text-[11px] font-bold text-brand-teal">Q2 FY 26 Rollout</div>
+</div>
+<!-- Delhi NCR -->
+<div class="reveal-item bg-white p-6 rounded-3xl border border-brand-coral/40 hover:-translate-y-1 transition-transform">
+<div class="text-xs font-extrabold text-brand-coral bg-brand-pink/40 px-3 py-1 rounded-full inline-block mb-4">6 White Stores</div>
+<h3 class="text-xl font-heading font-bold text-brand-dark">Delhi NCR</h3>
+<p class="text-xs text-brand-slate mt-2 leading-relaxed">South Ext, Cyber City Gurugram, Noida Sec 62, Vasant Kunj, GK-II.</p>
+<div class="mt-6 text-[11px] font-bold text-brand-coral">Q3 FY 26 Rollout</div>
+</div>
+<!-- Hyderabad -->
+<div class="reveal-item bg-white p-6 rounded-3xl border border-brand-apricot/60 hover:-translate-y-1 transition-transform">
+<div class="text-xs font-extrabold text-amber-700 bg-brand-apricot/30 px-3 py-1 rounded-full inline-block mb-4">3 White Stores</div>
+<h3 class="text-xl font-heading font-bold text-brand-dark">Hyderabad</h3>
+<p class="text-xs text-brand-slate mt-2 leading-relaxed">Jubilee Hills, Gachibowli, Hitec City Tech Zone.</p>
+<div class="mt-6 text-[11px] font-bold text-amber-700">Q4 FY 26 Rollout</div>
+</div>
+<!-- Pune -->
+<div class="reveal-item bg-white p-6 rounded-3xl border border-brand-mint/60 hover:-translate-y-1 transition-transform">
+<div class="text-xs font-extrabold text-brand-teal bg-brand-mint/50 px-3 py-1 rounded-full inline-block mb-4">3 White Stores</div>
+<h3 class="text-xl font-heading font-bold text-brand-dark">Pune</h3>
+<p class="text-xs text-brand-slate mt-2 leading-relaxed">Koregaon Park, Baner, Viman Nagar corridor.</p>
+<div class="mt-6 text-[11px] font-bold text-brand-teal">Q4 FY 26 Rollout</div>
+</div>
+<!-- Kolkata -->
+<div class="reveal-item bg-white p-6 rounded-3xl border border-brand-pink hover:-translate-y-1 transition-transform">
+<div class="text-xs font-extrabold text-brand-coral bg-brand-pink/40 px-3 py-1 rounded-full inline-block mb-4">2 White Stores</div>
+<h3 class="text-xl font-heading font-bold text-brand-dark">Kolkata</h3>
+<p class="text-xs text-brand-slate mt-2 leading-relaxed">Salt Lake Sector V, Ballygunge &amp; Alipore.</p>
+<div class="mt-6 text-[11px] font-bold text-brand-coral">Q1 FY 27 Rollout</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Planned India Expansion (FY 26-27) -->
+<!-- BEGIN: Final Executive CTA Section -->
+<section class="py-16 md:py-24 bg-white relative" data-purpose="executive-contact" id="contact">
+<div class="max-w-5xl mx-auto px-4 sm:px-6">
+<!-- High Impact Dark Teal Card -->
+<div class="reveal-item bg-brand-teal text-white rounded-5xl p-8 sm:p-14 shadow-2xl relative overflow-hidden">
+<!-- Subtle Arched Ribbon Graphic Behind CTA -->
+<div class="absolute -right-10 -bottom-20 w-80 h-96 bg-brand-tealDark/70 arch-pillar-up pointer-events-none"></div>
+<div class="absolute right-40 -bottom-10 w-44 h-80 bg-brand-coral/20 arch-pillar-up pointer-events-none"></div>
+<div class="relative z-10 max-w-3xl">
+<span class="inline-block px-4 py-1.5 rounded-full bg-white/20 text-white font-extrabold text-xs uppercase tracking-widest mb-6">Join The Network</span>
+<h2 class="text-3xl sm:text-5xl font-heading font-black leading-tight text-white mb-6">
+            Ready to Deliver Pristine Frozen Goodness Across Mumbai?
+          </h2>
+<p class="text-white/80 text-base sm:text-lg mb-10 leading-relaxed">
+            Onboard your gourmet brand onto our sub-zero micro-fulfilment network within 7 business days. Plug into seamless Zomato, Swiggy, and Blinkit catalog synchronisation.
+          </p>
+<!-- Executive Contact Pill Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
+<!-- Contact Card 1 -->
+<div class="bg-white/10 backdrop-blur-md rounded-3xl p-5 border border-white/20">
+<div class="text-xs uppercase font-extrabold text-brand-apricot tracking-wider">Leadership Inquiries</div>
+<div class="text-xl font-heading font-bold text-white mt-1">Gyan Menon</div>
+<div class="text-xs text-white/70">Co-Founder &amp; VP Partnerships</div>
+<div class="mt-3 flex items-center gap-2 text-xs font-semibold text-white/90">
+<span>📧 gyan@propelpad.in</span>
+</div>
+</div>
+<!-- Contact Card 2 -->
+<div class="bg-white/10 backdrop-blur-md rounded-3xl p-5 border border-white/20">
+<div class="text-xs uppercase font-extrabold text-brand-coral tracking-wider">Operations &amp; Onboarding</div>
+<div class="text-xl font-heading font-bold text-white mt-1">Shanu Singh</div>
+<div class="text-xs text-white/70">City Lead, Mumbai &amp; Thane</div>
+<div class="mt-3 flex items-center gap-2 text-xs font-semibold text-white/90">
+<span>📧 shanu.singh@propelpad.in</span>
+</div>
+</div>
+</div>
+<!-- Quick Action Buttons -->
+<div class="flex flex-wrap items-center gap-4">
+<a class="px-8 py-4 bg-brand-coral hover:bg-[#eb8c7a] text-white font-extrabold text-base rounded-full shadow-lg hover:shadow-xl transition-all" href="mailto:partners@propelpad.in?subject=White%20Store%20Partnership%20Inquiry">
+              Schedule Facility Tour
+            </a>
+<a class="px-8 py-4 bg-white/20 hover:bg-white/30 text-white font-extrabold text-base rounded-full border border-white/30 transition-all" href="#network">
+              Request Rate Card
+            </a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Final Executive CTA Section -->
+<!-- BEGIN: Minimalist Footer -->
+<footer class="bg-brand-cream border-t border-brand-pink/60 py-12" data-purpose="site-footer">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-brand-teal text-white flex items-center justify-center font-bold text-sm">
+          ❄️
+        </div>
+<div>
+<span class="font-heading font-bold text-lg text-brand-dark">Propelpad</span>
+<span class="text-xs text-brand-slate ml-2">Sub-Zero White Store Network</span>
+</div>
+</div>
+<div class="text-xs text-brand-slate text-center md:text-right">
+<p>© 2026 Propelpad Technologies Private Limited. All rights reserved.</p>
+<p class="mt-1 text-brand-slate/70">Hospital-Grade Cold Chain Infrastructure • FSSAI Compliant Operations</p>
+</div>
+</div>
+</footer>
+<!-- END: Minimalist Footer -->
+<!-- BEGIN: Interactive Tabs Script -->
+<script data-purpose="intelligence-tabs">
+    document.addEventListener('DOMContentLoaded', () => {
+      const tabTriggers = document.querySelectorAll('.tab-trigger');
+      const tabPanels = document.querySelectorAll('.tab-panel');
+
+      tabTriggers.forEach(trigger => {
+        trigger.addEventListener('click', () => {
+          const target = trigger.getAttribute('data-tab');
+
+          // Reset trigger buttons
+          tabTriggers.forEach(btn => {
+            btn.classList.remove('bg-brand-teal', 'text-white', 'shadow-md');
+            btn.classList.add('bg-brand-cream', 'text-brand-slate');
+          });
+
+          // Activate clicked trigger
+          trigger.classList.add('bg-brand-teal', 'text-white', 'shadow-md');
+          trigger.classList.remove('bg-brand-cream', 'text-brand-slate');
+
+          // Toggle visibility of panels
+          tabPanels.forEach(panel => {
+            if (panel.id === `tab-${target}`) {
+              panel.classList.remove('hidden');
+            } else {
+              panel.classList.add('hidden');
+            }
+          });
+        });
+      });
+    });
+  </script>
+<!-- END: Interactive Tabs Script -->
+<!-- BEGIN: Scroll Entrance Animations via IntersectionObserver -->
+<script data-purpose="scroll-animations">
+    document.addEventListener('DOMContentLoaded', () => {
+      const revealItems = document.querySelectorAll('.reveal-item');
+      
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-revealed');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, {
+        root: null,
+        threshold: 0.12,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      revealItems.forEach(el => observer.observe(el));
+    });
+  </script>
+<!-- END: Scroll Entrance Animations via IntersectionObserver -->
+</body></html>
