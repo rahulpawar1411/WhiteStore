@@ -24,8 +24,10 @@
             }
           },
           fontFamily: {
-            display: ['Cabinet Grotesk', 'Outfit', 'system-ui', 'sans-serif'],
-            body: ['Plus Jakarta Sans', 'Inter', 'system-ui', 'sans-serif']
+            display: ['Playfair Display', 'Georgia', 'serif'],
+            body: ['Source Sans 3', 'system-ui', 'sans-serif'],
+            proof: ['Playfair Display', 'Georgia', 'serif'],
+            proofLabel: ['Syne', 'Outfit', 'sans-serif']
           },
           borderRadius: {
             '4xl': '2rem',
@@ -35,24 +37,98 @@
       }
     }
   </script>
-<!-- Google Fonts: Plus Jakarta Sans & Outfit -->
+<!-- Google Fonts: Playfair Display, Outfit, Source Sans 3, Syne -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&amp;family=Playfair+Display:wght@600;700;800&amp;family=Source+Sans+3:wght@400;500;600;700&amp;family=Syne:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
 <!-- Core Layout & Custom Styling -->
 <style data-purpose="custom-typography-and-decorations">
     html {
       font-size: 14px; /* base down from 16px — scales all rem text */
+      --font-body: 'Source Sans 3', system-ui, sans-serif;
+      --font-heading: 'Outfit', system-ui, sans-serif;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-label: 'Syne', 'Outfit', sans-serif;
     }
     body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: var(--font-body);
       background-color: #FAF7F2;
       color: #1E293B;
       overflow-x: clip; /* clip keeps position:sticky working (hidden breaks it) */
     }
     h1, h2, h3, h4, .font-heading {
-      font-family: 'Outfit', sans-serif;
+      font-family: var(--font-heading);
       letter-spacing: -0.02em;
+    }
+
+    /* Overview proof metrics — editorial strip, not cards */
+    .proof-rail {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      width: 100%;
+      max-width: 72rem;
+      margin: 0 auto;
+      border-top: 1.5px solid #1E293B;
+      border-bottom: 1.5px solid #1E293B;
+    }
+    .proof-stat {
+      position: relative;
+      padding: 1.35rem 1rem 1.5rem;
+      text-align: left;
+      background: transparent;
+    }
+    .proof-stat:nth-child(odd) {
+      border-right: 1.5px solid rgba(30, 41, 59, 0.18);
+    }
+    .proof-stat:nth-child(-n+2) {
+      border-bottom: 1.5px solid rgba(30, 41, 59, 0.18);
+    }
+    .proof-num {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(2.35rem, 7vw, 3.75rem);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      color: #1E293B;
+      font-variation-settings: "SOFT" 30, "WONK" 1;
+    }
+    .proof-stat:nth-child(1) .proof-num { color: #2C6B74; }
+    .proof-stat:nth-child(2) .proof-num { color: #E07A66; }
+    .proof-stat:nth-child(3) .proof-num {
+      font-size: clamp(1.35rem, 4.2vw, 2rem);
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      color: #1E293B;
+    }
+    .proof-stat:nth-child(4) .proof-num { color: #0F766E; }
+    .proof-label {
+      font-family: var(--font-label);
+      margin-top: 0.65rem;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #64748B;
+    }
+    @media (min-width: 768px) {
+      .proof-rail {
+        grid-template-columns: repeat(4, 1fr);
+      }
+      .proof-stat {
+        padding: 2rem 1.75rem 2.15rem;
+      }
+      .proof-stat:nth-child(odd) {
+        border-right: none;
+      }
+      .proof-stat:nth-child(-n+2) {
+        border-bottom: none;
+      }
+      .proof-stat:not(:last-child) {
+        border-right: 1.5px solid rgba(30, 41, 59, 0.18);
+      }
+      .proof-stat:nth-child(3) .proof-num {
+        font-size: clamp(1.5rem, 2.1vw, 1.85rem);
+      }
     }
 
     /* Arched Ribbon Hanging Motif Inspired by reference */
@@ -156,52 +232,529 @@
       text-align: center;
       box-shadow: 0 0 0 8px rgba(250, 247, 242, 0.9);
     }
-    /* Live facility auto slider — full-bleed fill */
-    .facility-slider {
+    /* Live store — text left, image slider right */
+    .store-hero-row {
+      display: grid;
+      gap: 1.75rem;
+      width: 100%;
+      align-items: center;
+    }
+    @media (min-width: 900px) {
+      .store-hero-row {
+        grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.95fr);
+        gap: 2.25rem;
+      }
+    }
+    .store-stage {
+      position: relative;
+      border-radius: 1.25rem;
+      overflow: hidden;
+      min-height: 15rem;
+      height: 15rem;
+      width: 100%;
+      max-width: 28rem;
+      margin-left: auto;
+      margin-right: auto;
+      background: #111;
+      isolation: isolate;
+    }
+    @media (min-width: 768px) {
+      .store-stage {
+        min-height: 19rem;
+        height: 19rem;
+        max-width: 32rem;
+      }
+    }
+    @media (min-width: 900px) {
+      .store-stage {
+        min-height: 22rem;
+        height: 22rem;
+        max-width: 100%;
+        margin-right: 0;
+      }
+    }
+    .store-stage-img {
       position: absolute;
       inset: 0;
-      overflow: hidden;
-      background: #000;
-    }
-    .facility-slide {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: auto;
-      height: auto;
-      min-width: 100%;
-      min-height: 100%;
-      max-width: none;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      object-position: center center;
       opacity: 0;
-      transform: translate(-50%, -50%) scale(1.08);
-      transition: opacity 1.1s ease, transform 6.5s ease-out;
-      will-change: opacity, transform;
-      pointer-events: none;
+      transform: scale(1.06);
+      transition: opacity 0.7s ease, transform 5.5s ease-out;
     }
-    .facility-slide.is-active {
+    .store-stage-img.is-active {
       opacity: 1;
-      transform: translate(-50%, -50%) scale(1);
+      transform: scale(1);
       z-index: 1;
     }
-    .facility-dots {
-      display: flex;
-      gap: 0.35rem;
+    .store-stage-shade {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background: linear-gradient(to top, rgba(15, 23, 42, 0.78) 0%, rgba(15, 23, 42, 0.1) 45%, rgba(15, 23, 42, 0.35) 100%);
+      pointer-events: none;
     }
-    .facility-dot {
-      width: 0.4rem;
-      height: 0.4rem;
+    .store-stage-meta {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 3;
+      padding: 1.25rem 1.25rem 1.35rem;
+      color: #fff;
+    }
+    .store-stage-kicker {
+      font-family: var(--font-label);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.72);
+    }
+    .store-stage-name {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(1.45rem, 3vw, 2.1rem);
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-top: 0.25rem;
+    }
+    .store-stage-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-top: 0.85rem;
+    }
+    .store-chip {
+      font-family: var(--font-label);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.4rem 0.65rem;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      background: rgba(0, 0, 0, 0.28);
+      color: #fff;
+    }
+    .store-dots {
+      display: flex;
+      gap: 0.4rem;
+      margin-top: 1.25rem;
+    }
+    .store-dot {
+      width: 0.45rem;
+      height: 0.45rem;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.35);
       border: none;
       padding: 0;
+      background: rgba(30, 41, 59, 0.22);
       cursor: pointer;
       transition: width 0.3s ease, background 0.3s ease;
     }
-    .facility-dot.is-active {
-      width: 1.1rem;
-      background: #fff;
+    .store-dot.is-active {
+      width: 1.25rem;
+      background: #2C6B74;
+    }
+
+    /* Network performance metrics — dark board */
+    .metrics-board {
+      width: 100%;
+      max-width: 72rem;
+      margin: 0 auto;
+      background: #1D4B52;
+      color: #FAF7F2;
+      border-radius: 1.5rem;
+      padding: 1.75rem 1.25rem 1.5rem;
+      overflow: hidden;
+      position: relative;
+    }
+    .metrics-board::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 50% 40% at 10% 0%, rgba(244, 157, 140, 0.18), transparent 55%),
+        radial-gradient(ellipse 40% 35% at 95% 100%, rgba(184, 223, 216, 0.16), transparent 50%);
+      pointer-events: none;
+    }
+    .metrics-board-head {
+      position: relative;
+      z-index: 1;
+      text-align: left;
+      margin-bottom: 1.5rem;
+      padding: 0 0.35rem;
+    }
+    .metrics-board-kicker {
+      font-family: var(--font-label);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #B8DFD8;
+    }
+    .metrics-board-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-top: 0.35rem;
+      color: #FAF7F2;
+    }
+    .metrics-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border-top: 1px solid rgba(250, 247, 242, 0.18);
+    }
+    .metric-cell {
+      padding: 1.15rem 0.85rem 1.25rem;
+      border-bottom: 1px solid rgba(250, 247, 242, 0.14);
+    }
+    .metric-cell:nth-child(odd) {
+      border-right: 1px solid rgba(250, 247, 242, 0.14);
+      padding-right: 1rem;
+    }
+    .metric-cell:nth-child(even) {
+      padding-left: 1rem;
+    }
+    .metric-val {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(1.85rem, 5.5vw, 2.65rem);
+      letter-spacing: -0.04em;
+      line-height: 1;
+      color: #FAF7F2;
+    }
+    .metric-cell:nth-child(2) .metric-val { color: #F8CE9F; }
+    .metric-cell:nth-child(3) .metric-val { color: #F49D8C; }
+    .metric-cell:nth-child(4) .metric-val { color: #B8DFD8; }
+    .metric-cell:nth-child(5) .metric-val { color: #F6D6D6; }
+    .metric-cell:nth-child(6) .metric-val { color: #F8CE9F; }
+    .metric-name {
+      font-family: var(--font-label);
+      margin-top: 0.55rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(250, 247, 242, 0.78);
+    }
+    .metric-note {
+      display: block;
+      margin-top: 0.35rem;
+      font-family: var(--font-body);
+      font-size: 0.68rem;
+      font-weight: 500;
+      color: rgba(250, 247, 242, 0.48);
+      letter-spacing: 0.01em;
+      text-transform: none;
+    }
+    @media (min-width: 768px) {
+      .metrics-board {
+        padding: 2.25rem 2rem 1.75rem;
+        border-radius: 1.75rem;
+      }
+      .metrics-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .metric-cell {
+        padding: 1.4rem 1.25rem 1.5rem;
+        border-right: 1px solid rgba(250, 247, 242, 0.14);
+      }
+      .metric-cell:nth-child(odd),
+      .metric-cell:nth-child(even) {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+      }
+      .metric-cell:nth-child(3n) {
+        border-right: none;
+      }
+      .metric-cell:nth-child(n+4) {
+        border-bottom: none;
+      }
+    }
+
+    /* Premium Cold-Chain Imperative — manifesto rows */
+    .imperative-layout {
+      display: grid;
+      gap: 2.5rem;
+      width: 100%;
+      align-items: start;
+    }
+    @media (min-width: 900px) {
+      .imperative-layout {
+        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.25fr);
+        gap: 3.5rem;
+      }
+    }
+    .imperative-intro-kicker {
+      font-family: var(--font-label);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #E07A66;
+    }
+    .imperative-intro-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(2rem, 4.5vw, 3.1rem);
+      letter-spacing: -0.035em;
+      line-height: 1.08;
+      color: #1E293B;
+      margin-top: 0.6rem;
+    }
+    .imperative-intro-copy {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: #64748B;
+      max-width: 26rem;
+    }
+    .imperative-list {
+      border-top: 1.5px solid #1E293B;
+    }
+    .imperative-row {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1rem 1.25rem;
+      padding: 1.4rem 0 1.5rem;
+      border-bottom: 1.5px solid rgba(30, 41, 59, 0.16);
+    }
+    @media (min-width: 640px) {
+      .imperative-row {
+        grid-template-columns: 4.5rem 1fr;
+        gap: 1.25rem 1.75rem;
+        padding: 1.65rem 0 1.75rem;
+      }
+    }
+    .imperative-num {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      letter-spacing: -0.04em;
+      line-height: 1;
+      color: #2C6B74;
+    }
+    .imperative-row:nth-child(2) .imperative-num { color: #0F766E; }
+    .imperative-row:nth-child(3) .imperative-num { color: #E07A66; }
+    .imperative-row-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+      letter-spacing: -0.025em;
+      line-height: 1.2;
+      color: #1E293B;
+      margin: 0 0 0.45rem;
+    }
+    .imperative-row-body {
+      font-size: 0.875rem;
+      line-height: 1.6;
+      color: #64748B;
+      margin: 0;
+    }
+    .imperative-row-tag {
+      display: inline-block;
+      margin-top: 0.75rem;
+      font-family: var(--font-label);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #2C6B74;
+    }
+
+    /* Smart Buying & FIFO — same editorial language as Imperative */
+    .fifo-layout {
+      display: grid;
+      gap: 2.5rem;
+      width: 100%;
+      align-items: start;
+    }
+    @media (min-width: 900px) {
+      .fifo-layout {
+        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.25fr);
+        gap: 3.5rem;
+      }
+    }
+    .fifo-kicker {
+      font-family: var(--font-label);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #E07A66;
+    }
+    .fifo-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(2rem, 4.5vw, 3.1rem);
+      letter-spacing: -0.035em;
+      line-height: 1.08;
+      color: #1E293B;
+      margin-top: 0.6rem;
+    }
+    .fifo-sub {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: #64748B;
+      max-width: 26rem;
+    }
+    .fifo-list {
+      border-top: 1.5px solid #1E293B;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .fifo-item {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1rem 1.25rem;
+      padding: 1.4rem 0 1.5rem;
+      border-bottom: 1.5px solid rgba(30, 41, 59, 0.16);
+      align-items: start;
+    }
+    @media (min-width: 640px) {
+      .fifo-item {
+        grid-template-columns: 3.25rem 1fr;
+        gap: 1.25rem 1.75rem;
+        padding: 1.55rem 0 1.65rem;
+      }
+    }
+    .fifo-logo {
+      width: 3rem;
+      height: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #2C6B74;
+    }
+    .fifo-logo svg {
+      width: 1.75rem;
+      height: 1.75rem;
+    }
+    .fifo-item:nth-child(2) .fifo-logo { color: #0F766E; }
+    .fifo-item:nth-child(3) .fifo-logo { color: #E07A66; }
+    .fifo-item:nth-child(4) .fifo-logo { color: #B8860B; }
+    .fifo-item:nth-child(5) .fifo-logo { color: #1D4B52; }
+    .fifo-item-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+      letter-spacing: -0.025em;
+      line-height: 1.2;
+      color: #1E293B;
+      margin: 0 0 0.45rem;
+    }
+    .fifo-item-body {
+      font-size: 0.875rem;
+      line-height: 1.6;
+      color: #64748B;
+      margin: 0;
+    }
+    .fifo-item-tag {
+      display: inline-block;
+      margin-top: 0.75rem;
+      font-family: var(--font-label);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #2C6B74;
+    }
+
+    /* Sanitary & Food Safety — standards board with in-cell logos */
+    .hygiene-kicker {
+      font-family: var(--font-label);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #2C6B74;
+    }
+    .hygiene-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(2rem, 4.5vw, 3.1rem);
+      letter-spacing: -0.035em;
+      line-height: 1.08;
+      color: #1E293B;
+      margin-top: 0.55rem;
+    }
+    .hygiene-sub {
+      margin-top: 0.85rem;
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: #64748B;
+      max-width: 34rem;
+    }
+    .hygiene-board {
+      margin-top: 2.25rem;
+      border-top: 1.5px solid #1E293B;
+      border-bottom: 1.5px solid #1E293B;
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 700px) {
+      .hygiene-board { grid-template-columns: 1fr 1fr; }
+    }
+    @media (min-width: 1024px) {
+      .hygiene-board { grid-template-columns: 1fr 1fr 1fr; }
+    }
+    .hygiene-cell {
+      padding: 1.45rem 1.25rem 1.55rem;
+      border-bottom: 1.5px solid rgba(30, 41, 59, 0.12);
+    }
+    .hygiene-cell:last-child { border-bottom: none; }
+    @media (min-width: 700px) and (max-width: 1023px) {
+      .hygiene-cell { border-bottom: 1.5px solid rgba(30, 41, 59, 0.12); }
+      .hygiene-cell:nth-child(odd) { border-right: 1.5px solid rgba(30, 41, 59, 0.12); }
+      .hygiene-cell:nth-child(n+5) { border-bottom: none; }
+    }
+    @media (min-width: 1024px) {
+      .hygiene-cell {
+        border-bottom: 1.5px solid rgba(30, 41, 59, 0.12);
+        border-right: 1.5px solid rgba(30, 41, 59, 0.12);
+      }
+      .hygiene-cell:nth-child(3n) { border-right: none; }
+      .hygiene-cell:nth-child(n+4) { border-bottom: none; }
+    }
+    .hygiene-logo {
+      width: 3.25rem;
+      height: 3.25rem;
+      margin-bottom: 0.85rem;
+      display: block;
+      object-fit: contain;
+    }
+    .hygiene-icon {
+      width: 2.25rem;
+      height: 2.25rem;
+      color: #2C6B74;
+      margin-bottom: 0.75rem;
+    }
+    .hygiene-icon svg {
+      width: 100%;
+      height: 100%;
+    }
+    .hygiene-cell-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: -0.025em;
+      line-height: 1.25;
+      color: #1E293B;
+      margin: 0 0 0.4rem;
+    }
+    .hygiene-cell-body {
+      font-size: 0.8rem;
+      line-height: 1.55;
+      color: #64748B;
+      margin: 0;
     }
 
     /* Dark vs White — mobile pin: scroll moves White Store over Dark Store */
@@ -464,6 +1017,171 @@
       margin-right: auto;
     }
 
+    /* Inner nav links — keep outer pill, restyle menu items */
+    .nav-links {
+      display: none;
+      align-items: center;
+      gap: 0.1rem;
+    }
+    @media (min-width: 768px) {
+      .nav-links { display: flex; }
+    }
+    .nav-links a {
+      position: relative;
+      font-family: var(--font-heading);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      text-transform: none;
+      color: #64748B;
+      text-decoration: none;
+      padding: 0.45rem 0.7rem;
+      transition: color 0.2s ease;
+    }
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0.65rem;
+      right: 0.65rem;
+      bottom: 0.15rem;
+      height: 1.5px;
+      background: #2C6B74;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.22s ease;
+    }
+    .nav-links a:hover {
+      color: #1D4B52;
+    }
+    .nav-links a:hover::after {
+      transform: scaleX(1);
+    }
+
+    /* Hero-only cursor bubble */
+    .section-frame[data-purpose="hero-section"].is-cursor-active,
+    .section-frame[data-purpose="hero-section"].is-cursor-active * {
+      cursor: none !important;
+    }
+    /* Bubble under text; text always paints above */
+    .section-frame[data-purpose="hero-section"] .section-inner {
+      z-index: 20;
+      isolation: isolate;
+    }
+    .section-frame[data-purpose="hero-section"] .hero-top,
+    .section-frame[data-purpose="hero-section"] .hero-copy {
+      z-index: 21;
+    }
+    /* Mobile: title higher + smaller */
+    @media (max-width: 767px) {
+      .section-frame[data-purpose="hero-section"] .hero-top {
+        top: 28% !important;
+        transform: translateY(-35%) !important;
+      }
+      .section-frame[data-purpose="hero-section"] .hero-top h1 {
+        font-size: 1.45rem !important;
+        line-height: 1.12 !important;
+      }
+    }
+
+    /* Shared section headings — editorial */
+    .overview-head,
+    .section-head {
+      text-align: center;
+      max-width: 42rem;
+      margin: 0 auto 2rem;
+    }
+    .overview-kicker,
+    .section-kicker {
+      font-family: var(--font-label);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #E07A66;
+    }
+    .section-kicker--teal { color: #2C6B74; }
+    .overview-title,
+    .section-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(2rem, 4.5vw, 3.15rem);
+      letter-spacing: -0.035em;
+      line-height: 1.08;
+      color: #1E293B;
+      margin: 0.55rem 0 0;
+    }
+    .overview-rule,
+    .section-rule {
+      width: 3.5rem;
+      height: 2px;
+      background: #2C6B74;
+      margin: 1.15rem auto 0;
+    }
+    .overview-sub,
+    .section-sub {
+      margin: 1.15rem auto 0;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: #64748B;
+      max-width: 36rem;
+    }
+    .overview-sub strong,
+    .section-sub strong {
+      color: #1D4B52;
+      font-weight: 700;
+    }
+    .overview-sub .accent,
+    .section-sub .accent {
+      color: #E07A66;
+      font-weight: 700;
+    }
+    .section-head--left {
+      text-align: left;
+      margin-left: 0;
+      margin-right: 0;
+    }
+    .section-head--left .section-rule { margin-left: 0; }
+    .section-head--on-dark .section-kicker { color: #F8CE9F; }
+    .section-head--on-dark .section-title { color: #FAF7F2; }
+    .section-head--on-dark .section-rule { background: #F8CE9F; }
+    .section-head--on-dark .section-sub { color: rgba(250, 247, 242, 0.78); }
+    .section-head--tight { margin-bottom: 1.5rem; }
+    .hero-cursor-bubble {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 42px;
+      height: 42px;
+      margin: -21px 0 0 -21px;
+      border-radius: 999px;
+      pointer-events: none;
+      z-index: 5;
+      opacity: 0;
+      background: radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.35), rgba(244, 157, 140, 0.22) 48%, rgba(44, 107, 116, 0.16) 100%);
+      border: 1.5px solid rgba(255, 255, 255, 0.4);
+      box-shadow:
+        0 6px 18px rgba(29, 75, 82, 0.1),
+        inset 0 0 12px rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(2px);
+      mix-blend-mode: normal;
+      transform: translate3d(-100px, -100px, 0) scale(0);
+      will-change: transform, opacity;
+    }
+    .hero-cursor-bubble::after {
+      content: "";
+      position: absolute;
+      inset: 22%;
+      border-radius: 999px;
+      background: radial-gradient(circle at 40% 35%, rgba(255, 255, 255, 0.28), transparent 70%);
+    }
+    @media (hover: none), (pointer: coarse) {
+      .hero-cursor-bubble { display: none; }
+      .section-frame[data-purpose="hero-section"].is-cursor-active,
+      .section-frame[data-purpose="hero-section"].is-cursor-active * {
+        cursor: auto !important;
+      }
+    }
+
   </style>
 </head>
 <body class="selection:bg-brand-coral selection:text-white">
@@ -480,14 +1198,14 @@
 <span class="block text-[9px] uppercase font-bold tracking-widest text-brand-coral -mt-1">White Stores</span>
 </div>
 </a>
-<!-- Navigation Pill Links -->
-<nav class="hidden md:flex items-center gap-1 bg-[#FAF7F2] p-1.5 rounded-full border border-brand-pink/40 text-xs font-semibold text-brand-slate">
-<a class="px-4 py-2 rounded-full hover:bg-white hover:text-brand-teal hover:shadow-xs transition-all" href="#overview">Overview</a>
-<a class="px-4 py-2 rounded-full hover:bg-white hover:text-brand-teal transition-all" href="#network">Network</a>
-<a class="px-4 py-2 rounded-full hover:bg-white hover:text-brand-teal transition-all" href="#advantage">Advantage</a>
-<a class="px-4 py-2 rounded-full hover:bg-white hover:text-brand-teal transition-all" href="#integrations">Integrations</a>
-<a class="px-4 py-2 rounded-full hover:bg-white hover:text-brand-teal transition-all" href="#intelligence">Tech &amp; FIFO</a>
-<a class="px-4 py-2 rounded-full hover:bg-white hover:text-brand-teal transition-all" href="#members">Members</a>
+<!-- Navigation Links -->
+<nav class="nav-links" aria-label="Primary">
+<a href="#overview">Overview</a>
+<a href="#network">Network</a>
+<a href="#advantage">Advantage</a>
+<a href="#integrations">Integrations</a>
+<a href="#fifo">Tech &amp; FIFO</a>
+<a href="#members">Members</a>
 </nav>
 <!-- CTA Button -->
 <div class="flex items-center gap-3">
@@ -500,11 +1218,11 @@
 </header>
 <!-- END: Floating Navigation Header -->
 <!-- BEGIN: Hero Section With Arched Motif Backdrop -->
-<section class="section-frame relative min-h-[100svh] pt-24 pb-8 md:pt-32 md:pb-20 overflow-hidden z-10" data-purpose="hero-section" style="border-bottom-left-radius: 1.5rem; border-bottom-right-radius: 1.5rem;">
+<section class="section-frame relative min-h-[100svh] pt-24 pb-8 md:pt-32 md:pb-20 overflow-hidden z-10" data-purpose="hero-section" id="heroSection" style="border-bottom-left-radius: 1.5rem; border-bottom-right-radius: 1.5rem;">
 <!-- Hero background layer (rounded bottom — not button) -->
-<div class="absolute inset-0 bg-brand-cream" style="border-bottom-left-radius: 1.5rem; border-bottom-right-radius: 1.5rem;" aria-hidden="true"></div>
+<div class="absolute inset-0 bg-brand-cream z-0" style="border-bottom-left-radius: 1.5rem; border-bottom-right-radius: 1.5rem;" aria-hidden="true"></div>
 <!-- Arched Architectural Backdrop Motif (Direct Style Tribute to Image 2) -->
-<div class="absolute top-0 inset-x-0 h-[480px] md:h-[580px] flex justify-center pointer-events-none opacity-90 z-0" style="border-bottom-left-radius: 1.5rem; border-bottom-right-radius: 1.5rem; overflow: hidden;">
+<div class="absolute top-0 inset-x-0 h-[480px] md:h-[580px] flex justify-center pointer-events-none opacity-90 z-[1]" style="border-bottom-left-radius: 1.5rem; border-bottom-right-radius: 1.5rem; overflow: hidden;">
 <div class="w-full max-w-6xl flex justify-center items-start gap-3 sm:gap-6 px-4">
 <div class="w-16 sm:w-28 md:w-36 h-[320px] md:h-[430px] bg-brand-pink arch-pillar"></div>
 <div class="w-20 sm:w-36 md:w-44 h-[380px] md:h-[500px] bg-brand-teal arch-pillar"></div>
@@ -513,6 +1231,8 @@
 <div class="w-16 sm:w-28 md:w-36 h-[330px] md:h-[420px] bg-brand-mint arch-pillar"></div>
 </div>
 </div>
+<!-- Cursor bubble: above arches, behind hero text -->
+<div class="hero-cursor-bubble" id="heroCursorBubble" aria-hidden="true"></div>
 <!-- Floating Confetti Elements (Artisanal Gelato Vibe) -->
 <div class="confetti-dot w-3 h-3 bg-brand-coral top-48 left-12 animate-float-slow"></div>
 <div class="confetti-dot w-4 h-4 bg-brand-teal top-64 right-16 animate-float-delayed"></div>
@@ -520,11 +1240,11 @@
 <div class="confetti-dot w-3 h-3 bg-brand-mint top-36 right-1/4 animate-float-delayed"></div>
 <div class="section-inner max-w-5xl px-4 sm:px-6 relative z-10 text-center flex flex-col items-center w-full flex-1 min-h-[calc(100svh-7.5rem)] md:min-h-0 justify-end md:justify-center pb-2 md:pb-0">
 <!-- Title — centered (mobile + desktop) -->
-<div class="hero-top flex flex-col items-center justify-center w-full absolute inset-x-0 top-[30%] -translate-y-1/2 px-4 md:static md:top-auto md:translate-y-0 md:px-0">
-<div class="reveal-item inline-flex items-center justify-center text-white text-[10px] sm:text-xs font-bold mb-4 md:mb-6 px-2">
+<div class="hero-top flex flex-col items-center justify-center w-full absolute inset-x-0 top-[28%] -translate-y-[35%] px-4 md:static md:top-auto md:translate-y-0 md:px-0">
+<div class="reveal-item inline-flex items-center justify-center text-white text-[10px] sm:text-xs font-bold mb-3 md:mb-6 px-2">
 <span>India's 1st Certified FSSAI Sub-Zero White Store Network</span>
 </div>
-<h1 class="reveal-item text-3xl sm:text-4xl md:text-5xl font-heading font-black text-white leading-[1.08] mb-0 md:mb-5 tracking-tight md:drop-shadow-[0_4px_16px_rgba(29,75,82,0.4)]">
+<h1 class="reveal-item text-[1.45rem] sm:text-3xl md:text-5xl font-heading font-black text-white leading-[1.12] mb-0 md:mb-5 tracking-tight uppercase md:drop-shadow-[0_4px_16px_rgba(29,75,82,0.4)]">
         Delivering Fresh Products.<br/>
 <span class="text-white underline decoration-white md:decoration-brand-apricot decoration-wavy decoration-2">Every Single Time.</span>
 </h1>
@@ -539,12 +1259,15 @@
 <!-- END: Hero Section -->
 <!-- BEGIN: Overview "page" (same file, next full screen after hero) -->
 <section id="overview" class="section-frame relative min-h-screen py-20 md:py-24 bg-white" data-purpose="overview-page">
-<div class="section-inner max-w-5xl px-4 sm:px-6 text-center flex flex-col items-center">
-<span class="reveal-item inline-block text-xs uppercase tracking-widest font-extrabold text-brand-coral bg-brand-pink/40 px-4 py-1.5 rounded-full mb-5">White Store Overview</span>
-<!-- Subtitle Card -->
-<div class="reveal-item max-w-3xl mx-auto bg-brand-cream/80 rounded-3xl p-6 sm:p-8 shadow-xl border border-brand-pink/50 mb-8 text-brand-slate text-sm sm:text-base leading-relaxed">
-        Premium sub-zero micro-fulfilment infrastructure for artisanal gelato, gourmet desserts, and cold-chain FMCG. Accelerate doorstep deliveries within <span class="font-bold text-brand-teal">10 to 30 minutes</span> while maintaining an unbroken <span class="font-bold text-brand-coral">-18°C chain-of-custody</span>.
-      </div>
+<div class="section-inner max-w-7xl px-4 sm:px-6 text-center flex flex-col items-center">
+<div class="reveal-item overview-head">
+<div class="overview-kicker">Network Snapshot</div>
+<h2 class="overview-title">White Store Overview</h2>
+<div class="overview-rule" aria-hidden="true"></div>
+<p class="overview-sub">
+        Premium sub-zero micro-fulfilment infrastructure for artisanal gelato, gourmet desserts, and cold-chain FMCG. Accelerate doorstep deliveries within <strong>10 to 30 minutes</strong> while maintaining an unbroken <span class="accent">-18°C chain-of-custody</span>.
+      </p>
+</div>
 <!-- CTA Action Buttons -->
 <div class="reveal-item flex flex-wrap items-center justify-center gap-4 mb-12">
 <a class="px-8 py-4 bg-brand-teal hover:bg-brand-tealDark text-white font-extrabold text-sm rounded-full shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-0.5" href="#contact">
@@ -554,120 +1277,109 @@
           Explore 9 Active Hubs
         </a>
 </div>
-<!-- Pill Proof Points -->
-<div class="reveal-item grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 max-w-4xl mx-auto">
-<div class="bg-brand-cream border border-brand-pink/50 rounded-2xl p-5 text-center shadow-sm">
-<div class="text-xl sm:text-2xl font-heading font-black text-brand-teal">9</div>
-<div class="text-xs uppercase tracking-wider font-bold text-brand-slate/80 mt-1">White Stores</div>
+<!-- Proof metrics — editorial rail -->
+<div class="reveal-item proof-rail w-full" aria-label="Network proof points">
+<div class="proof-stat">
+<div class="proof-num">9</div>
+<div class="proof-label">White Stores</div>
 </div>
-<div class="bg-brand-cream border border-brand-coral/40 rounded-2xl p-5 text-center shadow-sm">
-<div class="text-xl sm:text-2xl font-heading font-black text-brand-coral">13+</div>
-<div class="text-xs uppercase tracking-wider font-bold text-brand-slate/80 mt-1">Partner Brands</div>
+<div class="proof-stat">
+<div class="proof-num">13+</div>
+<div class="proof-label">Partner Brands</div>
 </div>
-<div class="bg-brand-cream border border-brand-apricot/60 rounded-2xl p-5 text-center shadow-sm">
-<div class="text-xl sm:text-2xl font-heading font-black text-brand-dark">Mumbai &amp; Thane</div>
-<div class="text-xs uppercase tracking-wider font-bold text-brand-slate/80 mt-1">Dense Urban Grid</div>
+<div class="proof-stat">
+<div class="proof-num">Mumbai &amp; Thane</div>
+<div class="proof-label">Dense Urban Grid</div>
 </div>
-<div class="bg-brand-cream border border-brand-mint/60 rounded-2xl p-5 text-center shadow-sm">
-<div class="text-xl sm:text-2xl font-heading font-black text-emerald-600">99.8%</div>
-<div class="text-xs uppercase tracking-wider font-bold text-brand-slate/80 mt-1">Uptime SLA</div>
+<div class="proof-stat">
+<div class="proof-num">99.8%</div>
+<div class="proof-label">Uptime SLA</div>
 </div>
 </div>
 </div>
 </section>
 <!-- END: Overview page -->
-<!-- BEGIN: Facility Showcase & Interactive Live Telemetry -->
-<section class="relative z-20 w-full min-h-[100svh] h-[100svh] bg-black" data-purpose="live-facility-feed" id="facilityFeed">
-<div class="relative w-full h-full min-h-[100svh] overflow-hidden">
-<!-- Auto slider slides -->
-<div class="facility-slider absolute inset-0" id="facilitySlider" aria-roledescription="carousel" aria-label="Live facility feed">
-<img class="facility-slide is-active" src="image.png" alt="Santacruz Hub storefront" loading="eager"/>
-<img class="facility-slide" src="image.png" alt="Santacruz Hub entrance detail" style="object-position: center 20%" loading="lazy"/>
-<img class="facility-slide" src="image.png" alt="Santacruz Hub interior view" style="object-position: center 80%" loading="lazy"/>
+<!-- BEGIN: Live Store Gallery -->
+<section class="section-frame relative z-20 py-14 md:py-20 bg-[#F3EEE6]" data-purpose="live-facility-feed" id="facilityFeed">
+<div class="section-inner max-w-7xl px-4 sm:px-6 w-full">
+<div class="store-hero-row" id="storeGallery">
+<!-- Left: copy -->
+<div class="text-left">
+<span class="inline-block font-[Syne] text-[10px] font-bold tracking-[0.2em] uppercase text-brand-teal mb-3">Live Facility Feed</span>
+<h2 class="font-display text-3xl sm:text-4xl md:text-[2.75rem] font-bold tracking-[-0.03em] text-brand-dark leading-[1.1]">
+            Store fronts across<br class="hidden sm:block"/> Mumbai &amp; Thane
+          </h2>
+<p class="mt-3 text-sm text-brand-slate max-w-md leading-relaxed">
+            Real White Store locations — clean floors, brand-ready freezers, and always-on cold chain.
+          </p>
+<div class="flex items-center gap-2 text-[11px] font-[Syne] font-bold tracking-wider uppercase text-brand-slate mt-5">
+<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+<span>Live · Auto rotating</span>
 </div>
-<!-- Overlay Gradients -->
-<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/40 pointer-events-none z-[1]"></div>
-<!-- Facility Header Bar -->
-<div class="absolute top-0 inset-x-0 z-10 flex items-center justify-between gap-3 px-4 sm:px-6 md:px-10 pt-5 sm:pt-6">
-<div class="flex items-center gap-2 min-w-0">
-<div class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shrink-0"></div>
-<span class="font-heading font-bold text-xs sm:text-sm text-white uppercase tracking-wider drop-shadow truncate">Live Facility Feed: Santacruz Hub #02</span>
+<div class="store-dots" id="storeDots" aria-label="Store slides"></div>
 </div>
-<div class="facility-dots flex items-center gap-1.5 shrink-0" id="facilityDots" aria-hidden="true"></div>
+<!-- Right: image slider -->
+<div class="store-stage" id="storeStage">
+<img class="store-stage-img is-active" src="image.png" alt="Santacruz West White Store" data-hub="Santacruz West" style="object-position: center center" loading="eager"/>
+<img class="store-stage-img" src="image.png" alt="Versova Andheri White Store" data-hub="Versova &amp; Andheri W" style="object-position: center 18%" loading="lazy"/>
+<img class="store-stage-img" src="image.png" alt="Fort Colaba White Store" data-hub="Fort &amp; Colaba" style="object-position: center 75%" loading="lazy"/>
+<img class="store-stage-img" src="image.png" alt="Chembur White Store" data-hub="Chembur Central" style="object-position: 30% center" loading="lazy"/>
+<img class="store-stage-img" src="image.png" alt="Goregaon White Store" data-hub="Oshiwara &amp; Goregaon" style="object-position: 70% center" loading="lazy"/>
+<img class="store-stage-img" src="image.png" alt="Borivali White Store" data-hub="Dahisar &amp; Borivali" style="object-position: center 40%" loading="lazy"/>
+<div class="store-stage-shade" aria-hidden="true"></div>
+<div class="store-stage-meta">
+<div class="store-stage-kicker">Active White Store</div>
+<div class="store-stage-name" id="storeStageName">Santacruz West</div>
+<div class="store-stage-stats">
+<span class="store-chip">-18°C Vault</span>
+<span class="store-chip">1m 24s Pack</span>
+<span class="store-chip">99.8% Sync</span>
 </div>
-<!-- Telemetry Floating Glass Pills -->
-<div class="absolute bottom-0 inset-x-0 z-10 px-4 sm:px-6 md:px-10 pb-6 sm:pb-8 md:pb-10 flex flex-wrap items-end justify-between gap-2">
-<!-- Pill Telemetry: Core Temperature -->
-<div class="bg-black/60 backdrop-blur-md text-white border border-white/20 px-3 py-2 rounded-2xl flex items-center gap-2 shadow-lg">
-<div class="w-7 h-7 rounded-xl bg-cyan-500/20 text-cyan-300 flex items-center justify-center text-sm">
-              ❄️
-            </div>
-<div>
-<div class="text-[9px] font-bold text-cyan-200 uppercase tracking-widest">Refrigeration Core</div>
-<div class="text-sm sm:text-base font-heading font-extrabold text-white">-18.4°C Vault</div>
-</div>
-</div>
-<!-- Pill Telemetry: Pack & Dispatch Speed -->
-<div class="bg-black/60 backdrop-blur-md text-white border border-white/20 px-3 py-2 rounded-2xl flex items-center gap-2 shadow-lg">
-<div class="w-7 h-7 rounded-xl bg-amber-500/20 text-amber-300 flex items-center justify-center text-sm">
-              ⚡
-            </div>
-<div>
-<div class="text-[9px] font-bold text-amber-200 uppercase tracking-widest">Average Prep Speed</div>
-<div class="text-sm sm:text-base font-heading font-extrabold text-white">1m 24s Pack Time</div>
-</div>
-</div>
-<!-- Pill Telemetry: Channel Sync -->
-<div class="hidden md:flex bg-black/60 backdrop-blur-md text-white border border-white/20 px-3 py-2 rounded-2xl items-center gap-2 shadow-lg">
-<div class="w-7 h-7 rounded-xl bg-emerald-500/20 text-emerald-300 flex items-center justify-center text-sm">
-              🔄
-            </div>
-<div>
-<div class="text-[9px] font-bold text-emerald-200 uppercase tracking-widest">API Sync Rate</div>
-<div class="text-sm sm:text-base font-heading font-extrabold text-white">99.8% Channel Sync</div>
 </div>
 </div>
 </div>
 </div>
 </section>
-<!-- END: Facility Showcase & Interactive Live Telemetry -->
+<!-- END: Live Store Gallery -->
 <!-- BEGIN: Live Operational Metrics Strip -->
-<section class="section-frame py-16 md:py-20 bg-brand-cream">
-<div class="section-inner max-w-6xl px-4 sm:px-6">
-<div class="text-center max-w-2xl mx-auto mb-10">
-<span class="text-xs uppercase tracking-widest font-extrabold text-brand-teal bg-brand-mint/40 px-4 py-1.5 rounded-full">Audited Real-Time Telemetry</span>
-<h2 class="text-2xl sm:text-3xl font-heading font-extrabold text-brand-dark mt-3">Network Performance Metrics</h2>
+<section class="section-frame py-16 md:py-20 bg-[#F3EEE6]">
+<div class="section-inner max-w-7xl px-4 sm:px-6">
+<div class="reveal-item metrics-board" aria-label="Network performance metrics">
+<div class="metrics-board-head">
+<div class="metrics-board-kicker">Audited Real-Time Telemetry</div>
+<h2 class="metrics-board-title">Network Performance Metrics</h2>
 </div>
-<div class="grid grid-cols-2 md:grid-cols-6 gap-3 sm:gap-4">
-<div class="reveal-item bg-white p-5 rounded-3xl border border-brand-pink/60 text-center shadow-xs hover:shadow-md transition-shadow">
-<div class="text-2xl font-heading font-black text-brand-teal">9</div>
-<p class="text-xs font-bold text-brand-slate mt-1">White Stores</p>
-<span class="text-[9px] text-emerald-600 font-semibold bg-emerald-50 px-2 py-0.5 rounded-full inline-block mt-2">Active 24x7</span>
+<div class="metrics-grid">
+<div class="metric-cell">
+<div class="metric-val">9</div>
+<div class="metric-name">White Stores</div>
+<span class="metric-note">Active 24x7</span>
 </div>
-<div class="reveal-item bg-white p-5 rounded-3xl border border-brand-coral/40 text-center shadow-xs hover:shadow-md transition-shadow">
-<div class="text-2xl font-heading font-black text-brand-coral">13+</div>
-<p class="text-xs font-bold text-brand-slate mt-1">Partner Brands</p>
-<span class="text-[9px] text-brand-coral font-semibold bg-brand-pink/30 px-2 py-0.5 rounded-full inline-block mt-2">Gelato &amp; Cakes</span>
+<div class="metric-cell">
+<div class="metric-val">13+</div>
+<div class="metric-name">Partner Brands</div>
+<span class="metric-note">Gelato &amp; Cakes</span>
 </div>
-<div class="reveal-item bg-white p-5 rounded-3xl border border-brand-apricot/60 text-center shadow-xs hover:shadow-md transition-shadow">
-<div class="text-2xl font-heading font-black text-amber-500">4.4★</div>
-<p class="text-xs font-bold text-brand-slate mt-1">Merchant Rating</p>
-<span class="text-[9px] text-brand-dark font-semibold bg-brand-apricot/30 px-2 py-0.5 rounded-full inline-block mt-2">Google &amp; Apps</span>
+<div class="metric-cell">
+<div class="metric-val">4.4★</div>
+<div class="metric-name">Merchant Rating</div>
+<span class="metric-note">Google &amp; Apps</span>
 </div>
-<div class="reveal-item bg-white p-5 rounded-3xl border border-brand-mint/60 text-center shadow-xs hover:shadow-md transition-shadow">
-<div class="text-2xl font-heading font-black text-emerald-600">95%</div>
-<p class="text-xs font-bold text-brand-slate mt-1">Pick Accuracy</p>
-<span class="text-[9px] text-emerald-700 font-semibold bg-emerald-50 px-2 py-0.5 rounded-full inline-block mt-2">Barcode Scanned</span>
+<div class="metric-cell">
+<div class="metric-val">95%</div>
+<div class="metric-name">Pick Accuracy</div>
+<span class="metric-note">Barcode Scanned</span>
 </div>
-<div class="reveal-item bg-white p-5 rounded-3xl border border-brand-pink/60 text-center shadow-xs hover:shadow-md transition-shadow">
-<div class="text-2xl font-heading font-black text-brand-teal">99.8%</div>
-<p class="text-xs font-bold text-brand-slate mt-1">Power Uptime</p>
-<span class="text-[9px] text-cyan-700 font-semibold bg-cyan-50 px-2 py-0.5 rounded-full inline-block mt-2">Dual DG Backup</span>
+<div class="metric-cell">
+<div class="metric-val">99.8%</div>
+<div class="metric-name">Power Uptime</div>
+<span class="metric-note">Dual DG Backup</span>
 </div>
-<div class="reveal-item bg-white p-5 rounded-3xl border border-brand-coral/40 text-center shadow-xs hover:shadow-md transition-shadow">
-<div class="text-2xl font-heading font-black text-brand-coral">1m 38s</div>
-<p class="text-xs font-bold text-brand-slate mt-1">Prep Speed</p>
-<span class="text-[9px] text-rose-700 font-semibold bg-rose-50 px-2 py-0.5 rounded-full inline-block mt-2">Rider Handover</span>
+<div class="metric-cell">
+<div class="metric-val" id="prepSpeedCount" data-target-min="1" data-target-sec="38">0.00</div>
+<div class="metric-name">Prep Speed</div>
+<span class="metric-note">Rider Handover</span>
+</div>
 </div>
 </div>
 </div>
@@ -675,51 +1387,38 @@
 <!-- END: Live Operational Metrics Strip -->
 <!-- BEGIN: Food Commerce Opportunity -->
 <section class="section-frame py-16 md:py-24 bg-white relative" data-purpose="opportunity-section" id="advantage">
-<div class="section-inner max-w-6xl px-4 sm:px-6">
-<div class="text-center max-w-3xl mx-auto mb-16">
-<span class="text-xs uppercase tracking-widest font-extrabold text-brand-coral bg-brand-pink/40 px-4 py-1.5 rounded-full">Macro Shifts in Quick Commerce</span>
-<h2 class="text-2xl sm:text-3xl font-heading font-black text-brand-dark mt-4">The Premium Cold-Chain Imperative</h2>
-<p class="text-brand-slate text-xs sm:text-sm mt-4">Desserts and frozen foods fail when handled by generic ambient logistics hubs. Propelpad transforms quick commerce with specialized hyper-clean infrastructure.</p>
+<div class="section-inner max-w-7xl px-4 sm:px-6">
+<div class="reveal-item imperative-layout">
+<div class="imperative-intro text-left">
+<div class="imperative-intro-kicker">Macro Shifts in Quick Commerce</div>
+<h2 class="imperative-intro-title">The Premium Cold-Chain Imperative</h2>
+<p class="imperative-intro-copy">Desserts and frozen foods fail when handled by generic ambient logistics hubs. Propelpad transforms quick commerce with specialized hyper-clean infrastructure.</p>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-<!-- Pillar Card 1 -->
-<div class="reveal-item bg-brand-cream/80 border border-brand-pink p-8 rounded-4xl flex flex-col justify-between hover:-translate-y-1 transition-transform">
+<div class="imperative-list" aria-label="Cold-chain imperatives">
+<div class="imperative-row">
+<div class="imperative-num" aria-hidden="true">01</div>
 <div>
-<div class="w-14 h-14 rounded-2xl bg-brand-pink flex items-center justify-center text-3xl mb-6 shadow-xs">
-              ⏱️
-            </div>
-<h3 class="text-xl font-heading font-bold text-brand-dark mb-3">10 to 30 Min Delivery Guarantee</h3>
-<p class="text-brand-slate leading-relaxed text-sm">Customers won't wait 90 minutes for ice cream or artisan frozen meals. Our strategically distributed micro-vaults position inventory within 2.5 km of prime consumption hubs.</p>
+<h3 class="imperative-row-title">10 to 30 Min Delivery Guarantee</h3>
+<p class="imperative-row-body">Customers won't wait 90 minutes for ice cream or artisan frozen meals. Our strategically distributed micro-vaults position inventory within 2.5 km of prime consumption hubs.</p>
+<span class="imperative-row-tag">Zero Rider Idle Time</span>
 </div>
-<div class="mt-8 pt-4 border-t border-brand-pink/40 text-xs font-bold text-brand-teal uppercase tracking-wider">
-            Zero Rider Idle Time
-          </div>
 </div>
-<!-- Pillar Card 2 -->
-<div class="reveal-item bg-brand-cream/80 border border-brand-mint p-8 rounded-4xl flex flex-col justify-between hover:-translate-y-1 transition-transform">
+<div class="imperative-row">
+<div class="imperative-num" aria-hidden="true">02</div>
 <div>
-<div class="w-14 h-14 rounded-2xl bg-brand-mint flex items-center justify-center text-3xl mb-6 shadow-xs">
-              🧊
-            </div>
-<h3 class="text-xl font-heading font-bold text-brand-dark mb-3">Eliminating Central Depot Melt Risk</h3>
-<p class="text-brand-slate leading-relaxed text-sm">Traditional 45-minute van deliveries cause ice recrystallization and ruin artisanal gelato textures. Propelpad guarantees unbroken sub-zero chain right up to rider handover.</p>
+<h3 class="imperative-row-title">Eliminating Central Depot Melt Risk</h3>
+<p class="imperative-row-body">Traditional 45-minute van deliveries cause ice recrystallization and ruin artisanal gelato textures. Propelpad guarantees unbroken sub-zero chain right up to rider handover.</p>
+<span class="imperative-row-tag">Zero Texture Degeneration</span>
 </div>
-<div class="mt-8 pt-4 border-t border-brand-mint/40 text-xs font-bold text-brand-teal uppercase tracking-wider">
-            Zero Texture Degeneration
-          </div>
 </div>
-<!-- Pillar Card 3 -->
-<div class="reveal-item bg-brand-cream/80 border border-brand-apricot p-8 rounded-4xl flex flex-col justify-between hover:-translate-y-1 transition-transform">
+<div class="imperative-row">
+<div class="imperative-num" aria-hidden="true">03</div>
 <div>
-<div class="w-14 h-14 rounded-2xl bg-brand-apricot flex items-center justify-center text-3xl mb-6 shadow-xs">
-              🌙
-            </div>
-<h3 class="text-xl font-heading font-bold text-brand-dark mb-3">3.8x Late-Night Impulse Surge</h3>
-<p class="text-brand-slate leading-relaxed text-sm">Over 48% of gourmet dessert revenue happens between 9 PM and 2 AM. Our automated 24/7 dark-to-white store shifts unlock high-margin nighttime order velocity.</p>
+<h3 class="imperative-row-title">3.8x Late-Night Impulse Surge</h3>
+<p class="imperative-row-body">Over 48% of gourmet dessert revenue happens between 9 PM and 2 AM. Our automated 24/7 dark-to-white store shifts unlock high-margin nighttime order velocity.</p>
+<span class="imperative-row-tag">24/7 Dispatch Availability</span>
 </div>
-<div class="mt-8 pt-4 border-t border-brand-apricot/40 text-xs font-bold text-brand-teal uppercase tracking-wider">
-            24/7 Dispatch Availability
-          </div>
+</div>
 </div>
 </div>
 </div>
@@ -730,10 +1429,11 @@
 <div class="section-inner max-w-5xl px-4 sm:px-6">
 <div class="vs-pin-track" id="vsPinTrack">
 <div class="vs-pin-sticky">
-<div class="vs-heading text-center max-w-2xl mx-auto mb-10 md:mb-14">
-<span class="text-xs uppercase tracking-widest font-extrabold text-brand-teal bg-brand-mint/40 px-4 py-1.5 rounded-full">Operational Audit</span>
-<h2 class="text-2xl sm:text-3xl font-heading font-black text-brand-dark mt-3">Dark Store vs. White Store</h2>
-<p class="text-brand-slate text-xs sm:text-sm mt-3">Why gourmet brands choose Propelpad White Stores over cramped conventional dark warehouses.</p>
+<div class="vs-heading section-head section-head--tight mb-10 md:mb-14">
+<div class="section-kicker section-kicker--teal">Operational Audit</div>
+<h2 class="section-title">Dark Store vs. White Store</h2>
+<div class="section-rule" aria-hidden="true"></div>
+<p class="section-sub">Why gourmet brands choose Propelpad White Stores over cramped conventional dark warehouses.</p>
 </div>
 <div class="vs-stage">
 <div class="vs-stack bg-white rounded-4xl shadow-xl border border-brand-mint/50 md:overflow-hidden md:grid md:grid-cols-12 md:divide-x md:divide-y-0 divide-y divide-gray-100">
@@ -792,249 +1492,138 @@
 </div>
 </section>
 <!-- END: Dark Store vs White Store Comparison Matrix -->
-<!-- BEGIN: Operational Intelligence Dashboard -->
-<section class="section-frame py-16 md:py-24 bg-white relative" data-purpose="intelligence-dashboard" id="intelligence">
-<div class="section-inner max-w-6xl px-4 sm:px-6">
-<div class="text-center max-w-3xl mx-auto mb-14">
-<span class="text-xs uppercase tracking-widest font-extrabold text-brand-teal bg-brand-mint/40 px-4 py-1.5 rounded-full">Propelpad OS</span>
-<h2 class="text-2xl sm:text-3xl font-heading font-black text-brand-dark mt-3">Operational Intelligence Suite</h2>
-<p class="text-brand-slate text-xs sm:text-sm mt-3">Live control center engineered to prevent stockouts while eliminating expired inventory waste.</p>
-</div>
-<!-- Tab Buttons -->
-<div class="flex flex-wrap justify-center gap-2 mb-8" data-purpose="tab-buttons">
-<button class="tab-trigger active px-5 py-2.5 rounded-full font-bold text-[10px] sm:text-xs bg-brand-teal text-white shadow-md transition-all" data-tab="velocity">SKU Velocity &amp; Demand</button>
-<button class="tab-trigger px-5 py-2.5 rounded-full font-bold text-[10px] sm:text-xs bg-brand-cream text-brand-slate hover:bg-brand-pink/30 transition-all" data-tab="expiry">Expiry &amp; FEFO Alerts</button>
-<button class="tab-trigger px-5 py-2.5 rounded-full font-bold text-[10px] sm:text-xs bg-brand-cream text-brand-slate hover:bg-brand-pink/30 transition-all" data-tab="heatmap">Peak Micro-Heatmap</button>
-</div>
-<!-- Tab Display Container -->
-<div class="reveal-item bg-brand-cream rounded-4xl p-6 sm:p-10 border border-brand-pink/50 shadow-lg">
-<!-- Tab 1: Velocity -->
-<div class="tab-panel" id="tab-velocity">
-<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
-<div>
-<h3 class="text-lg font-heading font-bold text-brand-dark">Top Performer SKU Run-Rates</h3>
-<p class="text-xs text-brand-slate">Real-time daily pint velocity across Mumbai Hub Network</p>
-</div>
-<span class="text-xs font-bold text-brand-teal bg-brand-mint/60 px-4 py-1.5 rounded-full">Updated 4m ago</span>
-</div>
-<!-- Bar Visualizers -->
-<div class="space-y-4">
-<div>
-<div class="flex justify-between text-xs font-bold text-brand-slate mb-1">
-<span>Belgian Chocolate Gelato (500ml)</span>
-<span class="text-brand-teal">842 Pints / Day (92% Fill)</span>
-</div>
-<div class="w-full h-4 bg-white rounded-full overflow-hidden p-0.5 border border-brand-pink/50">
-<div class="h-full bg-brand-teal rounded-full" style="width: 92%"></div>
-</div>
-</div>
-<div>
-<div class="flex justify-between text-xs font-bold text-brand-slate mb-1">
-<span>Sicilian Pistachio Pint</span>
-<span class="text-brand-coral">710 Pints / Day (84% Fill)</span>
-</div>
-<div class="w-full h-4 bg-white rounded-full overflow-hidden p-0.5 border border-brand-pink/50">
-<div class="h-full bg-brand-coral rounded-full" style="width: 84%"></div>
-</div>
-</div>
-<div>
-<div class="flex justify-between text-xs font-bold text-brand-slate mb-1">
-<span>Alphonso Mango Sorbet</span>
-<span class="text-amber-500">595 Pints / Day (73% Fill)</span>
-</div>
-<div class="w-full h-4 bg-white rounded-full overflow-hidden p-0.5 border border-brand-pink/50">
-<div class="h-full bg-brand-apricot rounded-full" style="width: 73%"></div>
-</div>
-</div>
-<div>
-<div class="flex justify-between text-xs font-bold text-brand-slate mb-1">
-<span>Greek Berry Swirl Tub</span>
-<span class="text-emerald-600">420 Pints / Day (58% Fill)</span>
-</div>
-<div class="w-full h-4 bg-white rounded-full overflow-hidden p-0.5 border border-brand-pink/50">
-<div class="h-full bg-brand-mint rounded-full" style="width: 58%"></div>
-</div>
-</div>
-</div>
-</div>
-<!-- Tab 2: Expiry & Alerts -->
-<div class="tab-panel hidden" id="tab-expiry">
-<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
-<div>
-<h3 class="text-lg font-heading font-bold text-brand-dark">FEFO Automated Expiry Interceptor</h3>
-<p class="text-xs text-brand-slate">Batches within 45 days of shelf expiration are prioritized or flagged</p>
-</div>
-<span class="text-xs font-bold text-emerald-800 bg-emerald-100 px-3 py-1 rounded-full">0 Bad Deliveries</span>
-</div>
-<div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-<div class="bg-white p-5 rounded-3xl border border-brand-pink">
-<div class="text-xs font-bold text-brand-coral uppercase">Batch #GP-9021</div>
-<div class="text-base font-bold text-brand-dark mt-1">Hazelnut Praline</div>
-<div class="text-xs text-brand-slate mt-2">Remaining Shelf: 41 Days</div>
-<div class="mt-4 text-[10px] font-bold text-brand-teal bg-brand-cream px-2.5 py-1 rounded-lg inline-block">Auto-Promoted to Primary Pick</div>
-</div>
-<div class="bg-white p-5 rounded-3xl border border-brand-mint">
-<div class="text-xs font-bold text-emerald-600 uppercase">Batch #GP-8840</div>
-<div class="text-base font-bold text-brand-dark mt-1">Dark Roasted Mocha</div>
-<div class="text-xs text-brand-slate mt-2">Remaining Shelf: 68 Days</div>
-<div class="mt-4 text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-lg inline-block">Healthy Buffer</div>
-</div>
-<div class="bg-white p-5 rounded-3xl border border-brand-apricot">
-<div class="text-xs font-bold text-amber-600 uppercase">Batch #GP-9104</div>
-<div class="text-base font-bold text-brand-dark mt-1">Wild Strawberry Parfait</div>
-<div class="text-xs text-brand-slate mt-2">Remaining Shelf: 92 Days</div>
-<div class="mt-4 text-[10px] font-bold text-amber-700 bg-amber-50 px-2.5 py-1 rounded-lg inline-block">Standard Rotation</div>
-</div>
-</div>
-</div>
-<!-- Tab 3: Heatmap -->
-<div class="tab-panel hidden" id="tab-heatmap">
-<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
-<div>
-<h3 class="text-lg font-heading font-bold text-brand-dark">Mumbai Peak Dispatch Surge Times</h3>
-<p class="text-xs text-brand-slate">Hour-by-hour order volumes across western &amp; central corridors</p>
-</div>
-</div>
-<div class="grid grid-cols-4 sm:grid-cols-8 gap-2 text-center text-xs">
-<div class="bg-white p-3 rounded-2xl border border-brand-pink/40"><span class="block text-brand-slate/60">12 PM</span><span class="font-bold text-brand-slate">Normal</span></div>
-<div class="bg-white p-3 rounded-2xl border border-brand-pink/40"><span class="block text-brand-slate/60">2 PM</span><span class="font-bold text-brand-slate">Normal</span></div>
-<div class="bg-brand-apricot/40 p-3 rounded-2xl border border-brand-apricot"><span class="block text-brand-slate/60">4 PM</span><span class="font-bold text-amber-700">Elevated</span></div>
-<div class="bg-brand-pink/60 p-3 rounded-2xl border border-brand-pink"><span class="block text-brand-slate/60">6 PM</span><span class="font-bold text-brand-coral">Busy</span></div>
-<div class="bg-brand-coral p-3 rounded-2xl text-white font-bold"><span class="block text-white/80">8 PM</span><span>High</span></div>
-<div class="bg-brand-teal p-3 rounded-2xl text-white font-bold ring-2 ring-brand-coral"><span class="block text-white/80">10 PM</span><span>Peak Surge</span></div>
-<div class="bg-brand-teal p-3 rounded-2xl text-white font-bold"><span class="block text-white/80">11:30 PM</span><span>Super Surge</span></div>
-<div class="bg-brand-mint/60 p-3 rounded-2xl border border-brand-mint"><span class="block text-brand-slate/60">1 AM</span><span class="font-bold text-brand-teal">Steady</span></div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- END: Operational Intelligence Dashboard -->
 <!-- BEGIN: Buying Efficiency & FIFO Architecture -->
-<section class="section-frame py-16 md:py-24 bg-brand-cream">
-<div class="section-inner max-w-6xl px-4 sm:px-6">
-<div class="text-center max-w-3xl mx-auto mb-16">
-<span class="text-xs uppercase tracking-widest font-extrabold text-brand-coral bg-brand-pink/40 px-4 py-1.5 rounded-full">Inventory Science</span>
-<h2 class="text-2xl sm:text-3xl font-heading font-black text-brand-dark mt-3">Smart Buying Efficiency &amp; FIFO</h2>
-<p class="text-brand-slate text-xs sm:text-sm mt-3">5 foundational pillars stopping dead stock, minimizing working capital lock-in, and preventing batch write-offs.</p>
+<section class="section-frame py-16 md:py-24 bg-white" id="fifo">
+<div class="section-inner max-w-7xl px-4 sm:px-6">
+<div class="reveal-item fifo-layout" aria-label="Smart buying efficiency and FIFO pillars">
+<div class="fifo-intro text-left">
+<div class="fifo-kicker">Inventory Science</div>
+<h2 class="fifo-title">Smart Buying Efficiency &amp; FIFO</h2>
+<p class="fifo-sub">Five foundational pillars stopping dead stock, minimizing working capital lock-in, and preventing batch write-offs.</p>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-5 gap-4">
-<!-- Pillar 1 -->
-<div class="reveal-item bg-white p-6 rounded-3xl border border-brand-pink flex flex-col justify-between hover:shadow-lg transition-all">
+<ul class="fifo-list">
+<li class="fifo-item">
+<div class="fifo-logo" aria-hidden="true">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+<path d="M3 7h2l2.4 10.2a1.5 1.5 0 0 0 1.5 1.1h8.4a1.5 1.5 0 0 0 1.5-1.2L21 9H7"/>
+<circle cx="10" cy="20.5" r="1.2" fill="currentColor" stroke="none"/>
+<circle cx="17" cy="20.5" r="1.2" fill="currentColor" stroke="none"/>
+<path d="M14 5v6M11 8h6"/>
+</svg>
+</div>
 <div>
-<div class="w-10 h-10 rounded-full bg-brand-pink flex items-center justify-center font-bold text-brand-coral mb-4">01</div>
-<h4 class="font-heading font-bold text-base text-brand-dark mb-2">Zero Over-Buying</h4>
-<p class="text-xs text-brand-slate leading-relaxed">Dynamic reorder point algorithms prevent tie-ups in slow-moving dessert varieties.</p>
+<h3 class="fifo-item-title">Zero Over-Buying</h3>
+<p class="fifo-item-body">Dynamic reorder point algorithms prevent tie-ups in slow-moving dessert varieties.</p>
+<span class="fifo-item-tag">Auto MOQ Trigger</span>
 </div>
-<div class="mt-6 text-[10px] font-bold text-brand-teal bg-brand-cream p-2 rounded-xl text-center">Auto MOQ Trigger</div>
+</li>
+<li class="fifo-item">
+<div class="fifo-logo" aria-hidden="true">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+<rect x="3.5" y="4.5" width="17" height="16" rx="2"/>
+<path d="M8 3v3M16 3v3M3.5 9.5h17"/>
+<path d="M8.5 14h2M13.5 14h2M8.5 17.5h7"/>
+</svg>
 </div>
-<!-- Pillar 2 -->
-<div class="reveal-item bg-white p-6 rounded-3xl border border-brand-teal/30 flex flex-col justify-between hover:shadow-lg transition-all">
 <div>
-<div class="w-10 h-10 rounded-full bg-brand-teal/20 flex items-center justify-center font-bold text-brand-teal mb-4">02</div>
-<h4 class="font-heading font-bold text-base text-brand-dark mb-2">7-Day Run Cadence</h4>
-<p class="text-xs text-brand-slate leading-relaxed">Continuous 7-day velocity monitoring aligns production directly with real demand.</p>
+<h3 class="fifo-item-title">7-Day Run Cadence</h3>
+<p class="fifo-item-body">Continuous 7-day velocity monitoring aligns production directly with real demand.</p>
+<span class="fifo-item-tag">Rolling Run-Rates</span>
 </div>
-<div class="mt-6 text-[10px] font-bold text-brand-teal bg-brand-cream p-2 rounded-xl text-center">Rolling Run-Rates</div>
+</li>
+<li class="fifo-item">
+<div class="fifo-logo" aria-hidden="true">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="12" cy="10" r="3.2"/>
+<path d="M12 3v1.5M12 15.5V17M5.5 10H4M20 10h-1.5M7.2 5.2l1.1 1.1M15.7 13.7l1.1 1.1M16.8 5.2l-1.1 1.1M8.3 13.7l-1.1 1.1"/>
+<path d="M5 19c1.5-2.2 3.9-3.5 7-3.5s5.5 1.3 7 3.5"/>
+</svg>
 </div>
-<!-- Pillar 3 -->
-<div class="reveal-item bg-white p-6 rounded-3xl border border-brand-coral/40 flex flex-col justify-between hover:shadow-lg transition-all">
 <div>
-<div class="w-10 h-10 rounded-full bg-brand-coral/20 flex items-center justify-center font-bold text-brand-coral mb-4">03</div>
-<h4 class="font-heading font-bold text-base text-brand-dark mb-2">Seasonal Shifts</h4>
-<p class="text-xs text-brand-slate leading-relaxed">Machine learned adjustments for monsoons, festival weekends, and summer spikes.</p>
+<h3 class="fifo-item-title">Seasonal Shifts</h3>
+<p class="fifo-item-body">Machine learned adjustments for monsoons, festival weekends, and summer spikes.</p>
+<span class="fifo-item-tag">Festival Buffers</span>
 </div>
-<div class="mt-6 text-[10px] font-bold text-brand-teal bg-brand-cream p-2 rounded-xl text-center">Festival Buffers</div>
+</li>
+<li class="fifo-item">
+<div class="fifo-logo" aria-hidden="true">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+<path d="M4 8V6a2 2 0 0 1 2-2h2M16 4h2a2 2 0 0 1 2 2v2M20 16v2a2 2 0 0 1-2 2h-2M8 20H6a2 2 0 0 1-2-2v-2"/>
+<path d="M7 10h1.2v5H7v-5zm2.4 0h1.2v5H9.4v-5zm2.4 0H13v5h-1.2v-5zm2.6 0h.7v5h-.7v-5zm1.5 0h.7v5h-.7v-5z" fill="currentColor" stroke="none"/>
+</svg>
 </div>
-<!-- Pillar 4 -->
-<div class="reveal-item bg-white p-6 rounded-3xl border border-brand-apricot/60 flex flex-col justify-between hover:shadow-lg transition-all">
 <div>
-<div class="w-10 h-10 rounded-full bg-brand-apricot/30 flex items-center justify-center font-bold text-amber-700 mb-4">04</div>
-<h4 class="font-heading font-bold text-base text-brand-dark mb-2">Strict FEFO / FIFO</h4>
-<p class="text-xs text-brand-slate leading-relaxed">Every item is optical barcode scanned. Older good batches are always dispatched first.</p>
+<h3 class="fifo-item-title">Strict FEFO / FIFO</h3>
+<p class="fifo-item-body">Every item is optical barcode scanned. Older good batches are always dispatched first.</p>
+<span class="fifo-item-tag">Zero Expired Stock</span>
 </div>
-<div class="mt-6 text-[10px] font-bold text-brand-teal bg-brand-cream p-2 rounded-xl text-center">Zero Expired Stock</div>
+</li>
+<li class="fifo-item">
+<div class="fifo-logo" aria-hidden="true">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+<path d="M4 8.5 12 4l8 4.5-8 4.5L4 8.5z"/>
+<path d="M4 12.5l8 4.5 8-4.5"/>
+<path d="M4 16.5l8 4.5 8-4.5"/>
+</svg>
 </div>
-<!-- Pillar 5 -->
-<div class="reveal-item bg-white p-6 rounded-3xl border border-brand-mint/60 flex flex-col justify-between hover:shadow-lg transition-all">
 <div>
-<div class="w-10 h-10 rounded-full bg-brand-mint/40 flex items-center justify-center font-bold text-brand-teal mb-4">05</div>
-<h4 class="font-heading font-bold text-base text-brand-dark mb-2">Stock Depth SLA</h4>
-<p class="text-xs text-brand-slate leading-relaxed">Guaranteed minimum 14-day stock depth without congesting cold storage footprint.</p>
+<h3 class="fifo-item-title">Stock Depth SLA</h3>
+<p class="fifo-item-body">Guaranteed minimum 14-day stock depth without congesting cold storage footprint.</p>
+<span class="fifo-item-tag">Optimal Footprint</span>
 </div>
-<div class="mt-6 text-[10px] font-bold text-brand-teal bg-brand-cream p-2 rounded-xl text-center">Optimal Footprint</div>
-</div>
+</li>
+</ul>
 </div>
 </div>
 </section>
 <!-- END: Buying Efficiency & FIFO Architecture -->
 <!-- BEGIN: Sanitary & Food Safety Assurance -->
-<section class="section-frame py-16 md:py-24 bg-white relative" id="hygiene">
-<div class="section-inner max-w-6xl px-4 sm:px-6">
-<div class="text-center max-w-3xl mx-auto mb-16">
-<span class="text-xs uppercase tracking-widest font-extrabold text-brand-teal bg-brand-mint/40 px-4 py-1.5 rounded-full">Certified Standards</span>
-<h2 class="text-2xl sm:text-3xl font-heading font-black text-brand-dark mt-3">Sanitary &amp; Food Safety Excellence</h2>
-<p class="text-brand-slate text-xs sm:text-sm mt-3">Strict adherence to FSSAI cleanroom protocols and sub-zero sanitation ensures flawless trust for your brand.</p>
+<section class="section-frame py-16 md:py-24 bg-[#F3EEE6]" id="hygiene">
+<div class="section-inner max-w-7xl px-4 sm:px-6">
+<div class="reveal-item">
+<div class="text-left max-w-3xl">
+<div class="hygiene-kicker">Certified Standards</div>
+<h2 class="hygiene-title">Sanitary &amp; Food Safety Excellence</h2>
+<p class="hygiene-sub">Strict adherence to FSSAI cleanroom protocols and sub-zero sanitation ensures flawless trust for your brand.</p>
 </div>
-<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-<!-- Standard 1 -->
-<div class="reveal-item flex items-start gap-4 p-5 rounded-3xl bg-brand-cream/60 border border-brand-pink/50">
-<div class="w-12 h-12 rounded-2xl bg-brand-coral/20 text-brand-coral flex items-center justify-center text-xl shrink-0">
-            🧼
-          </div>
-<div>
-<h4 class="font-heading font-bold text-base text-brand-dark">Anti-Microbial White Epoxy</h4>
-<p class="text-xs text-brand-slate mt-1">Joint-free seamless laboratory floors preventing bacterial lodgement.</p>
+<div class="hygiene-board" aria-label="Sanitary operating standards">
+<div class="hygiene-cell">
+<img class="hygiene-logo" src="assets/certifications/gmp.svg" alt="GMP" width="52" height="52"/>
+<h3 class="hygiene-cell-title">Anti-Microbial White Epoxy</h3>
+<p class="hygiene-cell-body">Joint-free seamless laboratory floors preventing bacterial lodgement.</p>
 </div>
+<div class="hygiene-cell">
+<img class="hygiene-logo" src="assets/certifications/fssai.svg" alt="FSSAI" width="52" height="52"/>
+<h3 class="hygiene-cell-title">FSSAI Certified Protocols</h3>
+<p class="hygiene-cell-body">All 9 white stores operate under strict food safety and handling certification.</p>
 </div>
-<!-- Standard 2 -->
-<div class="reveal-item flex items-start gap-4 p-5 rounded-3xl bg-brand-cream/60 border border-brand-mint/50">
-<div class="w-12 h-12 rounded-2xl bg-brand-mint text-brand-teal flex items-center justify-center text-xl shrink-0">
-            🛡️
-          </div>
-<div>
-<h4 class="font-heading font-bold text-base text-brand-dark">FSSAI Certified Protocols</h4>
-<p class="text-xs text-brand-slate mt-1">All 9 white stores operate under strict food safety and handling certification.</p>
+<div class="hygiene-cell">
+<img class="hygiene-logo" src="assets/certifications/iso22000.svg" alt="ISO 22000" width="52" height="52"/>
+<h3 class="hygiene-cell-title">HEPA Air Filtration &amp; Curtains</h3>
+<p class="hygiene-cell-body">Positive air pressure &amp; cold air curtains at entryways keep dust &amp; warm air out.</p>
 </div>
+<div class="hygiene-cell">
+<img class="hygiene-logo" src="assets/certifications/haccp.svg" alt="HACCP" width="52" height="52"/>
+<h3 class="hygiene-cell-title">Trained Food-Grade Pickers</h3>
+<p class="hygiene-cell-body">Mandatory thermal gloves, hairnets, and sanitized pick aprons across shifts.</p>
 </div>
-<!-- Standard 3 -->
-<div class="reveal-item flex items-start gap-4 p-5 rounded-3xl bg-brand-cream/60 border border-brand-apricot/50">
-<div class="w-12 h-12 rounded-2xl bg-brand-apricot/30 text-amber-700 flex items-center justify-center text-xl shrink-0">
-            💨
-          </div>
-<div>
-<h4 class="font-heading font-bold text-base text-brand-dark">HEPA Air Filtration &amp; Curtains</h4>
-<p class="text-xs text-brand-slate mt-1">Positive air pressure &amp; cold air curtains at entryways keep dust &amp; warm air out.</p>
+<div class="hygiene-cell">
+<div class="hygiene-icon" aria-hidden="true">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+<path d="M12 14a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M12 4v2M12 18v2M4.9 7.5l1.5 1.5M17.6 15l1.5 1.5M4.9 16.5l1.5-1.5M17.6 9l1.5-1.5"/>
+</svg>
 </div>
+<h3 class="hygiene-cell-title">IoT Thermal Data Loggers</h3>
+<p class="hygiene-cell-body">Every second logged on cloud servers. Instant SMS alerts if temp shifts by 1°C.</p>
 </div>
-<!-- Standard 4 -->
-<div class="reveal-item flex items-start gap-4 p-5 rounded-3xl bg-brand-cream/60 border border-brand-teal/30">
-<div class="w-12 h-12 rounded-2xl bg-brand-teal/20 text-brand-teal flex items-center justify-center text-xl shrink-0">
-            🧤
-          </div>
-<div>
-<h4 class="font-heading font-bold text-base text-brand-dark">Trained Food-Grade Pickers</h4>
-<p class="text-xs text-brand-slate mt-1">Mandatory thermal gloves, hairnets, and sanitized pick aprons across shifts.</p>
+<div class="hygiene-cell">
+<div class="hygiene-icon" aria-hidden="true">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+<rect x="7" y="3" width="10" height="18" rx="2"/><path d="M10 7h4M10 11h4M10 15h2"/>
+</svg>
 </div>
-</div>
-<!-- Standard 5 -->
-<div class="reveal-item flex items-start gap-4 p-5 rounded-3xl bg-brand-cream/60 border border-brand-pink/50">
-<div class="w-12 h-12 rounded-2xl bg-brand-pink text-brand-coral flex items-center justify-center text-xl shrink-0">
-            🌡️
-          </div>
-<div>
-<h4 class="font-heading font-bold text-base text-brand-dark">IoT Thermal Data Loggers</h4>
-<p class="text-xs text-brand-slate mt-1">Every second logged on cloud servers. Instant SMS alerts if temp shifts by 1°C.</p>
-</div>
-</div>
-<!-- Standard 6 -->
-<div class="reveal-item flex items-start gap-4 p-5 rounded-3xl bg-brand-cream/60 border border-brand-mint/50">
-<div class="w-12 h-12 rounded-2xl bg-brand-mint/40 text-brand-teal flex items-center justify-center text-xl shrink-0">
-            🔋
-          </div>
-<div>
-<h4 class="font-heading font-bold text-base text-brand-dark">Zero-Interruption Diesel DG</h4>
-<p class="text-xs text-brand-slate mt-1">Automatic transfer switches ignite back-up power within 8 seconds of grid loss.</p>
+<h3 class="hygiene-cell-title">Zero-Interruption Diesel DG</h3>
+<p class="hygiene-cell-body">Automatic transfer switches ignite back-up power within 8 seconds of grid loss.</p>
 </div>
 </div>
 </div>
@@ -1050,10 +1639,11 @@
 <div class="confetti-dot w-3 h-3 bg-brand-apricot top-32 right-[28%] animate-float-delayed"></div>
 
 <div class="section-inner max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
-<div class="reveal-item text-center max-w-3xl mx-auto mb-12 md:mb-16">
-<span class="inline-block text-xs uppercase tracking-widest font-extrabold text-brand-teal bg-brand-mint/40 px-4 py-1.5 rounded-full">Unified Commerce Layer</span>
-<h2 class="text-2xl sm:text-3xl md:text-4xl font-heading font-black text-brand-dark mt-4 leading-tight">Managing cold orders has never been easier</h2>
-<p class="text-brand-slate text-xs sm:text-sm mt-3">One White Store OS syncs marketplace demand into sub-zero inventory, FEFO picks, and rider-ready handovers.</p>
+<div class="reveal-item section-head mb-12 md:mb-16">
+<div class="section-kicker section-kicker--teal">Unified Commerce Layer</div>
+<h2 class="section-title">Managing cold orders has never been easier</h2>
+<div class="section-rule" aria-hidden="true"></div>
+<p class="section-sub">One White Store OS syncs marketplace demand into sub-zero inventory, FEFO picks, and rider-ready handovers.</p>
 </div>
 
 <!-- Desktop / tablet diagram — equal side columns keep hub centered -->
@@ -1268,12 +1858,13 @@
 <!-- BEGIN: Mumbai & Thane Network Map (given hubs only) -->
 <section class="section-frame py-14 md:py-20 bg-brand-cream relative overflow-hidden" data-purpose="active-network" id="network">
 <div class="section-inner max-w-6xl px-4 sm:px-6">
-<div class="reveal-item text-center mb-8 md:mb-10">
-<span class="inline-block text-xs uppercase tracking-widest font-extrabold text-brand-coral bg-brand-pink/40 px-4 py-1.5 rounded-full mb-4">Live Coverage</span>
-<h2 class="text-2xl sm:text-3xl md:text-4xl font-heading font-black text-brand-dark leading-tight">
+<div class="reveal-item section-head section-head--tight mb-8 md:mb-10">
+<div class="section-kicker">Live Coverage</div>
+<h2 class="section-title">
           9 Active Hubs Across<br class="hidden sm:block"/> Mumbai &amp; Thane
         </h2>
-<p class="text-brand-slate text-xs sm:text-sm max-w-lg leading-relaxed mx-auto mt-3">
+<div class="section-rule" aria-hidden="true"></div>
+<p class="section-sub">
           Only our Mumbai &amp; Thane white-store cluster — no other cities on this map.
         </p>
 </div>
@@ -1376,10 +1967,11 @@
 <!-- BEGIN: Team Members (infinite horizontal marquee) -->
 <section class="section-frame relative py-16 md:py-24 bg-brand-cream overflow-hidden" id="members">
 <div class="section-inner max-w-6xl px-4 sm:px-6 relative z-10">
-<div class="text-center max-w-2xl mx-auto mb-12 md:mb-14">
-<span class="inline-block text-xs uppercase tracking-widest font-extrabold text-brand-teal bg-white px-4 py-1.5 rounded-full">The People Behind The Network</span>
-<h2 class="text-2xl sm:text-3xl md:text-4xl font-heading font-black text-brand-dark mt-4">Our Members</h2>
-<p class="text-brand-slate text-xs sm:text-sm mt-3 max-w-lg mx-auto">Leadership and city ops that keep every White Store cold, clean, and always online.</p>
+<div class="section-head mb-12 md:mb-14">
+<div class="section-kicker section-kicker--teal">The People Behind The Network</div>
+<h2 class="section-title">Our Members</h2>
+<div class="section-rule" aria-hidden="true"></div>
+<p class="section-sub">Leadership and city ops that keep every White Store cold, clean, and always online.</p>
 </div>
 </div>
 
@@ -1425,20 +2017,23 @@
 <!-- END: Team Members -->
 <!-- BEGIN: Final Executive CTA Section -->
 <section class="section-frame py-16 md:py-24 bg-white relative" data-purpose="executive-contact" id="contact">
-<div class="section-inner max-w-5xl px-4 sm:px-6">
+<div class="section-inner max-w-7xl px-4 sm:px-6">
 <!-- High Impact Dark Teal Card -->
 <div class="reveal-item bg-brand-teal text-white rounded-5xl p-8 sm:p-14 shadow-2xl relative overflow-hidden">
 <!-- Subtle Arched Ribbon Graphic Behind CTA -->
 <div class="absolute -right-10 -bottom-20 w-80 h-96 bg-brand-tealDark/70 arch-pillar-up pointer-events-none"></div>
 <div class="absolute right-40 -bottom-10 w-44 h-80 bg-brand-coral/20 arch-pillar-up pointer-events-none"></div>
-<div class="relative z-10 max-w-3xl">
-<span class="inline-block px-4 py-1.5 rounded-full bg-white/20 text-white font-extrabold text-xs uppercase tracking-widest mb-6">Join The Network</span>
-<h2 class="text-2xl sm:text-3xl font-heading font-black leading-tight text-white mb-6">
+<div class="relative z-10 max-w-5xl">
+<div class="section-head section-head--left section-head--on-dark mb-10">
+<div class="section-kicker">Join The Network</div>
+<h2 class="section-title">
             Ready to Deliver Pristine Frozen Goodness Across Mumbai?
           </h2>
-<p class="text-white/80 text-sm sm:text-base mb-10 leading-relaxed">
+<div class="section-rule" aria-hidden="true"></div>
+<p class="section-sub">
             Onboard your gourmet brand onto our sub-zero micro-fulfilment network within 7 business days. Plug into seamless Zomato, Swiggy, and Blinkit catalog synchronisation.
           </p>
+</div>
 <!-- Executive Contact Pill Cards -->
 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
 <!-- Contact Card 1 -->
@@ -1568,39 +2163,6 @@
 </div>
 </footer>
 <!-- END: Dark Footer -->
-<!-- BEGIN: Interactive Tabs Script -->
-<script data-purpose="intelligence-tabs">
-    document.addEventListener('DOMContentLoaded', () => {
-      const tabTriggers = document.querySelectorAll('.tab-trigger');
-      const tabPanels = document.querySelectorAll('.tab-panel');
-
-      tabTriggers.forEach(trigger => {
-        trigger.addEventListener('click', () => {
-          const target = trigger.getAttribute('data-tab');
-
-          // Reset trigger buttons
-          tabTriggers.forEach(btn => {
-            btn.classList.remove('bg-brand-teal', 'text-white', 'shadow-md');
-            btn.classList.add('bg-brand-cream', 'text-brand-slate');
-          });
-
-          // Activate clicked trigger
-          trigger.classList.add('bg-brand-teal', 'text-white', 'shadow-md');
-          trigger.classList.remove('bg-brand-cream', 'text-brand-slate');
-
-          // Toggle visibility of panels
-          tabPanels.forEach(panel => {
-            if (panel.id === `tab-${target}`) {
-              panel.classList.remove('hidden');
-            } else {
-              panel.classList.add('hidden');
-            }
-          });
-        });
-      });
-    });
-  </script>
-<!-- END: Interactive Tabs Script -->
 <!-- BEGIN: Hub location → map pointer sync -->
 <script data-purpose="hub-location-map">
     document.addEventListener('DOMContentLoaded', () => {
@@ -1785,57 +2347,106 @@
     });
   </script>
 <!-- END: Integration connector rails -->
-<!-- BEGIN: Facility feed auto slider -->
-<script data-purpose="facility-auto-slider">
+<!-- BEGIN: Prep speed count-up 0.00 → 1.38 -->
+<script data-purpose="prep-speed-counter">
     document.addEventListener('DOMContentLoaded', () => {
-      const root = document.getElementById('facilitySlider');
-      const dotsWrap = document.getElementById('facilityDots');
-      if (!root) return;
-      const slides = Array.from(root.querySelectorAll('.facility-slide'));
-      if (slides.length < 2) return;
+      const el = document.getElementById('prepSpeedCount');
+      if (!el) return;
 
-      let index = slides.findIndex((s) => s.classList.contains('is-active'));
-      if (index < 0) index = 0;
+      const targetMin = Number(el.dataset.targetMin || 1);
+      const targetSec = Number(el.dataset.targetSec || 38);
+      const totalTarget = targetMin * 60 + targetSec; // 98 seconds
+      let played = false;
+
+      const format = (totalSec) => {
+        const m = Math.floor(totalSec / 60);
+        const s = Math.floor(totalSec % 60);
+        return m + '.' + String(s).padStart(2, '0');
+      };
+
+      const run = () => {
+        if (played) return;
+        played = true;
+        const duration = 1800;
+        const start = performance.now();
+
+        const tick = (now) => {
+          const t = Math.min(1, (now - start) / duration);
+          const eased = 1 - Math.pow(1 - t, 3);
+          const current = totalTarget * eased;
+          el.textContent = format(current);
+          if (t < 1) requestAnimationFrame(tick);
+          else el.textContent = format(totalTarget); // 1.38
+        };
+        requestAnimationFrame(tick);
+      };
+
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              run();
+              io.disconnect();
+            }
+          });
+        }, { threshold: 0.4 });
+        io.observe(el);
+      } else {
+        run();
+      }
+    });
+  </script>
+<!-- END: Prep speed count-up -->
+<!-- BEGIN: Store gallery auto rotate -->
+<script data-purpose="store-gallery-slider">
+    document.addEventListener('DOMContentLoaded', () => {
+      const stage = document.getElementById('storeStage');
+      const dotsWrap = document.getElementById('storeDots');
+      const nameEl = document.getElementById('storeStageName');
+      if (!stage) return;
+
+      const slides = Array.from(stage.querySelectorAll('.store-stage-img'));
+      if (!slides.length) return;
+
+      let index = Math.max(0, slides.findIndex((s) => s.classList.contains('is-active')));
       let timer = null;
-      const INTERVAL = 4200;
+      const INTERVAL = 4500;
 
       const paintDots = () => {
         if (!dotsWrap) return;
         dotsWrap.innerHTML = slides.map((_, i) =>
-          `<button type="button" class="facility-dot${i === index ? ' is-active' : ''}" aria-label="Slide ${i + 1}"></button>`
+          `<button type="button" class="store-dot${i === index ? ' is-active' : ''}" aria-label="Store slide ${i + 1}"></button>`
         ).join('');
-        dotsWrap.querySelectorAll('.facility-dot').forEach((btn, i) => {
+        dotsWrap.querySelectorAll('.store-dot').forEach((btn, i) => {
           btn.addEventListener('click', () => goTo(i, true));
         });
       };
 
       const goTo = (next, user) => {
-        slides[index].classList.remove('is-active');
+        slides[index]?.classList.remove('is-active');
         index = (next + slides.length) % slides.length;
         slides[index].classList.add('is-active');
+        if (nameEl) nameEl.textContent = slides[index].dataset.hub || 'White Store';
         paintDots();
         if (user) restart();
       };
 
-      const next = () => goTo(index + 1, false);
-
       const restart = () => {
         clearInterval(timer);
-        timer = setInterval(next, INTERVAL);
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          timer = setInterval(() => goTo(index + 1, false), INTERVAL);
+        }
       };
 
-      paintDots();
-      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        restart();
-      }
-
+      goTo(index, false);
+      restart();
       document.addEventListener('visibilitychange', () => {
         if (document.hidden) clearInterval(timer);
-        else if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) restart();
+        else restart();
       });
     });
   </script>
-<!-- END: Facility feed auto slider -->
+<!-- END: Store gallery auto rotate -->
 <!-- BEGIN: Dark vs White mobile pin scroll -->
 <script data-purpose="vs-compare-pin-scroll">
     document.addEventListener('DOMContentLoaded', () => {
@@ -1907,4 +2518,93 @@
     });
   </script>
 <!-- END: Dark vs White mobile pin scroll -->
+<!-- BEGIN: Hero cursor bubble -->
+<script data-purpose="hero-cursor-bubble">
+    document.addEventListener('DOMContentLoaded', () => {
+      const hero = document.getElementById('heroSection');
+      const bubble = document.getElementById('heroCursorBubble');
+      if (!hero || !bubble) return;
+      if (window.matchMedia('(hover: none), (pointer: coarse)').matches) return;
+
+      let targetX = 0, targetY = 0, curX = 0, curY = 0;
+      let velX = 0, velY = 0;
+      let scale = 0, scaleVel = 0, opacity = 0;
+      let active = false, raf = 0;
+      const stiffness = 0.28;
+      const damping = 0.62;
+      // Softer spring for enter/leave size + fade
+      const appearStiff = 0.14;
+      const appearDamp = 0.72;
+
+      const paint = () => {
+        const dx = targetX - curX;
+        const dy = targetY - curY;
+        velX = (velX + dx * stiffness) * damping;
+        velY = (velY + dy * stiffness) * damping;
+        curX += velX;
+        curY += velY;
+
+        const targetScale = active ? 1 : 0;
+        const targetOpacity = active ? 1 : 0;
+        scaleVel = (scaleVel + (targetScale - scale) * appearStiff) * appearDamp;
+        scale += scaleVel;
+        opacity += (targetOpacity - opacity) * 0.12;
+
+        if (scale < 0.001) scale = 0;
+        if (opacity < 0.01 && !active) opacity = 0;
+
+        bubble.style.transform = `translate3d(${curX}px, ${curY}px, 0) scale(${scale})`;
+        bubble.style.opacity = String(opacity);
+
+        if (!active && opacity <= 0.01 && scale <= 0.01) {
+          hero.classList.remove('is-cursor-active');
+        }
+
+        const moving =
+          active ||
+          Math.abs(dx) > 0.2 || Math.abs(dy) > 0.2 ||
+          Math.abs(velX) > 0.08 || Math.abs(velY) > 0.08 ||
+          Math.abs(scaleVel) > 0.002 ||
+          Math.abs(targetScale - scale) > 0.01 ||
+          Math.abs(targetOpacity - opacity) > 0.01;
+
+        if (moving) {
+          raf = requestAnimationFrame(paint);
+        } else {
+          raf = 0;
+        }
+      };
+
+      const kick = () => {
+        if (!raf) raf = requestAnimationFrame(paint);
+      };
+
+      hero.addEventListener('pointerenter', (e) => {
+        const rect = hero.getBoundingClientRect();
+        targetX = curX = e.clientX - rect.left;
+        targetY = curY = e.clientY - rect.top;
+        velX = 0; velY = 0;
+        active = true;
+        hero.classList.add('is-cursor-active');
+        kick();
+      });
+
+      hero.addEventListener('pointermove', (e) => {
+        const rect = hero.getBoundingClientRect();
+        targetX = e.clientX - rect.left;
+        targetY = e.clientY - rect.top;
+        if (!active) {
+          active = true;
+          hero.classList.add('is-cursor-active');
+        }
+        kick();
+      });
+
+      hero.addEventListener('pointerleave', () => {
+        active = false;
+        kick();
+      });
+    });
+  </script>
+<!-- END: Hero cursor bubble -->
 </body></html>
