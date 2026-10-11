@@ -48,7 +48,7 @@
       font-family: 'Plus Jakarta Sans', sans-serif;
       background-color: #FAF7F2;
       color: #1E293B;
-      overflow-x: hidden;
+      overflow-x: clip; /* clip keeps position:sticky working (hidden breaks it) */
     }
     h1, h2, h3, h4, .font-heading {
       font-family: 'Outfit', sans-serif;
@@ -63,6 +63,344 @@
     .arch-pillar-up {
       border-top-left-radius: 9999px;
       border-top-right-radius: 9999px;
+    }
+
+    /* Infinite horizontal members marquee */
+    .members-marquee {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+    }
+    .members-marquee::before,
+    .members-marquee::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: clamp(3.5rem, 10vw, 7rem);
+      z-index: 5;
+      pointer-events: none;
+    }
+    .members-marquee::before {
+      left: 0;
+      background: linear-gradient(to right, #FAF7F2 0%, rgba(250, 247, 242, 0.85) 40%, transparent 100%);
+    }
+    .members-marquee::after {
+      right: 0;
+      background: linear-gradient(to left, #FAF7F2 0%, rgba(250, 247, 242, 0.85) 40%, transparent 100%);
+    }
+    .members-marquee-track {
+      display: flex;
+      width: max-content;
+      will-change: transform;
+      backface-visibility: hidden;
+    }
+    .members-marquee-group {
+      display: flex;
+      align-items: flex-start;
+      flex-shrink: 0;
+      gap: 3.5rem;
+      padding-right: 3.5rem; /* same as gap — seamless join between sets */
+    }
+    .members-marquee-group .member-card {
+      flex-shrink: 0;
+      width: 11rem;
+    }
+    @media (min-width: 640px) {
+      .members-marquee-group {
+        gap: 4.5rem;
+        padding-right: 4.5rem;
+      }
+      .members-marquee-group .member-card {
+        width: 12rem;
+      }
+    }
+
+    /* Integration hub diagram */
+    .integ-dash {
+      stroke-dasharray: 5 7;
+    }
+    .integ-hub-graph {
+      width: min(100%, 240px);
+      aspect-ratio: 1;
+      position: relative;
+      filter: drop-shadow(0 8px 24px rgba(44, 107, 116, 0.12));
+    }
+    @media (min-width: 1024px) {
+      .integ-hub-graph { width: min(100%, 260px); }
+    }
+    .integ-diagram {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      width: 100%;
+      max-width: 56rem;
+      margin-inline: auto;
+      column-gap: 0.5rem;
+    }
+    .integ-hub-graph svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    .integ-hub-center {
+      position: absolute;
+      inset: 28%;
+      border-radius: 9999px;
+      background: #fff;
+      border: 2px solid rgba(44, 107, 116, 0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      box-shadow: 0 0 0 8px rgba(250, 247, 242, 0.9);
+    }
+    /* Live facility auto slider — full-bleed fill */
+    .facility-slider {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #000;
+    }
+    .facility-slide {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: auto;
+      height: auto;
+      min-width: 100%;
+      min-height: 100%;
+      max-width: none;
+      object-fit: cover;
+      object-position: center center;
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(1.08);
+      transition: opacity 1.1s ease, transform 6.5s ease-out;
+      will-change: opacity, transform;
+      pointer-events: none;
+    }
+    .facility-slide.is-active {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+      z-index: 1;
+    }
+    .facility-dots {
+      display: flex;
+      gap: 0.35rem;
+    }
+    .facility-dot {
+      width: 0.4rem;
+      height: 0.4rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.35);
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      transition: width 0.3s ease, background 0.3s ease;
+    }
+    .facility-dot.is-active {
+      width: 1.1rem;
+      background: #fff;
+    }
+
+    /* Dark vs White — mobile pin: scroll moves White Store over Dark Store */
+    .vs-compare-section {
+      --vs-nav-offset: 5.25rem;
+    }
+    @media (max-width: 767px) {
+      .vs-compare-section.section-frame {
+        display: block;
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+      .vs-compare-section > .section-inner {
+        display: block;
+        max-width: none;
+        width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+      }
+      .vs-pin-track {
+        height: 280vh; /* longer travel = smoother cover feel */
+        position: relative;
+      }
+      .vs-pin-sticky {
+        position: sticky;
+        top: 0;
+        min-height: 100svh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: calc(var(--vs-nav-offset) + 0.25rem) 1rem 1.5rem;
+        background: #FAF7F2;
+        overflow: visible;
+      }
+      .vs-pin-sticky .vs-heading {
+        margin-bottom: 1rem;
+      }
+      .vs-stage {
+        position: relative;
+        width: 100%;
+        max-width: 26rem;
+        margin: 0 auto;
+        overflow: hidden;
+        border-radius: 1.5rem;
+        pointer-events: none; /* never trap wheel/touch — page scrolls */
+      }
+      .vs-stack {
+        display: block !important;
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        overflow: visible !important;
+      }
+      .vs-panel--dark,
+      .vs-panel--white {
+        overflow: hidden;
+        pointer-events: none;
+        min-height: 28rem;
+        padding: 1.85rem 1.5rem !important;
+      }
+      .vs-panel--dark {
+        position: relative !important;
+        z-index: 1;
+        border-radius: 1.5rem;
+        border: 1px solid rgba(244, 63, 94, 0.18);
+        box-shadow: 0 12px 32px rgba(30, 41, 59, 0.1);
+        background: #fff8f8;
+      }
+      .vs-panel--white {
+        position: absolute !important;
+        left: 0;
+        right: 0;
+        top: 0;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        min-height: 100%;
+        border-radius: 1.5rem;
+        border: 1px solid rgba(184, 223, 216, 0.75);
+        background: #fff !important;
+        box-shadow:
+          0 -8px 28px rgba(44, 107, 116, 0.18),
+          0 16px 40px rgba(30, 41, 59, 0.12);
+        transform: translate3d(0, 100%, 0);
+        will-change: transform;
+        backface-visibility: hidden;
+      }
+    }
+    @media (min-width: 768px) {
+      .vs-pin-track {
+        height: auto !important;
+      }
+      .vs-pin-sticky {
+        position: static;
+        min-height: 0;
+        padding: 0;
+        overflow: visible;
+        background: transparent;
+      }
+      .vs-stage {
+        position: static;
+        max-width: none;
+        overflow: visible;
+        border-radius: 0;
+      }
+      .vs-stack {
+        display: grid !important;
+      }
+      .vs-panel--dark,
+      .vs-panel--white {
+        position: static !important;
+        z-index: auto;
+        width: auto;
+        height: auto;
+        min-height: 0;
+        padding: 2.5rem !important;
+        transform: none !important;
+        box-shadow: none;
+        border: none;
+        border-radius: 0;
+        overflow: visible;
+        pointer-events: auto;
+        touch-action: auto;
+      }
+    }
+
+    /* Brand family — clean 2-row logo grid */
+    .trust-cloud {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.65rem;
+      max-width: 52rem;
+      margin: 0 auto;
+    }
+    .trust-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 0.55rem;
+      width: 100%;
+    }
+    .trust-tile {
+      width: 4.5rem;
+      height: 4.5rem;
+      background: #fff;
+      border: 1px solid rgba(30, 41, 59, 0.08);
+      border-radius: 0.65rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.55rem;
+      box-shadow: 0 1px 0 rgba(44, 107, 116, 0.04);
+      overflow: hidden;
+      flex-shrink: 0;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .trust-tile img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+    .trust-tile:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(44, 107, 116, 0.1);
+    }
+    @media (min-width: 640px) {
+      .trust-cloud { gap: 0.8rem; }
+      .trust-row { gap: 0.75rem; }
+      .trust-tile {
+        width: 5.75rem;
+        height: 5.75rem;
+        border-radius: 0.75rem;
+        padding: 0.75rem;
+      }
+    }
+    @media (min-width: 1024px) {
+      .trust-tile {
+        width: 6.25rem;
+        height: 6.25rem;
+      }
+    }
+
+    .integ-platform {
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .integ-platform:hover {
+      transform: translateX(4px);
+      box-shadow: 0 8px 20px rgba(44, 107, 116, 0.12);
+    }
+    @keyframes integFlow {
+      0% { stroke-dashoffset: 0; }
+      100% { stroke-dashoffset: -48; }
+    }
+    .integ-flow-line {
+      animation: integFlow 2.2s linear infinite;
     }
 
     /* Floating subtle animation */
@@ -103,6 +441,29 @@
       opacity: 1;
       transform: translateY(0);
     }
+
+    /* Every major section: content centered in its viewport block */
+    .section-frame {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+    .section-frame[data-purpose="hero-section"] {
+      justify-content: stretch;
+    }
+    @media (min-width: 768px) {
+      .section-frame[data-purpose="hero-section"] {
+        justify-content: center;
+      }
+    }
+    .section-frame > .section-inner {
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
   </style>
 </head>
 <body class="selection:bg-brand-coral selection:text-white">
@@ -110,7 +471,7 @@
 <header class="fixed top-4 inset-x-0 z-50 px-4 pointer-events-none" data-purpose="sticky-pill-navigation">
 <div class="max-w-6xl mx-auto flex items-center justify-between pointer-events-auto bg-white/85 backdrop-blur-md px-6 py-3.5 rounded-full shadow-[0_10px_30px_rgba(44,107,116,0.08)] border border-brand-pink/60 transition-all duration-300">
 <!-- Brand Logo -->
-<a class="flex items-center gap-2.5 group" href="#">
+<a class="flex items-center gap-2.5 group" href="index.html">
 <div class="w-10 h-10 rounded-full bg-brand-coral flex items-center justify-center text-white font-bold text-lg shadow-sm group-hover:scale-105 transition-transform">
           ❄️
         </div>
@@ -121,11 +482,12 @@
 </a>
 <!-- Navigation Pill Links -->
 <nav class="hidden md:flex items-center gap-1 bg-[#FAF7F2] p-1.5 rounded-full border border-brand-pink/40 text-xs font-semibold text-brand-slate">
-<a class="px-4 py-2 rounded-full hover:bg-white hover:text-brand-teal hover:shadow-xs transition-all" href="#network">Network</a>
+<a class="px-4 py-2 rounded-full hover:bg-white hover:text-brand-teal hover:shadow-xs transition-all" href="#overview">Overview</a>
+<a class="px-4 py-2 rounded-full hover:bg-white hover:text-brand-teal transition-all" href="#network">Network</a>
 <a class="px-4 py-2 rounded-full hover:bg-white hover:text-brand-teal transition-all" href="#advantage">Advantage</a>
+<a class="px-4 py-2 rounded-full hover:bg-white hover:text-brand-teal transition-all" href="#integrations">Integrations</a>
 <a class="px-4 py-2 rounded-full hover:bg-white hover:text-brand-teal transition-all" href="#intelligence">Tech &amp; FIFO</a>
-<a class="px-4 py-2 rounded-full hover:bg-white hover:text-brand-teal transition-all" href="#hygiene">Sanitary</a>
-<a class="px-4 py-2 rounded-full hover:bg-white hover:text-brand-teal transition-all" href="#expansion">Expansion</a>
+<a class="px-4 py-2 rounded-full hover:bg-white hover:text-brand-teal transition-all" href="#members">Members</a>
 </nav>
 <!-- CTA Button -->
 <div class="flex items-center gap-3">
@@ -138,9 +500,11 @@
 </header>
 <!-- END: Floating Navigation Header -->
 <!-- BEGIN: Hero Section With Arched Motif Backdrop -->
-<section class="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-brand-cream" data-purpose="hero-section">
+<section class="section-frame relative min-h-[100svh] pt-24 pb-8 md:pt-32 md:pb-20 overflow-hidden z-10" data-purpose="hero-section" style="border-bottom-left-radius: 1.5rem; border-bottom-right-radius: 1.5rem;">
+<!-- Hero background layer (rounded bottom — not button) -->
+<div class="absolute inset-0 bg-brand-cream" style="border-bottom-left-radius: 1.5rem; border-bottom-right-radius: 1.5rem;" aria-hidden="true"></div>
 <!-- Arched Architectural Backdrop Motif (Direct Style Tribute to Image 2) -->
-<div class="absolute top-0 inset-x-0 h-[480px] md:h-[580px] flex justify-center pointer-events-none opacity-90 -z-0">
+<div class="absolute top-0 inset-x-0 h-[480px] md:h-[580px] flex justify-center pointer-events-none opacity-90 z-0" style="border-bottom-left-radius: 1.5rem; border-bottom-right-radius: 1.5rem; overflow: hidden;">
 <div class="w-full max-w-6xl flex justify-center items-start gap-3 sm:gap-6 px-4">
 <div class="w-16 sm:w-28 md:w-36 h-[320px] md:h-[430px] bg-brand-pink arch-pillar"></div>
 <div class="w-20 sm:w-36 md:w-44 h-[380px] md:h-[500px] bg-brand-teal arch-pillar"></div>
@@ -154,23 +518,35 @@
 <div class="confetti-dot w-4 h-4 bg-brand-teal top-64 right-16 animate-float-delayed"></div>
 <div class="confetti-dot w-2.5 h-2.5 bg-brand-apricot top-80 left-1/4 animate-float-slow"></div>
 <div class="confetti-dot w-3 h-3 bg-brand-mint top-36 right-1/4 animate-float-delayed"></div>
-<div class="max-w-5xl mx-auto px-4 sm:px-6 relative z-10 text-center">
-<!-- Pill Badge -->
-<div class="reveal-item inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/95 text-brand-teal text-[10px] sm:text-xs font-bold shadow-md border border-brand-mint/60 mb-8 backdrop-blur-sm">
-<span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+<div class="section-inner max-w-5xl px-4 sm:px-6 relative z-10 text-center flex flex-col items-center w-full flex-1 min-h-[calc(100svh-7.5rem)] md:min-h-0 justify-end md:justify-center pb-2 md:pb-0">
+<!-- Title — centered (mobile + desktop) -->
+<div class="hero-top flex flex-col items-center justify-center w-full absolute inset-x-0 top-[30%] -translate-y-1/2 px-4 md:static md:top-auto md:translate-y-0 md:px-0">
+<div class="reveal-item inline-flex items-center justify-center text-white text-[10px] sm:text-xs font-bold mb-4 md:mb-6 px-2">
 <span>India's 1st Certified FSSAI Sub-Zero White Store Network</span>
 </div>
-<!-- Main Headline -->
-<h1 class="reveal-item text-3xl sm:text-4xl md:text-5xl font-heading font-black text-white md:text-white drop-shadow-[0_4px_16px_rgba(29,75,82,0.4)] leading-[1.08] mb-6 tracking-tight">
+<h1 class="reveal-item text-3xl sm:text-4xl md:text-5xl font-heading font-black text-white leading-[1.08] mb-0 md:mb-5 tracking-tight md:drop-shadow-[0_4px_16px_rgba(29,75,82,0.4)]">
         Delivering Fresh Products.<br/>
-<span class="text-white underline decoration-brand-apricot decoration-wavy decoration-2">Every Single Time.</span>
+<span class="text-white underline decoration-white md:decoration-brand-apricot decoration-wavy decoration-2">Every Single Time.</span>
 </h1>
+</div>
+<!-- Paragraph — bottom on mobile, under title on desktop -->
+<p class="reveal-item hero-copy relative z-10 max-w-xl md:max-w-2xl mx-auto text-brand-slate md:text-brand-dark text-xs sm:text-sm md:text-base leading-relaxed mt-auto md:mt-0 mb-10 md:mb-0 pb-2 md:pb-0">
+<span class="block font-heading font-extrabold text-brand-dark text-sm sm:text-base md:text-lg mb-2">We Call Them White Stores.</span>
+        Every Propelpad facility is clean, bright, and maintained to brand standards, because a premium brand deserves a premium environment, not a warehouse that happens to have Wi-Fi and a delivery bag.
+      </p>
+</div>
+</section>
+<!-- END: Hero Section -->
+<!-- BEGIN: Overview "page" (same file, next full screen after hero) -->
+<section id="overview" class="section-frame relative min-h-screen py-20 md:py-24 bg-white" data-purpose="overview-page">
+<div class="section-inner max-w-5xl px-4 sm:px-6 text-center flex flex-col items-center">
+<span class="reveal-item inline-block text-xs uppercase tracking-widest font-extrabold text-brand-coral bg-brand-pink/40 px-4 py-1.5 rounded-full mb-5">White Store Overview</span>
 <!-- Subtitle Card -->
-<div class="reveal-item max-w-3xl mx-auto bg-white/90 backdrop-blur-md rounded-3xl p-6 sm:p-7 shadow-xl border border-white/80 mb-9 text-brand-slate text-sm sm:text-base leading-relaxed">
+<div class="reveal-item max-w-3xl mx-auto bg-brand-cream/80 rounded-3xl p-6 sm:p-8 shadow-xl border border-brand-pink/50 mb-8 text-brand-slate text-sm sm:text-base leading-relaxed">
         Premium sub-zero micro-fulfilment infrastructure for artisanal gelato, gourmet desserts, and cold-chain FMCG. Accelerate doorstep deliveries within <span class="font-bold text-brand-teal">10 to 30 minutes</span> while maintaining an unbroken <span class="font-bold text-brand-coral">-18°C chain-of-custody</span>.
       </div>
 <!-- CTA Action Buttons -->
-<div class="reveal-item flex flex-wrap items-center justify-center gap-4 mb-14">
+<div class="reveal-item flex flex-wrap items-center justify-center gap-4 mb-12">
 <a class="px-8 py-4 bg-brand-teal hover:bg-brand-tealDark text-white font-extrabold text-sm rounded-full shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-0.5" href="#contact">
           Deploy Your Brand Now
         </a>
@@ -180,48 +556,47 @@
 </div>
 <!-- Pill Proof Points -->
 <div class="reveal-item grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 max-w-4xl mx-auto">
-<div class="bg-white/80 backdrop-blur-md border border-brand-pink/50 rounded-2xl p-4 text-center shadow-xs">
-<div class="text-lg sm:text-xl font-heading font-black text-brand-teal">9</div>
+<div class="bg-brand-cream border border-brand-pink/50 rounded-2xl p-5 text-center shadow-sm">
+<div class="text-xl sm:text-2xl font-heading font-black text-brand-teal">9</div>
 <div class="text-xs uppercase tracking-wider font-bold text-brand-slate/80 mt-1">White Stores</div>
 </div>
-<div class="bg-white/80 backdrop-blur-md border border-brand-coral/40 rounded-2xl p-4 text-center shadow-xs">
-<div class="text-lg sm:text-xl font-heading font-black text-brand-coral">13+</div>
+<div class="bg-brand-cream border border-brand-coral/40 rounded-2xl p-5 text-center shadow-sm">
+<div class="text-xl sm:text-2xl font-heading font-black text-brand-coral">13+</div>
 <div class="text-xs uppercase tracking-wider font-bold text-brand-slate/80 mt-1">Partner Brands</div>
 </div>
-<div class="bg-white/80 backdrop-blur-md border border-brand-apricot/60 rounded-2xl p-4 text-center shadow-xs">
-<div class="text-lg sm:text-xl font-heading font-black text-brand-dark">Mumbai &amp; Thane</div>
+<div class="bg-brand-cream border border-brand-apricot/60 rounded-2xl p-5 text-center shadow-sm">
+<div class="text-xl sm:text-2xl font-heading font-black text-brand-dark">Mumbai &amp; Thane</div>
 <div class="text-xs uppercase tracking-wider font-bold text-brand-slate/80 mt-1">Dense Urban Grid</div>
 </div>
-<div class="bg-white/80 backdrop-blur-md border border-brand-mint/60 rounded-2xl p-4 text-center shadow-xs">
-<div class="text-lg sm:text-xl font-heading font-black text-emerald-600">99.8%</div>
+<div class="bg-brand-cream border border-brand-mint/60 rounded-2xl p-5 text-center shadow-sm">
+<div class="text-xl sm:text-2xl font-heading font-black text-emerald-600">99.8%</div>
 <div class="text-xs uppercase tracking-wider font-bold text-brand-slate/80 mt-1">Uptime SLA</div>
 </div>
 </div>
 </div>
 </section>
-<!-- END: Hero Section With Arched Motif Backdrop -->
+<!-- END: Overview page -->
 <!-- BEGIN: Facility Showcase & Interactive Live Telemetry -->
-<section class="relative -mt-4 z-20 max-w-4xl mx-auto px-4 sm:px-6">
-<div class="reveal-item bg-white rounded-4xl p-3 sm:p-4 shadow-xl border border-brand-mint/40 overflow-hidden">
-<!-- Facility Header Bar -->
-<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 px-1 border-b border-brand-cream">
-<div class="flex items-center gap-2">
-<div class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></div>
-<span class="font-heading font-bold text-xs text-brand-teal uppercase tracking-wider">Live Facility Feed: Santacruz Hub #02</span>
+<section class="relative z-20 w-full min-h-[100svh] h-[100svh] bg-black" data-purpose="live-facility-feed" id="facilityFeed">
+<div class="relative w-full h-full min-h-[100svh] overflow-hidden">
+<!-- Auto slider slides -->
+<div class="facility-slider absolute inset-0" id="facilitySlider" aria-roledescription="carousel" aria-label="Live facility feed">
+<img class="facility-slide is-active" src="image.png" alt="Santacruz Hub storefront" loading="eager"/>
+<img class="facility-slide" src="image.png" alt="Santacruz Hub entrance detail" style="object-position: center 20%" loading="lazy"/>
+<img class="facility-slide" src="image.png" alt="Santacruz Hub interior view" style="object-position: center 80%" loading="lazy"/>
 </div>
-<div class="flex flex-wrap items-center gap-1.5 text-[10px] font-semibold">
-<span class="px-2 py-1 rounded-full bg-brand-cream text-brand-slate border border-brand-pink/50">Hasselblad Optics</span>
-<span class="px-2 py-1 rounded-full bg-brand-mint/30 text-brand-teal border border-brand-mint">FSSAI Hospital-Grade Clean</span>
-<span class="px-2 py-1 rounded-full bg-blue-50 text-blue-700 border border-blue-200">ISO 22000 Ready</span>
-</div>
-</div>
-<!-- Facility Image Container -->
-<div class="relative mt-3 rounded-3xl overflow-hidden shadow-inner group">
-<img alt="Propelpad Ultra-Modern Cold-Chain White Store Facility with Gleaming Epoxy Floors and Glass-Front Refrigeration" class="w-full h-[200px] sm:h-[260px] md:h-[300px] object-cover transition-transform duration-700 group-hover:scale-[1.02]" src="https://lh3.googleusercontent.com/aida/AEtjO1Ux-ZESVQHxSJzDOMHjRQqGmGRQIkx4qG0A95g1U8DsYM8u2doMl5lez8ovNrszf2DvB61Xtyh35teIZhRt8BS20v7MErtrDlEAjpp6Ov9AxaWZ9tFWxfhSwunSbuMmAqCwAa6L_yvybtB8lbB9DPtY6HYuqH1WL5uUuofmcH236JckEmkTCbKsOYz7KuVm5iVArFGA_aajhjltFr5v5dp6dO35ufwsXT2E39QaHmiye9T0PElRjw3cHVc"/>
 <!-- Overlay Gradients -->
-<div class="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-black/20 pointer-events-none"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/40 pointer-events-none z-[1]"></div>
+<!-- Facility Header Bar -->
+<div class="absolute top-0 inset-x-0 z-10 flex items-center justify-between gap-3 px-4 sm:px-6 md:px-10 pt-5 sm:pt-6">
+<div class="flex items-center gap-2 min-w-0">
+<div class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shrink-0"></div>
+<span class="font-heading font-bold text-xs sm:text-sm text-white uppercase tracking-wider drop-shadow truncate">Live Facility Feed: Santacruz Hub #02</span>
+</div>
+<div class="facility-dots flex items-center gap-1.5 shrink-0" id="facilityDots" aria-hidden="true"></div>
+</div>
 <!-- Telemetry Floating Glass Pills -->
-<div class="absolute bottom-3 inset-x-3 flex flex-wrap items-center justify-between gap-2">
+<div class="absolute bottom-0 inset-x-0 z-10 px-4 sm:px-6 md:px-10 pb-6 sm:pb-8 md:pb-10 flex flex-wrap items-end justify-between gap-2">
 <!-- Pill Telemetry: Core Temperature -->
 <div class="bg-black/60 backdrop-blur-md text-white border border-white/20 px-3 py-2 rounded-2xl flex items-center gap-2 shadow-lg">
 <div class="w-7 h-7 rounded-xl bg-cyan-500/20 text-cyan-300 flex items-center justify-center text-sm">
@@ -254,11 +629,11 @@
 </div>
 </div>
 </div>
-</div>
 </section>
 <!-- END: Facility Showcase & Interactive Live Telemetry -->
 <!-- BEGIN: Live Operational Metrics Strip -->
-<section class="py-16 max-w-6xl mx-auto px-4 sm:px-6">
+<section class="section-frame py-16 md:py-20 bg-brand-cream">
+<div class="section-inner max-w-6xl px-4 sm:px-6">
 <div class="text-center max-w-2xl mx-auto mb-10">
 <span class="text-xs uppercase tracking-widest font-extrabold text-brand-teal bg-brand-mint/40 px-4 py-1.5 rounded-full">Audited Real-Time Telemetry</span>
 <h2 class="text-2xl sm:text-3xl font-heading font-extrabold text-brand-dark mt-3">Network Performance Metrics</h2>
@@ -295,11 +670,12 @@
 <span class="text-[9px] text-rose-700 font-semibold bg-rose-50 px-2 py-0.5 rounded-full inline-block mt-2">Rider Handover</span>
 </div>
 </div>
+</div>
 </section>
 <!-- END: Live Operational Metrics Strip -->
 <!-- BEGIN: Food Commerce Opportunity -->
-<section class="py-16 md:py-24 bg-white relative" data-purpose="opportunity-section" id="advantage">
-<div class="max-w-6xl mx-auto px-4 sm:px-6">
+<section class="section-frame py-16 md:py-24 bg-white relative" data-purpose="opportunity-section" id="advantage">
+<div class="section-inner max-w-6xl px-4 sm:px-6">
 <div class="text-center max-w-3xl mx-auto mb-16">
 <span class="text-xs uppercase tracking-widest font-extrabold text-brand-coral bg-brand-pink/40 px-4 py-1.5 rounded-full">Macro Shifts in Quick Commerce</span>
 <h2 class="text-2xl sm:text-3xl font-heading font-black text-brand-dark mt-4">The Premium Cold-Chain Imperative</h2>
@@ -350,17 +726,19 @@
 </section>
 <!-- END: Food Commerce Opportunity -->
 <!-- BEGIN: Dark Store vs White Store Comparison Matrix -->
-<section class="py-16 md:py-24 bg-brand-cream relative">
-<div class="max-w-5xl mx-auto px-4 sm:px-6">
-<div class="text-center max-w-2xl mx-auto mb-14">
+<section class="section-frame py-16 md:py-24 bg-brand-cream relative vs-compare-section" id="vsCompare">
+<div class="section-inner max-w-5xl px-4 sm:px-6">
+<div class="vs-pin-track" id="vsPinTrack">
+<div class="vs-pin-sticky">
+<div class="vs-heading text-center max-w-2xl mx-auto mb-10 md:mb-14">
 <span class="text-xs uppercase tracking-widest font-extrabold text-brand-teal bg-brand-mint/40 px-4 py-1.5 rounded-full">Operational Audit</span>
 <h2 class="text-2xl sm:text-3xl font-heading font-black text-brand-dark mt-3">Dark Store vs. White Store</h2>
 <p class="text-brand-slate text-xs sm:text-sm mt-3">Why gourmet brands choose Propelpad White Stores over cramped conventional dark warehouses.</p>
 </div>
-<div class="reveal-item bg-white rounded-4xl shadow-xl border border-brand-mint/50 overflow-hidden">
-<div class="grid grid-cols-1 md:grid-cols-12 divide-y md:divide-y-0 md:divide-x divide-gray-100">
-<!-- Conventional Dark Store (Negative) -->
-<div class="md:col-span-5 p-6 sm:p-8 bg-rose-50/20">
+<div class="vs-stage">
+<div class="vs-stack bg-white rounded-4xl shadow-xl border border-brand-mint/50 md:overflow-hidden md:grid md:grid-cols-12 md:divide-x md:divide-y-0 divide-y divide-gray-100">
+<!-- Conventional Dark Store -->
+<div class="vs-panel vs-panel--dark md:col-span-5 p-8 sm:p-10 bg-rose-50/20">
 <div class="inline-flex items-center gap-2 px-3 py-1 bg-rose-100 text-rose-800 rounded-full text-xs font-bold mb-6">
 <span>⚠️ Conventional Dark Store</span>
 </div>
@@ -383,8 +761,8 @@
 </li>
 </ul>
 </div>
-<!-- Propelpad White Store (Positive) -->
-<div class="md:col-span-7 p-6 sm:p-8 bg-white relative">
+<!-- Propelpad White Store — mobile: slides over Dark Store while section is pinned -->
+<div class="vs-panel vs-panel--white md:col-span-7 p-8 sm:p-10 bg-white" id="vsWhitePanel">
 <div class="inline-flex items-center gap-2 px-3.5 py-1 bg-brand-mint text-brand-teal font-extrabold rounded-full text-xs mb-6 shadow-xs">
 <span>✨ Propelpad White Store Standard</span>
 </div>
@@ -410,11 +788,13 @@
 </div>
 </div>
 </div>
+</div>
+</div>
 </section>
 <!-- END: Dark Store vs White Store Comparison Matrix -->
 <!-- BEGIN: Operational Intelligence Dashboard -->
-<section class="py-16 md:py-24 bg-white relative" data-purpose="intelligence-dashboard" id="intelligence">
-<div class="max-w-6xl mx-auto px-4 sm:px-6">
+<section class="section-frame py-16 md:py-24 bg-white relative" data-purpose="intelligence-dashboard" id="intelligence">
+<div class="section-inner max-w-6xl px-4 sm:px-6">
 <div class="text-center max-w-3xl mx-auto mb-14">
 <span class="text-xs uppercase tracking-widest font-extrabold text-brand-teal bg-brand-mint/40 px-4 py-1.5 rounded-full">Propelpad OS</span>
 <h2 class="text-2xl sm:text-3xl font-heading font-black text-brand-dark mt-3">Operational Intelligence Suite</h2>
@@ -531,8 +911,8 @@
 </section>
 <!-- END: Operational Intelligence Dashboard -->
 <!-- BEGIN: Buying Efficiency & FIFO Architecture -->
-<section class="py-16 md:py-24 bg-brand-cream">
-<div class="max-w-6xl mx-auto px-4 sm:px-6">
+<section class="section-frame py-16 md:py-24 bg-brand-cream">
+<div class="section-inner max-w-6xl px-4 sm:px-6">
 <div class="text-center max-w-3xl mx-auto mb-16">
 <span class="text-xs uppercase tracking-widest font-extrabold text-brand-coral bg-brand-pink/40 px-4 py-1.5 rounded-full">Inventory Science</span>
 <h2 class="text-2xl sm:text-3xl font-heading font-black text-brand-dark mt-3">Smart Buying Efficiency &amp; FIFO</h2>
@@ -589,8 +969,8 @@
 </section>
 <!-- END: Buying Efficiency & FIFO Architecture -->
 <!-- BEGIN: Sanitary & Food Safety Assurance -->
-<section class="py-16 md:py-24 bg-white relative" id="hygiene">
-<div class="max-w-6xl mx-auto px-4 sm:px-6">
+<section class="section-frame py-16 md:py-24 bg-white relative" id="hygiene">
+<div class="section-inner max-w-6xl px-4 sm:px-6">
 <div class="text-center max-w-3xl mx-auto mb-16">
 <span class="text-xs uppercase tracking-widest font-extrabold text-brand-teal bg-brand-mint/40 px-4 py-1.5 rounded-full">Certified Standards</span>
 <h2 class="text-2xl sm:text-3xl font-heading font-black text-brand-dark mt-3">Sanitary &amp; Food Safety Excellence</h2>
@@ -661,214 +1041,391 @@
 </div>
 </section>
 <!-- END: Sanitary & Food Safety Assurance -->
-<!-- BEGIN: Partner Brand Wall (Inspired by reference styling) -->
-<section class="py-16 md:py-24 bg-brand-cream relative overflow-hidden">
-<!-- Playful Confetti Dots -->
-<div class="confetti-dot w-3 h-3 bg-brand-coral top-10 left-10 animate-float-slow"></div>
-<div class="confetti-dot w-4 h-4 bg-brand-teal bottom-10 right-10 animate-float-delayed"></div>
-<div class="max-w-6xl mx-auto px-4 sm:px-6">
-<div class="text-center max-w-2xl mx-auto mb-14">
-<span class="text-xs uppercase tracking-widest font-extrabold text-brand-teal bg-white px-4 py-1.5 rounded-full shadow-xs">Trusted Ecosystem</span>
-<h2 class="text-2xl sm:text-3xl font-heading font-black text-brand-dark mt-3">13+ Leading Cold Brands Live</h2>
-<p class="text-brand-slate text-xs sm:text-sm mt-3">From handcrafted Italian gelatos to probiotic frozen yogurts and cloud patisseries.</p>
+<!-- BEGIN: Channel Integration Hub (order orchestration) -->
+<section class="section-frame py-16 md:py-24 bg-white relative overflow-hidden" id="integrations" data-purpose="channel-integration">
+<!-- Soft arch pattern accents -->
+<div class="absolute top-0 left-6 w-16 sm:w-24 h-40 sm:h-56 bg-brand-pink/50 arch-pillar pointer-events-none" aria-hidden="true"></div>
+<div class="absolute top-0 right-8 w-20 sm:w-28 h-48 sm:h-64 bg-brand-mint/40 arch-pillar pointer-events-none" aria-hidden="true"></div>
+<div class="confetti-dot w-2.5 h-2.5 bg-brand-coral top-24 left-[30%] animate-float-slow"></div>
+<div class="confetti-dot w-3 h-3 bg-brand-apricot top-32 right-[28%] animate-float-delayed"></div>
+
+<div class="section-inner max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+<div class="reveal-item text-center max-w-3xl mx-auto mb-12 md:mb-16">
+<span class="inline-block text-xs uppercase tracking-widest font-extrabold text-brand-teal bg-brand-mint/40 px-4 py-1.5 rounded-full">Unified Commerce Layer</span>
+<h2 class="text-2xl sm:text-3xl md:text-4xl font-heading font-black text-brand-dark mt-4 leading-tight">Managing cold orders has never been easier</h2>
+<p class="text-brand-slate text-xs sm:text-sm mt-3">One White Store OS syncs marketplace demand into sub-zero inventory, FEFO picks, and rider-ready handovers.</p>
 </div>
-<!-- Brand Circular Badges Grid (Inspired by Circular Flavor Badges in Image 2) -->
-<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 sm:gap-6">
-<div class="reveal-item bg-white p-5 rounded-3xl border border-brand-pink/50 text-center flex flex-col items-center hover:scale-105 transition-transform shadow-xs">
-<div class="w-16 h-16 rounded-full bg-brand-pink/40 flex items-center justify-center text-2xl mb-3 shadow-inner">🍦</div>
-<span class="font-heading font-bold text-[10px] sm:text-xs text-brand-dark">Gelato Classico</span>
-<span class="text-[9px] text-brand-slate/70 mt-1">Italian Style</span>
+
+<!-- Desktop / tablet diagram — equal side columns keep hub centered -->
+<div class="reveal-item hidden md:grid integ-diagram" id="integDiagram">
+<!-- Left column: icons + full start→end rails into hub -->
+<div class="flex items-stretch justify-end gap-0 min-w-0 translate-x-3 lg:translate-x-6">
+<div class="flex flex-col gap-3 w-12 shrink-0 items-center" id="integClients">
+<a class="integ-platform w-11 h-11 rounded-xl bg-[#E23744] border border-[#E23744] flex items-center justify-center overflow-hidden p-2 shadow-xs hover:shadow-md transition-shadow" href="#contact" title="Zomato" aria-label="Zomato">
+<img alt="Zomato" class="w-full h-full object-contain brightness-0 invert" src="assets/integrations/zomato.svg" width="28" height="28"/>
+</a>
+<a class="integ-platform w-11 h-11 rounded-xl bg-white border border-brand-coral/30 flex items-center justify-center overflow-hidden p-2 shadow-xs hover:shadow-md transition-shadow" href="#contact" title="Swiggy" aria-label="Swiggy">
+<img alt="Swiggy" class="w-full h-full object-contain" src="assets/integrations/swiggy.svg" width="28" height="28"/>
+</a>
+<a class="integ-platform w-11 h-11 rounded-xl bg-white border border-brand-mint/40 flex items-center justify-center overflow-hidden p-1 shadow-xs hover:shadow-md transition-shadow" href="#contact" title="Blinkit" aria-label="Blinkit">
+<img alt="Blinkit" class="w-full h-full object-contain" src="assets/integrations/blinkit.svg" width="28" height="28"/>
+</a>
+<a class="integ-platform w-11 h-11 rounded-xl bg-white border border-brand-teal/20 flex items-center justify-center overflow-hidden p-1 shadow-xs hover:shadow-md transition-shadow" href="#contact" title="magicpin" aria-label="magicpin">
+<img alt="magicpin" class="w-full h-full object-contain" src="assets/integrations/magicpin.svg" width="28" height="28"/>
+</a>
+<a class="integ-platform w-11 h-11 rounded-xl bg-[#232F3E] border border-brand-apricot/40 flex items-center justify-center overflow-hidden p-2 shadow-xs hover:shadow-md transition-shadow" href="#contact" title="Amazon Food" aria-label="Amazon Food">
+<img alt="Amazon Food" class="w-full h-full object-contain brightness-0 invert" src="assets/integrations/amazon.svg" width="28" height="28"/>
+</a>
 </div>
-<div class="reveal-item bg-white p-5 rounded-3xl border border-brand-coral/40 text-center flex flex-col items-center hover:scale-105 transition-transform shadow-xs">
-<div class="w-16 h-16 rounded-full bg-brand-coral/20 flex items-center justify-center text-2xl mb-3 shadow-inner">🍫</div>
-<span class="font-heading font-bold text-[10px] sm:text-xs text-brand-dark">Melt &amp; Co.</span>
-<span class="text-[9px] text-brand-slate/70 mt-1">Artisan Chocolates</span>
+<div class="relative flex-1 max-w-[7rem] sm:max-w-[8.5rem] lg:max-w-[10rem] min-w-[4.5rem] ml-1" id="integLeftRails">
+<svg id="integLeftSvg" class="absolute inset-0 w-full h-full overflow-visible" fill="none" aria-hidden="true"></svg>
 </div>
-<div class="reveal-item bg-white p-5 rounded-3xl border border-brand-apricot/50 text-center flex flex-col items-center hover:scale-105 transition-transform shadow-xs">
-<div class="w-16 h-16 rounded-full bg-brand-apricot/30 flex items-center justify-center text-2xl mb-3 shadow-inner">🥭</div>
-<span class="font-heading font-bold text-[10px] sm:text-xs text-brand-dark">FrootiCraft</span>
-<span class="text-[9px] text-brand-slate/70 mt-1">Pure Fruit Sorbets</span>
 </div>
-<div class="reveal-item bg-white p-5 rounded-3xl border border-brand-mint/50 text-center flex flex-col items-center hover:scale-105 transition-transform shadow-xs">
-<div class="w-16 h-16 rounded-full bg-brand-mint/40 flex items-center justify-center text-2xl mb-3 shadow-inner">🥣</div>
-<span class="font-heading font-bold text-[10px] sm:text-xs text-brand-dark">Yoguruto</span>
-<span class="text-[9px] text-brand-slate/70 mt-1">Probiotic Fro-Yo</span>
+
+<!-- Center hub -->
+<div class="relative flex items-center justify-center justify-self-center" id="integHub">
+<div class="integ-hub-graph" aria-label="Propelpad White Store OS circular graph">
+<svg viewBox="0 0 200 200" role="img">
+<title>White Store OS capabilities graph</title>
+<circle cx="100" cy="100" r="96" fill="none" stroke="#B8DFD8" stroke-width="0.6" opacity="0.45"/>
+<circle cx="100" cy="100" r="88" fill="none" stroke="#F6D6D6" stroke-width="0.6" opacity="0.4"/>
+<path d="M100 22 A78 78 0 0 1 178 100 L155 100 A55 55 0 0 0 100 45 Z" fill="#2C6B74"/>
+<path d="M178 100 A78 78 0 0 1 100 178 L100 155 A55 55 0 0 0 155 100 Z" fill="#F49D8C"/>
+<path d="M100 178 A78 78 0 0 1 22 100 L45 100 A55 55 0 0 0 100 155 Z" fill="#F8CE9F"/>
+<path d="M22 100 A78 78 0 0 1 100 22 L100 45 A55 55 0 0 0 45 100 Z" fill="#B8DFD8"/>
+<g stroke="#FAF7F2" stroke-width="3">
+<line x1="100" y1="45" x2="100" y2="22"/>
+<line x1="155" y1="100" x2="178" y2="100"/>
+<line x1="100" y1="155" x2="100" y2="178"/>
+<line x1="45" y1="100" x2="22" y2="100"/>
+</g>
+<defs>
+<path id="arc-order" d="M108 30 A70 70 0 0 1 170 100"/>
+<path id="arc-stock" d="M170 108 A70 70 0 0 1 100 170"/>
+<path id="arc-fefo" d="M92 170 A70 70 0 0 1 30 100"/>
+<path id="arc-menu" d="M30 92 A70 70 0 0 1 100 30"/>
+</defs>
+<text fill="#fff" font-size="6.2" font-weight="800" letter-spacing="0.3">
+<textPath href="#arc-order" startOffset="6%">ORDER MANAGEMENT</textPath>
+</text>
+<text fill="#1E293B" font-size="6.2" font-weight="800" letter-spacing="0.3">
+<textPath href="#arc-stock" startOffset="8%">STOCK MANAGEMENT</textPath>
+</text>
+<text fill="#1E293B" font-size="5.8" font-weight="800" letter-spacing="0.25">
+<textPath href="#arc-fefo" startOffset="4%">REPORTS &amp; ANALYTICS</textPath>
+</text>
+<text fill="#1D4B52" font-size="6.2" font-weight="800" letter-spacing="0.3">
+<textPath href="#arc-menu" startOffset="6%">MENU MANAGEMENT</textPath>
+</text>
+</svg>
+<div class="integ-hub-center px-1.5">
+<span class="text-[7px] uppercase tracking-[0.14em] font-extrabold text-brand-coral">Propelpad</span>
+<span class="text-[10px] font-heading font-black text-brand-teal leading-tight mt-0.5">White Store<br/>OS</span>
+<span class="mt-0.5 text-[7px] font-bold text-brand-slate/70">-18°C sync</span>
 </div>
-<div class="reveal-item bg-white p-5 rounded-3xl border border-brand-teal/30 text-center flex flex-col items-center hover:scale-105 transition-transform shadow-xs">
-<div class="w-16 h-16 rounded-full bg-brand-teal/20 flex items-center justify-center text-2xl mb-3 shadow-inner">🍰</div>
-<span class="font-heading font-bold text-[10px] sm:text-xs text-brand-dark">Cloud Creamery</span>
-<span class="text-[9px] text-brand-slate/70 mt-1">Ice Cream Cakes</span>
 </div>
-<div class="reveal-item bg-white p-5 rounded-3xl border border-brand-pink/50 text-center flex flex-col items-center hover:scale-105 transition-transform shadow-xs">
-<div class="w-16 h-16 rounded-full bg-brand-pink/50 flex items-center justify-center text-2xl mb-3 shadow-inner">☕</div>
-<span class="font-heading font-bold text-[10px] sm:text-xs text-brand-dark">Caffè Crema</span>
-<span class="text-[9px] text-brand-slate/70 mt-1">Cold Brew Pours</span>
 </div>
-<div class="reveal-item bg-white p-5 rounded-3xl border border-brand-apricot/50 text-center flex flex-col items-center hover:scale-105 transition-transform shadow-xs">
-<div class="w-16 h-16 rounded-full bg-brand-apricot/20 flex items-center justify-center text-2xl mb-3 shadow-inner">🥥</div>
-<span class="font-heading font-bold text-[10px] sm:text-xs text-brand-dark">CocoNectar</span>
-<span class="text-[9px] text-brand-slate/70 mt-1">Vegan Ice Sweets</span>
+
+<!-- Right column: arrow start→end, panel shifted left toward hub -->
+<div class="flex items-center justify-start gap-0 min-w-0 -translate-x-3 lg:-translate-x-6">
+<div class="relative flex-1 max-w-[7rem] sm:max-w-[8.5rem] lg:max-w-[10rem] h-8 flex items-center min-w-[4.5rem]" id="integRightRails">
+<svg class="w-full h-full overflow-visible" viewBox="0 0 120 24" preserveAspectRatio="none" fill="none" aria-hidden="true">
+<!-- full span: circle edge → panel edge -->
+<path class="integ-dash integ-flow-line" d="M0 12 H 108" stroke="#94a3b8" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
+</svg>
+<svg class="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 text-brand-teal pointer-events-none" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+<path d="M1 1.5 L10 6 L1 10.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
 </div>
-<div class="reveal-item bg-white p-5 rounded-3xl border border-brand-mint/50 text-center flex flex-col items-center hover:scale-105 transition-transform shadow-xs">
-<div class="w-16 h-16 rounded-full bg-brand-mint/30 flex items-center justify-center text-2xl mb-3 shadow-inner">🍓</div>
-<span class="font-heading font-bold text-[10px] sm:text-xs text-brand-dark">BerryBloom</span>
-<span class="text-[9px] text-brand-slate/70 mt-1">Organic Crumbles</span>
+<div class="w-[150px] shrink-0 ml-1">
+<div class="bg-brand-cream rounded-2xl border border-brand-mint/50 p-3 shadow-sm">
+<div class="text-[11px] font-heading font-extrabold text-brand-teal mb-2">Your White Store</div>
+<div class="grid grid-cols-2 gap-1.5">
+<div class="bg-white rounded-lg p-1.5 border border-brand-pink/40">
+<div class="w-4 h-4 rounded-md bg-brand-teal/15 mb-1"></div>
+<div class="h-1 w-7 rounded-full bg-brand-teal/40"></div>
 </div>
-<div class="reveal-item bg-white p-5 rounded-3xl border border-brand-coral/40 text-center flex flex-col items-center hover:scale-105 transition-transform shadow-xs">
-<div class="w-16 h-16 rounded-full bg-brand-coral/20 flex items-center justify-center text-2xl mb-3 shadow-inner">🥐</div>
-<span class="font-heading font-bold text-[10px] sm:text-xs text-brand-dark">BakeFreeze</span>
-<span class="text-[9px] text-brand-slate/70 mt-1">Frozen Croissants</span>
+<div class="bg-white rounded-lg p-1.5 border border-brand-coral/30">
+<div class="w-4 h-4 rounded-md bg-brand-coral/25 mb-1"></div>
+<div class="h-1 w-7 rounded-full bg-brand-coral/50"></div>
 </div>
-<div class="reveal-item bg-white p-5 rounded-3xl border border-brand-teal/30 text-center flex flex-col items-center hover:scale-105 transition-transform shadow-xs">
-<div class="w-16 h-16 rounded-full bg-brand-teal/15 flex items-center justify-center text-2xl mb-3 shadow-inner">🧇</div>
-<span class="font-heading font-bold text-[10px] sm:text-xs text-brand-dark">WaffleJoy</span>
-<span class="text-[9px] text-brand-slate/70 mt-1">Ready Toasties</span>
+<div class="bg-white rounded-lg p-1.5 border border-brand-apricot/50">
+<div class="w-4 h-4 rounded-md bg-brand-apricot/40 mb-1"></div>
+<div class="h-1 w-7 rounded-full bg-brand-apricot"></div>
 </div>
-<div class="reveal-item bg-white p-5 rounded-3xl border border-brand-pink/50 text-center flex flex-col items-center hover:scale-105 transition-transform shadow-xs">
-<div class="w-16 h-16 rounded-full bg-brand-pink/30 flex items-center justify-center text-2xl mb-3 shadow-inner">🍨</div>
-<span class="font-heading font-bold text-[10px] sm:text-xs text-brand-dark">Zini Pops</span>
-<span class="text-[9px] text-brand-slate/70 mt-1">Gelato Sticks</span>
+<div class="bg-white rounded-lg p-1.5 border border-brand-mint/50">
+<div class="w-4 h-4 rounded-md bg-brand-mint mb-1"></div>
+<div class="h-1 w-7 rounded-full bg-brand-mint"></div>
 </div>
-<div class="reveal-item bg-white p-5 rounded-3xl border border-brand-apricot/50 text-center flex flex-col items-center hover:scale-105 transition-transform shadow-xs">
-<div class="w-16 h-16 rounded-full bg-brand-apricot/40 flex items-center justify-center text-2xl mb-3 shadow-inner">🍮</div>
-<span class="font-heading font-bold text-[10px] sm:text-xs text-brand-dark">Flan &amp; Creme</span>
-<span class="text-[9px] text-brand-slate/70 mt-1">Cold Custards</span>
+</div>
+<div class="mt-3 rounded-xl bg-white border border-brand-mint/50 p-1.5 shadow-xs">
+<div class="flex items-center gap-1">
+<span class="flex-1 text-center rounded-lg bg-brand-mint/50 text-brand-teal text-[8px] font-extrabold uppercase tracking-wide py-1.5">Pick</span>
+<span class="text-brand-coral text-[8px] font-black shrink-0" aria-hidden="true">›</span>
+<span class="flex-1 text-center rounded-lg bg-brand-apricot/50 text-amber-800 text-[8px] font-extrabold uppercase tracking-wide py-1.5">Pack</span>
+<span class="text-brand-coral text-[8px] font-black shrink-0" aria-hidden="true">›</span>
+<span class="shrink-0 min-w-[2.25rem] text-center rounded-lg bg-brand-teal text-white text-[8px] font-black uppercase tracking-wide py-1.5 shadow-sm">GO</span>
+</div>
+</div>
+</div>
+<p class="text-[9px] font-bold text-brand-slate/80 mt-2 text-center">Rider-ready · ~1m 38s</p>
+</div>
+</div>
+</div>
+
+<!-- Mobile stacked diagram -->
+<div class="reveal-item md:hidden space-y-6">
+<div class="flex flex-wrap justify-center gap-2.5">
+<a class="w-11 h-11 rounded-xl bg-[#E23744] border border-[#E23744] flex items-center justify-center p-2 shadow-xs" href="#contact" aria-label="Zomato">
+<img alt="Zomato" class="w-full h-full object-contain brightness-0 invert" src="assets/integrations/zomato.svg"/>
+</a>
+<a class="w-11 h-11 rounded-xl bg-white border border-brand-coral/30 flex items-center justify-center p-2 shadow-xs" href="#contact" aria-label="Swiggy">
+<img alt="Swiggy" class="w-full h-full object-contain" src="assets/integrations/swiggy.svg"/>
+</a>
+<a class="w-11 h-11 rounded-xl bg-white border border-brand-mint/40 flex items-center justify-center p-1 shadow-xs" href="#contact" aria-label="Blinkit">
+<img alt="Blinkit" class="w-full h-full object-contain" src="assets/integrations/blinkit.svg"/>
+</a>
+<a class="w-11 h-11 rounded-xl bg-white border border-brand-teal/20 flex items-center justify-center p-1 shadow-xs" href="#contact" aria-label="magicpin">
+<img alt="magicpin" class="w-full h-full object-contain" src="assets/integrations/magicpin.svg"/>
+</a>
+<a class="w-11 h-11 rounded-xl bg-[#232F3E] border border-brand-apricot/40 flex items-center justify-center p-2 shadow-xs" href="#contact" aria-label="Amazon Food">
+<img alt="Amazon Food" class="w-full h-full object-contain brightness-0 invert" src="assets/integrations/amazon.svg"/>
+</a>
+</div>
+<div class="flex justify-center">
+<div class="integ-hub-graph w-[min(100%,240px)] mx-auto" aria-label="Propelpad White Store OS circular graph">
+<svg viewBox="0 0 200 200" role="img">
+<circle cx="100" cy="100" r="96" fill="none" stroke="#B8DFD8" stroke-width="0.6" opacity="0.45"/>
+<path d="M100 22 A78 78 0 0 1 178 100 L155 100 A55 55 0 0 0 100 45 Z" fill="#2C6B74"/>
+<path d="M178 100 A78 78 0 0 1 100 178 L100 155 A55 55 0 0 0 155 100 Z" fill="#F49D8C"/>
+<path d="M100 178 A78 78 0 0 1 22 100 L45 100 A55 55 0 0 0 100 155 Z" fill="#F8CE9F"/>
+<path d="M22 100 A78 78 0 0 1 100 22 L100 45 A55 55 0 0 0 45 100 Z" fill="#B8DFD8"/>
+<defs>
+<path id="m-arc-order" d="M108 30 A70 70 0 0 1 170 100"/>
+<path id="m-arc-stock" d="M170 108 A70 70 0 0 1 100 170"/>
+<path id="m-arc-fefo" d="M92 170 A70 70 0 0 1 30 100"/>
+<path id="m-arc-menu" d="M30 92 A70 70 0 0 1 100 30"/>
+</defs>
+<text fill="#fff" font-size="6.5" font-weight="800" letter-spacing="0.4"><textPath href="#m-arc-order" startOffset="6%">ORDER MANAGEMENT</textPath></text>
+<text fill="#1E293B" font-size="6.5" font-weight="800" letter-spacing="0.4"><textPath href="#m-arc-stock" startOffset="8%">STOCK MANAGEMENT</textPath></text>
+<text fill="#1E293B" font-size="6.2" font-weight="800" letter-spacing="0.3"><textPath href="#m-arc-fefo" startOffset="4%">REPORTS &amp; ANALYTICS</textPath></text>
+<text fill="#1D4B52" font-size="6.5" font-weight="800" letter-spacing="0.4"><textPath href="#m-arc-menu" startOffset="6%">MENU MANAGEMENT</textPath></text>
+</svg>
+<div class="integ-hub-center px-2">
+<span class="text-[8px] uppercase tracking-[0.16em] font-extrabold text-brand-coral">Propelpad</span>
+<span class="text-[11px] font-heading font-black text-brand-teal leading-tight mt-0.5">White Store<br/>OS</span>
+</div>
+</div>
+</div>
+<div class="bg-brand-cream rounded-3xl border border-brand-mint/50 p-4 max-w-xs mx-auto text-center">
+<div class="text-xs font-heading font-extrabold text-brand-teal mb-3">Your White Store</div>
+<div class="flex items-center gap-1 rounded-xl bg-white border border-brand-mint/50 p-1.5">
+<span class="flex-1 rounded-lg bg-brand-mint/50 text-brand-teal text-[9px] font-extrabold uppercase py-2">Pick</span>
+<span class="text-brand-coral text-[9px] font-black">›</span>
+<span class="flex-1 rounded-lg bg-brand-apricot/50 text-amber-800 text-[9px] font-extrabold uppercase py-2">Pack</span>
+<span class="text-brand-coral text-[9px] font-black">›</span>
+<span class="min-w-[2.5rem] rounded-lg bg-brand-teal text-white text-[9px] font-black uppercase py-2">GO</span>
+</div>
+<p class="text-[10px] font-bold text-brand-slate/80 mt-2">Rider-ready · ~1m 38s</p>
 </div>
 </div>
 </div>
 </section>
-<!-- END: Partner Brand Wall -->
-<!-- BEGIN: Mumbai & Thane Network Map (Interactive Map UI) -->
-<section class="py-14 md:py-20 bg-brand-cream relative overflow-hidden" data-purpose="active-network" id="network">
-<div class="max-w-6xl mx-auto px-4 sm:px-6">
-<!-- Header row like reference -->
-<div class="reveal-item flex flex-col md:flex-row md:items-start justify-between gap-6 mb-6 md:mb-2 relative z-10">
-<div class="flex items-center gap-4 max-w-xl">
-<div class="hidden sm:flex w-16 h-16 rounded-2xl bg-white border border-brand-pink/50 shadow-sm items-center justify-center text-3xl shrink-0">❄️</div>
-<h2 class="text-2xl sm:text-3xl md:text-4xl font-heading font-black text-brand-dark leading-tight">9 Active Hubs Across<br class="hidden sm:block"/> Mumbai &amp; Thane</h2>
+<!-- END: Channel Integration Hub -->
+<!-- BEGIN: Trusted by restaurants (staggered logo cloud) -->
+<section class="section-frame py-14 md:py-20 bg-white relative overflow-hidden" id="trusted" data-purpose="social-proof">
+<div class="section-inner max-w-6xl px-4 sm:px-6 relative z-10">
+<div class="reveal-item text-center max-w-3xl mx-auto mb-10 md:mb-14">
+<span class="inline-block text-xs uppercase tracking-widest font-extrabold text-brand-teal bg-brand-mint/40 px-4 py-1.5 rounded-full mb-4">Brand Family</span>
+<h2 class="text-2xl sm:text-3xl md:text-4xl font-heading font-black text-brand-dark leading-tight">
+          Our Brand Family — <span class="text-brand-coral">13+</span> Brands.<br class="hidden sm:block"/> One White Store Network.
+        </h2>
 </div>
-<p class="text-brand-slate text-xs sm:text-sm max-w-sm md:text-right leading-relaxed md:pt-2">
-          Strategically blanketed across Mumbai &amp; Thane for 95% urban pincode coverage within 20 minutes — every hub live 24×7 at sub-zero.
+<div class="reveal-item trust-cloud" aria-label="Trusted cold brand partners">
+<!-- Row 1 — Amul & Cadbury on top -->
+<div class="trust-row">
+<div class="trust-tile"><img alt="Amul" src="assets/brands/amul.png" loading="lazy"/></div>
+<div class="trust-tile"><img alt="Cadbury" src="assets/brands/cadbury.png" loading="lazy"/></div>
+<div class="trust-tile"><img alt="Havmor" src="assets/brands/havmor.png" loading="lazy"/></div>
+<div class="trust-tile"><img alt="Kwality Wall's" src="assets/brands/kwality-walls.png" loading="lazy"/></div>
+<div class="trust-tile"><img alt="The Brooklyn Creamery" src="assets/brands/brooklyn-creamery.png" loading="lazy"/></div>
+<div class="trust-tile"><img alt="upside" src="assets/brands/upside.png" loading="lazy"/></div>
+<div class="trust-tile"><img alt="amore" src="assets/brands/amore.png" loading="lazy"/></div>
+</div>
+<!-- Row 2 -->
+<div class="trust-row">
+<div class="trust-tile"><img alt="Mousse Struck" src="assets/brands/mousse-struck.png" loading="lazy"/></div>
+<div class="trust-tile"><img alt="White Cub" src="assets/brands/white-cub.png" loading="lazy"/></div>
+<div class="trust-tile"><img alt="Pastonji" src="assets/brands/pastonji.png" loading="lazy"/></div>
+<div class="trust-tile"><img alt="GO ZERO" src="assets/brands/go-zero.png" loading="lazy"/></div>
+<div class="trust-tile"><img alt="NOTO" src="assets/brands/noto.png" loading="lazy"/></div>
+<div class="trust-tile"><img alt="La Chérie" src="assets/brands/la-cherie.png" loading="lazy"/></div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Trusted by restaurants -->
+<!-- BEGIN: Mumbai & Thane Network Map (given hubs only) -->
+<section class="section-frame py-14 md:py-20 bg-brand-cream relative overflow-hidden" data-purpose="active-network" id="network">
+<div class="section-inner max-w-6xl px-4 sm:px-6">
+<div class="reveal-item text-center mb-8 md:mb-10">
+<span class="inline-block text-xs uppercase tracking-widest font-extrabold text-brand-coral bg-brand-pink/40 px-4 py-1.5 rounded-full mb-4">Live Coverage</span>
+<h2 class="text-2xl sm:text-3xl md:text-4xl font-heading font-black text-brand-dark leading-tight">
+          9 Active Hubs Across<br class="hidden sm:block"/> Mumbai &amp; Thane
+        </h2>
+<p class="text-brand-slate text-xs sm:text-sm max-w-lg leading-relaxed mx-auto mt-3">
+          Only our Mumbai &amp; Thane white-store cluster — no other cities on this map.
         </p>
 </div>
 
-<!-- Interactive map stage -->
-<div class="reveal-item relative mt-2 md:mt-0 min-h-[460px] sm:min-h-[540px] md:min-h-[580px]" id="hub-map-stage">
-<!-- Proper India map (blank geographic outline) -->
-<div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
-<img
-  alt="Map of India"
-  class="h-[92%] sm:h-[95%] w-auto max-w-[min(100%,520px)] object-contain opacity-[0.28] mix-blend-multiply"
-  src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/India_map_blank.svg/800px-India_map_blank.svg.png"
-  width="520"
-  height="600"
-  loading="eager"
-  decoding="async"
-/>
-<!-- Soft teal wash so map matches brand cream UI -->
-<div class="absolute inset-0 bg-brand-cream/35"></div>
-</div>
-<!-- Mumbai cluster ring (west coast focus) -->
-<div class="absolute left-[34%] sm:left-[36%] top-[48%] -translate-x-1/2 -translate-y-1/2 w-36 h-36 sm:w-44 sm:h-44 rounded-full border-2 border-brand-coral/30 bg-brand-coral/5 pointer-events-none z-[5]"></div>
-<div class="absolute left-[34%] sm:left-[36%] top-[39%] -translate-x-1/2 text-[10px] sm:text-xs font-heading font-extrabold text-brand-teal tracking-wide pointer-events-none z-[5]">Mumbai · Thane</div>
-
-<!-- Hub pin markers (positioned %) -->
-<div id="hub-markers" class="absolute inset-0 z-10"></div>
-
-<!-- Floating active hub card -->
-<div id="hub-card" class="absolute z-20 left-1/2 top-[42%] -translate-x-1/2 w-[min(92%,340px)] sm:w-[360px] transition-all duration-500 ease-out">
-<div class="bg-[#F6D6D6]/90 backdrop-blur-md rounded-3xl p-5 sm:p-6 shadow-[0_20px_50px_rgba(44,107,116,0.12)] border border-white/70 relative">
-<div class="absolute -top-3 left-1/2 -translate-x-1/2 w-3 h-3 rotate-45 bg-[#F6D6D6]/90 border-l border-t border-white/70"></div>
-<p id="hub-card-desc" class="text-sm text-brand-dark/85 leading-relaxed font-medium"></p>
-<div class="mt-4 flex items-end justify-between gap-3">
-<div>
-<div id="hub-card-name" class="font-heading font-extrabold text-brand-dark text-base"></div>
-<div id="hub-card-meta" class="text-[11px] text-brand-slate mt-0.5 font-semibold"></div>
-<div class="flex items-center gap-1 mt-1.5 text-amber-500 text-xs tracking-tight">★★★★★</div>
-</div>
-<div class="text-right shrink-0">
-<div class="text-[10px] uppercase tracking-widest font-extrabold text-brand-teal">Store</div>
-<div id="hub-card-num" class="font-heading font-black text-2xl text-brand-coral"></div>
-<div id="hub-card-temp" class="text-[11px] font-bold text-brand-teal mt-0.5"></div>
-</div>
-</div>
-</div>
-</div>
+<div class="reveal-item grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+<!-- Real map: pointer updates when a hub is selected -->
+<div class="lg:col-span-7 relative rounded-4xl overflow-hidden border border-brand-mint/50 shadow-lg bg-white min-h-[180px] sm:min-h-[220px] md:min-h-[240px]">
+<iframe
+  id="hub-map-frame"
+  title="Propelpad White Stores — Mumbai and Thane"
+  class="absolute inset-0 w-full h-full border-0"
+  loading="lazy"
+  referrerpolicy="no-referrer-when-downgrade"
+  src="https://www.openstreetmap.org/export/embed.html?bbox=70.00%2C8.50%2C95.00%2C34.50&amp;layer=mapnik&amp;marker=19.0840%2C72.8360"
+></iframe>
+<div id="hub-map-label" class="absolute top-3 left-3 z-10 bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-full border border-brand-pink/50 shadow-sm text-[11px] font-heading font-extrabold text-brand-teal">
+            Santacruz West
+          </div>
 </div>
 
-<!-- Bottom control bar -->
-<div class="reveal-item mt-2 sm:mt-4 relative z-10">
-<div class="flex items-center gap-3 sm:gap-4">
-<button id="hub-play" type="button" class="w-10 h-10 rounded-full bg-white border border-brand-pink/50 shadow-sm flex items-center justify-center text-brand-teal hover:bg-brand-pink/20 transition-colors" aria-label="Play or pause hub carousel">
-<svg id="hub-play-icon" class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
+<!-- Clickable hub list + Start Directions -->
+<div class="lg:col-span-5 flex flex-col bg-white rounded-4xl border border-brand-pink/40 shadow-sm p-5 sm:p-6">
+<div class="flex items-center justify-between gap-2 mb-4 pb-3 border-b border-brand-pink/30">
+<span class="text-[10px] uppercase tracking-widest font-extrabold text-brand-teal">Our Hub Locations</span>
+<span class="text-[10px] font-bold text-brand-slate">Tap to move pin</span>
+</div>
+<ul id="hub-location-list" class="space-y-1 text-left text-sm flex-1 overflow-y-auto max-h-[180px] sm:max-h-[200px] pr-1">
+<li>
+<button type="button" class="hub-loc-btn w-full flex items-start gap-2 rounded-xl px-2 py-1.5 text-left transition-colors bg-brand-cream border border-brand-coral/40" data-lat="19.0840" data-lng="72.8360" data-name="Santacruz West" data-dest="Santacruz+West,+Mumbai,+Maharashtra" aria-pressed="true">
+<span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-brand-coral shrink-0"></span>
+<span><strong class="text-brand-dark">Santacruz West</strong><span class="block text-[11px] text-brand-slate">Bandra · Khar · BKC · 400054</span></span>
 </button>
-<button id="hub-mute" type="button" class="w-10 h-10 rounded-full bg-white border border-brand-pink/50 shadow-sm flex items-center justify-center text-brand-slate hover:bg-brand-pink/20 transition-colors" aria-label="Toggle autoplay sound cue">
-<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5L6 9H2v6h4l5 4V5zM19 9l-6 6M13 9l6 6"></path></svg>
+</li>
+<li>
+<button type="button" class="hub-loc-btn w-full flex items-start gap-2 rounded-xl px-2 py-1.5 text-left transition-colors hover:bg-brand-cream/80" data-lat="19.1350" data-lng="72.8140" data-name="Versova &amp; Andheri W" data-dest="Versova,+Andheri+West,+Mumbai" aria-pressed="false">
+<span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-brand-coral shrink-0"></span>
+<span><strong class="text-brand-dark">Versova &amp; Andheri W</strong><span class="block text-[11px] text-brand-slate">Lokhandwala · Juhu · 400061</span></span>
 </button>
-<div class="flex-1 h-1.5 bg-brand-pink/40 rounded-full overflow-hidden">
-<div id="hub-progress" class="h-full bg-brand-coral rounded-full transition-all duration-300 ease-linear" style="width: 11%"></div>
-</div>
-</div>
-<div class="flex items-center justify-center gap-4 mt-4">
-<button id="hub-prev" type="button" class="text-xs font-bold text-brand-slate hover:text-brand-teal transition-colors uppercase tracking-wider">Prev</button>
-<div id="hub-dots" class="flex items-center gap-2"></div>
-<button id="hub-next" type="button" class="text-xs font-bold text-brand-slate hover:text-brand-teal transition-colors uppercase tracking-wider">Next</button>
+</li>
+<li>
+<button type="button" class="hub-loc-btn w-full flex items-start gap-2 rounded-xl px-2 py-1.5 text-left transition-colors hover:bg-brand-cream/80" data-lat="18.9320" data-lng="72.8260" data-name="Fort &amp; Colaba" data-dest="Fort,+Colaba,+Mumbai" aria-pressed="false">
+<span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-brand-coral shrink-0"></span>
+<span><strong class="text-brand-dark">Fort &amp; Colaba</strong><span class="block text-[11px] text-brand-slate">Marine Drive · 400001</span></span>
+</button>
+</li>
+<li>
+<button type="button" class="hub-loc-btn w-full flex items-start gap-2 rounded-xl px-2 py-1.5 text-left transition-colors hover:bg-brand-cream/80" data-lat="19.0790" data-lng="72.8590" data-name="Vakola &amp; Santacruz E" data-dest="Vakola,+Santacruz+East,+Mumbai" aria-pressed="false">
+<span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-brand-coral shrink-0"></span>
+<span><strong class="text-brand-dark">Vakola &amp; Santacruz E</strong><span class="block text-[11px] text-brand-slate">Airport · Kalina · 400055</span></span>
+</button>
+</li>
+<li>
+<button type="button" class="hub-loc-btn w-full flex items-start gap-2 rounded-xl px-2 py-1.5 text-left transition-colors hover:bg-brand-cream/80" data-lat="19.0520" data-lng="72.8990" data-name="Chembur Central" data-dest="Chembur,+Mumbai" aria-pressed="false">
+<span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-brand-coral shrink-0"></span>
+<span><strong class="text-brand-dark">Chembur Central</strong><span class="block text-[11px] text-brand-slate">Ghatkopar E · 400071</span></span>
+</button>
+</li>
+<li>
+<button type="button" class="hub-loc-btn w-full flex items-start gap-2 rounded-xl px-2 py-1.5 text-left transition-colors hover:bg-brand-cream/80" data-lat="19.1490" data-lng="72.8370" data-name="Oshiwara &amp; Goregaon" data-dest="Oshiwara,+Goregaon,+Mumbai" aria-pressed="false">
+<span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-brand-coral shrink-0"></span>
+<span><strong class="text-brand-dark">Oshiwara &amp; Goregaon</strong><span class="block text-[11px] text-brand-slate">Link Road · 400102</span></span>
+</button>
+</li>
+<li>
+<button type="button" class="hub-loc-btn w-full flex items-start gap-2 rounded-xl px-2 py-1.5 text-left transition-colors hover:bg-brand-cream/80" data-lat="19.2400" data-lng="72.8560" data-name="Dahisar &amp; Borivali" data-dest="Dahisar,+Borivali,+Mumbai" aria-pressed="false">
+<span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-brand-coral shrink-0"></span>
+<span><strong class="text-brand-dark">Dahisar &amp; Borivali</strong><span class="block text-[11px] text-brand-slate">Kandivali W · 400068</span></span>
+</button>
+</li>
+<li>
+<button type="button" class="hub-loc-btn w-full flex items-start gap-2 rounded-xl px-2 py-1.5 text-left transition-colors hover:bg-brand-cream/80" data-lat="19.1970" data-lng="72.9720" data-name="Khopat, Thane City" data-dest="Khopat,+Thane,+Maharashtra" aria-pressed="false">
+<span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-brand-coral shrink-0"></span>
+<span><strong class="text-brand-dark">Khopat, Thane City</strong><span class="block text-[11px] text-brand-slate">Naupada · Majiwada · 400601</span></span>
+</button>
+</li>
+<li>
+<button type="button" class="hub-loc-btn w-full flex items-start gap-2 rounded-xl px-2 py-1.5 text-left transition-colors hover:bg-brand-cream/80" data-lat="19.2550" data-lng="72.9810" data-name="Hiranandani Estate" data-dest="Hiranandani+Estate,+Thane" aria-pressed="false">
+<span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-brand-coral shrink-0"></span>
+<span><strong class="text-brand-dark">Hiranandani Estate</strong><span class="block text-[11px] text-brand-slate">Ghodbunder Rd · 400607</span></span>
+</button>
+</li>
+</ul>
+
+<a
+  id="start-directions-btn"
+  class="mt-5 inline-flex w-full items-center justify-center gap-2 px-6 py-3.5 bg-brand-teal hover:bg-brand-tealDark text-white font-extrabold text-sm rounded-full shadow-md hover:shadow-lg transition-all"
+  href="https://www.google.com/maps/dir/?api=1&amp;destination=Santacruz+West,+Mumbai,+Maharashtra&amp;travelmode=driving"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+          Start Directions
+        </a>
+<p id="hub-directions-hint" class="mt-2 text-[10px] text-brand-slate/70 text-center">Opens Google Maps navigation to Santacruz West hub</p>
 </div>
 </div>
 </div>
 </section>
 <!-- END: Mumbai & Thane Network Map -->
-<!-- BEGIN: Planned India Expansion (FY 26-27) -->
-<section class="py-16 md:py-24 bg-brand-cream relative" id="expansion">
-<div class="max-w-6xl mx-auto px-4 sm:px-6">
-<div class="text-center max-w-2xl mx-auto mb-16">
-<span class="text-xs uppercase tracking-widest font-extrabold text-brand-coral bg-brand-pink/50 px-4 py-1.5 rounded-full">National Rollout Roadmap</span>
-<h2 class="text-2xl sm:text-3xl font-heading font-black text-brand-dark mt-3">19 Planned Hubs Across India</h2>
-<p class="text-brand-slate text-xs sm:text-sm mt-3">Scaling our sub-zero White Store infrastructure to top metropolitan regions in FY 26–27.</p>
+<!-- BEGIN: Team Members (infinite horizontal marquee) -->
+<section class="section-frame relative py-16 md:py-24 bg-brand-cream overflow-hidden" id="members">
+<div class="section-inner max-w-6xl px-4 sm:px-6 relative z-10">
+<div class="text-center max-w-2xl mx-auto mb-12 md:mb-14">
+<span class="inline-block text-xs uppercase tracking-widest font-extrabold text-brand-teal bg-white px-4 py-1.5 rounded-full">The People Behind The Network</span>
+<h2 class="text-2xl sm:text-3xl md:text-4xl font-heading font-black text-brand-dark mt-4">Our Members</h2>
+<p class="text-brand-slate text-xs sm:text-sm mt-3 max-w-lg mx-auto">Leadership and city ops that keep every White Store cold, clean, and always online.</p>
 </div>
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-<!-- Bengaluru -->
-<div class="reveal-item bg-white p-6 rounded-3xl border border-brand-teal/30 hover:-translate-y-1 transition-transform">
-<div class="text-xs font-extrabold text-brand-teal bg-brand-mint/40 px-3 py-1 rounded-full inline-block mb-4">5 White Stores</div>
-<h3 class="text-lg font-heading font-bold text-brand-dark">Bengaluru</h3>
-<p class="text-xs text-brand-slate mt-2 leading-relaxed">Indiranagar, Koramangala, Whitefield, HSR Layout, Bellandur.</p>
-<div class="mt-6 text-[10px] font-bold text-brand-teal">Q2 FY 26 Rollout</div>
 </div>
-<!-- Delhi NCR -->
-<div class="reveal-item bg-white p-6 rounded-3xl border border-brand-coral/40 hover:-translate-y-1 transition-transform">
-<div class="text-xs font-extrabold text-brand-coral bg-brand-pink/40 px-3 py-1 rounded-full inline-block mb-4">6 White Stores</div>
-<h3 class="text-lg font-heading font-bold text-brand-dark">Delhi NCR</h3>
-<p class="text-xs text-brand-slate mt-2 leading-relaxed">South Ext, Cyber City Gurugram, Noida Sec 62, Vasant Kunj, GK-II.</p>
-<div class="mt-6 text-[10px] font-bold text-brand-coral">Q3 FY 26 Rollout</div>
+
+<div class="members-marquee relative z-10" aria-label="Team members scrolling showcase" id="membersMarquee">
+<div class="members-marquee-track" id="membersTrack">
+<div class="members-marquee-group" data-marquee-set>
+<div class="member-card text-center">
+<div class="relative w-40 h-56 sm:w-44 sm:h-60 mx-auto mb-4">
+<div class="absolute inset-0 bg-brand-apricot arch-pillar-up" aria-hidden="true"></div>
+<img alt="Gyan Menon" class="absolute inset-x-0 bottom-0 z-10 w-full h-[96%] object-contain object-bottom" src="assets/members/c1.png" loading="eager" decoding="async"/>
 </div>
-<!-- Hyderabad -->
-<div class="reveal-item bg-white p-6 rounded-3xl border border-brand-apricot/60 hover:-translate-y-1 transition-transform">
-<div class="text-xs font-extrabold text-amber-700 bg-brand-apricot/30 px-3 py-1 rounded-full inline-block mb-4">3 White Stores</div>
-<h3 class="text-lg font-heading font-bold text-brand-dark">Hyderabad</h3>
-<p class="text-xs text-brand-slate mt-2 leading-relaxed">Jubilee Hills, Gachibowli, Hitec City Tech Zone.</p>
-<div class="mt-6 text-[10px] font-bold text-amber-700">Q4 FY 26 Rollout</div>
+<h3 class="text-base sm:text-lg font-heading font-bold text-brand-dark">Gyan Menon</h3>
+<p class="text-xs font-bold text-brand-coral mt-1">Co-Founder</p>
 </div>
-<!-- Pune -->
-<div class="reveal-item bg-white p-6 rounded-3xl border border-brand-mint/60 hover:-translate-y-1 transition-transform">
-<div class="text-xs font-extrabold text-brand-teal bg-brand-mint/50 px-3 py-1 rounded-full inline-block mb-4">3 White Stores</div>
-<h3 class="text-lg font-heading font-bold text-brand-dark">Pune</h3>
-<p class="text-xs text-brand-slate mt-2 leading-relaxed">Koregaon Park, Baner, Viman Nagar corridor.</p>
-<div class="mt-6 text-[10px] font-bold text-brand-teal">Q4 FY 26 Rollout</div>
+<div class="member-card text-center">
+<div class="relative w-40 h-56 sm:w-44 sm:h-60 mx-auto mb-4">
+<div class="absolute inset-0 bg-brand-pink arch-pillar-up" aria-hidden="true"></div>
+<img alt="Shanu Singh" class="absolute inset-x-0 bottom-0 z-10 w-full h-[96%] object-contain object-bottom" src="assets/members/c2.png" loading="eager" decoding="async"/>
 </div>
-<!-- Kolkata -->
-<div class="reveal-item bg-white p-6 rounded-3xl border border-brand-pink hover:-translate-y-1 transition-transform">
-<div class="text-xs font-extrabold text-brand-coral bg-brand-pink/40 px-3 py-1 rounded-full inline-block mb-4">2 White Stores</div>
-<h3 class="text-lg font-heading font-bold text-brand-dark">Kolkata</h3>
-<p class="text-xs text-brand-slate mt-2 leading-relaxed">Salt Lake Sector V, Ballygunge &amp; Alipore.</p>
-<div class="mt-6 text-[10px] font-bold text-brand-coral">Q1 FY 27 Rollout</div>
+<h3 class="text-base sm:text-lg font-heading font-bold text-brand-dark">Shanu Singh</h3>
+<p class="text-xs font-bold text-brand-teal mt-1">Mumbai City Lead</p>
+</div>
+<div class="member-card text-center">
+<div class="relative w-40 h-56 sm:w-44 sm:h-60 mx-auto mb-4">
+<div class="absolute inset-0 bg-brand-mint arch-pillar-up" aria-hidden="true"></div>
+<img alt="Cold-Chain Ops" class="absolute inset-x-0 bottom-0 z-10 w-full h-[96%] object-contain object-bottom" src="assets/members/c3.png" loading="eager" decoding="async"/>
+</div>
+<h3 class="text-base sm:text-lg font-heading font-bold text-brand-dark">Cold-Chain Ops</h3>
+<p class="text-xs font-bold text-brand-coral mt-1">Facility Excellence</p>
+</div>
+<div class="member-card text-center">
+<div class="relative w-40 h-56 sm:w-44 sm:h-60 mx-auto mb-4">
+<div class="absolute inset-0 bg-brand-apricot arch-pillar-up" aria-hidden="true"></div>
+<img alt="SKU Intelligence" class="absolute inset-x-0 bottom-0 z-10 w-full h-[96%] object-contain object-bottom" src="assets/members/c4.png" loading="eager" decoding="async"/>
+</div>
+<h3 class="text-base sm:text-lg font-heading font-bold text-brand-dark">SKU Intelligence</h3>
+<p class="text-xs font-bold text-brand-teal mt-1">Data &amp; Buying</p>
+</div>
 </div>
 </div>
 </div>
 </section>
-<!-- END: Planned India Expansion (FY 26-27) -->
+<!-- END: Team Members -->
 <!-- BEGIN: Final Executive CTA Section -->
-<section class="py-16 md:py-24 bg-white relative" data-purpose="executive-contact" id="contact">
-<div class="max-w-5xl mx-auto px-4 sm:px-6">
+<section class="section-frame py-16 md:py-24 bg-white relative" data-purpose="executive-contact" id="contact">
+<div class="section-inner max-w-5xl px-4 sm:px-6">
 <!-- High Impact Dark Teal Card -->
 <div class="reveal-item bg-brand-teal text-white rounded-5xl p-8 sm:p-14 shadow-2xl relative overflow-hidden">
 <!-- Subtle Arched Ribbon Graphic Behind CTA -->
@@ -917,25 +1474,100 @@
 </div>
 </section>
 <!-- END: Final Executive CTA Section -->
-<!-- BEGIN: Minimalist Footer -->
-<footer class="bg-brand-cream border-t border-brand-pink/60 py-12" data-purpose="site-footer">
-<div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-6">
-<div class="flex items-center gap-3">
-<div class="w-8 h-8 rounded-full bg-brand-teal text-white flex items-center justify-center font-bold text-sm">
-          ❄️
-        </div>
+<!-- BEGIN: Dark Footer (Located at) -->
+<footer class="relative bg-[#141414] text-white overflow-hidden" data-purpose="site-footer">
+<!-- Soft circular watermark -->
+<div class="pointer-events-none absolute -right-24 top-1/2 -translate-y-1/2 w-[420px] h-[420px] rounded-full border border-white/5"></div>
+<div class="pointer-events-none absolute -right-8 top-1/2 -translate-y-1/2 w-[280px] h-[280px] rounded-full border border-white/[0.04]"></div>
+<div class="relative max-w-6xl mx-auto px-4 sm:px-6 py-14 md:py-16">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8">
+<!-- Left: brand + contact + social -->
+<div class="lg:col-span-4 flex flex-col">
+<a href="index.html" class="inline-flex items-center gap-3 mb-6">
+<span class="w-10 h-10 rounded-full bg-brand-coral flex items-center justify-center text-lg shadow-sm">❄️</span>
+<span class="font-heading font-extrabold text-xl tracking-tight">Propelpad</span>
+</a>
+<div class="space-y-2 text-sm text-white/65">
+<a class="block hover:text-brand-coral transition-colors" href="mailto:partners@propelpad.in">partners@propelpad.in</a>
+<a class="block hover:text-brand-coral transition-colors" href="mailto:gyan@propelpad.in">gyan@propelpad.in</a>
+<a class="block hover:text-brand-coral transition-colors" href="tel:+918424048334">+91 84240 48334</a>
+<a class="block hover:text-brand-coral transition-colors" href="tel:+918237981485">+91 82379 81485</a>
+</div>
+<p class="mt-5 text-xs text-white/45 leading-relaxed max-w-xs">
+            Propelpad Technologies Pvt. Ltd.<br/>
+            Sub-Zero White Store Network<br/>
+            Mumbai &amp; Thane, Maharashtra
+          </p>
+<div class="flex items-center gap-3 mt-8">
+<a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="w-10 h-10 rounded-full border border-white/25 flex items-center justify-center hover:border-brand-coral hover:text-brand-coral transition-colors">
+<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7H8v-3h2.5V9.5c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.2c-1.2 0-1.6.8-1.6 1.5V12H16l-.4 3h-2.3v7A10 10 0 0 0 22 12z"></path></svg>
+</a>
+<a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-10 h-10 rounded-full border border-white/25 flex items-center justify-center hover:border-brand-coral hover:text-brand-coral transition-colors">
+<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm6.5-.9a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4zM12 9a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"></path></svg>
+</a>
+<a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="w-10 h-10 rounded-full border border-white/25 flex items-center justify-center hover:border-brand-coral hover:text-brand-coral transition-colors">
+<svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M6.9 8.7H4V20h2.9V8.7zM5.4 4A1.7 1.7 0 1 0 5.4 7.4 1.7 1.7 0 0 0 5.4 4zM20 20h-2.9v-5.5c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V20H10V8.7h2.8v1.5h.1c.4-.7 1.3-1.5 2.8-1.5 3 0 3.5 2 3.5 4.5V20z"></path></svg>
+</a>
+</div>
+</div>
+<!-- Right: Located at + hub grid -->
+<div class="lg:col-span-8">
+<h2 class="font-heading font-black text-3xl sm:text-4xl tracking-tight mb-8">
+<span class="text-brand-coral">Located</span> <span class="text-white">at</span>
+</h2>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-x-8 gap-y-5 text-sm text-white/90">
+<div class="space-y-4">
 <div>
-<span class="font-heading font-bold text-base text-brand-dark">Propelpad</span>
-<span class="text-xs text-brand-slate ml-2">Sub-Zero White Store Network</span>
+<div class="font-semibold text-white">Santacruz West</div>
+<div class="text-xs text-white/50 mt-0.5">Bandra · Khar · BKC · 400054</div>
+</div>
+<div>
+<div class="font-semibold text-white">Versova &amp; Andheri W</div>
+<div class="text-xs text-white/50 mt-0.5">Lokhandwala · Juhu · 400061</div>
+</div>
+<div>
+<div class="font-semibold text-white">Fort &amp; Colaba</div>
+<div class="text-xs text-white/50 mt-0.5">Marine Drive · 400001</div>
 </div>
 </div>
-<div class="text-xs text-brand-slate text-center md:text-right">
+<div class="space-y-4">
+<div>
+<div class="font-semibold text-white">Vakola &amp; Santacruz E</div>
+<div class="text-xs text-white/50 mt-0.5">Airport · Kalina · 400055</div>
+</div>
+<div>
+<div class="font-semibold text-white">Chembur Central</div>
+<div class="text-xs text-white/50 mt-0.5">Ghatkopar E · 400071</div>
+</div>
+<div>
+<div class="font-semibold text-white">Oshiwara &amp; Goregaon</div>
+<div class="text-xs text-white/50 mt-0.5">Link Road · 400102</div>
+</div>
+</div>
+<div class="space-y-4">
+<div>
+<div class="font-semibold text-white">Dahisar &amp; Borivali</div>
+<div class="text-xs text-white/50 mt-0.5">Kandivali W · 400068</div>
+</div>
+<div>
+<div class="font-semibold text-white">Khopat, Thane City</div>
+<div class="text-xs text-white/50 mt-0.5">Naupada · Majiwada · 400601</div>
+</div>
+<div>
+<div class="font-semibold text-white">Hiranandani Estate</div>
+<div class="text-xs text-white/50 mt-0.5">Ghodbunder Rd · 400607</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-[11px] text-white/40">
 <p>© 2026 Propelpad Technologies Private Limited. All rights reserved.</p>
-<p class="mt-1 text-brand-slate/70">Hospital-Grade Cold Chain Infrastructure • FSSAI Compliant Operations</p>
+<p>FSSAI Compliant · Sub-Zero Cold Chain · propelpad.in</p>
 </div>
 </div>
 </footer>
-<!-- END: Minimalist Footer -->
+<!-- END: Dark Footer -->
 <!-- BEGIN: Interactive Tabs Script -->
 <script data-purpose="intelligence-tabs">
     document.addEventListener('DOMContentLoaded', () => {
@@ -969,138 +1601,49 @@
     });
   </script>
 <!-- END: Interactive Tabs Script -->
-<!-- BEGIN: Hub Map Carousel (Chillzcream-style UI) -->
-<script data-purpose="hub-map-carousel">
+<!-- BEGIN: Hub location → map pointer sync -->
+<script data-purpose="hub-location-map">
     document.addEventListener('DOMContentLoaded', () => {
-      // Pins clustered on Mumbai–Thane (west coast of India map)
-      const hubs = [
-        { name: 'Santacruz West', desc: 'Covers Bandra, Santacruz, Khar & BKC corridor with sub-zero dispatch for premium gelato & desserts.', meta: '400054 · 400050', temp: '-18.6°C', num: '#01', x: 34, y: 48, color: '#2C6B74' },
-        { name: 'Versova & Andheri W', desc: 'Lokhandwala, Juhu and Versova beach road — high evening impulse order density.', meta: '400053 · 400061', temp: '-18.2°C', num: '#02', x: 29, y: 46, color: '#F49D8C' },
-        { name: 'Fort & Colaba', desc: 'South Mumbai financial district and Marine Drive — pristine cold-chain for CBD orders.', meta: '400001 · 400005', temp: '-18.4°C', num: '#03', x: 32, y: 54, color: '#F8CE9F' },
-        { name: 'Vakola & Santacruz E', desc: 'Airport strip, Kalina and Kurla West gateway with rapid rider handovers.', meta: '400055 · 400098', temp: '-18.5°C', num: '#04', x: 37, y: 47, color: '#2C6B74' },
-        { name: 'Chembur Central', desc: 'Eastern suburbs hub covering Ghatkopar East and Deonar premium clusters.', meta: '400071 · 400077', temp: '-18.1°C', num: '#05', x: 40, y: 50, color: '#B8DFD8' },
-        { name: 'Oshiwara & Goregaon', desc: 'Link Road and Malad West edge — strong late-night dessert velocity.', meta: '400102 · 400062', temp: '-18.7°C', num: '#06', x: 28, y: 43, color: '#F49D8C' },
-        { name: 'Dahisar & Borivali', desc: 'North-western suburbs and Kandivali West with dual-DG cold uptime.', meta: '400068 · 400092', temp: '-18.3°C', num: '#07', x: 30, y: 40, color: '#F8CE9F' },
-        { name: 'Khopat, Thane City', desc: 'Naupada, Majiwada and Ghodbunder Rd entry — Thane city coverage core.', meta: '400601 · 400602', temp: '-18.6°C', num: '#08', x: 42, y: 45, color: '#2C6B74' },
-        { name: 'Hiranandani Estate', desc: 'Ghodbunder Road premium residential clusters with hospital-grade hygiene.', meta: '400607 · 400615', temp: '-18.8°C', num: '#09', x: 44, y: 42, color: '#B8DFD8' }
-      ];
+      const frame = document.getElementById('hub-map-frame');
+      const label = document.getElementById('hub-map-label');
+      const dirBtn = document.getElementById('start-directions-btn');
+      const hint = document.getElementById('hub-directions-hint');
+      const buttons = document.querySelectorAll('.hub-loc-btn');
+      if (!frame || !buttons.length) return;
 
-      const markersEl = document.getElementById('hub-markers');
-      const dotsEl = document.getElementById('hub-dots');
-      const progressEl = document.getElementById('hub-progress');
-      const cardDesc = document.getElementById('hub-card-desc');
-      const cardName = document.getElementById('hub-card-name');
-      const cardMeta = document.getElementById('hub-card-meta');
-      const cardNum = document.getElementById('hub-card-num');
-      const cardTemp = document.getElementById('hub-card-temp');
-      const cardEl = document.getElementById('hub-card');
-      const playBtn = document.getElementById('hub-play');
-      const playIcon = document.getElementById('hub-play-icon');
-      if (!markersEl || !dotsEl) return;
+      // Keep India-wide zoom; only move the pin
+      const INDIA_BBOX = '70.00%2C8.50%2C95.00%2C34.50';
 
-      let index = 0;
-      let playing = true;
-      let timer = null;
-      const INTERVAL = 4200;
+      function selectHub(btn) {
+        const lat = parseFloat(btn.dataset.lat);
+        const lng = parseFloat(btn.dataset.lng);
+        const name = btn.dataset.name || 'Hub';
+        const dest = btn.dataset.dest || '';
 
-      hubs.forEach((hub, i) => {
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'hub-pin absolute flex items-center justify-center rounded-full border-[3px] border-white shadow-md transition-all duration-300 focus:outline-none';
-        btn.style.left = hub.x + '%';
-        btn.style.top = hub.y + '%';
-        btn.style.width = '32px';
-        btn.style.height = '32px';
-        btn.style.background = hub.color;
-        btn.style.transform = 'translate(-50%, -50%)';
-        btn.setAttribute('aria-label', hub.name);
-        btn.dataset.index = String(i);
-        btn.innerHTML = `<span class="font-heading font-extrabold text-white text-[10px]">${String(i + 1).padStart(2, '0')}</span>`;
-        btn.addEventListener('click', () => goTo(i, true));
-        markersEl.appendChild(btn);
+        frame.src = `https://www.openstreetmap.org/export/embed.html?bbox=${INDIA_BBOX}&layer=mapnik&marker=${lat.toFixed(4)}%2C${lng.toFixed(4)}`;
 
-        const dot = document.createElement('button');
-        dot.type = 'button';
-        dot.className = 'hub-dot w-2 h-2 rounded-full bg-brand-pink transition-all duration-300';
-        dot.setAttribute('aria-label', 'Go to ' + hub.name);
-        dot.addEventListener('click', () => goTo(i, true));
-        dotsEl.appendChild(dot);
-      });
+        if (label) label.textContent = name;
+        if (dirBtn) {
+          dirBtn.href = `https://www.google.com/maps/dir/?api=1&destination=${dest}&travelmode=driving`;
+        }
+        if (hint) hint.textContent = `Opens Google Maps navigation to ${name} hub`;
 
-      function render() {
-        const hub = hubs[index];
-        cardDesc.textContent = hub.desc;
-        cardName.textContent = hub.name;
-        cardMeta.textContent = hub.meta;
-        cardNum.textContent = hub.num;
-        cardTemp.textContent = hub.temp;
-
-        // Position card near active pin (clamped)
-        const cardX = Math.min(78, Math.max(22, hub.x));
-        const cardY = Math.min(62, Math.max(28, hub.y + 12));
-        cardEl.style.left = cardX + '%';
-        cardEl.style.top = cardY + '%';
-
-        document.querySelectorAll('.hub-pin').forEach((pin, i) => {
-          const active = i === index;
-          pin.style.width = active ? '44px' : '32px';
-          pin.style.height = active ? '44px' : '32px';
-          pin.style.zIndex = active ? '20' : '10';
-          pin.style.boxShadow = active ? '0 10px 28px rgba(244,157,140,0.45)' : '0 4px 12px rgba(30,41,59,0.15)';
-          pin.style.transform = active ? 'translate(-50%, -50%) scale(1.08)' : 'translate(-50%, -50%) scale(1)';
-          pin.style.ring = active ? '2px solid #F49D8C' : 'none';
+        buttons.forEach((b) => {
+          const active = b === btn;
+          b.setAttribute('aria-pressed', active ? 'true' : 'false');
+          b.classList.toggle('bg-brand-cream', active);
+          b.classList.toggle('border', active);
+          b.classList.toggle('border-brand-coral/40', active);
+          b.classList.toggle('hover:bg-brand-cream/80', !active);
         });
-
-        document.querySelectorAll('.hub-dot').forEach((dot, i) => {
-          if (i === index) {
-            dot.className = 'hub-dot w-3.5 h-3.5 rounded-full bg-brand-coral ring-2 ring-brand-coral/40 transition-all duration-300';
-          } else {
-            dot.className = 'hub-dot w-2 h-2 rounded-full bg-brand-pink hover:bg-brand-coral/60 transition-all duration-300';
-          }
-        });
-
-        progressEl.style.width = ((index + 1) / hubs.length * 100) + '%';
       }
 
-      function goTo(i, userTriggered) {
-        index = (i + hubs.length) % hubs.length;
-        render();
-        if (userTriggered) restartTimer();
-      }
-
-      function next() { goTo(index + 1, false); }
-      function prev() { goTo(index - 1, true); }
-
-      function startTimer() {
-        stopTimer();
-        if (!playing) return;
-        timer = setInterval(next, INTERVAL);
-      }
-      function stopTimer() {
-        if (timer) clearInterval(timer);
-        timer = null;
-      }
-      function restartTimer() {
-        if (playing) startTimer();
-      }
-
-      document.getElementById('hub-next')?.addEventListener('click', () => goTo(index + 1, true));
-      document.getElementById('hub-prev')?.addEventListener('click', prev);
-      playBtn?.addEventListener('click', () => {
-        playing = !playing;
-        playIcon.innerHTML = playing
-          ? '<path d="M6 5h4v14H6zm8 0h4v14h-4z"></path>'
-          : '<path d="M8 5v14l11-7z"></path>';
-        if (playing) startTimer(); else stopTimer();
+      buttons.forEach((btn) => {
+        btn.addEventListener('click', () => selectHub(btn));
       });
-
-      // Start with pause icon since autoplay is on
-      playIcon.innerHTML = '<path d="M6 5h4v14H6zm8 0h4v14h-4z"></path>';
-      render();
-      startTimer();
     });
   </script>
-<!-- END: Hub Map Carousel -->
+<!-- END: Hub location → map pointer sync -->
 <!-- BEGIN: Scroll Entrance Animations via IntersectionObserver -->
 <script data-purpose="scroll-animations">
     document.addEventListener('DOMContentLoaded', () => {
@@ -1123,4 +1666,245 @@
     });
   </script>
 <!-- END: Scroll Entrance Animations via IntersectionObserver -->
+<!-- BEGIN: Infinite members marquee -->
+<script data-purpose="members-marquee">
+    document.addEventListener('DOMContentLoaded', () => {
+      const root = document.getElementById('membersMarquee');
+      const track = document.getElementById('membersTrack');
+      const set = track && track.querySelector('[data-marquee-set]');
+      if (!root || !track || !set) return;
+
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      const fillTrack = () => {
+        while (track.children.length > 1) track.removeChild(track.lastChild);
+        const viewport = root.offsetWidth || window.innerWidth;
+        const setWidth = set.offsetWidth;
+        if (!setWidth) return 0;
+        // Enough copies to cover viewport twice — no empty gap mid-loop
+        const copies = Math.max(2, Math.ceil((viewport * 2) / setWidth) + 1);
+        for (let i = 1; i < copies; i++) {
+          const clone = set.cloneNode(true);
+          clone.setAttribute('aria-hidden', 'true');
+          clone.querySelectorAll('[alt]').forEach((img) => img.setAttribute('alt', ''));
+          track.appendChild(clone);
+        }
+        return set.offsetWidth;
+      };
+
+      let setWidth = fillTrack();
+      if (reduceMotion || !setWidth) return;
+
+      let offset = 0;
+      const speed = 0.6; // px per frame ~36px/s
+      let paused = false;
+      let rafId = 0;
+
+      root.addEventListener('mouseenter', () => { paused = true; });
+      root.addEventListener('mouseleave', () => { paused = false; });
+
+      const tick = () => {
+        if (!paused) {
+          offset -= speed;
+          if (Math.abs(offset) >= setWidth) {
+            offset += setWidth; // wrap seamlessly
+          }
+          track.style.transform = `translate3d(${offset}px,0,0)`;
+        }
+        rafId = requestAnimationFrame(tick);
+      };
+      rafId = requestAnimationFrame(tick);
+
+      let resizeTimer;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+          offset = 0;
+          track.style.transform = 'translate3d(0,0,0)';
+          setWidth = fillTrack();
+        }, 150);
+      });
+    });
+  </script>
+<!-- END: Infinite members marquee -->
+<!-- BEGIN: Integration connector rails -->
+<script data-purpose="integ-connector-rails">
+    document.addEventListener('DOMContentLoaded', () => {
+      const diagram = document.getElementById('integDiagram');
+      const clients = document.getElementById('integClients');
+      const rails = document.getElementById('integLeftRails');
+      const svg = document.getElementById('integLeftSvg');
+      if (!clients || !rails || !svg) return;
+
+      const draw = () => {
+        if (window.matchMedia('(max-width: 767px)').matches) {
+          svg.innerHTML = '';
+          return;
+        }
+        // Stretch rails to icon column height
+        const clientH = Math.round(clients.getBoundingClientRect().height);
+        rails.style.height = clientH + 'px';
+        const w = Math.max(1, Math.round(rails.getBoundingClientRect().width));
+        const h = Math.max(1, clientH);
+        svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+        svg.setAttribute('width', String(w));
+        svg.setAttribute('height', String(h));
+
+        const railRect = rails.getBoundingClientRect();
+        // Full start (icon edge) → end (circle edge)
+        const startX = 0;
+        const endX = w - 2;
+        const endY = h / 2;
+        const items = clients.querySelectorAll('.integ-platform');
+        let paths = '';
+        items.forEach((el) => {
+          const r = el.getBoundingClientRect();
+          const startY = r.top + r.height / 2 - railRect.top;
+          const c1x = w * 0.42;
+          const c2x = w * 0.78;
+          paths += `<path class="integ-dash integ-flow-line" d="M ${startX} ${startY.toFixed(2)} C ${c1x.toFixed(2)} ${startY.toFixed(2)}, ${c2x.toFixed(2)} ${endY.toFixed(2)}, ${endX} ${endY.toFixed(2)}" stroke="#94a3b8" stroke-width="1.5" fill="none"/>`;
+        });
+        // Arrow tip at circle end
+        const ax = endX;
+        const ay = endY;
+        paths += `<path d="M ${ax - 8} ${ay - 5} L ${ax} ${ay} L ${ax - 8} ${ay + 5}" stroke="#2C6B74" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`;
+        svg.innerHTML = paths;
+      };
+
+      const schedule = () => requestAnimationFrame(() => requestAnimationFrame(draw));
+      schedule();
+      window.addEventListener('load', schedule);
+      window.addEventListener('resize', schedule);
+      // Redraw when scroll-reveal makes diagram visible
+      if (diagram) {
+        const mo = new MutationObserver(schedule);
+        mo.observe(diagram, { attributes: true, attributeFilter: ['class'] });
+      }
+      setTimeout(schedule, 300);
+      setTimeout(schedule, 800);
+    });
+  </script>
+<!-- END: Integration connector rails -->
+<!-- BEGIN: Facility feed auto slider -->
+<script data-purpose="facility-auto-slider">
+    document.addEventListener('DOMContentLoaded', () => {
+      const root = document.getElementById('facilitySlider');
+      const dotsWrap = document.getElementById('facilityDots');
+      if (!root) return;
+      const slides = Array.from(root.querySelectorAll('.facility-slide'));
+      if (slides.length < 2) return;
+
+      let index = slides.findIndex((s) => s.classList.contains('is-active'));
+      if (index < 0) index = 0;
+      let timer = null;
+      const INTERVAL = 4200;
+
+      const paintDots = () => {
+        if (!dotsWrap) return;
+        dotsWrap.innerHTML = slides.map((_, i) =>
+          `<button type="button" class="facility-dot${i === index ? ' is-active' : ''}" aria-label="Slide ${i + 1}"></button>`
+        ).join('');
+        dotsWrap.querySelectorAll('.facility-dot').forEach((btn, i) => {
+          btn.addEventListener('click', () => goTo(i, true));
+        });
+      };
+
+      const goTo = (next, user) => {
+        slides[index].classList.remove('is-active');
+        index = (next + slides.length) % slides.length;
+        slides[index].classList.add('is-active');
+        paintDots();
+        if (user) restart();
+      };
+
+      const next = () => goTo(index + 1, false);
+
+      const restart = () => {
+        clearInterval(timer);
+        timer = setInterval(next, INTERVAL);
+      };
+
+      paintDots();
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        restart();
+      }
+
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) clearInterval(timer);
+        else if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) restart();
+      });
+    });
+  </script>
+<!-- END: Facility feed auto slider -->
+<!-- BEGIN: Dark vs White mobile pin scroll -->
+<script data-purpose="vs-compare-pin-scroll">
+    document.addEventListener('DOMContentLoaded', () => {
+      const track = document.getElementById('vsPinTrack');
+      const white = document.getElementById('vsWhitePanel');
+      if (!track || !white) return;
+
+      const mq = window.matchMedia('(max-width: 767px)');
+      let target = 0;
+      let current = 0;
+      let raf = 0;
+
+      const readTarget = () => {
+        if (!mq.matches) {
+          target = 0;
+          return false;
+        }
+        const total = track.offsetHeight - window.innerHeight;
+        if (total <= 0) {
+          target = 0;
+          return false;
+        }
+        const top = track.getBoundingClientRect().top;
+        target = Math.max(0, Math.min(1, -top / total));
+        return true;
+      };
+
+      const paint = (p) => {
+        white.style.transform = `translate3d(0, ${(1 - p) * 100}%, 0)`;
+      };
+
+      const tick = () => {
+        if (!mq.matches) {
+          current = 0;
+          white.style.transform = '';
+          raf = 0;
+          return;
+        }
+        readTarget();
+        // Light lerp = smooth, still locked to native scroll inertia
+        current += (target - current) * 0.22;
+        if (Math.abs(target - current) < 0.0006) current = target;
+        paint(current);
+        if (Math.abs(target - current) > 0.0006) {
+          raf = requestAnimationFrame(tick);
+        } else {
+          raf = 0;
+        }
+      };
+
+      const kick = () => {
+        if (!raf) raf = requestAnimationFrame(tick);
+      };
+
+      const onScroll = () => kick();
+      const onResize = () => {
+        current = target;
+        readTarget();
+        current = target;
+        paint(current);
+      };
+
+      readTarget();
+      current = target;
+      paint(current);
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onResize);
+      mq.addEventListener('change', onResize);
+    });
+  </script>
+<!-- END: Dark vs White mobile pin scroll -->
 </body></html>

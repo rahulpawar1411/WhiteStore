@@ -1,0 +1,6 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-label="magicpin">
+  <rect width="48" height="48" rx="10" fill="#1D4B52"/>
+  <circle cx="24" cy="20" r="8" fill="none" stroke="#F8CE9F" stroke-width="3"/>
+  <path fill="#F49D8C" d="M24 28c-5 6-8 10-8 12a8 8 0 0 0 16 0c0-2-3-6-8-12z"/>
+  <circle cx="24" cy="20" r="3" fill="#FAF7F2"/>
+</svg>
