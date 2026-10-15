@@ -25,15 +25,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (dirBtn) {
           dirBtn.href = `https://www.google.com/maps/dir/?api=1&destination=${dest}&travelmode=driving`;
         }
-        if (hint) hint.textContent = `Opens Google Maps navigation to ${name} hub`;
+        if (hint) {
+          hint.textContent = `Tap a hub to move the pin · ${name}`;
+        }
 
         buttons.forEach((b) => {
           const active = b === btn;
           b.setAttribute('aria-pressed', active ? 'true' : 'false');
-          b.classList.toggle('bg-brand-cream', active);
-          b.classList.toggle('border', active);
-          b.classList.toggle('border-brand-coral/40', active);
-          b.classList.toggle('hover:bg-brand-cream/80', !active);
+          b.classList.toggle('is-active', active);
         });
       }
 
