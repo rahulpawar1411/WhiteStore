@@ -1,1192 +1,90 @@
 <!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<!--
+  ============================================================================
+  FILE: index.html — Propelpad White Store (single-page marketing site)
+  STACK: HTML + Tailwind CDN + css/styles.css + js/*.js
 
-<html class="scroll-smooth" lang="en"><head>
+  FOLDER MAP
+  ----------
+  index.html          Page markup only (sections A–O)
+  css/styles.css      All custom styles (regions [01]–[15])
+  js/01-hub-map.js …  Feature scripts (see SCRIPT list below)
+  assets/
+    brands/           Partner brand logos
+    certifications/   FSSAI, HACCP, ISO, GMP marks
+    integrations/     Zomato, Swiggy, Blinkit, etc.
+    members/          Team member photos
+    stores/           White Store facility photos
+    images/           Misc screenshots / media
+
+  DOCUMENT MAP
+  ------------
+  1. <head> — Tailwind config, fonts, css/styles.css
+  2. <body> markup — search SECTION:
+  3. Scripts — search SCRIPT: (external files in /js)
+-->
+<head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Propelpad White Store Network | Pristine Cold-Chain Infrastructure</title>
-<!-- Tailwind CSS v3 with Forms and Container Queries -->
+
+<!-- ========== VENDOR: Tailwind CSS v3 ========== -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              cream: '#FAF7F2',
-              pink: '#F6D6D6',
-              teal: '#2C6B74',
-              tealDark: '#1D4B52',
-              coral: '#F49D8C',
-              apricot: '#F8CE9F',
-              mint: '#B8DFD8',
-              slate: '#475569',
-              dark: '#1E293B'
-            }
-          },
-          fontFamily: {
-            display: ['Playfair Display', 'Georgia', 'serif'],
-            body: ['Source Sans 3', 'system-ui', 'sans-serif'],
-            proof: ['Playfair Display', 'Georgia', 'serif'],
-            proofLabel: ['Syne', 'Outfit', 'sans-serif']
-          },
-          borderRadius: {
-            '4xl': '2rem',
-            '5xl': '2.5rem'
+  /* Brand design tokens — keep in sync with CSS variables below */
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brand: {
+            cream: '#FAF7F2',
+            pink: '#F6D6D6',
+            teal: '#2C6B74',
+            tealDark: '#1D4B52',
+            coral: '#F49D8C',
+            apricot: '#F8CE9F',
+            mint: '#B8DFD8',
+            slate: '#475569',
+            dark: '#1E293B'
           }
+        },
+        fontFamily: {
+          display: ['Playfair Display', 'Georgia', 'serif'],
+          body: ['Source Sans 3', 'system-ui', 'sans-serif'],
+          proof: ['Playfair Display', 'Georgia', 'serif'],
+          proofLabel: ['Syne', 'Outfit', 'sans-serif']
+        },
+        borderRadius: {
+          '4xl': '2rem',
+          '5xl': '2.5rem'
         }
       }
     }
-  </script>
-<!-- Google Fonts: Playfair Display, Outfit, Source Sans 3, Syne -->
+  };
+</script>
+
+<!-- ========== FONTS: Playfair Display, Outfit, Source Sans 3, Syne ========== -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&amp;family=Playfair+Display:wght@600;700;800&amp;family=Source+Sans+3:wght@400;500;600;700&amp;family=Syne:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
-<!-- Core Layout & Custom Styling -->
-<style data-purpose="custom-typography-and-decorations">
-    html {
-      font-size: 14px; /* base down from 16px — scales all rem text */
-      --font-body: 'Source Sans 3', system-ui, sans-serif;
-      --font-heading: 'Outfit', system-ui, sans-serif;
-      --font-display: 'Playfair Display', Georgia, serif;
-      --font-label: 'Syne', 'Outfit', sans-serif;
-    }
-    body {
-      font-family: var(--font-body);
-      background-color: #FAF7F2;
-      color: #1E293B;
-      overflow-x: clip; /* clip keeps position:sticky working (hidden breaks it) */
-    }
-    h1, h2, h3, h4, .font-heading {
-      font-family: var(--font-heading);
-      letter-spacing: -0.02em;
-    }
 
-    /* Overview proof metrics — editorial strip, not cards */
-    .proof-rail {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      width: 100%;
-      max-width: 72rem;
-      margin: 0 auto;
-      border-top: 1.5px solid #1E293B;
-      border-bottom: 1.5px solid #1E293B;
-    }
-    .proof-stat {
-      position: relative;
-      padding: 1.35rem 1rem 1.5rem;
-      text-align: left;
-      background: transparent;
-    }
-    .proof-stat:nth-child(odd) {
-      border-right: 1.5px solid rgba(30, 41, 59, 0.18);
-    }
-    .proof-stat:nth-child(-n+2) {
-      border-bottom: 1.5px solid rgba(30, 41, 59, 0.18);
-    }
-    .proof-num {
-      font-family: var(--font-display);
-      font-weight: 800;
-      font-size: clamp(2.35rem, 7vw, 3.75rem);
-      line-height: 0.95;
-      letter-spacing: -0.04em;
-      color: #1E293B;
-      font-variation-settings: "SOFT" 30, "WONK" 1;
-    }
-    .proof-stat:nth-child(1) .proof-num { color: #2C6B74; }
-    .proof-stat:nth-child(2) .proof-num { color: #E07A66; }
-    .proof-stat:nth-child(3) .proof-num {
-      font-size: clamp(1.35rem, 4.2vw, 2rem);
-      letter-spacing: -0.03em;
-      line-height: 1.1;
-      color: #1E293B;
-    }
-    .proof-stat:nth-child(4) .proof-num { color: #0F766E; }
-    .proof-label {
-      font-family: var(--font-label);
-      margin-top: 0.65rem;
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: #64748B;
-    }
-    @media (min-width: 768px) {
-      .proof-rail {
-        grid-template-columns: repeat(4, 1fr);
-      }
-      .proof-stat {
-        padding: 2rem 1.75rem 2.15rem;
-      }
-      .proof-stat:nth-child(odd) {
-        border-right: none;
-      }
-      .proof-stat:nth-child(-n+2) {
-        border-bottom: none;
-      }
-      .proof-stat:not(:last-child) {
-        border-right: 1.5px solid rgba(30, 41, 59, 0.18);
-      }
-      .proof-stat:nth-child(3) .proof-num {
-        font-size: clamp(1.5rem, 2.1vw, 1.85rem);
-      }
-    }
-
-    /* Arched Ribbon Hanging Motif Inspired by reference */
-    .arch-pillar {
-      border-bottom-left-radius: 9999px;
-      border-bottom-right-radius: 9999px;
-    }
-    .arch-pillar-up {
-      border-top-left-radius: 9999px;
-      border-top-right-radius: 9999px;
-    }
-
-    /* Infinite horizontal members marquee */
-    .members-marquee {
-      position: relative;
-      overflow: hidden;
-      width: 100%;
-    }
-    .members-marquee::before,
-    .members-marquee::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: clamp(3.5rem, 10vw, 7rem);
-      z-index: 5;
-      pointer-events: none;
-    }
-    .members-marquee::before {
-      left: 0;
-      background: linear-gradient(to right, #FAF7F2 0%, rgba(250, 247, 242, 0.85) 40%, transparent 100%);
-    }
-    .members-marquee::after {
-      right: 0;
-      background: linear-gradient(to left, #FAF7F2 0%, rgba(250, 247, 242, 0.85) 40%, transparent 100%);
-    }
-    .members-marquee-track {
-      display: flex;
-      width: max-content;
-      will-change: transform;
-      backface-visibility: hidden;
-    }
-    .members-marquee-group {
-      display: flex;
-      align-items: flex-start;
-      flex-shrink: 0;
-      gap: 3.5rem;
-      padding-right: 3.5rem; /* same as gap — seamless join between sets */
-    }
-    .members-marquee-group .member-card {
-      flex-shrink: 0;
-      width: 11rem;
-    }
-    @media (min-width: 640px) {
-      .members-marquee-group {
-        gap: 4.5rem;
-        padding-right: 4.5rem;
-      }
-      .members-marquee-group .member-card {
-        width: 12rem;
-      }
-    }
-
-    /* Integration hub diagram */
-    .integ-dash {
-      stroke-dasharray: 5 7;
-    }
-    .integ-hub-graph {
-      width: min(100%, 240px);
-      aspect-ratio: 1;
-      position: relative;
-      filter: drop-shadow(0 8px 24px rgba(44, 107, 116, 0.12));
-    }
-    @media (min-width: 1024px) {
-      .integ-hub-graph { width: min(100%, 260px); }
-    }
-    .integ-diagram {
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      align-items: center;
-      width: 100%;
-      max-width: 56rem;
-      margin-inline: auto;
-      column-gap: 0.5rem;
-    }
-    .integ-hub-graph svg {
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
-    .integ-hub-center {
-      position: absolute;
-      inset: 28%;
-      border-radius: 9999px;
-      background: #fff;
-      border: 2px solid rgba(44, 107, 116, 0.1);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      box-shadow: 0 0 0 8px rgba(250, 247, 242, 0.9);
-    }
-    /* Live store — text left, image slider right */
-    .store-hero-row {
-      display: grid;
-      gap: 1.75rem;
-      width: 100%;
-      align-items: center;
-    }
-    @media (min-width: 900px) {
-      .store-hero-row {
-        grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.95fr);
-        gap: 2.25rem;
-      }
-    }
-    .store-stage {
-      position: relative;
-      border-radius: 1.25rem;
-      overflow: hidden;
-      min-height: 15rem;
-      height: 15rem;
-      width: 100%;
-      max-width: 28rem;
-      margin-left: auto;
-      margin-right: auto;
-      background: #111;
-      isolation: isolate;
-    }
-    @media (min-width: 768px) {
-      .store-stage {
-        min-height: 19rem;
-        height: 19rem;
-        max-width: 32rem;
-      }
-    }
-    @media (min-width: 900px) {
-      .store-stage {
-        min-height: 22rem;
-        height: 22rem;
-        max-width: 100%;
-        margin-right: 0;
-      }
-    }
-    .store-stage-img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0;
-      transform: scale(1.06);
-      transition: opacity 0.7s ease, transform 5.5s ease-out;
-    }
-    .store-stage-img.is-active {
-      opacity: 1;
-      transform: scale(1);
-      z-index: 1;
-    }
-    .store-stage-shade {
-      position: absolute;
-      inset: 0;
-      z-index: 2;
-      background: linear-gradient(to top, rgba(15, 23, 42, 0.78) 0%, rgba(15, 23, 42, 0.1) 45%, rgba(15, 23, 42, 0.35) 100%);
-      pointer-events: none;
-    }
-    .store-stage-meta {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      z-index: 3;
-      padding: 1.25rem 1.25rem 1.35rem;
-      color: #fff;
-    }
-    .store-stage-kicker {
-      font-family: var(--font-label);
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.72);
-    }
-    .store-stage-name {
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: clamp(1.45rem, 3vw, 2.1rem);
-      letter-spacing: -0.03em;
-      line-height: 1.1;
-      margin-top: 0.25rem;
-    }
-    .store-stage-stats {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.45rem;
-      margin-top: 0.85rem;
-    }
-    .store-chip {
-      font-family: var(--font-label);
-      font-size: 0.62rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 0.4rem 0.65rem;
-      border: 1px solid rgba(255, 255, 255, 0.28);
-      background: rgba(0, 0, 0, 0.28);
-      color: #fff;
-    }
-    .store-dots {
-      display: flex;
-      gap: 0.4rem;
-      margin-top: 1.25rem;
-    }
-    .store-dot {
-      width: 0.45rem;
-      height: 0.45rem;
-      border-radius: 999px;
-      border: none;
-      padding: 0;
-      background: rgba(30, 41, 59, 0.22);
-      cursor: pointer;
-      transition: width 0.3s ease, background 0.3s ease;
-    }
-    .store-dot.is-active {
-      width: 1.25rem;
-      background: #2C6B74;
-    }
-
-    /* Network performance metrics — dark board */
-    .metrics-board {
-      width: 100%;
-      max-width: 72rem;
-      margin: 0 auto;
-      background: #1D4B52;
-      color: #FAF7F2;
-      border-radius: 1.5rem;
-      padding: 1.75rem 1.25rem 1.5rem;
-      overflow: hidden;
-      position: relative;
-    }
-    .metrics-board::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 50% 40% at 10% 0%, rgba(244, 157, 140, 0.18), transparent 55%),
-        radial-gradient(ellipse 40% 35% at 95% 100%, rgba(184, 223, 216, 0.16), transparent 50%);
-      pointer-events: none;
-    }
-    .metrics-board-head {
-      position: relative;
-      z-index: 1;
-      text-align: left;
-      margin-bottom: 1.5rem;
-      padding: 0 0.35rem;
-    }
-    .metrics-board-kicker {
-      font-family: var(--font-label);
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: #B8DFD8;
-    }
-    .metrics-board-title {
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: clamp(1.75rem, 4vw, 2.5rem);
-      letter-spacing: -0.03em;
-      line-height: 1.1;
-      margin-top: 0.35rem;
-      color: #FAF7F2;
-    }
-    .metrics-grid {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
-      border-top: 1px solid rgba(250, 247, 242, 0.18);
-    }
-    .metric-cell {
-      padding: 1.15rem 0.85rem 1.25rem;
-      border-bottom: 1px solid rgba(250, 247, 242, 0.14);
-    }
-    .metric-cell:nth-child(odd) {
-      border-right: 1px solid rgba(250, 247, 242, 0.14);
-      padding-right: 1rem;
-    }
-    .metric-cell:nth-child(even) {
-      padding-left: 1rem;
-    }
-    .metric-val {
-      font-family: var(--font-display);
-      font-weight: 800;
-      font-size: clamp(1.85rem, 5.5vw, 2.65rem);
-      letter-spacing: -0.04em;
-      line-height: 1;
-      color: #FAF7F2;
-    }
-    .metric-cell:nth-child(2) .metric-val { color: #F8CE9F; }
-    .metric-cell:nth-child(3) .metric-val { color: #F49D8C; }
-    .metric-cell:nth-child(4) .metric-val { color: #B8DFD8; }
-    .metric-cell:nth-child(5) .metric-val { color: #F6D6D6; }
-    .metric-cell:nth-child(6) .metric-val { color: #F8CE9F; }
-    .metric-name {
-      font-family: var(--font-label);
-      margin-top: 0.55rem;
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(250, 247, 242, 0.78);
-    }
-    .metric-note {
-      display: block;
-      margin-top: 0.35rem;
-      font-family: var(--font-body);
-      font-size: 0.68rem;
-      font-weight: 500;
-      color: rgba(250, 247, 242, 0.48);
-      letter-spacing: 0.01em;
-      text-transform: none;
-    }
-    @media (min-width: 768px) {
-      .metrics-board {
-        padding: 2.25rem 2rem 1.75rem;
-        border-radius: 1.75rem;
-      }
-      .metrics-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-      .metric-cell {
-        padding: 1.4rem 1.25rem 1.5rem;
-        border-right: 1px solid rgba(250, 247, 242, 0.14);
-      }
-      .metric-cell:nth-child(odd),
-      .metric-cell:nth-child(even) {
-        padding-left: 1.25rem;
-        padding-right: 1.25rem;
-      }
-      .metric-cell:nth-child(3n) {
-        border-right: none;
-      }
-      .metric-cell:nth-child(n+4) {
-        border-bottom: none;
-      }
-    }
-
-    /* Premium Cold-Chain Imperative — manifesto rows */
-    .imperative-layout {
-      display: grid;
-      gap: 2.5rem;
-      width: 100%;
-      align-items: start;
-    }
-    @media (min-width: 900px) {
-      .imperative-layout {
-        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.25fr);
-        gap: 3.5rem;
-      }
-    }
-    .imperative-intro-kicker {
-      font-family: var(--font-label);
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: #E07A66;
-    }
-    .imperative-intro-title {
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: clamp(2rem, 4.5vw, 3.1rem);
-      letter-spacing: -0.035em;
-      line-height: 1.08;
-      color: #1E293B;
-      margin-top: 0.6rem;
-    }
-    .imperative-intro-copy {
-      margin-top: 1rem;
-      font-size: 0.9rem;
-      line-height: 1.65;
-      color: #64748B;
-      max-width: 26rem;
-    }
-    .imperative-list {
-      border-top: 1.5px solid #1E293B;
-    }
-    .imperative-row {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 1rem 1.25rem;
-      padding: 1.4rem 0 1.5rem;
-      border-bottom: 1.5px solid rgba(30, 41, 59, 0.16);
-    }
-    @media (min-width: 640px) {
-      .imperative-row {
-        grid-template-columns: 4.5rem 1fr;
-        gap: 1.25rem 1.75rem;
-        padding: 1.65rem 0 1.75rem;
-      }
-    }
-    .imperative-num {
-      font-family: var(--font-display);
-      font-weight: 800;
-      font-size: clamp(2rem, 4vw, 2.75rem);
-      letter-spacing: -0.04em;
-      line-height: 1;
-      color: #2C6B74;
-    }
-    .imperative-row:nth-child(2) .imperative-num { color: #0F766E; }
-    .imperative-row:nth-child(3) .imperative-num { color: #E07A66; }
-    .imperative-row-title {
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: clamp(1.15rem, 2.2vw, 1.45rem);
-      letter-spacing: -0.025em;
-      line-height: 1.2;
-      color: #1E293B;
-      margin: 0 0 0.45rem;
-    }
-    .imperative-row-body {
-      font-size: 0.875rem;
-      line-height: 1.6;
-      color: #64748B;
-      margin: 0;
-    }
-    .imperative-row-tag {
-      display: inline-block;
-      margin-top: 0.75rem;
-      font-family: var(--font-label);
-      font-size: 0.62rem;
-      font-weight: 700;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: #2C6B74;
-    }
-
-    /* Smart Buying & FIFO — same editorial language as Imperative */
-    .fifo-layout {
-      display: grid;
-      gap: 2.5rem;
-      width: 100%;
-      align-items: start;
-    }
-    @media (min-width: 900px) {
-      .fifo-layout {
-        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.25fr);
-        gap: 3.5rem;
-      }
-    }
-    .fifo-kicker {
-      font-family: var(--font-label);
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: #E07A66;
-    }
-    .fifo-title {
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: clamp(2rem, 4.5vw, 3.1rem);
-      letter-spacing: -0.035em;
-      line-height: 1.08;
-      color: #1E293B;
-      margin-top: 0.6rem;
-    }
-    .fifo-sub {
-      margin-top: 1rem;
-      font-size: 0.9rem;
-      line-height: 1.65;
-      color: #64748B;
-      max-width: 26rem;
-    }
-    .fifo-list {
-      border-top: 1.5px solid #1E293B;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-    .fifo-item {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 1rem 1.25rem;
-      padding: 1.4rem 0 1.5rem;
-      border-bottom: 1.5px solid rgba(30, 41, 59, 0.16);
-      align-items: start;
-    }
-    @media (min-width: 640px) {
-      .fifo-item {
-        grid-template-columns: 3.25rem 1fr;
-        gap: 1.25rem 1.75rem;
-        padding: 1.55rem 0 1.65rem;
-      }
-    }
-    .fifo-logo {
-      width: 3rem;
-      height: 3rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #2C6B74;
-    }
-    .fifo-logo svg {
-      width: 1.75rem;
-      height: 1.75rem;
-    }
-    .fifo-item:nth-child(2) .fifo-logo { color: #0F766E; }
-    .fifo-item:nth-child(3) .fifo-logo { color: #E07A66; }
-    .fifo-item:nth-child(4) .fifo-logo { color: #B8860B; }
-    .fifo-item:nth-child(5) .fifo-logo { color: #1D4B52; }
-    .fifo-item-title {
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: clamp(1.15rem, 2.2vw, 1.45rem);
-      letter-spacing: -0.025em;
-      line-height: 1.2;
-      color: #1E293B;
-      margin: 0 0 0.45rem;
-    }
-    .fifo-item-body {
-      font-size: 0.875rem;
-      line-height: 1.6;
-      color: #64748B;
-      margin: 0;
-    }
-    .fifo-item-tag {
-      display: inline-block;
-      margin-top: 0.75rem;
-      font-family: var(--font-label);
-      font-size: 0.62rem;
-      font-weight: 700;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: #2C6B74;
-    }
-
-    /* Sanitary & Food Safety — standards board with in-cell logos */
-    .hygiene-kicker {
-      font-family: var(--font-label);
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: #2C6B74;
-    }
-    .hygiene-title {
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: clamp(2rem, 4.5vw, 3.1rem);
-      letter-spacing: -0.035em;
-      line-height: 1.08;
-      color: #1E293B;
-      margin-top: 0.55rem;
-    }
-    .hygiene-sub {
-      margin-top: 0.85rem;
-      font-size: 0.9rem;
-      line-height: 1.65;
-      color: #64748B;
-      max-width: 34rem;
-    }
-    .hygiene-board {
-      margin-top: 2.25rem;
-      border-top: 1.5px solid #1E293B;
-      border-bottom: 1.5px solid #1E293B;
-      display: grid;
-      grid-template-columns: 1fr;
-    }
-    @media (min-width: 700px) {
-      .hygiene-board { grid-template-columns: 1fr 1fr; }
-    }
-    @media (min-width: 1024px) {
-      .hygiene-board { grid-template-columns: 1fr 1fr 1fr; }
-    }
-    .hygiene-cell {
-      padding: 1.45rem 1.25rem 1.55rem;
-      border-bottom: 1.5px solid rgba(30, 41, 59, 0.12);
-    }
-    .hygiene-cell:last-child { border-bottom: none; }
-    @media (min-width: 700px) and (max-width: 1023px) {
-      .hygiene-cell { border-bottom: 1.5px solid rgba(30, 41, 59, 0.12); }
-      .hygiene-cell:nth-child(odd) { border-right: 1.5px solid rgba(30, 41, 59, 0.12); }
-      .hygiene-cell:nth-child(n+5) { border-bottom: none; }
-    }
-    @media (min-width: 1024px) {
-      .hygiene-cell {
-        border-bottom: 1.5px solid rgba(30, 41, 59, 0.12);
-        border-right: 1.5px solid rgba(30, 41, 59, 0.12);
-      }
-      .hygiene-cell:nth-child(3n) { border-right: none; }
-      .hygiene-cell:nth-child(n+4) { border-bottom: none; }
-    }
-    .hygiene-logo {
-      width: 3.25rem;
-      height: 3.25rem;
-      margin-bottom: 0.85rem;
-      display: block;
-      object-fit: contain;
-    }
-    .hygiene-icon {
-      width: 2.25rem;
-      height: 2.25rem;
-      color: #2C6B74;
-      margin-bottom: 0.75rem;
-    }
-    .hygiene-icon svg {
-      width: 100%;
-      height: 100%;
-    }
-    .hygiene-cell-title {
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 1.1rem;
-      letter-spacing: -0.025em;
-      line-height: 1.25;
-      color: #1E293B;
-      margin: 0 0 0.4rem;
-    }
-    .hygiene-cell-body {
-      font-size: 0.8rem;
-      line-height: 1.55;
-      color: #64748B;
-      margin: 0;
-    }
-
-    /* Dark vs White — mobile pin: scroll moves White Store over Dark Store */
-    .vs-compare-section {
-      --vs-nav-offset: 5.25rem;
-    }
-    @media (max-width: 767px) {
-      .vs-compare-section.section-frame {
-        display: block;
-        padding-top: 0;
-        padding-bottom: 0;
-      }
-      .vs-compare-section > .section-inner {
-        display: block;
-        max-width: none;
-        width: 100%;
-        padding-left: 0;
-        padding-right: 0;
-      }
-      .vs-pin-track {
-        height: 280vh; /* longer travel = smoother cover feel */
-        position: relative;
-      }
-      .vs-pin-sticky {
-        position: sticky;
-        top: 0;
-        min-height: 100svh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: calc(var(--vs-nav-offset) + 0.25rem) 1rem 1.5rem;
-        background: #FAF7F2;
-        overflow: visible;
-      }
-      .vs-pin-sticky .vs-heading {
-        margin-bottom: 1rem;
-      }
-      .vs-stage {
-        position: relative;
-        width: 100%;
-        max-width: 26rem;
-        margin: 0 auto;
-        overflow: hidden;
-        border-radius: 1.5rem;
-        pointer-events: none; /* never trap wheel/touch — page scrolls */
-      }
-      .vs-stack {
-        display: block !important;
-        background: transparent !important;
-        border: none !important;
-        box-shadow: none !important;
-        border-radius: 0 !important;
-        overflow: visible !important;
-      }
-      .vs-panel--dark,
-      .vs-panel--white {
-        overflow: hidden;
-        pointer-events: none;
-        min-height: 28rem;
-        padding: 1.85rem 1.5rem !important;
-      }
-      .vs-panel--dark {
-        position: relative !important;
-        z-index: 1;
-        border-radius: 1.5rem;
-        border: 1px solid rgba(244, 63, 94, 0.18);
-        box-shadow: 0 12px 32px rgba(30, 41, 59, 0.1);
-        background: #fff8f8;
-      }
-      .vs-panel--white {
-        position: absolute !important;
-        left: 0;
-        right: 0;
-        top: 0;
-        z-index: 2;
-        width: 100%;
-        height: 100%;
-        min-height: 100%;
-        border-radius: 1.5rem;
-        border: 1px solid rgba(184, 223, 216, 0.75);
-        background: #fff !important;
-        box-shadow:
-          0 -8px 28px rgba(44, 107, 116, 0.18),
-          0 16px 40px rgba(30, 41, 59, 0.12);
-        transform: translate3d(0, 100%, 0);
-        will-change: transform;
-        backface-visibility: hidden;
-      }
-    }
-    @media (min-width: 768px) {
-      .vs-pin-track {
-        height: auto !important;
-      }
-      .vs-pin-sticky {
-        position: static;
-        min-height: 0;
-        padding: 0;
-        overflow: visible;
-        background: transparent;
-      }
-      .vs-stage {
-        position: static;
-        max-width: none;
-        overflow: visible;
-        border-radius: 0;
-      }
-      .vs-stack {
-        display: grid !important;
-      }
-      .vs-panel--dark,
-      .vs-panel--white {
-        position: static !important;
-        z-index: auto;
-        width: auto;
-        height: auto;
-        min-height: 0;
-        padding: 2.5rem !important;
-        transform: none !important;
-        box-shadow: none;
-        border: none;
-        border-radius: 0;
-        overflow: visible;
-        pointer-events: auto;
-        touch-action: auto;
-      }
-    }
-
-    /* Brand family — clean 2-row logo grid */
-    .trust-cloud {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.65rem;
-      max-width: 52rem;
-      margin: 0 auto;
-    }
-    .trust-row {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      gap: 0.55rem;
-      width: 100%;
-    }
-    .trust-tile {
-      width: 4.5rem;
-      height: 4.5rem;
-      background: #fff;
-      border: 1px solid rgba(30, 41, 59, 0.08);
-      border-radius: 0.65rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.55rem;
-      box-shadow: 0 1px 0 rgba(44, 107, 116, 0.04);
-      overflow: hidden;
-      flex-shrink: 0;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    .trust-tile img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      display: block;
-    }
-    .trust-tile:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(44, 107, 116, 0.1);
-    }
-    @media (min-width: 640px) {
-      .trust-cloud { gap: 0.8rem; }
-      .trust-row { gap: 0.75rem; }
-      .trust-tile {
-        width: 5.75rem;
-        height: 5.75rem;
-        border-radius: 0.75rem;
-        padding: 0.75rem;
-      }
-    }
-    @media (min-width: 1024px) {
-      .trust-tile {
-        width: 6.25rem;
-        height: 6.25rem;
-      }
-    }
-
-    .integ-platform {
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-    .integ-platform:hover {
-      transform: translateX(4px);
-      box-shadow: 0 8px 20px rgba(44, 107, 116, 0.12);
-    }
-    @keyframes integFlow {
-      0% { stroke-dashoffset: 0; }
-      100% { stroke-dashoffset: -48; }
-    }
-    .integ-flow-line {
-      animation: integFlow 2.2s linear infinite;
-    }
-
-    /* Floating subtle animation */
-    @keyframes floatSlow {
-      0%, 100% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-8px) rotate(3deg); }
-    }
-    @keyframes pulseGlow {
-      0%, 100% { opacity: 0.6; transform: scale(1); }
-      50% { opacity: 1; transform: scale(1.05); }
-    }
-
-    .animate-float-slow {
-      animation: floatSlow 6s ease-in-out infinite;
-    }
-    .animate-float-delayed {
-      animation: floatSlow 7s ease-in-out 2s infinite;
-    }
-    .animate-glow {
-      animation: pulseGlow 3s ease-in-out infinite;
-    }
-
-    /* Confetti dots pattern */
-    .confetti-dot {
-      position: absolute;
-      border-radius: 9999px;
-      pointer-events: none;
-    }
-
-    /* Scroll reveal transitions */
-    .reveal-item {
-      opacity: 0;
-      transform: translateY(32px);
-      transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
-      will-change: opacity, transform;
-    }
-    .reveal-item.is-revealed {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Every major section: content centered in its viewport block */
-    .section-frame {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-    }
-    .section-frame[data-purpose="hero-section"] {
-      justify-content: stretch;
-    }
-    @media (min-width: 768px) {
-      .section-frame[data-purpose="hero-section"] {
-        justify-content: center;
-      }
-    }
-    .section-frame > .section-inner {
-      width: 100%;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    /* Inner nav links — keep outer pill, restyle menu items */
-    .nav-links {
-      display: none;
-      align-items: center;
-      gap: 0.1rem;
-    }
-    @media (min-width: 768px) {
-      .nav-links { display: flex; }
-    }
-    .nav-links a {
-      position: relative;
-      font-family: var(--font-heading);
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: -0.01em;
-      text-transform: none;
-      color: #64748B;
-      text-decoration: none;
-      padding: 0.45rem 0.7rem;
-      transition: color 0.2s ease;
-    }
-    .nav-links a::after {
-      content: "";
-      position: absolute;
-      left: 0.65rem;
-      right: 0.65rem;
-      bottom: 0.15rem;
-      height: 1.5px;
-      background: #2C6B74;
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.22s ease;
-    }
-    .nav-links a:hover {
-      color: #1D4B52;
-    }
-    .nav-links a:hover::after {
-      transform: scaleX(1);
-    }
-
-    /* Hero-only cursor bubble */
-    .section-frame[data-purpose="hero-section"].is-cursor-active,
-    .section-frame[data-purpose="hero-section"].is-cursor-active * {
-      cursor: none !important;
-    }
-    /* Bubble under text; text always paints above */
-    .section-frame[data-purpose="hero-section"] .section-inner {
-      z-index: 20;
-      isolation: isolate;
-    }
-    .section-frame[data-purpose="hero-section"] .hero-top,
-    .section-frame[data-purpose="hero-section"] .hero-copy {
-      z-index: 21;
-    }
-    /* Mobile: title higher + smaller */
-    @media (max-width: 767px) {
-      .section-frame[data-purpose="hero-section"] .hero-top {
-        top: 28% !important;
-        transform: translateY(-35%) !important;
-      }
-      .section-frame[data-purpose="hero-section"] .hero-top h1 {
-        font-size: 1.45rem !important;
-        line-height: 1.12 !important;
-      }
-    }
-
-    /* Shared section headings — editorial */
-    .overview-head,
-    .section-head {
-      text-align: center;
-      max-width: 42rem;
-      margin: 0 auto 2rem;
-    }
-    .overview-kicker,
-    .section-kicker {
-      font-family: var(--font-label);
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: #E07A66;
-    }
-    .section-kicker--teal { color: #2C6B74; }
-    .overview-title,
-    .section-title {
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: clamp(2rem, 4.5vw, 3.15rem);
-      letter-spacing: -0.035em;
-      line-height: 1.08;
-      color: #1E293B;
-      margin: 0.55rem 0 0;
-    }
-    .overview-rule,
-    .section-rule {
-      width: 3.5rem;
-      height: 2px;
-      background: #2C6B74;
-      margin: 1.15rem auto 0;
-    }
-    .overview-sub,
-    .section-sub {
-      margin: 1.15rem auto 0;
-      font-size: 0.95rem;
-      line-height: 1.7;
-      color: #64748B;
-      max-width: 36rem;
-    }
-    .overview-sub strong,
-    .section-sub strong {
-      color: #1D4B52;
-      font-weight: 700;
-    }
-    .overview-sub .accent,
-    .section-sub .accent {
-      color: #E07A66;
-      font-weight: 700;
-    }
-    .section-head--left {
-      text-align: left;
-      margin-left: 0;
-      margin-right: 0;
-    }
-    .section-head--left .section-rule { margin-left: 0; }
-    .section-head--on-dark .section-kicker { color: #F8CE9F; }
-    .section-head--on-dark .section-title { color: #FAF7F2; }
-    .section-head--on-dark .section-rule { background: #F8CE9F; }
-    .section-head--on-dark .section-sub { color: rgba(250, 247, 242, 0.78); }
-    .section-head--tight { margin-bottom: 1.5rem; }
-    .hero-cursor-bubble {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 42px;
-      height: 42px;
-      margin: -21px 0 0 -21px;
-      border-radius: 999px;
-      pointer-events: none;
-      z-index: 5;
-      opacity: 0;
-      background: radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.35), rgba(244, 157, 140, 0.22) 48%, rgba(44, 107, 116, 0.16) 100%);
-      border: 1.5px solid rgba(255, 255, 255, 0.4);
-      box-shadow:
-        0 6px 18px rgba(29, 75, 82, 0.1),
-        inset 0 0 12px rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(2px);
-      mix-blend-mode: normal;
-      transform: translate3d(-100px, -100px, 0) scale(0);
-      will-change: transform, opacity;
-    }
-    .hero-cursor-bubble::after {
-      content: "";
-      position: absolute;
-      inset: 22%;
-      border-radius: 999px;
-      background: radial-gradient(circle at 40% 35%, rgba(255, 255, 255, 0.28), transparent 70%);
-    }
-    @media (hover: none), (pointer: coarse) {
-      .hero-cursor-bubble { display: none; }
-      .section-frame[data-purpose="hero-section"].is-cursor-active,
-      .section-frame[data-purpose="hero-section"].is-cursor-active * {
-        cursor: auto !important;
-      }
-    }
-
-  </style>
+<!-- ========== CUSTOM CSS (external) ========== -->
+<link rel="stylesheet" href="css/styles.css"/>
 </head>
 <body class="selection:bg-brand-coral selection:text-white">
-<!-- BEGIN: Floating Navigation Header -->
-<header class="fixed top-4 inset-x-0 z-50 px-4 pointer-events-none" data-purpose="sticky-pill-navigation">
+<!--
+  ========== PAGE MARKUP ==========
+  Jump markers (search SECTION:):
+  A Nav | B Hero | C Overview | D Store Gallery
+  F Imperative | G Dark vs White | H FIFO | I Hygiene
+  J Integrations | K Trusted Brands | L Network Map
+  M Members | N Contact CTA | O Footer
+  (E Metrics merged into C Overview — removed duplicate)
+-->
+
+<!-- ========== SECTION: A — Navigation ========== -->
+<header class="fixed top-4 inset-x-0 z-50 px-4 pointer-events-none" data-purpose="sticky-pill-navigation" id="siteNav">
 <div class="max-w-6xl mx-auto flex items-center justify-between pointer-events-auto bg-white/85 backdrop-blur-md px-6 py-3.5 rounded-full shadow-[0_10px_30px_rgba(44,107,116,0.08)] border border-brand-pink/60 transition-all duration-300">
 <!-- Brand Logo -->
 <a class="flex items-center gap-2.5 group" href="index.html">
@@ -1216,13 +114,14 @@
 </div>
 </div>
 </header>
-<!-- END: Floating Navigation Header -->
-<!-- BEGIN: Hero Section With Arched Motif Backdrop -->
-<section class="section-frame relative min-h-[100svh] pt-24 pb-8 md:pt-32 md:pb-20 overflow-hidden z-10" data-purpose="hero-section" id="heroSection" style="border-bottom-left-radius: 1.5rem; border-bottom-right-radius: 1.5rem;">
-<!-- Hero background layer (rounded bottom — not button) -->
-<div class="absolute inset-0 bg-brand-cream z-0" style="border-bottom-left-radius: 1.5rem; border-bottom-right-radius: 1.5rem;" aria-hidden="true"></div>
+<!-- /SECTION: A — Navigation -->
+
+<!-- ========== SECTION: B — Hero ========== -->
+<section class="section-frame relative overflow-hidden z-10" data-purpose="hero-section" id="heroSection">
+<!-- Hero background layer -->
+<div class="absolute inset-0 bg-brand-cream z-0" aria-hidden="true"></div>
 <!-- Arched Architectural Backdrop Motif (Direct Style Tribute to Image 2) -->
-<div class="absolute top-0 inset-x-0 h-[480px] md:h-[580px] flex justify-center pointer-events-none opacity-90 z-[1]" style="border-bottom-left-radius: 1.5rem; border-bottom-right-radius: 1.5rem; overflow: hidden;">
+<div class="absolute top-0 inset-x-0 h-[480px] md:h-[580px] flex justify-center pointer-events-none opacity-90 z-[1]" style="overflow: hidden;">
 <div class="w-full max-w-6xl flex justify-center items-start gap-3 sm:gap-6 px-4">
 <div class="w-16 sm:w-28 md:w-36 h-[320px] md:h-[430px] bg-brand-pink arch-pillar"></div>
 <div class="w-20 sm:w-36 md:w-44 h-[380px] md:h-[500px] bg-brand-teal arch-pillar"></div>
@@ -1256,9 +155,10 @@
       </p>
 </div>
 </section>
-<!-- END: Hero Section -->
-<!-- BEGIN: Overview "page" (same file, next full screen after hero) -->
-<section id="overview" class="section-frame relative min-h-screen py-20 md:py-24 bg-white" data-purpose="overview-page">
+<!-- /SECTION: B — Hero -->
+
+<!-- ========== SECTION: C — Overview ========== -->
+<section id="overview" class="section-frame relative bg-white" data-purpose="overview-page">
 <div class="section-inner max-w-7xl px-4 sm:px-6 text-center flex flex-col items-center">
 <div class="reveal-item overview-head">
 <div class="overview-kicker">Network Snapshot</div>
@@ -1288,19 +188,20 @@
 <div class="proof-label">Partner Brands</div>
 </div>
 <div class="proof-stat">
-<div class="proof-num">Mumbai &amp; Thane</div>
-<div class="proof-label">Dense Urban Grid</div>
+<div class="proof-num">4.4★</div>
+<div class="proof-label">Merchant Rating</div>
 </div>
 <div class="proof-stat">
-<div class="proof-num">99.8%</div>
-<div class="proof-label">Uptime SLA</div>
+<div class="proof-num" id="prepSpeedCount" data-target-min="1" data-target-sec="38">0.00</div>
+<div class="proof-label">Prep Speed</div>
 </div>
 </div>
 </div>
 </section>
-<!-- END: Overview page -->
-<!-- BEGIN: Live Store Gallery -->
-<section class="section-frame relative z-20 py-14 md:py-20 bg-[#F3EEE6]" data-purpose="live-facility-feed" id="facilityFeed">
+<!-- /SECTION: C — Overview -->
+
+<!-- ========== SECTION: D — Live Store Gallery ========== -->
+<section class="section-frame relative bg-brand-cream" data-purpose="live-facility-feed" id="facilityFeed">
 <div class="section-inner max-w-7xl px-4 sm:px-6 w-full">
 <div class="store-hero-row" id="storeGallery">
 <!-- Left: copy -->
@@ -1320,12 +221,12 @@
 </div>
 <!-- Right: image slider -->
 <div class="store-stage" id="storeStage">
-<img class="store-stage-img is-active" src="image.png" alt="Santacruz West White Store" data-hub="Santacruz West" style="object-position: center center" loading="eager"/>
-<img class="store-stage-img" src="image.png" alt="Versova Andheri White Store" data-hub="Versova &amp; Andheri W" style="object-position: center 18%" loading="lazy"/>
-<img class="store-stage-img" src="image.png" alt="Fort Colaba White Store" data-hub="Fort &amp; Colaba" style="object-position: center 75%" loading="lazy"/>
-<img class="store-stage-img" src="image.png" alt="Chembur White Store" data-hub="Chembur Central" style="object-position: 30% center" loading="lazy"/>
-<img class="store-stage-img" src="image.png" alt="Goregaon White Store" data-hub="Oshiwara &amp; Goregaon" style="object-position: 70% center" loading="lazy"/>
-<img class="store-stage-img" src="image.png" alt="Borivali White Store" data-hub="Dahisar &amp; Borivali" style="object-position: center 40%" loading="lazy"/>
+<img class="store-stage-img is-active" src="assets/stores/white-store.png" alt="Santacruz West White Store" data-hub="Santacruz West" style="object-position: center center" loading="eager"/>
+<img class="store-stage-img" src="assets/stores/white-store.png" alt="Versova Andheri White Store" data-hub="Versova &amp; Andheri W" style="object-position: center 18%" loading="lazy"/>
+<img class="store-stage-img" src="assets/stores/white-store.png" alt="Fort Colaba White Store" data-hub="Fort &amp; Colaba" style="object-position: center 75%" loading="lazy"/>
+<img class="store-stage-img" src="assets/stores/white-store.png" alt="Chembur White Store" data-hub="Chembur Central" style="object-position: 30% center" loading="lazy"/>
+<img class="store-stage-img" src="assets/stores/white-store.png" alt="Goregaon White Store" data-hub="Oshiwara &amp; Goregaon" style="object-position: 70% center" loading="lazy"/>
+<img class="store-stage-img" src="assets/stores/white-store.png" alt="Borivali White Store" data-hub="Dahisar &amp; Borivali" style="object-position: center 40%" loading="lazy"/>
 <div class="store-stage-shade" aria-hidden="true"></div>
 <div class="store-stage-meta">
 <div class="store-stage-kicker">Active White Store</div>
@@ -1340,53 +241,10 @@
 </div>
 </div>
 </section>
-<!-- END: Live Store Gallery -->
-<!-- BEGIN: Live Operational Metrics Strip -->
-<section class="section-frame py-16 md:py-20 bg-[#F3EEE6]">
-<div class="section-inner max-w-7xl px-4 sm:px-6">
-<div class="reveal-item metrics-board" aria-label="Network performance metrics">
-<div class="metrics-board-head">
-<div class="metrics-board-kicker">Audited Real-Time Telemetry</div>
-<h2 class="metrics-board-title">Network Performance Metrics</h2>
-</div>
-<div class="metrics-grid">
-<div class="metric-cell">
-<div class="metric-val">9</div>
-<div class="metric-name">White Stores</div>
-<span class="metric-note">Active 24x7</span>
-</div>
-<div class="metric-cell">
-<div class="metric-val">13+</div>
-<div class="metric-name">Partner Brands</div>
-<span class="metric-note">Gelato &amp; Cakes</span>
-</div>
-<div class="metric-cell">
-<div class="metric-val">4.4★</div>
-<div class="metric-name">Merchant Rating</div>
-<span class="metric-note">Google &amp; Apps</span>
-</div>
-<div class="metric-cell">
-<div class="metric-val">95%</div>
-<div class="metric-name">Pick Accuracy</div>
-<span class="metric-note">Barcode Scanned</span>
-</div>
-<div class="metric-cell">
-<div class="metric-val">99.8%</div>
-<div class="metric-name">Power Uptime</div>
-<span class="metric-note">Dual DG Backup</span>
-</div>
-<div class="metric-cell">
-<div class="metric-val" id="prepSpeedCount" data-target-min="1" data-target-sec="38">0.00</div>
-<div class="metric-name">Prep Speed</div>
-<span class="metric-note">Rider Handover</span>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- END: Live Operational Metrics Strip -->
-<!-- BEGIN: Food Commerce Opportunity -->
-<section class="section-frame py-16 md:py-24 bg-white relative" data-purpose="opportunity-section" id="advantage">
+<!-- /SECTION: D — Live Store Gallery -->
+
+<!-- ========== SECTION: F — Cold-Chain Imperative ========== -->
+<section class="section-frame bg-white relative" data-purpose="opportunity-section" id="advantage">
 <div class="section-inner max-w-7xl px-4 sm:px-6">
 <div class="reveal-item imperative-layout">
 <div class="imperative-intro text-left">
@@ -1423,9 +281,10 @@
 </div>
 </div>
 </section>
-<!-- END: Food Commerce Opportunity -->
-<!-- BEGIN: Dark Store vs White Store Comparison Matrix -->
-<section class="section-frame py-16 md:py-24 bg-brand-cream relative vs-compare-section" id="vsCompare">
+<!-- /SECTION: F — Cold-Chain Imperative -->
+
+<!-- ========== SECTION: G — Dark Store vs White Store ========== -->
+<section class="section-frame bg-brand-cream relative vs-compare-section" id="vsCompare">
 <div class="section-inner max-w-5xl px-4 sm:px-6">
 <div class="vs-pin-track" id="vsPinTrack">
 <div class="vs-pin-sticky">
@@ -1491,9 +350,10 @@
 </div>
 </div>
 </section>
-<!-- END: Dark Store vs White Store Comparison Matrix -->
-<!-- BEGIN: Buying Efficiency & FIFO Architecture -->
-<section class="section-frame py-16 md:py-24 bg-white" id="fifo">
+<!-- /SECTION: G — Dark Store vs White Store -->
+
+<!-- ========== SECTION: H — Smart Buying & FIFO ========== -->
+<section class="section-frame bg-white" id="fifo">
 <div class="section-inner max-w-7xl px-4 sm:px-6">
 <div class="reveal-item fifo-layout" aria-label="Smart buying efficiency and FIFO pillars">
 <div class="fifo-intro text-left">
@@ -1576,9 +436,12 @@
 </div>
 </div>
 </section>
-<!-- END: Buying Efficiency & FIFO Architecture -->
-<!-- BEGIN: Sanitary & Food Safety Assurance -->
-<section class="section-frame py-16 md:py-24 bg-[#F3EEE6]" id="hygiene">
+<!-- /SECTION: H — Smart Buying & FIFO -->
+
+<!-- ========== SECTION: I — Sanitary & Food Safety ========== -->
+<!-- cover-pair: Certified Standards sticks; Unified Commerce scrolls over -->
+<div class="cover-pair">
+<section class="section-frame bg-brand-cream cover-pair__base" id="hygiene">
 <div class="section-inner max-w-7xl px-4 sm:px-6">
 <div class="reveal-item">
 <div class="text-left max-w-3xl">
@@ -1629,9 +492,10 @@
 </div>
 </div>
 </section>
-<!-- END: Sanitary & Food Safety Assurance -->
-<!-- BEGIN: Channel Integration Hub (order orchestration) -->
-<section class="section-frame py-16 md:py-24 bg-white relative overflow-hidden" id="integrations" data-purpose="channel-integration">
+<!-- /SECTION: I — Sanitary & Food Safety -->
+
+<!-- ========== SECTION: J — Channel Integrations ========== -->
+<section class="section-frame bg-white relative overflow-visible integ-section cover-pair__mid" id="integrations" data-purpose="channel-integration">
 <!-- Soft arch pattern accents -->
 <div class="absolute top-0 left-6 w-16 sm:w-24 h-40 sm:h-56 bg-brand-pink/50 arch-pillar pointer-events-none" aria-hidden="true"></div>
 <div class="absolute top-0 right-8 w-20 sm:w-28 h-48 sm:h-64 bg-brand-mint/40 arch-pillar pointer-events-none" aria-hidden="true"></div>
@@ -1648,86 +512,84 @@
 
 <!-- Desktop / tablet diagram — equal side columns keep hub centered -->
 <div class="reveal-item hidden md:grid integ-diagram" id="integDiagram">
-<!-- Left column: icons + full start→end rails into hub -->
-<div class="flex items-stretch justify-end gap-0 min-w-0 translate-x-3 lg:translate-x-6">
-<div class="flex flex-col gap-3 w-12 shrink-0 items-center" id="integClients">
-<a class="integ-platform w-11 h-11 rounded-xl bg-[#E23744] border border-[#E23744] flex items-center justify-center overflow-hidden p-2 shadow-xs hover:shadow-md transition-shadow" href="#contact" title="Zomato" aria-label="Zomato">
-<img alt="Zomato" class="w-full h-full object-contain brightness-0 invert" src="assets/integrations/zomato.svg" width="28" height="28"/>
+<svg id="integLeftSvg" class="integ-connectors" fill="none" aria-hidden="true"></svg>
+<!-- Left column: icons + spacer for connector run into hub -->
+<div class="flex items-stretch justify-start gap-0 min-w-0 -translate-x-3 lg:-translate-x-5 relative z-[1]">
+<div class="flex flex-col gap-4 w-16 shrink-0 items-center" id="integClients">
+<a class="integ-platform w-14 h-14 rounded-2xl bg-[#E23744] border border-[#E23744] flex items-center justify-center overflow-hidden p-2.5 shadow-xs hover:shadow-md transition-shadow" href="#contact" title="Zomato" aria-label="Zomato">
+<img alt="Zomato" class="w-full h-full object-contain brightness-0 invert" src="assets/integrations/zomato.svg" width="36" height="36"/>
 </a>
-<a class="integ-platform w-11 h-11 rounded-xl bg-white border border-brand-coral/30 flex items-center justify-center overflow-hidden p-2 shadow-xs hover:shadow-md transition-shadow" href="#contact" title="Swiggy" aria-label="Swiggy">
-<img alt="Swiggy" class="w-full h-full object-contain" src="assets/integrations/swiggy.svg" width="28" height="28"/>
+<a class="integ-platform w-14 h-14 rounded-2xl bg-white border border-brand-coral/30 flex items-center justify-center overflow-hidden p-2.5 shadow-xs hover:shadow-md transition-shadow" href="#contact" title="Swiggy" aria-label="Swiggy">
+<img alt="Swiggy" class="w-full h-full object-contain" src="assets/integrations/swiggy.svg" width="36" height="36"/>
 </a>
-<a class="integ-platform w-11 h-11 rounded-xl bg-white border border-brand-mint/40 flex items-center justify-center overflow-hidden p-1 shadow-xs hover:shadow-md transition-shadow" href="#contact" title="Blinkit" aria-label="Blinkit">
-<img alt="Blinkit" class="w-full h-full object-contain" src="assets/integrations/blinkit.svg" width="28" height="28"/>
+<a class="integ-platform w-14 h-14 rounded-2xl bg-white border border-brand-mint/40 flex items-center justify-center overflow-hidden p-1.5 shadow-xs hover:shadow-md transition-shadow" href="#contact" title="Blinkit" aria-label="Blinkit">
+<img alt="Blinkit" class="w-full h-full object-contain" src="assets/integrations/blinkit.svg" width="36" height="36"/>
 </a>
-<a class="integ-platform w-11 h-11 rounded-xl bg-white border border-brand-teal/20 flex items-center justify-center overflow-hidden p-1 shadow-xs hover:shadow-md transition-shadow" href="#contact" title="magicpin" aria-label="magicpin">
-<img alt="magicpin" class="w-full h-full object-contain" src="assets/integrations/magicpin.svg" width="28" height="28"/>
+<a class="integ-platform w-14 h-14 rounded-2xl bg-white border border-brand-teal/20 flex items-center justify-center overflow-hidden p-1.5 shadow-xs hover:shadow-md transition-shadow" href="#contact" title="magicpin" aria-label="magicpin">
+<img alt="magicpin" class="w-full h-full object-contain" src="assets/integrations/magicpin.svg" width="36" height="36"/>
 </a>
-<a class="integ-platform w-11 h-11 rounded-xl bg-[#232F3E] border border-brand-apricot/40 flex items-center justify-center overflow-hidden p-2 shadow-xs hover:shadow-md transition-shadow" href="#contact" title="Amazon Food" aria-label="Amazon Food">
-<img alt="Amazon Food" class="w-full h-full object-contain brightness-0 invert" src="assets/integrations/amazon.svg" width="28" height="28"/>
+<a class="integ-platform w-14 h-14 rounded-2xl bg-[#232F3E] border border-brand-apricot/40 flex items-center justify-center overflow-hidden p-2.5 shadow-xs hover:shadow-md transition-shadow" href="#contact" title="Amazon Food" aria-label="Amazon Food">
+<img alt="Amazon Food" class="w-full h-full object-contain brightness-0 invert" src="assets/integrations/amazon.svg" width="36" height="36"/>
 </a>
 </div>
-<div class="relative flex-1 max-w-[7rem] sm:max-w-[8.5rem] lg:max-w-[10rem] min-w-[4.5rem] ml-1" id="integLeftRails">
-<svg id="integLeftSvg" class="absolute inset-0 w-full h-full overflow-visible" fill="none" aria-hidden="true"></svg>
-</div>
+<div class="flex-1 max-w-[11rem] sm:max-w-[13rem] lg:max-w-[16rem] min-w-[6.5rem] ml-3" id="integLeftRails" aria-hidden="true"></div>
 </div>
 
 <!-- Center hub -->
-<div class="relative flex items-center justify-center justify-self-center" id="integHub">
+<div class="relative z-[1] flex items-center justify-center justify-self-center" id="integHub">
 <div class="integ-hub-graph" aria-label="Propelpad White Store OS circular graph">
 <svg viewBox="0 0 200 200" role="img">
 <title>White Store OS capabilities graph</title>
 <circle cx="100" cy="100" r="96" fill="none" stroke="#B8DFD8" stroke-width="0.6" opacity="0.45"/>
 <circle cx="100" cy="100" r="88" fill="none" stroke="#F6D6D6" stroke-width="0.6" opacity="0.4"/>
-<path d="M100 22 A78 78 0 0 1 178 100 L155 100 A55 55 0 0 0 100 45 Z" fill="#2C6B74"/>
-<path d="M178 100 A78 78 0 0 1 100 178 L100 155 A55 55 0 0 0 155 100 Z" fill="#F49D8C"/>
-<path d="M100 178 A78 78 0 0 1 22 100 L45 100 A55 55 0 0 0 100 155 Z" fill="#F8CE9F"/>
-<path d="M22 100 A78 78 0 0 1 100 22 L100 45 A55 55 0 0 0 45 100 Z" fill="#B8DFD8"/>
+<path d="M100 18 A82 82 0 0 1 182 100 L148 100 A48 48 0 0 0 100 52 Z" fill="#2C6B74"/>
+<path d="M182 100 A82 82 0 0 1 100 182 L100 148 A48 48 0 0 0 148 100 Z" fill="#F49D8C"/>
+<path d="M100 182 A82 82 0 0 1 18 100 L52 100 A48 48 0 0 0 100 148 Z" fill="#F8CE9F"/>
+<path d="M18 100 A82 82 0 0 1 100 18 L100 52 A48 48 0 0 0 52 100 Z" fill="#B8DFD8"/>
 <g stroke="#FAF7F2" stroke-width="3">
-<line x1="100" y1="45" x2="100" y2="22"/>
-<line x1="155" y1="100" x2="178" y2="100"/>
-<line x1="100" y1="155" x2="100" y2="178"/>
-<line x1="45" y1="100" x2="22" y2="100"/>
+<line x1="100" y1="52" x2="100" y2="18"/>
+<line x1="148" y1="100" x2="182" y2="100"/>
+<line x1="100" y1="148" x2="100" y2="182"/>
+<line x1="52" y1="100" x2="18" y2="100"/>
 </g>
 <defs>
-<path id="arc-order" d="M108 30 A70 70 0 0 1 170 100"/>
-<path id="arc-stock" d="M170 108 A70 70 0 0 1 100 170"/>
-<path id="arc-fefo" d="M92 170 A70 70 0 0 1 30 100"/>
-<path id="arc-menu" d="M30 92 A70 70 0 0 1 100 30"/>
+<path id="arc-order" d="M106 28 A72 72 0 0 1 172 100"/>
+<path id="arc-stock" d="M172 106 A72 72 0 0 1 100 172"/>
+<path id="arc-fefo" d="M94 172 A72 72 0 0 1 28 100"/>
+<path id="arc-menu" d="M28 94 A72 72 0 0 1 100 28"/>
 </defs>
-<text fill="#fff" font-size="6.2" font-weight="800" letter-spacing="0.3">
-<textPath href="#arc-order" startOffset="6%">ORDER MANAGEMENT</textPath>
+<text fill="#fff" font-size="10.5" font-weight="800" letter-spacing="0">
+<textPath href="#arc-order" startOffset="3%">ORDER MANAGEMENT</textPath>
 </text>
-<text fill="#1E293B" font-size="6.2" font-weight="800" letter-spacing="0.3">
-<textPath href="#arc-stock" startOffset="8%">STOCK MANAGEMENT</textPath>
+<text fill="#1E293B" font-size="10.5" font-weight="800" letter-spacing="0">
+<textPath href="#arc-stock" startOffset="5%">STOCK MANAGEMENT</textPath>
 </text>
-<text fill="#1E293B" font-size="5.8" font-weight="800" letter-spacing="0.25">
-<textPath href="#arc-fefo" startOffset="4%">REPORTS &amp; ANALYTICS</textPath>
+<text fill="#1E293B" font-size="9.6" font-weight="800" letter-spacing="0">
+<textPath href="#arc-fefo" startOffset="1%">REPORTS &amp; ANALYTICS</textPath>
 </text>
-<text fill="#1D4B52" font-size="6.2" font-weight="800" letter-spacing="0.3">
-<textPath href="#arc-menu" startOffset="6%">MENU MANAGEMENT</textPath>
+<text fill="#1D4B52" font-size="10.5" font-weight="800" letter-spacing="0">
+<textPath href="#arc-menu" startOffset="3%">MENU MANAGEMENT</textPath>
 </text>
 </svg>
 <div class="integ-hub-center px-1.5">
-<span class="text-[7px] uppercase tracking-[0.14em] font-extrabold text-brand-coral">Propelpad</span>
-<span class="text-[10px] font-heading font-black text-brand-teal leading-tight mt-0.5">White Store<br/>OS</span>
-<span class="mt-0.5 text-[7px] font-bold text-brand-slate/70">-18°C sync</span>
+<span class="text-[9px] uppercase tracking-[0.14em] font-extrabold text-brand-coral">Propelpad</span>
+<span class="text-[13px] font-heading font-black text-brand-teal leading-tight mt-0.5">White Store<br/>OS</span>
+<span class="mt-0.5 text-[9px] font-bold text-brand-slate/70">-18°C sync</span>
 </div>
 </div>
 </div>
 
-<!-- Right column: arrow start→end, panel shifted left toward hub -->
-<div class="flex items-center justify-start gap-0 min-w-0 -translate-x-3 lg:-translate-x-6">
-<div class="relative flex-1 max-w-[7rem] sm:max-w-[8.5rem] lg:max-w-[10rem] h-8 flex items-center min-w-[4.5rem]" id="integRightRails">
+<!-- Right column: same rail distance as left (circle → store) -->
+<div class="flex items-center justify-end gap-0 min-w-0 translate-x-1 lg:translate-x-2">
+<div class="relative flex-1 max-w-[9rem] sm:max-w-[11rem] lg:max-w-[13rem] h-8 flex items-center min-w-[5.5rem] mr-2" id="integRightRails">
 <svg class="w-full h-full overflow-visible" viewBox="0 0 120 24" preserveAspectRatio="none" fill="none" aria-hidden="true">
-<!-- full span: circle edge → panel edge -->
-<path class="integ-dash integ-flow-line" d="M0 12 H 108" stroke="#94a3b8" stroke-width="1.5" vector-effect="non-scaling-stroke"/>
+<path class="integ-dash integ-flow-line" d="M0 12 H 110" stroke="#94a3b8" stroke-width="1.6" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
 </svg>
 <svg class="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 text-brand-teal pointer-events-none" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-<path d="M1 1.5 L10 6 L1 10.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1 1.5 L10 6 L1 10.5" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
 </div>
-<div class="w-[150px] shrink-0 ml-1">
+<div class="w-[150px] shrink-0" id="integStorePanel">
 <div class="bg-brand-cream rounded-2xl border border-brand-mint/50 p-3 shadow-sm">
 <div class="text-[11px] font-heading font-extrabold text-brand-teal mb-2">Your White Store</div>
 <div class="grid grid-cols-2 gap-1.5">
@@ -1765,45 +627,46 @@
 
 <!-- Mobile stacked diagram -->
 <div class="reveal-item md:hidden space-y-6">
-<div class="flex flex-wrap justify-center gap-2.5">
-<a class="w-11 h-11 rounded-xl bg-[#E23744] border border-[#E23744] flex items-center justify-center p-2 shadow-xs" href="#contact" aria-label="Zomato">
+<div class="flex flex-wrap justify-center gap-3">
+<a class="w-14 h-14 rounded-2xl bg-[#E23744] border border-[#E23744] flex items-center justify-center p-2.5 shadow-xs" href="#contact" aria-label="Zomato">
 <img alt="Zomato" class="w-full h-full object-contain brightness-0 invert" src="assets/integrations/zomato.svg"/>
 </a>
-<a class="w-11 h-11 rounded-xl bg-white border border-brand-coral/30 flex items-center justify-center p-2 shadow-xs" href="#contact" aria-label="Swiggy">
+<a class="w-14 h-14 rounded-2xl bg-white border border-brand-coral/30 flex items-center justify-center p-2.5 shadow-xs" href="#contact" aria-label="Swiggy">
 <img alt="Swiggy" class="w-full h-full object-contain" src="assets/integrations/swiggy.svg"/>
 </a>
-<a class="w-11 h-11 rounded-xl bg-white border border-brand-mint/40 flex items-center justify-center p-1 shadow-xs" href="#contact" aria-label="Blinkit">
+<a class="w-14 h-14 rounded-2xl bg-white border border-brand-mint/40 flex items-center justify-center p-1.5 shadow-xs" href="#contact" aria-label="Blinkit">
 <img alt="Blinkit" class="w-full h-full object-contain" src="assets/integrations/blinkit.svg"/>
 </a>
-<a class="w-11 h-11 rounded-xl bg-white border border-brand-teal/20 flex items-center justify-center p-1 shadow-xs" href="#contact" aria-label="magicpin">
+<a class="w-14 h-14 rounded-2xl bg-white border border-brand-teal/20 flex items-center justify-center p-1.5 shadow-xs" href="#contact" aria-label="magicpin">
 <img alt="magicpin" class="w-full h-full object-contain" src="assets/integrations/magicpin.svg"/>
 </a>
-<a class="w-11 h-11 rounded-xl bg-[#232F3E] border border-brand-apricot/40 flex items-center justify-center p-2 shadow-xs" href="#contact" aria-label="Amazon Food">
+<a class="w-14 h-14 rounded-2xl bg-[#232F3E] border border-brand-apricot/40 flex items-center justify-center p-2.5 shadow-xs" href="#contact" aria-label="Amazon Food">
 <img alt="Amazon Food" class="w-full h-full object-contain brightness-0 invert" src="assets/integrations/amazon.svg"/>
 </a>
 </div>
 <div class="flex justify-center">
-<div class="integ-hub-graph w-[min(100%,240px)] mx-auto" aria-label="Propelpad White Store OS circular graph">
+<div class="integ-hub-graph w-[min(100%,300px)] mx-auto" aria-label="Propelpad White Store OS circular graph">
 <svg viewBox="0 0 200 200" role="img">
 <circle cx="100" cy="100" r="96" fill="none" stroke="#B8DFD8" stroke-width="0.6" opacity="0.45"/>
-<path d="M100 22 A78 78 0 0 1 178 100 L155 100 A55 55 0 0 0 100 45 Z" fill="#2C6B74"/>
-<path d="M178 100 A78 78 0 0 1 100 178 L100 155 A55 55 0 0 0 155 100 Z" fill="#F49D8C"/>
-<path d="M100 178 A78 78 0 0 1 22 100 L45 100 A55 55 0 0 0 100 155 Z" fill="#F8CE9F"/>
-<path d="M22 100 A78 78 0 0 1 100 22 L100 45 A55 55 0 0 0 45 100 Z" fill="#B8DFD8"/>
+<path d="M100 18 A82 82 0 0 1 182 100 L148 100 A48 48 0 0 0 100 52 Z" fill="#2C6B74"/>
+<path d="M182 100 A82 82 0 0 1 100 182 L100 148 A48 48 0 0 0 148 100 Z" fill="#F49D8C"/>
+<path d="M100 182 A82 82 0 0 1 18 100 L52 100 A48 48 0 0 0 100 148 Z" fill="#F8CE9F"/>
+<path d="M18 100 A82 82 0 0 1 100 18 L100 52 A48 48 0 0 0 52 100 Z" fill="#B8DFD8"/>
 <defs>
-<path id="m-arc-order" d="M108 30 A70 70 0 0 1 170 100"/>
-<path id="m-arc-stock" d="M170 108 A70 70 0 0 1 100 170"/>
-<path id="m-arc-fefo" d="M92 170 A70 70 0 0 1 30 100"/>
-<path id="m-arc-menu" d="M30 92 A70 70 0 0 1 100 30"/>
+<path id="m-arc-order" d="M106 28 A72 72 0 0 1 172 100"/>
+<path id="m-arc-stock" d="M172 106 A72 72 0 0 1 100 172"/>
+<path id="m-arc-fefo" d="M94 172 A72 72 0 0 1 28 100"/>
+<path id="m-arc-menu" d="M28 94 A72 72 0 0 1 100 28"/>
 </defs>
-<text fill="#fff" font-size="6.5" font-weight="800" letter-spacing="0.4"><textPath href="#m-arc-order" startOffset="6%">ORDER MANAGEMENT</textPath></text>
-<text fill="#1E293B" font-size="6.5" font-weight="800" letter-spacing="0.4"><textPath href="#m-arc-stock" startOffset="8%">STOCK MANAGEMENT</textPath></text>
-<text fill="#1E293B" font-size="6.2" font-weight="800" letter-spacing="0.3"><textPath href="#m-arc-fefo" startOffset="4%">REPORTS &amp; ANALYTICS</textPath></text>
-<text fill="#1D4B52" font-size="6.5" font-weight="800" letter-spacing="0.4"><textPath href="#m-arc-menu" startOffset="6%">MENU MANAGEMENT</textPath></text>
+<text fill="#fff" font-size="10.5" font-weight="800" letter-spacing="0"><textPath href="#m-arc-order" startOffset="3%">ORDER MANAGEMENT</textPath></text>
+<text fill="#1E293B" font-size="10.5" font-weight="800" letter-spacing="0"><textPath href="#m-arc-stock" startOffset="5%">STOCK MANAGEMENT</textPath></text>
+<text fill="#1E293B" font-size="9.6" font-weight="800" letter-spacing="0"><textPath href="#m-arc-fefo" startOffset="1%">REPORTS &amp; ANALYTICS</textPath></text>
+<text fill="#1D4B52" font-size="10.5" font-weight="800" letter-spacing="0"><textPath href="#m-arc-menu" startOffset="3%">MENU MANAGEMENT</textPath></text>
 </svg>
 <div class="integ-hub-center px-2">
-<span class="text-[8px] uppercase tracking-[0.16em] font-extrabold text-brand-coral">Propelpad</span>
-<span class="text-[11px] font-heading font-black text-brand-teal leading-tight mt-0.5">White Store<br/>OS</span>
+<span class="text-[10px] uppercase tracking-[0.16em] font-extrabold text-brand-coral">Propelpad</span>
+<span class="text-[14px] font-heading font-black text-brand-teal leading-tight mt-0.5">White Store<br/>OS</span>
+<span class="mt-0.5 text-[9px] font-bold text-brand-slate/70">-18°C sync</span>
 </div>
 </div>
 </div>
@@ -1821,9 +684,10 @@
 </div>
 </div>
 </section>
-<!-- END: Channel Integration Hub -->
-<!-- BEGIN: Trusted by restaurants (staggered logo cloud) -->
-<section class="section-frame py-14 md:py-20 bg-white relative overflow-hidden" id="trusted" data-purpose="social-proof">
+<!-- /SECTION: J — Channel Integrations -->
+
+<!-- ========== SECTION: K — Trusted Brands ========== -->
+<section class="section-frame bg-brand-cream relative cover-pair__over" id="trusted" data-purpose="social-proof">
 <div class="section-inner max-w-6xl px-4 sm:px-6 relative z-10">
 <div class="reveal-item text-center max-w-3xl mx-auto mb-10 md:mb-14">
 <span class="inline-block text-xs uppercase tracking-widest font-extrabold text-brand-teal bg-brand-mint/40 px-4 py-1.5 rounded-full mb-4">Brand Family</span>
@@ -1854,9 +718,12 @@
 </div>
 </div>
 </section>
-<!-- END: Trusted by restaurants -->
-<!-- BEGIN: Mumbai & Thane Network Map (given hubs only) -->
-<section class="section-frame py-14 md:py-20 bg-brand-cream relative overflow-hidden" data-purpose="active-network" id="network">
+<!-- /SECTION: K — Trusted Brands -->
+</div>
+<!-- /cover-pair: hygiene ← integrations ← trusted -->
+
+<!-- ========== SECTION: L — Network Map (Mumbai & Thane) ========== -->
+<section class="section-frame bg-white relative" data-purpose="active-network" id="network">
 <div class="section-inner max-w-6xl px-4 sm:px-6">
 <div class="reveal-item section-head section-head--tight mb-8 md:mb-10">
 <div class="section-kicker">Live Coverage</div>
@@ -1963,9 +830,10 @@
 </div>
 </div>
 </section>
-<!-- END: Mumbai & Thane Network Map -->
-<!-- BEGIN: Team Members (infinite horizontal marquee) -->
-<section class="section-frame relative py-16 md:py-24 bg-brand-cream overflow-hidden" id="members">
+<!-- /SECTION: L — Network Map -->
+
+<!-- ========== SECTION: M — Team Members ========== -->
+<section class="section-frame relative bg-brand-cream" id="members">
 <div class="section-inner max-w-6xl px-4 sm:px-6 relative z-10">
 <div class="section-head mb-12 md:mb-14">
 <div class="section-kicker section-kicker--teal">The People Behind The Network</div>
@@ -2014,17 +882,18 @@
 </div>
 </div>
 </section>
-<!-- END: Team Members -->
-<!-- BEGIN: Final Executive CTA Section -->
-<section class="section-frame py-16 md:py-24 bg-white relative" data-purpose="executive-contact" id="contact">
+<!-- /SECTION: M — Team Members -->
+
+<!-- ========== SECTION: N — Join The Network (CTA) ========== -->
+<section class="section-frame bg-white relative" data-purpose="executive-contact" id="contact">
 <div class="section-inner max-w-7xl px-4 sm:px-6">
 <!-- High Impact Dark Teal Card -->
-<div class="reveal-item bg-brand-teal text-white rounded-5xl p-8 sm:p-14 shadow-2xl relative overflow-hidden">
+<div class="reveal-item bg-brand-teal text-white rounded-5xl p-6 sm:p-8 md:p-10 shadow-2xl relative overflow-hidden">
 <!-- Subtle Arched Ribbon Graphic Behind CTA -->
 <div class="absolute -right-10 -bottom-20 w-80 h-96 bg-brand-tealDark/70 arch-pillar-up pointer-events-none"></div>
 <div class="absolute right-40 -bottom-10 w-44 h-80 bg-brand-coral/20 arch-pillar-up pointer-events-none"></div>
 <div class="relative z-10 max-w-5xl">
-<div class="section-head section-head--left section-head--on-dark mb-10">
+<div class="section-head section-head--left section-head--on-dark mb-6">
 <div class="section-kicker">Join The Network</div>
 <h2 class="section-title">
             Ready to Deliver Pristine Frozen Goodness Across Mumbai?
@@ -2035,7 +904,7 @@
           </p>
 </div>
 <!-- Executive Contact Pill Cards -->
-<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
 <!-- Contact Card 1 -->
 <div class="bg-white/10 backdrop-blur-md rounded-3xl p-5 border border-white/20">
 <div class="text-xs uppercase font-extrabold text-brand-apricot tracking-wider">Leadership Inquiries</div>
@@ -2068,9 +937,10 @@
 </div>
 </div>
 </section>
-<!-- END: Final Executive CTA Section -->
-<!-- BEGIN: Dark Footer (Located at) -->
-<footer class="relative bg-[#141414] text-white overflow-hidden" data-purpose="site-footer">
+<!-- /SECTION: N — Join The Network -->
+
+<!-- ========== SECTION: O — Footer ========== -->
+<footer class="relative bg-[#141414] text-white overflow-hidden" data-purpose="site-footer" id="siteFooter">
 <!-- Soft circular watermark -->
 <div class="pointer-events-none absolute -right-24 top-1/2 -translate-y-1/2 w-[420px] h-[420px] rounded-full border border-white/5"></div>
 <div class="pointer-events-none absolute -right-8 top-1/2 -translate-y-1/2 w-[280px] h-[280px] rounded-full border border-white/[0.04]"></div>
@@ -2162,449 +1032,38 @@
 </div>
 </div>
 </footer>
-<!-- END: Dark Footer -->
-<!-- BEGIN: Hub location → map pointer sync -->
-<script data-purpose="hub-location-map">
-    document.addEventListener('DOMContentLoaded', () => {
-      const frame = document.getElementById('hub-map-frame');
-      const label = document.getElementById('hub-map-label');
-      const dirBtn = document.getElementById('start-directions-btn');
-      const hint = document.getElementById('hub-directions-hint');
-      const buttons = document.querySelectorAll('.hub-loc-btn');
-      if (!frame || !buttons.length) return;
+<!-- /SECTION: O — Footer -->
 
-      // Keep India-wide zoom; only move the pin
-      const INDIA_BBOX = '70.00%2C8.50%2C95.00%2C34.50';
+<!--
+  ========== SCRIPTS (external files in /js) ==========
+  Jump markers (search SCRIPT:):
+  1 Hub map | 2 Scroll reveal | 3 Members marquee
+  4 Integration rails | 5 Prep counter | 6 Store gallery
+  7 Dark vs White pin | 8 Hero cursor bubble
+-->
 
-      function selectHub(btn) {
-        const lat = parseFloat(btn.dataset.lat);
-        const lng = parseFloat(btn.dataset.lng);
-        const name = btn.dataset.name || 'Hub';
-        const dest = btn.dataset.dest || '';
+<!-- ========== SCRIPT: 1 — Hub location → map pointer ========== -->
+<script src="js/01-hub-map.js" defer></script>
 
-        frame.src = `https://www.openstreetmap.org/export/embed.html?bbox=${INDIA_BBOX}&layer=mapnik&marker=${lat.toFixed(4)}%2C${lng.toFixed(4)}`;
+<!-- ========== SCRIPT: 2 — Scroll reveal ========== -->
+<script src="js/02-scroll-reveal.js" defer></script>
 
-        if (label) label.textContent = name;
-        if (dirBtn) {
-          dirBtn.href = `https://www.google.com/maps/dir/?api=1&destination=${dest}&travelmode=driving`;
-        }
-        if (hint) hint.textContent = `Opens Google Maps navigation to ${name} hub`;
+<!-- ========== SCRIPT: 3 — Members marquee ========== -->
+<script src="js/03-members-marquee.js" defer></script>
 
-        buttons.forEach((b) => {
-          const active = b === btn;
-          b.setAttribute('aria-pressed', active ? 'true' : 'false');
-          b.classList.toggle('bg-brand-cream', active);
-          b.classList.toggle('border', active);
-          b.classList.toggle('border-brand-coral/40', active);
-          b.classList.toggle('hover:bg-brand-cream/80', !active);
-        });
-      }
+<!-- ========== SCRIPT: 4 — Integration connector rails ========== -->
+<script src="js/04-integration-rails.js" defer></script>
 
-      buttons.forEach((btn) => {
-        btn.addEventListener('click', () => selectHub(btn));
-      });
-    });
-  </script>
-<!-- END: Hub location → map pointer sync -->
-<!-- BEGIN: Scroll Entrance Animations via IntersectionObserver -->
-<script data-purpose="scroll-animations">
-    document.addEventListener('DOMContentLoaded', () => {
-      const revealItems = document.querySelectorAll('.reveal-item');
-      
-      const observer = new IntersectionObserver((entries, obs) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-revealed');
-            obs.unobserve(entry.target);
-          }
-        });
-      }, {
-        root: null,
-        threshold: 0.12,
-        rootMargin: '0px 0px -40px 0px'
-      });
+<!-- ========== SCRIPT: 5 — Prep speed count-up ========== -->
+<script src="js/05-prep-counter.js" defer></script>
 
-      revealItems.forEach(el => observer.observe(el));
-    });
-  </script>
-<!-- END: Scroll Entrance Animations via IntersectionObserver -->
-<!-- BEGIN: Infinite members marquee -->
-<script data-purpose="members-marquee">
-    document.addEventListener('DOMContentLoaded', () => {
-      const root = document.getElementById('membersMarquee');
-      const track = document.getElementById('membersTrack');
-      const set = track && track.querySelector('[data-marquee-set]');
-      if (!root || !track || !set) return;
+<!-- ========== SCRIPT: 6 — Store gallery auto-rotate ========== -->
+<script src="js/06-store-gallery.js" defer></script>
 
-      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+<!-- ========== SCRIPT: 7 — Dark vs White mobile pin ========== -->
+<script src="js/07-vs-compare-pin.js" defer></script>
 
-      const fillTrack = () => {
-        while (track.children.length > 1) track.removeChild(track.lastChild);
-        const viewport = root.offsetWidth || window.innerWidth;
-        const setWidth = set.offsetWidth;
-        if (!setWidth) return 0;
-        // Enough copies to cover viewport twice — no empty gap mid-loop
-        const copies = Math.max(2, Math.ceil((viewport * 2) / setWidth) + 1);
-        for (let i = 1; i < copies; i++) {
-          const clone = set.cloneNode(true);
-          clone.setAttribute('aria-hidden', 'true');
-          clone.querySelectorAll('[alt]').forEach((img) => img.setAttribute('alt', ''));
-          track.appendChild(clone);
-        }
-        return set.offsetWidth;
-      };
-
-      let setWidth = fillTrack();
-      if (reduceMotion || !setWidth) return;
-
-      let offset = 0;
-      const speed = 0.6; // px per frame ~36px/s
-      let paused = false;
-      let rafId = 0;
-
-      root.addEventListener('mouseenter', () => { paused = true; });
-      root.addEventListener('mouseleave', () => { paused = false; });
-
-      const tick = () => {
-        if (!paused) {
-          offset -= speed;
-          if (Math.abs(offset) >= setWidth) {
-            offset += setWidth; // wrap seamlessly
-          }
-          track.style.transform = `translate3d(${offset}px,0,0)`;
-        }
-        rafId = requestAnimationFrame(tick);
-      };
-      rafId = requestAnimationFrame(tick);
-
-      let resizeTimer;
-      window.addEventListener('resize', () => {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(() => {
-          offset = 0;
-          track.style.transform = 'translate3d(0,0,0)';
-          setWidth = fillTrack();
-        }, 150);
-      });
-    });
-  </script>
-<!-- END: Infinite members marquee -->
-<!-- BEGIN: Integration connector rails -->
-<script data-purpose="integ-connector-rails">
-    document.addEventListener('DOMContentLoaded', () => {
-      const diagram = document.getElementById('integDiagram');
-      const clients = document.getElementById('integClients');
-      const rails = document.getElementById('integLeftRails');
-      const svg = document.getElementById('integLeftSvg');
-      if (!clients || !rails || !svg) return;
-
-      const draw = () => {
-        if (window.matchMedia('(max-width: 767px)').matches) {
-          svg.innerHTML = '';
-          return;
-        }
-        // Stretch rails to icon column height
-        const clientH = Math.round(clients.getBoundingClientRect().height);
-        rails.style.height = clientH + 'px';
-        const w = Math.max(1, Math.round(rails.getBoundingClientRect().width));
-        const h = Math.max(1, clientH);
-        svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
-        svg.setAttribute('width', String(w));
-        svg.setAttribute('height', String(h));
-
-        const railRect = rails.getBoundingClientRect();
-        // Full start (icon edge) → end (circle edge)
-        const startX = 0;
-        const endX = w - 2;
-        const endY = h / 2;
-        const items = clients.querySelectorAll('.integ-platform');
-        let paths = '';
-        items.forEach((el) => {
-          const r = el.getBoundingClientRect();
-          const startY = r.top + r.height / 2 - railRect.top;
-          const c1x = w * 0.42;
-          const c2x = w * 0.78;
-          paths += `<path class="integ-dash integ-flow-line" d="M ${startX} ${startY.toFixed(2)} C ${c1x.toFixed(2)} ${startY.toFixed(2)}, ${c2x.toFixed(2)} ${endY.toFixed(2)}, ${endX} ${endY.toFixed(2)}" stroke="#94a3b8" stroke-width="1.5" fill="none"/>`;
-        });
-        // Arrow tip at circle end
-        const ax = endX;
-        const ay = endY;
-        paths += `<path d="M ${ax - 8} ${ay - 5} L ${ax} ${ay} L ${ax - 8} ${ay + 5}" stroke="#2C6B74" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`;
-        svg.innerHTML = paths;
-      };
-
-      const schedule = () => requestAnimationFrame(() => requestAnimationFrame(draw));
-      schedule();
-      window.addEventListener('load', schedule);
-      window.addEventListener('resize', schedule);
-      // Redraw when scroll-reveal makes diagram visible
-      if (diagram) {
-        const mo = new MutationObserver(schedule);
-        mo.observe(diagram, { attributes: true, attributeFilter: ['class'] });
-      }
-      setTimeout(schedule, 300);
-      setTimeout(schedule, 800);
-    });
-  </script>
-<!-- END: Integration connector rails -->
-<!-- BEGIN: Prep speed count-up 0.00 → 1.38 -->
-<script data-purpose="prep-speed-counter">
-    document.addEventListener('DOMContentLoaded', () => {
-      const el = document.getElementById('prepSpeedCount');
-      if (!el) return;
-
-      const targetMin = Number(el.dataset.targetMin || 1);
-      const targetSec = Number(el.dataset.targetSec || 38);
-      const totalTarget = targetMin * 60 + targetSec; // 98 seconds
-      let played = false;
-
-      const format = (totalSec) => {
-        const m = Math.floor(totalSec / 60);
-        const s = Math.floor(totalSec % 60);
-        return m + '.' + String(s).padStart(2, '0');
-      };
-
-      const run = () => {
-        if (played) return;
-        played = true;
-        const duration = 1800;
-        const start = performance.now();
-
-        const tick = (now) => {
-          const t = Math.min(1, (now - start) / duration);
-          const eased = 1 - Math.pow(1 - t, 3);
-          const current = totalTarget * eased;
-          el.textContent = format(current);
-          if (t < 1) requestAnimationFrame(tick);
-          else el.textContent = format(totalTarget); // 1.38
-        };
-        requestAnimationFrame(tick);
-      };
-
-      if ('IntersectionObserver' in window) {
-        const io = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              run();
-              io.disconnect();
-            }
-          });
-        }, { threshold: 0.4 });
-        io.observe(el);
-      } else {
-        run();
-      }
-    });
-  </script>
-<!-- END: Prep speed count-up -->
-<!-- BEGIN: Store gallery auto rotate -->
-<script data-purpose="store-gallery-slider">
-    document.addEventListener('DOMContentLoaded', () => {
-      const stage = document.getElementById('storeStage');
-      const dotsWrap = document.getElementById('storeDots');
-      const nameEl = document.getElementById('storeStageName');
-      if (!stage) return;
-
-      const slides = Array.from(stage.querySelectorAll('.store-stage-img'));
-      if (!slides.length) return;
-
-      let index = Math.max(0, slides.findIndex((s) => s.classList.contains('is-active')));
-      let timer = null;
-      const INTERVAL = 4500;
-
-      const paintDots = () => {
-        if (!dotsWrap) return;
-        dotsWrap.innerHTML = slides.map((_, i) =>
-          `<button type="button" class="store-dot${i === index ? ' is-active' : ''}" aria-label="Store slide ${i + 1}"></button>`
-        ).join('');
-        dotsWrap.querySelectorAll('.store-dot').forEach((btn, i) => {
-          btn.addEventListener('click', () => goTo(i, true));
-        });
-      };
-
-      const goTo = (next, user) => {
-        slides[index]?.classList.remove('is-active');
-        index = (next + slides.length) % slides.length;
-        slides[index].classList.add('is-active');
-        if (nameEl) nameEl.textContent = slides[index].dataset.hub || 'White Store';
-        paintDots();
-        if (user) restart();
-      };
-
-      const restart = () => {
-        clearInterval(timer);
-        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-          timer = setInterval(() => goTo(index + 1, false), INTERVAL);
-        }
-      };
-
-      goTo(index, false);
-      restart();
-      document.addEventListener('visibilitychange', () => {
-        if (document.hidden) clearInterval(timer);
-        else restart();
-      });
-    });
-  </script>
-<!-- END: Store gallery auto rotate -->
-<!-- BEGIN: Dark vs White mobile pin scroll -->
-<script data-purpose="vs-compare-pin-scroll">
-    document.addEventListener('DOMContentLoaded', () => {
-      const track = document.getElementById('vsPinTrack');
-      const white = document.getElementById('vsWhitePanel');
-      if (!track || !white) return;
-
-      const mq = window.matchMedia('(max-width: 767px)');
-      let target = 0;
-      let current = 0;
-      let raf = 0;
-
-      const readTarget = () => {
-        if (!mq.matches) {
-          target = 0;
-          return false;
-        }
-        const total = track.offsetHeight - window.innerHeight;
-        if (total <= 0) {
-          target = 0;
-          return false;
-        }
-        const top = track.getBoundingClientRect().top;
-        target = Math.max(0, Math.min(1, -top / total));
-        return true;
-      };
-
-      const paint = (p) => {
-        white.style.transform = `translate3d(0, ${(1 - p) * 100}%, 0)`;
-      };
-
-      const tick = () => {
-        if (!mq.matches) {
-          current = 0;
-          white.style.transform = '';
-          raf = 0;
-          return;
-        }
-        readTarget();
-        // Light lerp = smooth, still locked to native scroll inertia
-        current += (target - current) * 0.22;
-        if (Math.abs(target - current) < 0.0006) current = target;
-        paint(current);
-        if (Math.abs(target - current) > 0.0006) {
-          raf = requestAnimationFrame(tick);
-        } else {
-          raf = 0;
-        }
-      };
-
-      const kick = () => {
-        if (!raf) raf = requestAnimationFrame(tick);
-      };
-
-      const onScroll = () => kick();
-      const onResize = () => {
-        current = target;
-        readTarget();
-        current = target;
-        paint(current);
-      };
-
-      readTarget();
-      current = target;
-      paint(current);
-      window.addEventListener('scroll', onScroll, { passive: true });
-      window.addEventListener('resize', onResize);
-      mq.addEventListener('change', onResize);
-    });
-  </script>
-<!-- END: Dark vs White mobile pin scroll -->
-<!-- BEGIN: Hero cursor bubble -->
-<script data-purpose="hero-cursor-bubble">
-    document.addEventListener('DOMContentLoaded', () => {
-      const hero = document.getElementById('heroSection');
-      const bubble = document.getElementById('heroCursorBubble');
-      if (!hero || !bubble) return;
-      if (window.matchMedia('(hover: none), (pointer: coarse)').matches) return;
-
-      let targetX = 0, targetY = 0, curX = 0, curY = 0;
-      let velX = 0, velY = 0;
-      let scale = 0, scaleVel = 0, opacity = 0;
-      let active = false, raf = 0;
-      const stiffness = 0.28;
-      const damping = 0.62;
-      // Softer spring for enter/leave size + fade
-      const appearStiff = 0.14;
-      const appearDamp = 0.72;
-
-      const paint = () => {
-        const dx = targetX - curX;
-        const dy = targetY - curY;
-        velX = (velX + dx * stiffness) * damping;
-        velY = (velY + dy * stiffness) * damping;
-        curX += velX;
-        curY += velY;
-
-        const targetScale = active ? 1 : 0;
-        const targetOpacity = active ? 1 : 0;
-        scaleVel = (scaleVel + (targetScale - scale) * appearStiff) * appearDamp;
-        scale += scaleVel;
-        opacity += (targetOpacity - opacity) * 0.12;
-
-        if (scale < 0.001) scale = 0;
-        if (opacity < 0.01 && !active) opacity = 0;
-
-        bubble.style.transform = `translate3d(${curX}px, ${curY}px, 0) scale(${scale})`;
-        bubble.style.opacity = String(opacity);
-
-        if (!active && opacity <= 0.01 && scale <= 0.01) {
-          hero.classList.remove('is-cursor-active');
-        }
-
-        const moving =
-          active ||
-          Math.abs(dx) > 0.2 || Math.abs(dy) > 0.2 ||
-          Math.abs(velX) > 0.08 || Math.abs(velY) > 0.08 ||
-          Math.abs(scaleVel) > 0.002 ||
-          Math.abs(targetScale - scale) > 0.01 ||
-          Math.abs(targetOpacity - opacity) > 0.01;
-
-        if (moving) {
-          raf = requestAnimationFrame(paint);
-        } else {
-          raf = 0;
-        }
-      };
-
-      const kick = () => {
-        if (!raf) raf = requestAnimationFrame(paint);
-      };
-
-      hero.addEventListener('pointerenter', (e) => {
-        const rect = hero.getBoundingClientRect();
-        targetX = curX = e.clientX - rect.left;
-        targetY = curY = e.clientY - rect.top;
-        velX = 0; velY = 0;
-        active = true;
-        hero.classList.add('is-cursor-active');
-        kick();
-      });
-
-      hero.addEventListener('pointermove', (e) => {
-        const rect = hero.getBoundingClientRect();
-        targetX = e.clientX - rect.left;
-        targetY = e.clientY - rect.top;
-        if (!active) {
-          active = true;
-          hero.classList.add('is-cursor-active');
-        }
-        kick();
-      });
-
-      hero.addEventListener('pointerleave', () => {
-        active = false;
-        kick();
-      });
-    });
-  </script>
-<!-- END: Hero cursor bubble -->
-</body></html>
+<!-- ========== SCRIPT: 8 — Hero cursor bubble ========== -->
+<script src="js/08-hero-cursor.js" defer></script>
+</body>
+</html>
