@@ -85,7 +85,8 @@
 
 <!-- ========== SECTION: A — Navigation ========== -->
 <header class="fixed top-4 inset-x-0 z-50 px-4 pointer-events-none" data-purpose="sticky-pill-navigation" id="siteNav">
-<div class="max-w-6xl mx-auto flex items-center justify-between pointer-events-auto bg-white/85 backdrop-blur-md px-6 py-3.5 rounded-full shadow-[0_10px_30px_rgba(44,107,116,0.08)] border border-brand-pink/60 transition-all duration-300">
+<div class="nav-shell max-w-6xl mx-auto pointer-events-auto">
+<div class="flex items-center justify-between bg-white/85 backdrop-blur-md px-4 sm:px-6 py-3.5 rounded-full shadow-[0_10px_30px_rgba(44,107,116,0.08)] border border-brand-pink/60 transition-all duration-300">
 <!-- Brand Logo -->
 <a class="flex items-center gap-2.5 group" href="index.html">
 <div class="w-10 h-10 rounded-full bg-brand-coral flex items-center justify-center text-white font-bold text-lg shadow-sm group-hover:scale-105 transition-transform">
@@ -105,12 +106,29 @@
 <a href="#fifo">Tech &amp; FIFO</a>
 <a href="#members">Members</a>
 </nav>
-<!-- CTA Button -->
-<div class="flex items-center gap-3">
-<a class="inline-flex items-center gap-2 bg-brand-coral hover:bg-[#eb8c7a] text-white px-6 py-2.5 rounded-full font-bold text-sm shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5 active:translate-y-0" href="#contact">
+<!-- Desktop CTA -->
+<a class="nav-cta" href="#contact">
 <span>Partner With Us</span>
-<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewbox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
 </a>
+<!-- Mobile menu toggle -->
+<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+<span class="nav-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+</button>
+</div>
+<div class="mobile-menu" id="mobileMenu" hidden>
+<nav aria-label="Mobile">
+<a href="#overview">Overview</a>
+<a href="#network">Network</a>
+<a href="#advantage">Advantage</a>
+<a href="#integrations">Integrations</a>
+<a href="#fifo">Tech &amp; FIFO</a>
+<a href="#members">Members</a>
+<a class="mobile-menu-cta" href="#contact">
+<span>Partner With Us</span>
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</a>
+</nav>
 </div>
 </div>
 </header>
@@ -135,10 +153,12 @@
 <!-- Cursor bubble: above arches, behind hero text -->
 <div class="hero-cursor-bubble" id="heroCursorBubble" aria-hidden="true"></div>
 <!-- Floating Confetti Elements (Artisanal Gelato Vibe) -->
-<div class="confetti-dot w-3 h-3 bg-brand-coral top-48 left-12 animate-float-slow"></div>
-<div class="confetti-dot w-4 h-4 bg-brand-teal top-64 right-16 animate-float-delayed"></div>
-<div class="confetti-dot w-2.5 h-2.5 bg-brand-apricot top-80 left-1/4 animate-float-slow"></div>
-<div class="confetti-dot w-3 h-3 bg-brand-mint top-36 right-1/4 animate-float-delayed"></div>
+<div class="hero-dots" aria-hidden="true">
+<div class="confetti-dot w-3 h-3 bg-brand-coral top-48 left-12"></div>
+<div class="confetti-dot w-4 h-4 bg-brand-teal top-64 right-16"></div>
+<div class="confetti-dot w-2.5 h-2.5 bg-brand-apricot top-80 left-1/4"></div>
+<div class="confetti-dot w-3 h-3 bg-brand-mint top-36 right-1/4"></div>
+</div>
 <div class="section-inner hero-inner max-w-5xl px-4 sm:px-6 relative z-10 text-center flex flex-col items-center justify-center w-full flex-1">
 <div class="hero-top flex flex-col items-center justify-center w-full">
 <p class="hero-eyebrow text-brand-teal md:text-white text-[10px] sm:text-xs font-bold mb-3 md:mb-5 px-2" data-hero-letters>
@@ -1038,5 +1058,8 @@ India's 1st Certified FSSAI Sub-Zero White Store Network
 
 <!-- ========== SCRIPT: 10 — Mobile cover after full page ========== -->
 <script src="js/10-cover-scroll.js" defer></script>
+
+<!-- ========== SCRIPT: 11 — Mobile hamburger menu ========== -->
+<script src="js/11-mobile-nav.js" defer></script>
 </body>
 </html>
