@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>WhiteStores – Solutions</title>
+<!-- Google Fonts: Manrope -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'deep-green': '#013125',
+            'lime-green': '#A6F134',
+            'off-white': '#F6F7F3',
+            'light-grey': '#E9ECE8',
+            'charcoal': '#252C29',
+            'muted-grey': '#69736D',
+          },
+          fontFamily: {
+            sans: ['Manrope', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      font-family: 'Manrope', sans-serif;
+      background-color: #FFFFFF;
+      color: #252C29;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+    .text-nowrap-custom {
+      white-space: nowrap;
+    }
+  </style>
+<link rel="stylesheet" href="css/style.css?v=ws-logo-size-v1"/>
+</head>
+<body class="bg-white text-charcoal">
+<!-- ============================================================== -->
+<!-- NAVIGATION BAR (Exact replica from Home page, Solutions active) -->
+<!-- ============================================================== -->
+<header class="ws-navbar">
+  <div class="ws-navbar-container">
+    
+    <!-- LEFT: Brand Logo (10-12% reduced, vertically centered) -->
+    <div class="ws-nav-col-left">
+      <a class="flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A6F134] rounded" data-path="home" href="index.html" title="WhiteStores Home">
+        <img alt="WhiteStores" class="ws-nav-logo" src="assets/whitestores-logo.png?v=ws-new-logo-2026"/>
+      </a>
+    </div>
+
+    <!-- CENTER: Desktop Navigation Links -->
+    <nav aria-label="Main Navigation" class="ws-nav-links">
+      <!-- Home -->
+      <a class="ws-nav-link " data-path="home" href="index.html">Home</a>
+      
+      <!-- Solutions Dropdown (Pristine White, Unified Standard) -->
+      <div class="relative group py-2">
+        <button aria-expanded="false" aria-haspopup="true" class="ws-nav-link ws-solutions-btn is-active" type="button">
+          <span>Solutions</span>
+          <span class="material-symbols-outlined ws-dropdown-chevron">expand_more</span>
+        </button>
+
+        <!-- Dropdown Card (White, Consistent Dimensions) -->
+        <div class="ws-dropdown-wrapper">
+          <div class="ws-dropdown-menu">
+            <a class="ws-dropdown-item group/item" data-path="storage-and-distribution" href="storage-distribution.html">
+              <span class="ws-dropdown-item-title">Storage &amp; Distribution</span>
+              <span class="ws-dropdown-item-desc">Ambient &amp; cold-chain spaces</span>
+            </a>
+            <a class="ws-dropdown-item group/item" data-path="commerce-operations" href="commerce-operations.html">
+              <span class="ws-dropdown-item-title">Commerce Operations</span>
+              <span class="ws-dropdown-item-desc">FMCG fulfillment workflows</span>
+            </a>
+            <a class="ws-dropdown-item group/item" data-path="quick-kitchen" href="quick-kitchen.html">
+              <span class="ws-dropdown-item-title">Quick Kitchen</span>
+              <span class="ws-dropdown-item-desc">Plug-and-play dark facilities</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Our Network -->
+      <a class="ws-nav-link " data-path="our-network" href="our-network.html">Our Network</a>
+
+      <!-- About Us -->
+      <a class="ws-nav-link " data-path="about-us" href="about-us.html">About Us</a>
+    </nav>
+
+    <!-- RIGHT: Partner With Us CTA Button (Desktop) -->
+    <div class="ws-nav-col-right hidden lg:flex">
+      <a class="ws-nav-cta" data-path="partner-with-us" href="partner-with-us.html">Partner With Us</a>
+    </div>
+
+        <!-- Mobile Hamburger Toggle Button (Compact green oval/pill with 3 snowy-white lines) -->
+    <div class="flex lg:hidden items-center justify-end">
+      <button aria-controls="ws-mobile-drawer" aria-expanded="false" aria-label="Open Mobile Navigation" class="ws-mobile-menu-pill" id="ws-mobile-menu-btn" type="button">
+        <span class="ws-hamburger-bar"></span>
+        <span class="ws-hamburger-bar"></span>
+        <span class="ws-hamburger-bar"></span>
+      </button>
+    </div>
+
+  </div>
+</header>
+<main class="w-full pt-20 flex-grow">
+<!-- ============================================================== -->
+<!-- HERO SECTION (Page 2: Solutions Overview) -->
+<!-- ============================================================== -->
+<section class="ws-hero ws-hero-solutions ws-hero-full-viewport relative bg-white text-surface-canvas overflow-hidden flex items-center justify-center border-b border-[#E9ECE8]">
+  <!-- Subtle Ambient Glow Layer -->
+  <div class="ws-hero-ambient-glow pointer-events-none" aria-hidden="true"></div>
+
+  <!-- Hero Content Container -->
+  <div class="ws-hero-content relative z-10 w-full max-w-[1280px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop py-6 sm:py-8 lg:py-10 text-center flex flex-col items-center">
+    <div class="max-w-[1040px] w-full mx-auto text-center flex flex-col items-center gap-3 sm:gap-4">
+      
+      <!-- Main Heading -->
+      <h1 class="ws-hero-title font-display-hero text-surface-canvas tracking-tight font-extrabold max-w-[1000px] mx-auto">
+        The infrastructure behind <span class="text-accent-lime">better food-commerce operations.</span>
+      </h1>
+
+      <!-- Luminous Accent Line -->
+      <div class="w-10 h-0.5 bg-accent-lime rounded-full mx-auto my-0.5"></div>
+
+      <!-- Description -->
+      <p class="ws-hero-desc text-white/85 font-body-lg text-sm sm:text-base lg:text-[1.0625rem] max-w-[650px] leading-relaxed mx-auto">
+        Every food business has its own operational challenges. WhiteStores brings together the facilities, people and processes required to help brands manage their day-to-day operations and grow their reach. Explore our solutions and choose the support that works for your business.
+      </p>
+
+      <!-- Supporting Text -->
+      <p class="ws-hero-subtext text-white/70 font-body-md text-xs sm:text-sm max-w-[640px] leading-relaxed mx-auto">
+        Storage, fulfillment &amp; quick kitchen facilities engineered to operate independently or as a unified food-commerce network.
+      </p>
+
+      <!-- CTA Buttons: 1 Aligned Row on Desktop, Consistent Height & Gap -->
+      <div class="ws-solutions-hero-actions pt-2">
+        <a class="ws-solutions-btn ws-solutions-btn-primary ws-hero-btn-primary group" href="partner-with-us.html">
+          <span>Partner With Us</span>
+          <span class="material-symbols-outlined text-[16px] transition-transform group-hover:translate-x-1">arrow_forward</span>
+        </a>
+        <a class="ws-solutions-btn ws-solutions-btn-secondary ws-hero-btn-secondary" href="#storage-distribution">
+          <span>01. Storage &amp; Distribution</span>
+        </a>
+        <a class="ws-solutions-btn ws-solutions-btn-secondary ws-hero-btn-secondary" href="#commerce-operations">
+          <span>02. Commerce Operations</span>
+        </a>
+        <a class="ws-solutions-btn ws-solutions-btn-secondary ws-hero-btn-secondary" href="#quick-kitchen">
+          <span>03. Quick Kitchen</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- ============================================================== -->
+<!-- SOLUTION 1: STORAGE & DISTRIBUTION -->
+<!-- ============================================================== -->
+<section class="py-20 lg:py-28 bg-white border-b border-light-grey" id="storage-distribution">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+<!-- LEFT: Realistic Cold Storage / Freezer Photo -->
+<div class="lg:col-span-6 order-2 lg:order-1">
+<div class="relative rounded-2xl overflow-hidden shadow-lg border border-light-grey bg-off-white group">
+<img alt="Commercial reach-in freezer storage and organized food inventory facility" class="w-full h-[260px] sm:h-[380px] lg:h-[440px] object-cover group-hover:scale-[1.02] transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAc3H491FxrsZbtW8JyUfAZ4SNBeHjPLBYsPvETqtldWV3oYhJXuMfHNnPX22F2M0-qRWXriFYDq2eSmvDlUWWwLDC6Da81WXuklLTV9mt48OaeAbSNt1TirmUXsB1Yl36oA_jAjrCWZ47aPA9c7igeSq5huV9THaTLBI0c46l5iwLeD4_1pNST3nMftIjcLexPM2WQA-HBWHUXZ2Ud2SMNyTzs5LCBhZruAwt3xgOU"/>
+<div class="p-4 bg-off-white border-t border-light-grey flex items-center justify-between">
+<span class="text-xs font-semibold text-charcoal">Freezer-Based Storage &amp; Inventory Management</span>
+<span class="text-xs text-muted-grey">Professionally Managed</span>
+</div>
+</div>
+</div>
+<!-- RIGHT: Section Text & Action -->
+<div class="lg:col-span-6 space-y-6 order-1 lg:order-2">
+<div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-deep-green bg-off-white px-3 py-1.5 rounded-lg border border-light-grey">
+<span class="text-lime-green font-extrabold bg-deep-green w-5 h-5 rounded flex items-center justify-center text-[10px]">01</span>
+            STORAGE &amp; DISTRIBUTION
+          </div>
+<h2 class="text-3xl sm:text-4xl font-extrabold text-charcoal tracking-tight leading-snug">
+            Space for your products. Structure for your operations.
+          </h2>
+<p class="text-base sm:text-lg text-charcoal/80 leading-relaxed font-normal">
+            We provide freezer-based product storage, inventory handling and distribution support through our operating network.
+          </p>
+<div class="p-5 rounded-xl bg-off-white border border-light-grey text-sm text-charcoal/90 leading-relaxed">
+<strong class="font-bold text-deep-green block mb-1">Flexible Facility Setup</strong>
+            Our facilities can accommodate brand-owned freezers or freezers provided by WhiteStores, depending on the arrangement.
+          </div>
+<!-- Feature Bullets from Styleboard -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-sm text-charcoal font-medium">
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-deep-green"></span>
+              Freezer-based storage
+            </div>
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-deep-green"></span>
+              Inventory handling
+            </div>
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-deep-green"></span>
+              Distribution support
+            </div>
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-deep-green"></span>
+              Brand or WhiteStores freezers
+            </div>
+</div>
+<div class="pt-4">
+<a class="inline-flex items-center gap-3 px-6 py-3.5 rounded-lg bg-deep-green text-white text-sm font-bold hover:bg-deep-green/90 transition-all shadow-sm" href="storage-distribution.html">
+<span>Explore Storage &amp; Distribution</span>
+<svg class="w-4 h-4 text-lime-green" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path></svg>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ============================================================== -->
+<!-- SOLUTION 2: COMMERCE OPERATIONS -->
+<!-- ============================================================== -->
+<section class="py-20 lg:py-28 bg-off-white border-b border-light-grey" id="commerce-operations">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+<!-- LEFT: Section Text & Action -->
+<div class="lg:col-span-6 space-y-6">
+<div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-deep-green bg-white px-3 py-1.5 rounded-lg border border-light-grey">
+<span class="text-lime-green font-extrabold bg-deep-green w-5 h-5 rounded flex items-center justify-center text-[10px]">02</span>
+            COMMERCE OPERATIONS
+          </div>
+<h2 class="text-3xl sm:text-4xl font-extrabold text-charcoal tracking-tight leading-snug">
+            Your products on the platform. Our team behind the operations.
+          </h2>
+<p class="text-base sm:text-lg text-charcoal/80 leading-relaxed font-normal">
+            We help brands manage the operational requirements of selling through Swiggy, Zomato, Ownly and other commerce channels.
+          </p>
+<div class="p-5 rounded-xl bg-white border border-light-grey text-sm text-charcoal/90 leading-relaxed">
+<strong class="font-bold text-deep-green block mb-1">End-to-End Fulfilment Execution</strong>
+            From inventory management to order processing, picking, packing and dispatch, our teams take care of the execution.
+          </div>
+<!-- Channel Alignment without unofficial trademark logos -->
+<div class="pt-1">
+<span class="text-xs uppercase tracking-wider text-muted-grey font-bold block mb-2">Supported Digital Commerce Channels</span>
+<div class="flex flex-wrap items-center gap-2">
+<span class="px-3.5 py-1.5 rounded-md bg-white border border-light-grey text-xs font-semibold text-charcoal">Swiggy</span>
+<span class="px-3.5 py-1.5 rounded-md bg-white border border-light-grey text-xs font-semibold text-charcoal">Zomato</span>
+<span class="px-3.5 py-1.5 rounded-md bg-white border border-light-grey text-xs font-semibold text-charcoal">Ownly</span>
+<span class="px-3.5 py-1.5 rounded-md bg-white border border-light-grey text-xs font-semibold text-charcoal">Direct-to-Consumer (D2C)</span>
+</div>
+</div>
+<div class="pt-4">
+<a class="inline-flex items-center gap-3 px-6 py-3.5 rounded-lg bg-deep-green text-white text-sm font-bold hover:bg-deep-green/90 transition-all shadow-sm" href="commerce-operations.html">
+<span>Explore Commerce Operations</span>
+<svg class="w-4 h-4 text-lime-green" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path></svg>
+</a>
+</div>
+</div>
+<!-- RIGHT: Realistic Fulfilment / Warehouse Photo -->
+<div class="lg:col-span-6">
+<div class="relative rounded-2xl overflow-hidden shadow-lg border border-light-grey bg-white group">
+<img alt="Warehouse logistics worker packing food delivery boxes and scanning barcodes at dispatch station" class="w-full h-[260px] sm:h-[380px] lg:h-[440px] object-cover group-hover:scale-[1.02] transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDh3xzYa4aGZwCRc4NcNsyU--UXO-D3oiTINR53j1jv_o89Aca2h9PKZz-ZQitkZkvqBV1rOdXTMjQeySAJzROXm6pfLBUXZCoD9qXYXaFChgMZHKBQGyVMNkOvd8jb_9r7zJevI94L0tJiEZeJrH1FVzaXFe1MZZ2QqUcyF94wps-kN4yVn2Uw7tcRZJnjGlzBEMQe3Dq6grpY4757IwKlCnTwTEPRYG4P0RkqO5vu"/>
+<div class="p-4 bg-white border-t border-light-grey flex items-center justify-between">
+<span class="text-xs font-semibold text-charcoal">Order Processing, Picking &amp; Packing</span>
+<span class="text-xs text-muted-grey">Marketplace Integration</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ============================================================== -->
+<!-- SOLUTION 3: QUICK KITCHEN -->
+<!-- ============================================================== -->
+<section class="py-20 lg:py-28 bg-white border-b border-light-grey" id="quick-kitchen">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+<!-- LEFT: Realistic Commercial Kitchen Photo -->
+<div class="lg:col-span-6 order-2 lg:order-1">
+<div class="relative rounded-2xl overflow-hidden shadow-lg border border-light-grey bg-off-white group">
+<img alt="Clean commercial kitchen facility with professional chefs preparing food items according to brand SOPs" class="w-full h-[260px] sm:h-[380px] lg:h-[440px] object-cover group-hover:scale-[1.02] transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBq9XlbH5bbuXhgZQ-yOn2L4qxDf-_IHI_YQIrj-lIvZTF6Kl3P76FXNsEGUSVd-e0SJxA5ooyCIj0qUBH85Kg8emOqAZD_2zG2oiu4dBcRzDM7E2TDxz7E8btAYOBo8UdXu3LO5X941b1Cxmp17vzGjkF7ARUmo33NQDnMiDDruyR-VzrLgKRu_pBHikHmxidAkuX2rPAwLCA_i7Lrjm22GR-IczjO4MIJzNuGOB63"/>
+<div class="p-4 bg-off-white border-t border-light-grey flex items-center justify-between">
+<span class="text-xs font-semibold text-charcoal">On-Demand Food Preparation &amp; Finishing</span>
+<span class="text-xs text-muted-grey">Hygienic Commercial Kitchen</span>
+</div>
+</div>
+</div>
+<!-- RIGHT: Section Text & Action -->
+<div class="lg:col-span-6 space-y-6 order-1 lg:order-2">
+<div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-deep-green bg-off-white px-3 py-1.5 rounded-lg border border-light-grey">
+<span class="text-lime-green font-extrabold bg-deep-green w-5 h-5 rounded flex items-center justify-center text-[10px]">03</span>
+            QUICK KITCHEN
+          </div>
+<h2 class="text-3xl sm:text-4xl font-extrabold text-charcoal tracking-tight leading-snug">
+            Your menu. Your SOPs. Our kitchen operations.
+          </h2>
+<p class="text-base sm:text-lg text-charcoal/80 leading-relaxed font-normal">
+            We provide operational kitchen support for food brands that need their ready-to-eat products prepared against customer orders.
+          </p>
+<div class="p-5 rounded-xl bg-off-white border border-light-grey text-sm text-charcoal/90 leading-relaxed">
+<strong class="font-bold text-deep-green block mb-1">Standardized Food Preparation</strong>
+            From thawing and heating to frying, grilling and blending, our teams execute the preparation processes defined by the brand.
+          </div>
+<!-- Process tags -->
+<div class="pt-1">
+<span class="text-xs uppercase tracking-wider text-muted-grey font-bold block mb-2">Core Preparation Capabilities</span>
+<div class="flex flex-wrap gap-2 text-xs font-semibold text-charcoal">
+<span class="px-3 py-1.5 rounded-md bg-off-white border border-light-grey">Thaw</span>
+<span class="px-3 py-1.5 rounded-md bg-off-white border border-light-grey">Heat</span>
+<span class="px-3 py-1.5 rounded-md bg-off-white border border-light-grey">Fry</span>
+<span class="px-3 py-1.5 rounded-md bg-off-white border border-light-grey">Grill</span>
+<span class="px-3 py-1.5 rounded-md bg-off-white border border-light-grey">Blend</span>
+<span class="px-3 py-1.5 rounded-md bg-off-white border border-light-grey">Finish &amp; Pack</span>
+</div>
+</div>
+<div class="pt-4">
+<a class="inline-flex items-center gap-3 px-6 py-3.5 rounded-lg bg-deep-green text-white text-sm font-bold hover:bg-deep-green/90 transition-all shadow-sm" href="quick-kitchen.html">
+<span>Explore Quick Kitchen</span>
+<svg class="w-4 h-4 text-lime-green" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path></svg>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ============================================================== -->
+<!-- FLEXIBLE ENGAGEMENT SECTION -->
+<!-- ============================================================== -->
+<section class="ws-engagement-section py-10 sm:py-12 lg:py-14" id="flexible-engagement">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+<!-- Section Header -->
+<div class="max-w-3xl mx-auto text-center space-y-3 mb-6 sm:mb-8">
+<div class="ws-editorial-label inline-flex items-center gap-2 text-[#013125] text-xs font-extrabold tracking-widest uppercase mb-1">
+<span class="w-1.5 h-1.5 rounded-full bg-[#A6F134]"></span>
+          FLEXIBLE ENGAGEMENT
+        </div>
+<h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-[#013125] leading-tight">
+          Start with what you need. Scale when you're ready.
+        </h2>
+<p class="text-sm sm:text-base text-[#414845] font-normal leading-relaxed max-w-2xl mx-auto">
+          You don't need to engage WhiteStores for every service. Use one service independently or bring multiple services together as your business requirements evolve.
+        </p>
+</div>
+<!-- 3 Independent / Combinable Capability Cards with 3D Hover & Restrained Green Glow -->
+<div class="ws-engagement-grid grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6 mb-8 sm:mb-10">
+<!-- Card 1 -->
+<div class="ws-engagement-card rounded-2xl p-6 lg:p-7 flex flex-col justify-between">
+<div>
+<div class="ws-card-icon-box w-11 h-11 rounded-xl bg-[#A6F134]/20 border border-[#A6F134]/40 flex items-center justify-center text-[#A6F134] mb-4">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+<div class="text-xs uppercase tracking-wider text-[#A6F134] font-bold mb-1.5">Option A • Standalone or Combined</div>
+<h3 class="text-lg sm:text-xl font-bold text-white mb-2.5">Storage &amp; Distribution</h3>
+<p class="text-xs sm:text-sm text-white/80 leading-relaxed mb-5">
+              Engage only for freezer-based space and inventory handling across operating locations. Perfect for frozen manufacturers and bulk distributors.
+            </p>
+</div>
+<div class="pt-3.5 border-t border-white/10 flex items-center text-xs text-white/70 font-medium">
+<span class="w-2 h-2 rounded-full bg-[#A6F134] mr-2"></span>
+            Independent Service
+          </div>
+</div>
+<!-- Card 2 -->
+<div class="ws-engagement-card rounded-2xl p-6 lg:p-7 flex flex-col justify-between">
+<div>
+<div class="ws-card-icon-box w-11 h-11 rounded-xl bg-[#A6F134]/20 border border-[#A6F134]/40 flex items-center justify-center text-[#A6F134] mb-4">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+<div class="text-xs uppercase tracking-wider text-[#A6F134] font-bold mb-1.5">Option B • Standalone or Combined</div>
+<h3 class="text-lg sm:text-xl font-bold text-white mb-2.5">Commerce Operations</h3>
+<p class="text-xs sm:text-sm text-white/80 leading-relaxed mb-5">
+              Outsource the complete day-to-day order handling, picking, packing and dispatch across digital commerce platforms without managing your own staff.
+            </p>
+</div>
+<div class="pt-3.5 border-t border-white/10 flex items-center text-xs text-white/70 font-medium">
+<span class="w-2 h-2 rounded-full bg-[#A6F134] mr-2"></span>
+            Independent Service
+          </div>
+</div>
+<!-- Card 3 -->
+<div class="ws-engagement-card rounded-2xl p-6 lg:p-7 flex flex-col justify-between">
+<div>
+<div class="ws-card-icon-box w-11 h-11 rounded-xl bg-[#A6F134]/20 border border-[#A6F134]/40 flex items-center justify-center text-[#A6F134] mb-4">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+<div class="text-xs uppercase tracking-wider text-[#A6F134] font-bold mb-1.5">Option C • Standalone or Combined</div>
+<h3 class="text-lg sm:text-xl font-bold text-white mb-2.5">Quick Kitchen</h3>
+<p class="text-xs sm:text-sm text-white/80 leading-relaxed mb-5">
+              Utilize on-demand commercial kitchen teams to prepare, heat, fry and finish ready-to-eat products according to your brand's strict SOPs.
+            </p>
+</div>
+<div class="pt-3.5 border-t border-white/10 flex items-center text-xs text-white/70 font-medium">
+<span class="w-2 h-2 rounded-full bg-[#A6F134] mr-2"></span>
+            Independent Service
+          </div>
+</div>
+</div>
+<!-- Action Banner -->
+<div class="rounded-2xl p-6 sm:p-7 bg-[#013125] border border-[#013125]/20 text-center max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 shadow-md">
+<div class="text-left space-y-1">
+<h4 class="text-lg sm:text-xl font-extrabold text-white">Ready to tailor your operating model?</h4>
+<p class="text-xs sm:text-sm text-white/80">Connect with our team to explore storage, commerce operations or kitchen setups.</p>
+</div>
+<a class="inline-flex items-center gap-2.5 px-6 py-3 rounded-lg bg-[#A6F134] text-[#013125] font-extrabold text-xs sm:text-sm hover:brightness-105 transition-all shadow-md flex-shrink-0" href="partner-with-us.html">
+<span>Discuss Your Requirements</span>
+<svg class="w-4 h-4 text-[#013125]" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path></svg>
+</a>
+</div>
+</div>
+</section>
+<!-- ============================================================== -->
+<!-- GLOBAL WEBSITE FOOTER (Matching Home page exactly) -->
+<!-- ============================================================== -->
+  </main>
+<!-- ==========================================================================
+       FOOD-COMMERCE CAPABILITIES SHOWCASE STRIP (Immediately above footer)
+       ========================================================================== -->
+  <section aria-label="Food Commerce Infrastructure Capabilities" class="ws-brand-strip">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="ws-brand-strip-inner">
+        
+        <!-- Left Introductory Text (Stationary) -->
+        <div class="ws-brand-text">
+          <p class="text-[11px] md:text-xs font-extrabold text-[#69736D] uppercase tracking-wider mb-0.5">DIFFERENT FLAVOURS. ONE NETWORK.</p>
+          <p class="text-sm md:text-[15px] font-bold text-[#013125] tracking-tight whitespace-nowrap">Infrastructure that powers food businesses.</p>
+        </div>
+
+        <!-- Right Continuous Moving Capabilities Marquee -->
+        <div class="ws-brand-marquee-container">
+          <div class="ws-brand-marquee-track">
+            
+            <!-- Capability Sequence 1 -->
+            <div class="ws-brand-marquee-group">
+              <div class="ws-capability-badge" title="Storage &amp; Distribution Capability">
+                <span class="ws-capability-icon-wrap">
+                  <span class="material-symbols-outlined ws-capability-icon">warehouse</span>
+                </span>
+                <span class="ws-capability-label">STORAGE &amp; DISTRIBUTION</span>
+              </div>
+              <div class="ws-capability-badge" title="Cold-Chain Infrastructure Capability">
+                <span class="ws-capability-icon-wrap">
+                  <span class="material-symbols-outlined ws-capability-icon">ac_unit</span>
+                </span>
+                <span class="ws-capability-label">COLD-CHAIN INFRASTRUCTURE</span>
+              </div>
+              <div class="ws-capability-badge" title="Commerce Operations Capability">
+                <span class="ws-capability-icon-wrap">
+                  <span class="material-symbols-outlined ws-capability-icon">hub</span>
+                </span>
+                <span class="ws-capability-label">COMMERCE OPERATIONS</span>
+              </div>
+              <div class="ws-capability-badge" title="Quick Kitchen Capability">
+                <span class="ws-capability-icon-wrap">
+                  <span class="material-symbols-outlined ws-capability-icon">restaurant</span>
+                </span>
+                <span class="ws-capability-label">QUICK KITCHEN</span>
+              </div>
+              <div class="ws-capability-badge" title="Order Fulfilment Capability">
+                <span class="ws-capability-icon-wrap">
+                  <span class="material-symbols-outlined ws-capability-icon">local_shipping</span>
+                </span>
+                <span class="ws-capability-label">ORDER FULFILMENT</span>
+              </div>
+              <div class="ws-capability-badge" title="Food Commerce Capability">
+                <span class="ws-capability-icon-wrap">
+                  <span class="material-symbols-outlined ws-capability-icon">storefront</span>
+                </span>
+                <span class="ws-capability-label">FOOD COMMERCE</span>
+              </div>
+            </div>
+
+            <!-- Capability Sequence 2 (Duplicate for Seamless Infinite Loop) -->
+            <div aria-hidden="true" class="ws-brand-marquee-group">
+              <div class="ws-capability-badge" title="Storage &amp; Distribution Capability">
+                <span class="ws-capability-icon-wrap">
+                  <span class="material-symbols-outlined ws-capability-icon">warehouse</span>
+                </span>
+                <span class="ws-capability-label">STORAGE &amp; DISTRIBUTION</span>
+              </div>
+              <div class="ws-capability-badge" title="Cold-Chain Infrastructure Capability">
+                <span class="ws-capability-icon-wrap">
+                  <span class="material-symbols-outlined ws-capability-icon">ac_unit</span>
+                </span>
+                <span class="ws-capability-label">COLD-CHAIN INFRASTRUCTURE</span>
+              </div>
+              <div class="ws-capability-badge" title="Commerce Operations Capability">
+                <span class="ws-capability-icon-wrap">
+                  <span class="material-symbols-outlined ws-capability-icon">hub</span>
+                </span>
+                <span class="ws-capability-label">COMMERCE OPERATIONS</span>
+              </div>
+              <div class="ws-capability-badge" title="Quick Kitchen Capability">
+                <span class="ws-capability-icon-wrap">
+                  <span class="material-symbols-outlined ws-capability-icon">restaurant</span>
+                </span>
+                <span class="ws-capability-label">QUICK KITCHEN</span>
+              </div>
+              <div class="ws-capability-badge" title="Order Fulfilment Capability">
+                <span class="ws-capability-icon-wrap">
+                  <span class="material-symbols-outlined ws-capability-icon">local_shipping</span>
+                </span>
+                <span class="ws-capability-label">ORDER FULFILMENT</span>
+              </div>
+              <div class="ws-capability-badge" title="Food Commerce Capability">
+                <span class="ws-capability-icon-wrap">
+                  <span class="material-symbols-outlined ws-capability-icon">storefront</span>
+                </span>
+                <span class="ws-capability-label">FOOD COMMERCE</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+<footer class="ws-footer w-full bg-[#01281e] text-white border-t border-white/15">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Main 4-Column Grid -->
+      <div class="ws-footer-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- COLUMN 1: Brand (4 cols on lg ~ 1.33fr) -->
+        <div class="lg:col-span-4 flex flex-col items-start gap-2">
+          <a class="inline-block focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A6F134] rounded" data-path="home" href="index.html">
+            <img alt="WhiteStores" class="ws-footer-logo h-11 md:h-12 w-auto object-contain block" src="assets/whitestores-logo-footer.jpg"/>
+          </a>
+          <p class="text-sm font-bold text-[#A6F134] ws-footer-lime leading-snug">Your Brand. Our Infrastructure. Your Growth.</p>
+          <p class="text-xs text-white/70 leading-relaxed max-w-sm">
+            Food-commerce infrastructure and operations for growing brands across ambient, chilled, and automated network nodes.
+          </p>
+          <div class="pt-1">
+            <span class="inline-block px-3 py-1 rounded-full bg-white/10 text-white/80 text-[11px] font-medium tracking-wide">
+              By PropelPad Business Solutions Private Limited
+            </span>
+          </div>
+        </div>
+
+        <!-- COLUMN 2: Explore (2 cols on lg ~ 1fr) -->
+        <div class="lg:col-span-2 flex flex-col items-start gap-2.5">
+          <h4 class="text-xs font-bold uppercase tracking-widest text-[#A6F134] ws-footer-lime">Explore</h4>
+          <ul class="flex flex-col gap-2 text-xs text-white/75">
+            <li><a class="hover:text-[#A6F134] transition-colors" data-path="home" href="index.html">Home</a></li>
+            <li><a class="hover:text-[#A6F134] transition-colors" data-path="about-us" href="about-us.html">About Us</a></li>
+            <li><a class="hover:text-[#A6F134] transition-colors" data-path="our-network" href="our-network.html">Our Network</a></li>
+            <li><a class="hover:text-[#A6F134] transition-colors" data-path="partner-with-us" href="partner-with-us.html">Partner With Us</a></li>
+          </ul>
+        </div>
+
+        <!-- COLUMN 3: Solutions (3 cols on lg ~ 1.25fr) -->
+        <div class="lg:col-span-3 flex flex-col items-start gap-2.5">
+          <h4 class="text-xs font-bold uppercase tracking-widest text-[#A6F134] ws-footer-lime">Solutions</h4>
+          <ul class="flex flex-col gap-2 text-xs text-white/75">
+            <li><a class="hover:text-[#A6F134] transition-colors" data-path="storage-and-distribution" href="storage-distribution.html">Storage &amp; Distribution</a></li>
+            <li><a class="hover:text-[#A6F134] transition-colors" data-path="commerce-operations" href="commerce-operations.html">Commerce Operations</a></li>
+            <li><a class="hover:text-[#A6F134] transition-colors" data-path="quick-kitchen" href="quick-kitchen.html">Quick Kitchen</a></li>
+          </ul>
+        </div>
+
+        <!-- COLUMN 4: Connect (3 cols on lg ~ 1.25fr) -->
+        <div class="lg:col-span-3 flex flex-col items-start gap-2.5 w-full">
+          <h4 class="text-xs font-bold uppercase tracking-widest text-[#A6F134] ws-footer-lime">Connect</h4>
+          <ul class="flex flex-col gap-2.5 text-xs text-white/75 w-full">
+            <li class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-[16px] text-[#A6F134] ws-footer-lime shrink-0">mail</span>
+              <a class="hover:text-[#A6F134] transition-colors whitespace-nowrap" href="mailto:partners@whitestores.in">partners@whitestores.in</a>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-[16px] text-[#A6F134] ws-footer-lime shrink-0">call</span>
+              <a class="hover:text-[#A6F134] transition-colors whitespace-nowrap" href="tel:+918040008800">+91 80 4000 8800</a>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-[16px] text-[#A6F134] ws-footer-lime shrink-0">share</span>
+              <a class="hover:text-[#A6F134] transition-colors whitespace-nowrap" href="#" rel="noopener noreferrer" target="_blank">LinkedIn Official</a>
+            </li>
+            <li class="pt-1 text-xs text-white/75 leading-relaxed">
+              207, PropelPad Business Solutions, Shree Ganesh Industrial Estate, WT Marg, Chembur 400071
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Copyright Section -->
+      <div class="pt-3.5 pb-0 text-center">
+        <p class="text-xs text-white/60">
+          &copy; WhiteStores is a brand of PropelPad Business Solutions Private Limited. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+<div aria-hidden="true" aria-label="Mobile Navigation" class="ws-mobile-drawer" id="ws-mobile-drawer" role="dialog" aria-modal="true">
+  <!-- Mobile Header -->
+  <div class="ws-mobile-header">
+    <a aria-label="WhiteStores Home" class="focus:outline-none" href="index.html">
+      <img alt="WhiteStores" class="ws-mobile-logo" src="assets/whitestores-logo.png?v=ws-new-logo-2026"/>
+    </a>
+    <button aria-label="Close navigation" class="ws-close-btn" id="ws-close-menu" type="button">
+      <span class="material-symbols-outlined text-[24px]">close</span>
+    </button>
+  </div>
+
+  <!-- Scrollable Navigation Body -->
+  <div class="ws-mobile-nav-scroll">
+    <nav aria-label="Mobile navigation" class="ws-mobile-links">
+      
+      <!-- 1. Home -->
+      <div class="ws-nav-item">
+        <a class="ws-link " href="index.html">
+          <span>Home</span>
+          
+        </a>
+      </div>
+
+      <!-- 2. Solutions Accordion -->
+      <div class="ws-nav-item ws-solutions-item">
+        <div class="ws-solutions-row">
+          <a class="ws-link ws-solutions-link ws-active" href="solutions.html">
+            <span>Solutions</span>
+          </a>
+          <button aria-controls="ws-solutions-submenu" aria-expanded="true" aria-label="Toggle Solutions submenu" class="ws-submenu-toggle is-active" id="ws-solutions-toggle" type="button">
+            <span class="material-symbols-outlined ws-chevron-icon">expand_more</span>
+          </button>
+        </div>
+        
+        <!-- Vertical Submenu Rows -->
+        <div class="ws-submenu is-open" id="ws-solutions-submenu">
+          <a class="ws-sublink " href="storage-distribution.html">
+            <span class="ws-sublink-dot"></span>
+            <span>Storage &amp; Distribution</span>
+          </a>
+          <a class="ws-sublink " href="commerce-operations.html">
+            <span class="ws-sublink-dot"></span>
+            <span>Commerce Operations</span>
+          </a>
+          <a class="ws-sublink " href="quick-kitchen.html">
+            <span class="ws-sublink-dot"></span>
+            <span>Quick Kitchen</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- 3. Our Network -->
+      <div class="ws-nav-item">
+        <a class="ws-link " href="our-network.html">
+          <span>Our Network</span>
+          
+        </a>
+      </div>
+
+      <!-- 4. About Us -->
+      <div class="ws-nav-item">
+        <a class="ws-link " href="about-us.html">
+          <span>About Us</span>
+          
+        </a>
+      </div>
+
+    </nav>
+  </div>
+
+  <!-- Mobile Footer / Compact CTA Area (Fixed at bottom) -->
+  <div class="ws-mobile-footer">
+    <a class="ws-mobile-cta" href="partner-with-us.html">
+      <span>Partner With Us</span>
+      <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+    </a>
+    <p class="ws-mobile-bottom-text">
+      By PropelPad Business Solutions Private Limited
+    </p>
+  </div>
+</div>
+
+<script src="js/navigation.js?v=compact-white-menu-1" defer></script>
+</body>
+</html>

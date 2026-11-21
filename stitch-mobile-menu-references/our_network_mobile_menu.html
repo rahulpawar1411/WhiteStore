@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Network Mobile Menu</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Manrope', sans-serif; }
+  </style>
+</head>
+<body class="bg-[#013125] text-white min-h-screen flex flex-col justify-between selection:bg-[#A6F134] selection:text-[#013125] antialiased">
+  <div>
+    <!-- Mobile Top Header Bar -->
+    <header class="w-full px-6 py-5 flex items-center justify-between border-b border-[#054233]">
+      <a href="#" class="flex items-center space-x-3">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6TVXKYKzulw8Ak6vqE3ZsXCzxWLJjzIM2tbr509zAWuZoUD-6WQyaTf-Qo1Qc5SFoGirzirn6pl-H15EjBLfsoG_kcVe6N_M8_QRumaXz_Cs5V7Skctlo0MXEAXio_nuij_tc5zQ1qN8Ov57jLQjUKbu2thg0TfwkCCNfjfgaUJj0Mqi0KgwB4dqHKc0sDsCpOa9d5pcrdXcE-ebX2VnFaiAvkvwd3aeNNqBbYBKylxF0wCMSfQGClg" alt="WhiteStores Logo" class="h-8 w-auto object-contain brightness-0 invert">
+      </a>
+      <!-- Close (X) Icon Button -->
+      <a href="#" class="p-2 text-white hover:text-[#A6F134] rounded-lg transition-colors focus:outline-none" aria-label="Close Mobile Menu">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </a>
+    </header>
+
+    <!-- Navigation List -->
+    <nav class="px-6 py-8 space-y-6">
+      <!-- 01. Home -->
+      <div>
+        <a href="#" class="block py-2 pl-4 text-xl font-bold text-white hover:text-[#A6F134] transition-colors">
+          Home
+        </a>
+      </div>
+
+      <!-- 02. Solutions -->
+      <div class="space-y-3">
+        <a href="#" class="flex items-center justify-between py-2 pl-4 text-xl font-bold text-white hover:text-[#A6F134] transition-colors">
+          <span>Solutions</span>
+          <svg class="w-5 h-5 text-[#A6F134]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </a>
+        <!-- Solutions Submenu -->
+        <div class="ml-4 pl-4 border-l border-[#0a4d3d] space-y-3 py-1">
+          <a href="#" class="block py-1.5 text-base text-gray-200 hover:text-[#A6F134] transition-colors">
+            Storage &amp; Distribution
+          </a>
+          <a href="#" class="block py-1.5 text-base text-gray-200 hover:text-[#A6F134] transition-colors">
+            Commerce Operations
+          </a>
+          <a href="#" class="block py-1.5 text-base text-gray-200 hover:text-[#A6F134] transition-colors">
+            Quick Kitchen
+          </a>
+        </div>
+      </div>
+
+      <!-- 03. Our Network (Active on this screen) -->
+      <div>
+        <a href="#" class="flex items-center justify-between py-2 text-2xl font-bold text-[#A6F134] border-l-4 border-[#A6F134] pl-4">
+          <span>Our Network</span>
+          <span class="text-xs uppercase tracking-widest px-2.5 py-1 rounded bg-[#A6F134]/15 font-semibold">Active</span>
+        </a>
+      </div>
+
+      <!-- 04. About Us -->
+      <div>
+        <a href="#" class="block py-2 pl-4 text-xl font-bold text-white hover:text-[#A6F134] transition-colors">
+          About Us
+        </a>
+      </div>
+
+      <!-- 05. Partner With Us -->
+      <div>
+        <a href="#" class="block py-2 pl-4 text-xl font-bold text-white hover:text-[#A6F134] transition-colors">
+          Partner With Us
+        </a>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Bottom CTA / Branding Info -->
+  <div class="px-6 py-8 border-t border-[#054233] bg-[#00261c] space-y-4">
+    <a href="#" class="w-full flex items-center justify-center py-3.5 px-6 rounded-lg bg-[#A6F134] text-[#013125] font-bold text-base shadow-sm hover:bg-[#b7f551] transition-all">
+      Partner With Us &rarr;
+    </a>
+    <div class="text-xs text-gray-400 text-center">
+      By PropelPad Business Solutions Private Limited
+    </div>
+  </div>
+</body>
+</html>

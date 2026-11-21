@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      "colors": {
+        "on-secondary": "#ffffff",
+        "on-error-container": "#93000a",
+        "text-primary": "#252C29",
+        "primary-container": "#013125",
+        "error-container": "#ffdad6",
+        "on-tertiary-fixed-variant": "#3f4944",
+        "primary": "#001a12",
+        "on-background": "#161d1a",
+        "background": "#f4fbf6",
+        "tertiary-fixed": "#dbe5de",
+        "surface-variant": "#dde4df",
+        "primary-fixed-dim": "#a3d0be",
+        "surface": "#f4fbf6",
+        "surface-container": "#e8f0eb",
+        "on-primary-container": "#6f9a8a",
+        "on-tertiary-fixed": "#141d19",
+        "surface-container-low": "#eef5f0",
+        "on-primary-fixed-variant": "#244e41",
+        "error": "#ba1a1a",
+        "on-primary": "#ffffff",
+        "inverse-surface": "#2b322f",
+        "outline-variant": "#c0c8c3",
+        "secondary-container": "#acf83b",
+        "text-muted": "#69736D",
+        "tertiary": "#0f1813",
+        "secondary": "#436900",
+        "on-surface": "#161d1a",
+        "on-surface-variant": "#414845",
+        "border-subtle": "#E9ECE8",
+        "on-error": "#ffffff",
+        "on-primary-fixed": "#002118",
+        "surface-container-highest": "#dde4df",
+        "brand-deep-green": "#013125",
+        "tertiary-fixed-dim": "#bfc9c2",
+        "surface-canvas": "#FFFFFF",
+        "primary-fixed": "#bfecda",
+        "on-secondary-fixed": "#112000",
+        "outline": "#717975",
+        "surface-dim": "#d4dcd7",
+        "on-tertiary": "#ffffff",
+        "surface-alt": "#F6F7F3",
+        "surface-container-lowest": "#ffffff",
+        "inverse-primary": "#a3d0be",
+        "surface-tint": "#3c6658",
+        "inverse-on-surface": "#ebf2ed",
+        "surface-container-high": "#e3eae5",
+        "tertiary-container": "#232c27",
+        "on-secondary-container": "#476f00",
+        "secondary-fixed-dim": "#92db17",
+        "on-secondary-fixed-variant": "#314f00",
+        "on-tertiary-container": "#89948d",
+        "accent-lime": "#A6F134",
+        "surface-bright": "#f4fbf6",
+        "secondary-fixed": "#acf83b"
+      },
+      "borderRadius": {
+        "DEFAULT": "0.25rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "full": "9999px"
+      },
+      "spacing": {
+        "margin-desktop": "4rem",
+        "margin-tablet": "2.5rem",
+        "space-sm": "0.5rem",
+        "gutter": "1.5rem",
+        "space-md": "1rem",
+        "gutter-desktop": "2rem",
+        "space-3xl": "6rem",
+        "space-lg": "1.5rem",
+        "margin": "1.25rem",
+        "space-2xl": "4rem",
+        "space-xl": "2.5rem",
+        "space-xs": "0.25rem"
+      },
+      "fontFamily": {
+        "body-lg": ["Manrope"],
+        "headline-md": ["Manrope"],
+        "headline-sm": ["Manrope"],
+        "display-hero": ["Manrope"],
+        "label-step": ["Manrope"],
+        "body-sm": ["Manrope"],
+        "headline-lg": ["Manrope"],
+        "caption": ["Manrope"],
+        "label-action": ["Manrope"],
+        "headline-lg-mobile": ["Manrope"],
+        "display-hero-mobile": ["Manrope"],
+        "eyebrow": ["Manrope"],
+        "body-md": ["Manrope"]
+      },
+      "fontSize": {
+        "body-lg": ["1.125rem", {"lineHeight": "1.6", "letterSpacing": "-0.005em", "fontWeight": "400"}],
+        "headline-md": ["1.75rem", {"lineHeight": "1.3", "letterSpacing": "-0.015em", "fontWeight": "700"}],
+        "headline-sm": ["1.25rem", {"lineHeight": "1.4", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+        "display-hero": ["3.75rem", {"lineHeight": "1.1", "letterSpacing": "-0.03em", "fontWeight": "800"}],
+        "label-step": ["1rem", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+        "body-sm": ["0.875rem", {"lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400"}],
+        "headline-lg": ["2.5rem", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+        "caption": ["0.75rem", {"lineHeight": "1.4", "letterSpacing": "0.02em", "fontWeight": "500"}],
+        "label-action": ["0.9375rem", {"lineHeight": "1", "letterSpacing": "0.01em", "fontWeight": "600"}],
+        "headline-lg-mobile": ["1.75rem", {"lineHeight": "1.25", "letterSpacing": "-0.015em", "fontWeight": "700"}],
+        "display-hero-mobile": ["2.25rem", {"lineHeight": "1.15", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+        "eyebrow": ["0.75rem", {"lineHeight": "1.3", "letterSpacing": "0.12em", "fontWeight": "700"}],
+        "body-md": ["1rem", {"lineHeight": "1.55", "letterSpacing": "0", "fontWeight": "400"}]
+      }
+    }
+  }
+}</script><link rel="stylesheet" href="css/style.css?v=ws-logo-size-v1"/>
+</head><body class="bg-surface font-body-md text-on-surface antialiased"><header class="ws-navbar">
+  <div class="ws-navbar-container">
+    
+    <!-- LEFT: Brand Logo (Original logo with lime-green mark and snowy-white text) -->
+    <div class="ws-nav-col-left">
+      <a class="flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A6F134] rounded" data-path="home" href="index.html" title="WhiteStores Home">
+        <img alt="WhiteStores" class="ws-nav-logo" src="assets/whitestores-logo.png?v=ws-new-logo-2026"/>
+      </a>
+    </div>
+
+    <!-- CENTER: Desktop Navigation Links -->
+    <nav aria-label="Main Navigation" class="ws-nav-links">
+      <!-- Home -->
+      <a class="ws-nav-link " data-path="home" href="index.html">Home</a>
+      
+      <!-- Solutions Dropdown (Pristine White, Unified Standard) -->
+      <div class="relative group py-2">
+        <button aria-expanded="false" aria-haspopup="true" class="ws-nav-link ws-solutions-btn is-active" type="button">
+          <span>Solutions</span>
+          <span class="material-symbols-outlined ws-dropdown-chevron">expand_more</span>
+        </button>
+
+        <!-- Dropdown Card (White, Consistent Dimensions) -->
+        <div class="ws-dropdown-wrapper">
+          <div class="ws-dropdown-menu">
+            <a class="ws-dropdown-item group/item" data-path="storage-and-distribution" href="storage-distribution.html">
+              <span class="ws-dropdown-item-title">Storage &amp; Distribution</span>
+              <span class="ws-dropdown-item-desc">Ambient &amp; cold-chain spaces</span>
+            </a>
+            <a class="ws-dropdown-item group/item" data-path="commerce-operations" href="commerce-operations.html">
+              <span class="ws-dropdown-item-title">Commerce Operations</span>
+              <span class="ws-dropdown-item-desc">FMCG fulfillment workflows</span>
+            </a>
+            <a class="ws-dropdown-item group/item" data-path="quick-kitchen" href="quick-kitchen.html">
+              <span class="ws-dropdown-item-title">Quick Kitchen</span>
+              <span class="ws-dropdown-item-desc">Plug-and-play dark facilities</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Our Network -->
+      <a class="ws-nav-link " data-path="our-network" href="our-network.html">Our Network</a>
+
+      <!-- About Us -->
+      <a class="ws-nav-link " data-path="about-us" href="about-us.html">About Us</a>
+    </nav>
+
+    <!-- RIGHT: Partner With Us CTA Button (Desktop) -->
+    <div class="ws-nav-col-right hidden lg:flex">
+      <a class="ws-nav-cta" data-path="partner-with-us" href="partner-with-us.html">Partner With Us</a>
+    </div>
+
+    <!-- Mobile Hamburger Toggle Button (Compact green oval/pill with 3 snowy-white lines) -->
+    <div class="flex lg:hidden items-center justify-end">
+      <button aria-controls="ws-mobile-drawer" aria-expanded="false" aria-label="Open Mobile Navigation" class="ws-mobile-menu-pill" id="ws-mobile-menu-btn" type="button">
+        <span class="ws-hamburger-bar"></span>
+        <span class="ws-hamburger-bar"></span>
+        <span class="ws-hamburger-bar"></span>
+      </button>
+    </div>
+
+  </div>
+</header><main class="w-full pt-20 bg-surface min-h-[calc(100vh-80px)]"><div class="flex flex-col w-full">
+<!-- SECTION 1: HERO SECTION -->
+<section class="ws-hero ws-hero-commerce ws-hero-enhanced-typo relative bg-white text-surface-canvas overflow-hidden flex items-center justify-center">
+  <!-- Subtle Ambient Glow Layer -->
+  <div class="ws-hero-ambient-glow pointer-events-none" aria-hidden="true"></div>
+
+  <!-- Hero Content Container -->
+  <div class="ws-hero-content relative z-10 w-full max-w-[1280px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop py-6 sm:py-8 lg:py-10 text-center flex flex-col items-center">
+    <div class="max-w-[1040px] w-full mx-auto text-center flex flex-col items-center gap-3 sm:gap-4">
+      
+      <!-- Main Heading -->
+      <h1 class="ws-hero-title font-display-hero text-3xl sm:text-4xl lg:text-[3.25rem] text-surface-canvas tracking-tight font-extrabold leading-[1.12] max-w-[1040px] mx-auto">
+        Your products. Your channels.<br/>
+        <span class="text-accent-lime">Our operational support.</span>
+      </h1>
+
+      <!-- Luminous Accent Line -->
+      <div class="w-12 h-1 bg-accent-lime rounded-full my-1"></div>
+
+      <!-- Description -->
+      <p class="ws-hero-desc text-white/85 font-body-lg text-sm sm:text-base lg:text-[1rem] max-w-[560px] leading-relaxed mx-auto">
+        From order management and product preparation to fulfilment support, WhiteStores helps food brands execute their commerce operations with discipline and accuracy.
+      </p>
+
+      <!-- Supporting Text -->
+      <p class="ws-hero-subtext text-white/70 font-body-md text-xs sm:text-sm max-w-[540px] leading-relaxed mx-auto">
+        We support food businesses operating through platforms such as Swiggy, Zomato, Ownly and direct channels.
+      </p>
+
+      <!-- CTA Buttons -->
+      <div class="ws-hero-actions pt-2 sm:pt-4 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full sm:w-auto">
+        <a class="ws-hero-btn-primary inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full text-sm font-bold shadow-md transition-all duration-200 group" href="partner-with-us.html">
+          <span>Partner With Us</span>
+          <span class="material-symbols-outlined text-[18px] transition-transform group-hover:translate-x-1">arrow_forward</span>
+        </a>
+        <a class="ws-hero-btn-secondary inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full text-sm font-bold shadow-sm transition-all duration-200" href="solutions.html">
+          <span>Explore All Solutions</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- SECTION 2: COMMERCE OPERATIONS OVERVIEW -->
+<section class="w-full bg-surface-alt py-space-2xl lg:py-space-3xl">
+<div class="max-w-[1280px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop">
+<div class="max-w-3xl mb-space-2xl">
+<span class="font-eyebrow text-eyebrow text-secondary uppercase tracking-widest block mb-2">OPERATIONAL ARCHITECTURE</span>
+<h2 class="font-headline-lg text-headline-lg text-brand-deep-green font-bold">
+          Operations that keep your commerce moving.
+        </h2>
+<p class="font-body-lg text-body-lg text-text-muted mt-space-xs">
+          Managing multiple food-commerce channels requires organised processes and reliable operational support. WhiteStores helps bring the essential operational activities together.
+        </p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop items-start">
+<!-- Visual Column -->
+<div class="lg:col-span-5 flex flex-col gap-space-md">
+<div class="rounded-xl overflow-hidden shadow-md bg-surface-canvas">
+<img class="w-full h-[280px] sm:h-[380px] lg:h-[520px] object-cover block" data-alt="High angle shot of commercial kitchen packing and dispatch counter showing staff in black uniforms packing meals with delivery courier receiving packed bags on an organized stainless steel counter under sleek overhead strip lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxfVcFm8YNurJW9ODUNE65aZzc5fWkmNNeAKsmxSXz8psf5q620CaPM9m_8rFwHw_fFcVVS7WzeEWrK2dgNtZQ1_aa6HsgepTaSgjxGeb1E-mFKa9OO3Ddaz8lhfsgakDjsa0oEgrS0k3G6aUysH8vLWeomWsxOZiFHQo0csEZ6IbNIdWDqli_1jzvdAvaZSf0jVuYRXz4slqDGkLNzJk3E2mm-MVdGbHj9tKLqKaH"/>
+</div>
+<div class="p-space-md rounded-lg bg-surface-canvas shadow-sm">
+<div class="flex items-center gap-space-sm text-brand-deep-green">
+<span class="material-symbols-outlined text-secondary text-[24px]">checklist_rtl</span>
+<div>
+<h4 class="font-headline-sm text-[1rem] font-bold text-text-primary">Audited Dispatch Protocol</h4>
+<p class="font-body-sm text-body-sm text-text-muted">Every bag sealed, ticketed, and verified before courier custody transfer.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Capability Stack -->
+<div class="lg:col-span-7 flex flex-col gap-space-sm">
+<!-- Item 1 -->
+<div class="p-space-lg rounded-xl bg-surface-canvas shadow-sm hover:shadow-md transition-shadow duration-200">
+<div class="flex items-start gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-surface-alt flex items-center justify-center shrink-0 text-brand-deep-green">
+<span class="material-symbols-outlined text-[22px]">inbox</span>
+</div>
+<div class="flex-1">
+<h3 class="font-headline-sm text-headline-sm text-text-primary font-bold">1. Order Handling</h3>
+<p class="font-body-sm text-body-sm text-text-muted mt-1">Systematic receipt and queue management across all designated digital channels.</p>
+</div>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="p-space-lg rounded-xl bg-surface-canvas shadow-sm hover:shadow-md transition-shadow duration-200">
+<div class="flex items-start gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-surface-alt flex items-center justify-center shrink-0 text-brand-deep-green">
+<span class="material-symbols-outlined text-[22px]">restaurant_menu</span>
+</div>
+<div class="flex-1">
+<h3 class="font-headline-sm text-headline-sm text-text-primary font-bold">2. Product Preparation</h3>
+<p class="font-body-sm text-body-sm text-text-muted mt-1">Coordinated retrieval, staging, and prep according to brand-specific instructions.</p>
+</div>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="p-space-lg rounded-xl bg-surface-canvas shadow-sm hover:shadow-md transition-shadow duration-200">
+<div class="flex items-start gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-surface-alt flex items-center justify-center shrink-0 text-brand-deep-green">
+<span class="material-symbols-outlined text-[22px]">inventory</span>
+</div>
+<div class="flex-1">
+<h3 class="font-headline-sm text-headline-sm text-text-primary font-bold">3. Packaging Coordination</h3>
+<p class="font-body-sm text-body-sm text-text-muted mt-1">Standardized bag assembly, tamper-proof sealing, and platform-compliant labeling.</p>
+</div>
+</div>
+</div>
+<!-- Item 4 -->
+<div class="p-space-lg rounded-xl bg-surface-canvas shadow-sm hover:shadow-md transition-shadow duration-200">
+<div class="flex items-start gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-surface-alt flex items-center justify-center shrink-0 text-brand-deep-green">
+<span class="material-symbols-outlined text-[22px]">local_shipping</span>
+</div>
+<div class="flex-1">
+<h3 class="font-headline-sm text-headline-sm text-text-primary font-bold">4. Order Fulfilment Support</h3>
+<p class="font-body-sm text-body-sm text-text-muted mt-1">Seamless courier handover, dispatch verification, and handoff tracking.</p>
+</div>
+</div>
+</div>
+<!-- Item 5 -->
+<div class="p-space-lg rounded-xl bg-surface-canvas shadow-sm hover:shadow-md transition-shadow duration-200">
+<div class="flex items-start gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-surface-alt flex items-center justify-center shrink-0 text-brand-deep-green">
+<span class="material-symbols-outlined text-[22px]">hub</span>
+</div>
+<div class="flex-1">
+<h3 class="font-headline-sm text-headline-sm text-text-primary font-bold">5. Multi-Channel Operational Support</h3>
+<p class="font-body-sm text-body-sm text-text-muted mt-1">Cohesive store-level staffing and management across varying peak order windows.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 3: MULTI-CHANNEL OPERATIONS -->
+<section class="w-full bg-surface-canvas py-space-2xl lg:py-space-3xl">
+<div class="max-w-[1280px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop">
+<div class="flex flex-col items-center text-center max-w-3xl mx-auto mb-space-2xl">
+<span class="font-eyebrow text-eyebrow text-secondary uppercase tracking-widest block mb-2 text-center">CHANNEL INTEGRATION</span>
+<h2 class="font-headline-lg text-headline-lg text-brand-deep-green font-bold text-center max-w-2xl mx-auto">
+          One operational backbone. Multiple commerce channels.
+        </h2>
+<p class="font-body-lg text-body-lg text-text-muted mt-space-xs text-center max-w-2xl mx-auto">
+          We provide the physical execution and operational teams required to run daily orders across consumer platforms without brand overhead.
+        </p>
+</div>
+
+<!-- Compact Logo Showcase: Swiggy, Zomato, Ownly -->
+<div class="ws-logo-showcase mb-space-xl mx-auto">
+  <span class="ws-logo-label">COMMERCE PLATFORMS WE SUPPORT</span>
+  <div class="ws-logo-grid">
+    <div class="ws-logo-card" title="Swiggy">
+      <img src="assets/logos/swiggy.png" alt="Swiggy" class="ws-logo-img ws-logo-img-swiggy" loading="lazy" />
+    </div>
+    <div class="ws-logo-card" title="Zomato">
+      <img src="assets/logos/zomato.jpg" alt="Zomato" class="ws-logo-img ws-logo-img-zomato" loading="lazy" />
+    </div>
+    <div class="ws-logo-card" title="Ownly">
+      <img src="assets/logos/ownly.png" alt="Ownly" class="ws-logo-img ws-logo-img-ownly" loading="lazy" />
+    </div>
+  </div>
+</div>
+
+<!-- Supported Channels Styled Badges (Not third party logos) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter mb-space-2xl">
+<div class="p-space-lg rounded-xl bg-surface-alt shadow-sm flex flex-col justify-between">
+<div>
+<div class="ws-editorial-label inline-flex font-eyebrow text-eyebrow text-brand-deep-green font-bold uppercase tracking-wider mb-space-sm">
+              Channel
+            </div>
+<h3 class="font-headline-sm text-headline-sm text-text-primary font-extrabold">Swiggy</h3>
+<p class="font-body-sm text-body-sm text-text-muted mt-1">On-demand food delivery</p>
+</div>
+<div class="pt-space-md flex items-center gap-1.5 text-secondary font-caption text-caption font-semibold">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span>Live Queue Integration</span>
+</div>
+</div>
+<div class="p-space-lg rounded-xl bg-surface-alt shadow-sm flex flex-col justify-between">
+<div>
+<div class="ws-editorial-label inline-flex font-eyebrow text-eyebrow text-brand-deep-green font-bold uppercase tracking-wider mb-space-sm">
+              Channel
+            </div>
+<h3 class="font-headline-sm text-headline-sm text-text-primary font-extrabold">Zomato</h3>
+<p class="font-body-sm text-body-sm text-text-muted mt-1">Marketplace ordering &amp; delivery</p>
+</div>
+<div class="pt-space-md flex items-center gap-1.5 text-secondary font-caption text-caption font-semibold">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span>Rider Handover Protocol</span>
+</div>
+</div>
+<div class="p-space-lg rounded-xl bg-surface-alt shadow-sm flex flex-col justify-between">
+<div>
+<div class="ws-editorial-label inline-flex font-eyebrow text-eyebrow text-brand-deep-green font-bold uppercase tracking-wider mb-space-sm">
+              Channel
+            </div>
+<h3 class="font-headline-sm text-headline-sm text-text-primary font-extrabold">Ownly</h3>
+<p class="font-body-sm text-body-sm text-text-muted mt-1">Quick food commerce</p>
+</div>
+<div class="pt-space-md flex items-center gap-1.5 text-secondary font-caption text-caption font-semibold">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span>Micro-Node Fulfilment</span>
+</div>
+</div>
+<div class="p-space-lg rounded-xl bg-surface-alt shadow-sm flex flex-col justify-between">
+<div>
+<div class="ws-editorial-label inline-flex font-eyebrow text-eyebrow text-brand-deep-green font-bold uppercase tracking-wider mb-space-sm">
+              Channel
+            </div>
+<h3 class="font-headline-sm text-headline-sm text-text-primary font-extrabold">D2C Storefronts</h3>
+<p class="font-body-sm text-body-sm text-text-muted mt-1">Brand website &amp; custom order channels</p>
+</div>
+<div class="pt-space-md flex items-center gap-1.5 text-secondary font-caption text-caption font-semibold">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span>Custom Brand Packaging</span>
+</div>
+</div>
+</div>
+<!-- Editorial Feature Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<div class="p-space-lg rounded-xl bg-surface-container-low shadow-sm">
+<span class="material-symbols-outlined text-brand-deep-green text-[28px] mb-space-sm">label</span>
+<h4 class="font-headline-sm text-[1rem] font-bold text-text-primary mb-1">Packaging &amp; Label Compliance</h4>
+<p class="font-body-sm text-body-sm text-text-muted">Strict adherence to platform-mandated barcodes, packaging safety seals, and thermal receipts.</p>
+</div>
+<div class="p-space-lg rounded-xl bg-surface-container-low shadow-sm">
+<span class="material-symbols-outlined text-brand-deep-green text-[28px] mb-space-sm">stacked_line_chart</span>
+<h4 class="font-headline-sm text-[1rem] font-bold text-text-primary mb-1">Surge Order Coordination</h4>
+<p class="font-body-sm text-body-sm text-text-muted">Dynamic workstation scaling during dinner peaks, weekend volumes, and promotional windows.</p>
+</div>
+<div class="p-space-lg rounded-xl bg-surface-container-low shadow-sm">
+<span class="material-symbols-outlined text-brand-deep-green text-[28px] mb-space-sm">receipt_long</span>
+<h4 class="font-headline-sm text-[1rem] font-bold text-text-primary mb-1">Unified Daily Handover Logs</h4>
+<p class="font-body-sm text-body-sm text-text-muted">Comprehensive shift reconciliation recording all accepted, packed, and successfully handed-off orders.</p>
+</div>
+<div class="p-space-lg rounded-xl bg-surface-container-low shadow-sm">
+<span class="material-symbols-outlined text-brand-deep-green text-[28px] mb-space-sm">shield</span>
+<h4 class="font-headline-sm text-[1rem] font-bold text-text-primary mb-1">Strict Inventory Isolation</h4>
+<p class="font-body-sm text-body-sm text-text-muted">Physical shelf and cold-store segregation preventing cross-brand contamination or inventory errors.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 4: ORDER HANDLING AND FULFILMENT -->
+<section class="w-full bg-surface-alt py-space-2xl lg:py-space-3xl">
+<div class="max-w-[1280px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop">
+<div class="max-w-3xl mb-space-2xl">
+<span class="font-eyebrow text-eyebrow text-secondary uppercase tracking-widest block mb-2">FULFILMENT LIFECYCLE</span>
+<h2 class="font-headline-lg text-headline-lg text-brand-deep-green font-bold">
+          From incoming orders to prepared products.
+        </h2>
+<p class="font-body-lg text-body-lg text-text-muted mt-space-xs">
+          A transparent, structured four-stage sequence guiding every order from notification to final handover.
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter relative">
+<!-- Stage 01 -->
+<div class="p-space-lg rounded-xl bg-surface-canvas shadow-sm flex flex-col justify-between relative group hover:shadow-md transition-shadow">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<span class="px-2.5 py-1 rounded bg-secondary-container text-text-primary font-label-step text-label-step font-bold">01.</span>
+<span class="material-symbols-outlined text-text-muted text-[20px]">notifications_active</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-text-primary font-bold">Order Handling</h3>
+<p class="font-body-sm text-body-sm text-text-muted mt-space-xs">
+              Orders are received and verified against live channel feeds with immediate queue prioritization.
+            </p>
+</div>
+<div class="pt-space-md mt-space-md bg-surface-alt rounded p-2 text-center">
+<span class="font-caption text-caption text-text-muted">Stage 1: Verified Intake</span>
+</div>
+</div>
+<!-- Stage 02 -->
+<div class="p-space-lg rounded-xl bg-surface-canvas shadow-sm flex flex-col justify-between relative group hover:shadow-md transition-shadow">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<span class="px-2.5 py-1 rounded bg-secondary-container text-text-primary font-label-step text-label-step font-bold">02.</span>
+<span class="material-symbols-outlined text-text-muted text-[20px]">inventory_2</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-text-primary font-bold">Product Preparation</h3>
+<p class="font-body-sm text-body-sm text-text-muted mt-space-xs">
+              Products are retrieved from designated storage bays and prepared following verified brand guidelines.
+            </p>
+</div>
+<div class="pt-space-md mt-space-md bg-surface-alt rounded p-2 text-center">
+<span class="font-caption text-caption text-text-muted">Stage 2: SOP Adherence</span>
+</div>
+</div>
+<!-- Stage 03 -->
+<div class="p-space-lg rounded-xl bg-surface-canvas shadow-sm flex flex-col justify-between relative group hover:shadow-md transition-shadow">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<span class="px-2.5 py-1 rounded bg-secondary-container text-text-primary font-label-step text-label-step font-bold">03.</span>
+<span class="material-symbols-outlined text-text-muted text-[20px]">qr_code_scanner</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-text-primary font-bold">Packaging Coordination</h3>
+<p class="font-body-sm text-body-sm text-text-muted mt-space-xs">
+              Secure packaging, accurate order tagging, and receipt verification for handover readiness.
+            </p>
+</div>
+<div class="pt-space-md mt-space-md bg-surface-alt rounded p-2 text-center">
+<span class="font-caption text-caption text-text-muted">Stage 3: Tamper-Evident Seal</span>
+</div>
+</div>
+<!-- Stage 04 -->
+<div class="p-space-lg rounded-xl bg-surface-canvas shadow-sm flex flex-col justify-between relative group hover:shadow-md transition-shadow">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<span class="px-2.5 py-1 rounded bg-secondary-container text-text-primary font-label-step text-label-step font-bold">04.</span>
+<span class="material-symbols-outlined text-text-muted text-[20px]">two_wheeler</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-text-primary font-bold">Fulfilment Support</h3>
+<p class="font-body-sm text-body-sm text-text-muted mt-space-xs">
+              Dedicated handover to channel logistics partners with timestamped dispatch confirmation.
+            </p>
+</div>
+<div class="pt-space-md mt-space-md bg-surface-alt rounded p-2 text-center">
+<span class="font-caption text-caption text-text-muted">Stage 4: Verified Courier Handoff</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 5: OPERATIONAL WORKSPACE (PHOTOGRAPHIC FEATURE) -->
+<section class="w-full bg-surface-canvas py-space-2xl lg:py-space-3xl">
+<div class="max-w-[1280px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop items-center">
+<!-- Text & Standards Column -->
+<div class="lg:col-span-6 flex flex-col gap-space-md">
+<span class="font-eyebrow text-eyebrow text-secondary uppercase tracking-widest block">OPERATIONAL DISCIPLINE</span>
+<h2 class="font-headline-lg text-headline-lg text-brand-deep-green font-bold">
+            People and processes behind every operation.
+          </h2>
+<p class="font-body-lg text-body-lg text-text-muted">
+            Behind every seamless customer delivery is an organized physical team. At WhiteStores, trained operational personnel oversee order picking, packaging accuracy, and dispatch coordination in clean, temperature-conscious, and compliant operating environments.
+          </p>
+<div class="pt-space-sm flex flex-col gap-space-md">
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-brand-deep-green text-[22px] mt-0.5">group</span>
+<div>
+<h4 class="font-headline-sm text-[1rem] font-bold text-text-primary">Trained Store Personnel</h4>
+<p class="font-body-sm text-body-sm text-text-muted">Dedicated handlers rigorously trained in brand-specific handling instructions and hygiene standards.</p>
+</div>
+</div>
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-brand-deep-green text-[22px] mt-0.5">table_restaurant</span>
+<div>
+<h4 class="font-headline-sm text-[1rem] font-bold text-text-primary">Organised Workstations</h4>
+<p class="font-body-sm text-body-sm text-text-muted">Clean, ergonomic packing and dispatch counters with isolated thermal staging and scanning tools.</p>
+</div>
+</div>
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-brand-deep-green text-[22px] mt-0.5">verified_user</span>
+<div>
+<h4 class="font-headline-sm text-[1rem] font-bold text-text-primary">Accountability at Handoff</h4>
+<p class="font-body-sm text-body-sm text-text-muted">Structured courier ID verification and digital order scan matching prior to vehicle departure.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Image Composition -->
+<div class="lg:col-span-6 flex flex-col gap-space-md">
+<div class="rounded-xl overflow-hidden shadow-lg bg-surface-alt">
+<img class="w-full h-[260px] sm:h-[320px] lg:h-[400px] object-cover block" data-alt="Warehouse packing line in a clean food fulfillment center where an operational specialist with gloves and branded polo inspects a brown takeaway bag on an organized timber workbench with scanners and packaging supplies." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHHbX92ag5VwSRSt-v3D7R4R0EMrwn_2er_JL3U79Y-uWmk_gWbXE9cvA0DI0vMUwd7QgeX2c5OVuGQr2s1SKRIyEeyiv7UZ8lAZkthn3EMGDw1uU1nz1qn-5Y_17nLuPw66HAsAxopfeI84vTndvq9uObmiv1Gbr-VT2zkXGPA1gpNcJdej8CCMmeWNBlEWvNJK8tDqaf74nf4dsHTUWRffPfyfPpfha5ui1Czlmk"/>
+</div>
+<div class="p-space-md rounded-lg bg-surface-container flex items-center justify-between text-text-primary">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+<span class="font-body-sm text-body-sm font-semibold">Continuous Station Audits</span>
+</div>
+<span class="font-caption text-caption text-text-muted">Standard Operating Compliance</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 6: WHY WHITESTORES SECTION -->
+<section class="w-full bg-surface py-space-2xl lg:py-space-3xl">
+<div class="max-w-[1280px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop">
+<div class="text-center max-w-2xl mx-auto mb-space-2xl">
+<span class="font-eyebrow text-eyebrow text-secondary uppercase tracking-widest block mb-2">OPERATIONAL ADVANTAGE</span>
+<h2 class="font-headline-lg text-headline-lg text-brand-deep-green font-bold">
+          Built around your business operations.
+        </h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Pillar 1 -->
+<div class="p-space-xl rounded-xl bg-surface-canvas shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+<div>
+<div class="w-12 h-12 rounded-lg bg-surface-alt flex items-center justify-center text-brand-deep-green mb-space-md">
+<span class="material-symbols-outlined text-[26px]">cell_merge</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-text-primary font-bold">Multi-Channel Support</h3>
+<p class="font-body-sm text-body-sm text-text-muted mt-space-xs">
+              Single operational team managing Swiggy, Zomato, Ownly, and D2C simultaneously without context switching errors.
+            </p>
+</div>
+<div class="pt-space-md mt-space-md">
+<span class="font-caption text-caption text-secondary font-semibold">Unified Operations</span>
+</div>
+</div>
+<!-- Pillar 2 -->
+<div class="p-space-xl rounded-xl bg-surface-canvas shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+<div>
+<div class="w-12 h-12 rounded-lg bg-surface-alt flex items-center justify-center text-brand-deep-green mb-space-md">
+<span class="material-symbols-outlined text-[26px]">task_alt</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-text-primary font-bold">Organised Order Handling</h3>
+<p class="font-body-sm text-body-sm text-text-muted mt-space-xs">
+              Structured workflows designed to reduce errors and preserve product integrity from cold shelf to packing bag.
+            </p>
+</div>
+<div class="pt-space-md mt-space-md">
+<span class="font-caption text-caption text-secondary font-semibold">Error Reduction</span>
+</div>
+</div>
+<!-- Pillar 3 -->
+<div class="p-space-xl rounded-xl bg-surface-canvas shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+<div>
+<div class="w-12 h-12 rounded-lg bg-surface-alt flex items-center justify-center text-brand-deep-green mb-space-md">
+<span class="material-symbols-outlined text-[26px]">published_with_changes</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-text-primary font-bold">Operational Coordination</h3>
+<p class="font-body-sm text-body-sm text-text-muted mt-space-xs">
+              Consistent staffing, queue management, and daily physical reconciliation aligned with brand sales cadence.
+            </p>
+</div>
+<div class="pt-space-md mt-space-md">
+<span class="font-caption text-caption text-secondary font-semibold">Daily Physical Reconciliation</span>
+</div>
+</div>
+<!-- Pillar 4 -->
+<div class="p-space-xl rounded-xl bg-surface-canvas shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
+<div>
+<div class="w-12 h-12 rounded-lg bg-surface-alt flex items-center justify-center text-brand-deep-green mb-space-md">
+<span class="material-symbols-outlined text-[26px]">ac_unit</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-text-primary font-bold">Food-Commerce Expertise</h3>
+<p class="font-body-sm text-body-sm text-text-muted mt-space-xs">
+              Infrastructure designed specifically for chilled, frozen, and ambient food packaging and swift rider dispatch.
+            </p>
+</div>
+<div class="pt-space-md mt-space-md">
+<span class="font-caption text-caption text-secondary font-semibold">Cold-Chain Rigor</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 7: FINAL CALL TO ACTION SECTION -->
+<section class="w-full bg-brand-deep-green text-surface-canvas py-space-2xl lg:py-space-3xl relative overflow-hidden">
+<div class="max-w-[1280px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop relative z-10 text-center">
+<div class="max-w-2xl mx-auto flex flex-col items-center gap-space-md">
+<div class="ws-editorial-label ws-editorial-label-dark inline-flex items-center gap-2 text-accent-lime font-eyebrow text-eyebrow tracking-widest uppercase mb-1">
+          <span class="w-1.5 h-1.5 rounded-full bg-accent-lime"></span>
+          PARTNERSHIP ENQUIRIES
+        </div>
+<h2 class="font-headline-lg text-headline-lg lg:text-[2.75rem] text-surface-canvas font-extrabold leading-tight">
+          Ready to streamline your commerce operations?
+        </h2>
+<p class="font-body-lg text-body-lg text-surface-variant max-w-xl">
+          Let's understand your business requirements and explore how WhiteStores can support your operational needs.
+        </p>
+<div class="pt-space-md flex flex-col sm:flex-row items-center justify-center gap-space-md w-full sm:w-auto">
+<a class="inline-flex items-center justify-center gap-space-sm px-space-xl py-3.5 rounded-lg bg-accent-lime hover:bg-[#95DC2B] text-text-primary font-label-action text-label-action font-bold transition-all duration-200 shadow-md group w-full sm:w-auto" data-path="partner-with-us" href="partner-with-us.html">
+<span>Partner With Us</span>
+<span class="material-symbols-outlined text-[20px] transition-transform duration-200 group-hover:translate-x-1">arrow_forward</span>
+</a>
+<a class="inline-flex items-center justify-center gap-space-sm px-space-xl py-3.5 rounded-lg bg-transparent hover:bg-surface-canvas/10 text-surface-canvas font-label-action text-label-action font-semibold transition-all duration-200 w-full sm:w-auto shadow-sm" data-path="whitestores-storage-distribution" href="storage-distribution.html">
+<span>Explore Storage &amp; Distribution</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+</div></main>  <!-- ==========================================================================
+       FOOD-COMMERCE CAPABILITIES SHOWCASE STRIP (Immediately above footer)
+       ========================================================================== -->
+  <section aria-label="Food Commerce Infrastructure Capabilities" class="ws-brand-strip">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="ws-brand-strip-inner">
+        
+        <!-- Left Introductory Text (Stationary) -->
+        <div class="ws-brand-text">
+          <p class="text-[11px] md:text-xs font-extrabold text-[#69736D] uppercase tracking-wider mb-0.5">DIFFERENT FLAVOURS. ONE NETWORK.</p>
+          <p class="text-sm md:text-[15px] font-bold text-[#013125] tracking-tight whitespace-nowrap">Infrastructure that powers food businesses.</p>
+        </div>
+
+        <!-- Right Continuous Moving Capabilities Marquee -->
+        <div class="ws-brand-marquee-container">
+          <div class="ws-brand-marquee-track">
+            
+            <!-- Capability Sequence 1 -->
+            <div class="ws-brand-marquee-group">
+              <div class="ws-capability-badge" title="Storage &amp; Distribution Capability">
+                <span class="ws-capability-icon-wrap">
+                  <span class="material-symbols-outlined ws-capability-icon">warehouse</span>
+                </span>
+                <span class="ws-capability-label">STORAGE &amp; DISTRIBUTION</span>
+              </div>
+              <div class="ws-capability-badge" title="Cold-Chain Infrastructure Capability">
+                <span class="ws-capability-icon-wrap">
+                  <span class="material-symbols-outlined ws-capability-icon">ac_unit</span>
+                </span>
+                <span class="ws-capability-label">COLD-CHAIN INFRASTRUCTURE</span>
+              </div>
+              <div class="ws-capability-badge" title="Commerce Operations Capability">
+                <span class="ws-capability-icon-wrap">
+                  <span class="material-symbols-outlined ws-capability-icon">hub</span>
+                </span>
+                <span class="ws-capability-label">COMMERCE OPERATIONS</span>
+              </div>
+              <div class="ws-capability-badge" title="Quick Kitchen Capability">
+                <span class="ws-capability-icon-wrap">
+                  <span class="material-symbols-outlined ws-capability-icon">restaurant</span>
+                </span>
+                <span class="ws-capability-label">QUICK KITCHEN</span>
+              </div>
+              <div class="ws-capability-badge" title="Order Fulfilment Capability">
+                <span class="ws-capability-icon-wrap">
+                  <span class="material-symbols-outlined ws-capability-icon">local_shipping</span>
+                </span>
+                <span class="ws-capability-label">ORDER FULFILMENT</span>
+              </div>
+              <div class="ws-capability-badge" title="Food Commerce Capability">
+                <span class="ws-capability-icon-wrap">
+                  <span class="material-symbols-outlined ws-capability-icon">storefront</span>
+                </span>
+                <span class="ws-capability-label">FOOD COMMERCE</span>
+              </div>
+            </div>
+
+            <!-- Capability Sequence 2 (Duplicate for Seamless Infinite Loop) -->
+            <div aria-hidden="true" class="ws-brand-marquee-group">
+              <div class="ws-capability-badge" title="Storage &amp; Distribution Capability">
+                <span class="ws-capability-icon-wrap">
+                  <span class="material-symbols-outlined ws-capability-icon">warehouse</span>
+                </span>
+                <span class="ws-capability-label">STORAGE &amp; DISTRIBUTION</span>
+              </div>
+              <div class="ws-capability-badge" title="Cold-Chain Infrastructure Capability">
+                <span class="ws-capability-icon-wrap">
+                  <span class="material-symbols-outlined ws-capability-icon">ac_unit</span>
+                </span>
+                <span class="ws-capability-label">COLD-CHAIN INFRASTRUCTURE</span>
+              </div>
+              <div class="ws-capability-badge" title="Commerce Operations Capability">
+                <span class="ws-capability-icon-wrap">
+                  <span class="material-symbols-outlined ws-capability-icon">hub</span>
+                </span>
+                <span class="ws-capability-label">COMMERCE OPERATIONS</span>
+              </div>
+              <div class="ws-capability-badge" title="Quick Kitchen Capability">
+                <span class="ws-capability-icon-wrap">
+                  <span class="material-symbols-outlined ws-capability-icon">restaurant</span>
+                </span>
+                <span class="ws-capability-label">QUICK KITCHEN</span>
+              </div>
+              <div class="ws-capability-badge" title="Order Fulfilment Capability">
+                <span class="ws-capability-icon-wrap">
+                  <span class="material-symbols-outlined ws-capability-icon">local_shipping</span>
+                </span>
+                <span class="ws-capability-label">ORDER FULFILMENT</span>
+              </div>
+              <div class="ws-capability-badge" title="Food Commerce Capability">
+                <span class="ws-capability-icon-wrap">
+                  <span class="material-symbols-outlined ws-capability-icon">storefront</span>
+                </span>
+                <span class="ws-capability-label">FOOD COMMERCE</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+<footer class="ws-footer w-full bg-[#01281e] text-white border-t border-white/15">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Main 4-Column Grid -->
+      <div class="ws-footer-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- COLUMN 1: Brand (4 cols on lg ~ 1.33fr) -->
+        <div class="lg:col-span-4 flex flex-col items-start gap-2">
+          <a class="inline-block focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A6F134] rounded" data-path="home" href="index.html">
+            <img alt="WhiteStores" class="ws-footer-logo h-11 md:h-12 w-auto object-contain block" src="assets/whitestores-logo-footer.jpg"/>
+          </a>
+          <p class="text-sm font-bold text-[#A6F134] ws-footer-lime leading-snug">Your Brand. Our Infrastructure. Your Growth.</p>
+          <p class="text-xs text-white/70 leading-relaxed max-w-sm">
+            Food-commerce infrastructure and operations for growing brands across ambient, chilled, and automated network nodes.
+          </p>
+          <div class="pt-1">
+            <span class="inline-block px-3 py-1 rounded-full bg-white/10 text-white/80 text-[11px] font-medium tracking-wide">
+              By PropelPad Business Solutions Private Limited
+            </span>
+          </div>
+        </div>
+
+        <!-- COLUMN 2: Explore (2 cols on lg ~ 1fr) -->
+        <div class="lg:col-span-2 flex flex-col items-start gap-2.5">
+          <h4 class="text-xs font-bold uppercase tracking-widest text-[#A6F134] ws-footer-lime">Explore</h4>
+          <ul class="flex flex-col gap-2 text-xs text-white/75">
+            <li><a class="hover:text-[#A6F134] transition-colors" data-path="home" href="index.html">Home</a></li>
+            <li><a class="hover:text-[#A6F134] transition-colors" data-path="about-us" href="about-us.html">About Us</a></li>
+            <li><a class="hover:text-[#A6F134] transition-colors" data-path="our-network" href="our-network.html">Our Network</a></li>
+            <li><a class="hover:text-[#A6F134] transition-colors" data-path="partner-with-us" href="partner-with-us.html">Partner With Us</a></li>
+          </ul>
+        </div>
+
+        <!-- COLUMN 3: Solutions (3 cols on lg ~ 1.25fr) -->
+        <div class="lg:col-span-3 flex flex-col items-start gap-2.5">
+          <h4 class="text-xs font-bold uppercase tracking-widest text-[#A6F134] ws-footer-lime">Solutions</h4>
+          <ul class="flex flex-col gap-2 text-xs text-white/75">
+            <li><a class="hover:text-[#A6F134] transition-colors" data-path="storage-and-distribution" href="storage-distribution.html">Storage &amp; Distribution</a></li>
+            <li><a class="hover:text-[#A6F134] transition-colors" data-path="commerce-operations" href="commerce-operations.html">Commerce Operations</a></li>
+            <li><a class="hover:text-[#A6F134] transition-colors" data-path="quick-kitchen" href="quick-kitchen.html">Quick Kitchen</a></li>
+          </ul>
+        </div>
+
+        <!-- COLUMN 4: Connect (3 cols on lg ~ 1.25fr) -->
+        <div class="lg:col-span-3 flex flex-col items-start gap-2.5 w-full">
+          <h4 class="text-xs font-bold uppercase tracking-widest text-[#A6F134] ws-footer-lime">Connect</h4>
+          <ul class="flex flex-col gap-2.5 text-xs text-white/75 w-full">
+            <li class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-[16px] text-[#A6F134] ws-footer-lime shrink-0">mail</span>
+              <a class="hover:text-[#A6F134] transition-colors whitespace-nowrap" href="mailto:partners@whitestores.in">partners@whitestores.in</a>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-[16px] text-[#A6F134] ws-footer-lime shrink-0">call</span>
+              <a class="hover:text-[#A6F134] transition-colors whitespace-nowrap" href="tel:+918040008800">+91 80 4000 8800</a>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-[16px] text-[#A6F134] ws-footer-lime shrink-0">share</span>
+              <a class="hover:text-[#A6F134] transition-colors whitespace-nowrap" href="#" rel="noopener noreferrer" target="_blank">LinkedIn Official</a>
+            </li>
+            <li class="pt-1 text-xs text-white/75 leading-relaxed">
+              207, PropelPad Business Solutions, Shree Ganesh Industrial Estate, WT Marg, Chembur 400071
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Copyright Section -->
+      <div class="pt-3.5 pb-0 text-center">
+        <p class="text-xs text-white/60">
+          &copy; WhiteStores is a brand of PropelPad Business Solutions Private Limited. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+<div aria-hidden="true" aria-label="Mobile Navigation" class="ws-mobile-drawer" id="ws-mobile-drawer" role="dialog" aria-modal="true">
+  <!-- Mobile Header -->
+  <div class="ws-mobile-header">
+    <a aria-label="WhiteStores Home" class="focus:outline-none" href="index.html">
+      <img alt="WhiteStores" class="ws-mobile-logo" src="assets/whitestores-logo.png?v=ws-new-logo-2026"/>
+    </a>
+    <button aria-label="Close navigation" class="ws-close-btn" id="ws-close-menu" type="button">
+      <span class="material-symbols-outlined text-[24px]">close</span>
+    </button>
+  </div>
+
+  <!-- Scrollable Navigation Body -->
+  <div class="ws-mobile-nav-scroll">
+    <nav aria-label="Mobile navigation" class="ws-mobile-links">
+      
+      <!-- 1. Home -->
+      <div class="ws-nav-item">
+        <a class="ws-link " href="index.html">
+          <span>Home</span>
+          
+        </a>
+      </div>
+
+      <!-- 2. Solutions Accordion -->
+      <div class="ws-nav-item ws-solutions-item">
+        <div class="ws-solutions-row">
+          <a class="ws-link ws-solutions-link ws-active" href="solutions.html">
+            <span>Solutions</span>
+          </a>
+          <button aria-controls="ws-solutions-submenu" aria-expanded="true" aria-label="Toggle Solutions submenu" class="ws-submenu-toggle is-active" id="ws-solutions-toggle" type="button">
+            <span class="material-symbols-outlined ws-chevron-icon">expand_more</span>
+          </button>
+        </div>
+        
+        <!-- Vertical Submenu Rows -->
+        <div class="ws-submenu is-open" id="ws-solutions-submenu">
+          <a class="ws-sublink " href="storage-distribution.html">
+            <span class="ws-sublink-dot"></span>
+            <span>Storage &amp; Distribution</span>
+          </a>
+          <a class="ws-sublink ws-active" href="commerce-operations.html">
+            <span class="ws-sublink-dot"></span>
+            <span>Commerce Operations</span>
+          </a>
+          <a class="ws-sublink " href="quick-kitchen.html">
+            <span class="ws-sublink-dot"></span>
+            <span>Quick Kitchen</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- 3. Our Network -->
+      <div class="ws-nav-item">
+        <a class="ws-link " href="our-network.html">
+          <span>Our Network</span>
+          
+        </a>
+      </div>
+
+      <!-- 4. About Us -->
+      <div class="ws-nav-item">
+        <a class="ws-link " href="about-us.html">
+          <span>About Us</span>
+          
+        </a>
+      </div>
+
+    </nav>
+  </div>
+
+  <!-- Mobile Footer / Compact CTA Area (Fixed at bottom) -->
+  <div class="ws-mobile-footer">
+    <a class="ws-mobile-cta" href="partner-with-us.html">
+      <span>Partner With Us</span>
+      <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+    </a>
+    <p class="ws-mobile-bottom-text">
+      By PropelPad Business Solutions Private Limited
+    </p>
+  </div>
+</div>
+<script src="js/navigation.js?v=compact-white-menu-1" defer></script>
+</body>
+</html>

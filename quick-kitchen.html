@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      "colors": {
+        "on-secondary": "#ffffff",
+        "on-error-container": "#93000a",
+        "text-primary": "#252C29",
+        "primary-container": "#013125",
+        "error-container": "#ffdad6",
+        "on-tertiary-fixed-variant": "#3f4944",
+        "primary": "#001a12",
+        "on-background": "#161d1a",
+        "background": "#f4fbf6",
+        "tertiary-fixed": "#dbe5de",
+        "surface-variant": "#dde4df",
+        "primary-fixed-dim": "#a3d0be",
+        "surface": "#f4fbf6",
+        "surface-container": "#e8f0eb",
+        "on-primary-container": "#6f9a8a",
+        "on-tertiary-fixed": "#141d19",
+        "surface-container-low": "#eef5f0",
+        "on-primary-fixed-variant": "#244e41",
+        "error": "#ba1a1a",
+        "on-primary": "#ffffff",
+        "inverse-surface": "#2b322f",
+        "outline-variant": "#c0c8c3",
+        "secondary-container": "#acf83b",
+        "text-muted": "#69736D",
+        "tertiary": "#0f1813",
+        "secondary": "#436900",
+        "on-surface": "#161d1a",
+        "on-surface-variant": "#414845",
+        "border-subtle": "#E9ECE8",
+        "on-error": "#ffffff",
+        "on-primary-fixed": "#002118",
+        "surface-container-highest": "#dde4df",
+        "brand-deep-green": "#013125",
+        "tertiary-fixed-dim": "#bfc9c2",
+        "surface-canvas": "#FFFFFF",
+        "primary-fixed": "#bfecda",
+        "on-secondary-fixed": "#112000",
+        "outline": "#717975",
+        "surface-dim": "#d4dcd7",
+        "on-tertiary": "#ffffff",
+        "surface-alt": "#F6F7F3",
+        "surface-container-lowest": "#ffffff",
+        "inverse-primary": "#a3d0be",
+        "surface-tint": "#3c6658",
+        "inverse-on-surface": "#ebf2ed",
+        "surface-container-high": "#e3eae5",
+        "tertiary-container": "#232c27",
+        "on-secondary-container": "#476f00",
+        "secondary-fixed-dim": "#92db17",
+        "on-secondary-fixed-variant": "#314f00",
+        "on-tertiary-container": "#89948d",
+        "accent-lime": "#A6F134",
+        "surface-bright": "#f4fbf6",
+        "secondary-fixed": "#acf83b"
+      },
+      "borderRadius": {
+        "DEFAULT": "0.25rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "full": "9999px"
+      },
+      "spacing": {
+        "margin-desktop": "4rem",
+        "margin-tablet": "2.5rem",
+        "space-sm": "0.5rem",
+        "gutter": "1.5rem",
+        "space-md": "1rem",
+        "gutter-desktop": "2rem",
+        "space-3xl": "6rem",
+        "space-lg": "1.5rem",
+        "margin": "1.25rem",
+        "space-2xl": "4rem",
+        "space-xl": "2.5rem",
+        "space-xs": "0.25rem"
+      },
+      "fontFamily": {
+        "body-lg": ["Manrope"],
+        "headline-md": ["Manrope"],
+        "headline-sm": ["Manrope"],
+        "display-hero": ["Manrope"],
+        "label-step": ["Manrope"],
+        "body-sm": ["Manrope"],
+        "headline-lg": ["Manrope"],
+        "caption": ["Manrope"],
+        "label-action": ["Manrope"],
+        "headline-lg-mobile": ["Manrope"],
+        "display-hero-mobile": ["Manrope"],
+        "eyebrow": ["Manrope"],
+        "body-md": ["Manrope"]
+      },
+      "fontSize": {
+        "body-lg": ["1.125rem", {"lineHeight": "1.6", "letterSpacing": "-0.005em", "fontWeight": "400"}],
+        "headline-md": ["1.75rem", {"lineHeight": "1.3", "letterSpacing": "-0.015em", "fontWeight": "700"}],
+        "headline-sm": ["1.25rem", {"lineHeight": "1.4", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+        "display-hero": ["3.75rem", {"lineHeight": "1.1", "letterSpacing": "-0.03em", "fontWeight": "800"}],
+        "label-step": ["1rem", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+        "body-sm": ["0.875rem", {"lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400"}],
+        "headline-lg": ["2.5rem", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+        "caption": ["0.75rem", {"lineHeight": "1.4", "letterSpacing": "0.02em", "fontWeight": "500"}],
+        "label-action": ["0.9375rem", {"lineHeight": "1", "letterSpacing": "0.01em", "fontWeight": "600"}],
+        "headline-lg-mobile": ["1.75rem", {"lineHeight": "1.25", "letterSpacing": "-0.015em", "fontWeight": "700"}],
+        "display-hero-mobile": ["2.25rem", {"lineHeight": "1.15", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+        "eyebrow": ["0.75rem", {"lineHeight": "1.3", "letterSpacing": "0.12em", "fontWeight": "700"}],
+        "body-md": ["1rem", {"lineHeight": "1.55", "letterSpacing": "0", "fontWeight": "400"}]
+      }
+    }
+  }
+}</script><link rel="stylesheet" href="css/style.css?v=ws-logo-size-v1"/>
+</head><body class="bg-surface font-body-md text-on-surface antialiased"><header class="ws-navbar">
+  <div class="ws-navbar-container">
+    
+    <!-- LEFT: Brand Logo (10-12% reduced, vertically centered) -->
+    <div class="ws-nav-col-left">
+      <a class="flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A6F134] rounded" data-path="home" href="index.html" title="WhiteStores Home">
+        <img alt="WhiteStores" class="ws-nav-logo" src="assets/whitestores-logo.png?v=ws-new-logo-2026"/>
+      </a>
+    </div>
+
+    <!-- CENTER: Desktop Navigation Links -->
+    <nav aria-label="Main Navigation" class="ws-nav-links">
+      <!-- Home -->
+      <a class="ws-nav-link " data-path="home" href="index.html">Home</a>
+      
+      <!-- Solutions Dropdown (Pristine White, Unified Standard) -->
+      <div class="relative group py-2">
+        <button aria-expanded="false" aria-haspopup="true" class="ws-nav-link ws-solutions-btn is-active" type="button">
+          <span>Solutions</span>
+          <span class="material-symbols-outlined ws-dropdown-chevron">expand_more</span>
+        </button>
+
+        <!-- Dropdown Card (White, Consistent Dimensions) -->
+        <div class="ws-dropdown-wrapper">
+          <div class="ws-dropdown-menu">
+            <a class="ws-dropdown-item group/item" data-path="storage-and-distribution" href="storage-distribution.html">
+              <span class="ws-dropdown-item-title">Storage &amp; Distribution</span>
+              <span class="ws-dropdown-item-desc">Ambient &amp; cold-chain spaces</span>
+            </a>
+            <a class="ws-dropdown-item group/item" data-path="commerce-operations" href="commerce-operations.html">
+              <span class="ws-dropdown-item-title">Commerce Operations</span>
+              <span class="ws-dropdown-item-desc">FMCG fulfillment workflows</span>
+            </a>
+            <a class="ws-dropdown-item group/item" data-path="quick-kitchen" href="quick-kitchen.html">
+              <span class="ws-dropdown-item-title">Quick Kitchen</span>
+              <span class="ws-dropdown-item-desc">Plug-and-play dark facilities</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Our Network -->
+      <a class="ws-nav-link " data-path="our-network" href="our-network.html">Our Network</a>
+
+      <!-- About Us -->
+      <a class="ws-nav-link " data-path="about-us" href="about-us.html">About Us</a>
+    </nav>
+
+    <!-- RIGHT: Partner With Us CTA Button (Desktop) -->
+    <div class="ws-nav-col-right hidden lg:flex">
+      <a class="ws-nav-cta" data-path="partner-with-us" href="partner-with-us.html">Partner With Us</a>
+    </div>
+
+        <!-- Mobile Hamburger Toggle Button (Compact green oval/pill with 3 snowy-white lines) -->
+    <div class="flex lg:hidden items-center justify-end">
+      <button aria-controls="ws-mobile-drawer" aria-expanded="false" aria-label="Open Mobile Navigation" class="ws-mobile-menu-pill" id="ws-mobile-menu-btn" type="button">
+        <span class="ws-hamburger-bar"></span>
+        <span class="ws-hamburger-bar"></span>
+        <span class="ws-hamburger-bar"></span>
+      </button>
+    </div>
+
+  </div>
+</header><main class="w-full pt-20 bg-surface min-h-[calc(100vh-80px)]"><div class="flex flex-col w-full">
+<!-- 1. HERO SECTION (Split-Layout in Deep Green #013125) -->
+<section class="ws-hero ws-hero-kitchen ws-hero-enhanced-typo ws-hero-full-viewport relative bg-white text-surface-canvas overflow-hidden flex items-center justify-center">
+  <!-- Subtle Ambient Glow Layer -->
+  <div class="ws-hero-ambient-glow pointer-events-none" aria-hidden="true"></div>
+
+  <!-- Hero Content Container -->
+  <div class="ws-hero-content relative z-10 w-full max-w-[1280px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop py-6 sm:py-8 lg:py-10 text-center flex flex-col items-center">
+    <div class="max-w-[1040px] w-full mx-auto text-center flex flex-col items-center gap-3 sm:gap-4">
+      
+      <!-- Main Heading -->
+      <h1 class="ws-hero-title font-display-hero text-3xl sm:text-4xl lg:text-[3.25rem] text-surface-canvas tracking-tight font-extrabold leading-[1.12] max-w-[1040px] mx-auto">
+        Kitchen operations made simpler<br/>
+        <span class="text-accent-lime">for growing food brands.</span>
+      </h1>
+
+      <!-- Luminous Accent Line -->
+      <div class="w-12 h-1 bg-accent-lime rounded-full my-1"></div>
+
+      <!-- Description -->
+      <p class="ws-hero-desc text-white/85 font-body-lg text-sm sm:text-base lg:text-[1rem] max-w-[560px] leading-relaxed mx-auto">
+        WhiteStores provides on-demand kitchen operational support to help food businesses manage product finishing, heating, frying and order preparation.
+      </p>
+
+      <!-- Supporting Text & Feature Note -->
+      <p class="ws-hero-subtext text-white/70 font-body-md text-xs sm:text-sm max-w-[540px] leading-relaxed mx-auto">
+        From kitchen infrastructure to operational coordination, we help businesses organise the processes needed to deliver consistent quality across orders.
+      </p>
+      <div class="ws-hero-feature-pill inline-flex items-center gap-2 text-xs text-[#013125] font-semibold">
+        <span class="w-1.5 h-1.5 rounded-full bg-[#A6F134]"></span>
+        <span>Zero long-term facility leases. Rapid SOP onboarding within 7 working days.</span>
+      </div>
+
+      <!-- CTA Buttons -->
+      <div class="ws-hero-actions pt-2 sm:pt-4 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full sm:w-auto">
+        <a class="ws-hero-btn-primary inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full text-sm font-bold shadow-md transition-all duration-200 group" href="partner-with-us.html">
+          <span>Partner With Us</span>
+          <span class="material-symbols-outlined text-[18px] transition-transform group-hover:translate-x-1">arrow_forward</span>
+        </a>
+        <a class="ws-hero-btn-secondary inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full text-sm font-bold shadow-sm transition-all duration-200" href="solutions.html">
+          <span>Explore All Solutions</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- 2. QUICK KITCHEN OVERVIEW -->
+<section class="w-full bg-surface-canvas py-space-2xl lg:py-space-3xl">
+<div class="max-w-[1280px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop">
+<div class="max-w-3xl mb-space-2xl">
+<span class="font-eyebrow text-eyebrow text-secondary uppercase tracking-widest block mb-space-xs">Overview</span>
+<h2 class="font-headline-lg text-headline-lg-mobile lg:text-headline-lg text-text-primary font-bold tracking-tight">
+          An operational kitchen environment built around your needs.
+        </h2>
+<p class="font-body-lg text-body-lg text-text-muted mt-space-sm leading-relaxed">
+          Food businesses need organised kitchen operations to support their products and daily requirements. WhiteStores provides kitchen infrastructure and operational support to help manage these activities.
+        </p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop items-stretch">
+<!-- Documentary Photo Left -->
+<div class="lg:col-span-5 relative rounded-2xl overflow-hidden bg-surface-container min-h-[380px]">
+<img class="w-full h-full object-cover" data-alt="Professional chefs in a commercial kitchen preparing and plating dishes on a stainless steel line counter with ingredients organized in pans, focused operational atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBn54LZQlhR3iE2r_WVkXDEdcs28JhFtcteJZ8uFBeJAKtLMrTpcPkgNF2AuIxIF1BgAxOYpSxoJsSd4eL8M3JT0tnzuR9LfFekvtlcGBytbdD7N11REQc_-ra_RcWqTi4YRFpEKkACEO8_AEpVtJP_B3ewhBmjJqhEfg8fuNtIGKvaFvyUED-m-IEKbeRQ0RzhyebV1at7izafvOQB2o9eXZmHv8BHvuuuyVPv9Xb"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent"></div>
+<div class="absolute bottom-6 left-6 right-6 text-surface-canvas">
+<span class="ws-editorial-label text-accent-lime font-caption text-caption uppercase tracking-wider inline-flex items-center gap-1.5 mb-2 font-bold">
+  <span class="w-1.5 h-1.5 rounded-full bg-accent-lime"></span>
+  Operational Precision
+</span>
+<p class="font-headline-sm text-sm text-surface-canvas font-medium">Standard operating procedures deployed across active food assembly lines.</p>
+</div>
+</div>
+<!-- 4 Structured Thematic Operational Areas Right -->
+<div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<div class="p-space-lg rounded-xl bg-surface-alt border border-border-subtle flex flex-col justify-between hover:border-brand-deep-green/30 transition-all duration-200">
+<div>
+<div class="w-10 h-10 rounded-lg bg-surface-canvas text-brand-deep-green border border-border-subtle flex items-center justify-center mb-space-md">
+<span class="material-symbols-outlined text-[22px]">cooking</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-text-primary font-semibold mb-space-xs">Kitchen Infrastructure</h3>
+<p class="font-body-sm text-body-sm text-text-muted leading-relaxed">
+                Clean, purpose-built workspaces designed for everyday commercial food preparation.
+              </p>
+</div>
+<span class="mt-space-md text-[12px] font-caption text-secondary font-bold tracking-wider uppercase">01 / Infrastructure</span>
+</div>
+<div class="p-space-lg rounded-xl bg-surface-alt border border-border-subtle flex flex-col justify-between hover:border-brand-deep-green/30 transition-all duration-200">
+<div>
+<div class="w-10 h-10 rounded-lg bg-surface-canvas text-brand-deep-green border border-border-subtle flex items-center justify-center mb-space-md">
+<span class="material-symbols-outlined text-[22px]">skillet</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-text-primary font-semibold mb-space-xs">Food Preparation Support</h3>
+<p class="font-body-sm text-body-sm text-text-muted leading-relaxed">
+                Hands-on execution of thawing, heating, frying, grilling, blending, and finishing based on partner recipes.
+              </p>
+</div>
+<span class="mt-space-md text-[12px] font-caption text-secondary font-bold tracking-wider uppercase">02 / Execution</span>
+</div>
+<div class="p-space-lg rounded-xl bg-surface-alt border border-border-subtle flex flex-col justify-between hover:border-brand-deep-green/30 transition-all duration-200">
+<div>
+<div class="w-10 h-10 rounded-lg bg-surface-canvas text-brand-deep-green border border-border-subtle flex items-center justify-center mb-space-md">
+<span class="material-symbols-outlined text-[22px]">sync_alt</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-text-primary font-semibold mb-space-xs">Kitchen Operational Coordination</h3>
+<p class="font-body-sm text-body-sm text-text-muted leading-relaxed">
+                Organized shift-level coordination, station management, and queue alignment.
+              </p>
+</div>
+<span class="mt-space-md text-[12px] font-caption text-secondary font-bold tracking-wider uppercase">03 / Coordination</span>
+</div>
+<div class="p-space-lg rounded-xl bg-surface-alt border border-border-subtle flex flex-col justify-between hover:border-brand-deep-green/30 transition-all duration-200">
+<div>
+<div class="w-10 h-10 rounded-lg bg-surface-canvas text-brand-deep-green border border-border-subtle flex items-center justify-center mb-space-md">
+<span class="material-symbols-outlined text-[22px]">verified_user</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-text-primary font-semibold mb-space-xs">Day-to-Day Operational Processes</h3>
+<p class="font-body-sm text-body-sm text-text-muted leading-relaxed">
+                Predictable operational procedures ensuring product consistency from first order to last.
+              </p>
+</div>
+<span class="mt-space-md text-[12px] font-caption text-secondary font-bold tracking-wider uppercase">04 / Consistency</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. KITCHEN INFRASTRUCTURE SECTION -->
+<section class="w-full bg-surface-alt py-space-2xl lg:py-space-3xl border-y border-border-subtle">
+<div class="max-w-[1280px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop items-center">
+<!-- Left Content -->
+<div class="lg:col-span-6 flex flex-col gap-space-lg">
+<div>
+<span class="font-eyebrow text-eyebrow text-secondary uppercase tracking-widest block mb-space-xs">Built for Food Execution</span>
+<h2 class="font-headline-lg text-headline-lg-mobile lg:text-headline-lg text-text-primary font-bold tracking-tight">
+              Space and infrastructure for food operations.
+            </h2>
+<p class="font-body-md text-body-md text-text-muted mt-space-sm leading-relaxed">
+              WhiteStores provisions clean, compliant facilities equipped to support everyday commercial kitchen execution, minimizing capital expenditure while guaranteeing operational control.
+            </p>
+</div>
+<!-- Feature Stack -->
+<div class="flex flex-col gap-space-md">
+<div class="p-space-md rounded-xl bg-surface-canvas border border-border-subtle hover:border-brand-deep-green/40 transition-colors">
+<div class="flex items-start gap-space-md">
+<div class="w-8 h-8 rounded-lg bg-surface-container text-brand-deep-green flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[18px]">countertops</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-[1rem] text-text-primary font-bold mb-1">Professional Kitchen Workspace</h4>
+<p class="font-body-sm text-body-sm text-text-muted">Purposeful physical layouts built to accommodate commercial food prep routines.</p>
+</div>
+</div>
+</div>
+<div class="p-space-md rounded-xl bg-surface-canvas border border-border-subtle hover:border-brand-deep-green/40 transition-colors">
+<div class="flex items-start gap-space-md">
+<div class="w-8 h-8 rounded-lg bg-surface-container text-brand-deep-green flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[18px]">clean_hands</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-[1rem] text-text-primary font-bold mb-1">Food Preparation Areas</h4>
+<p class="font-body-sm text-body-sm text-text-muted">Dedicated stations configured for sanitary handling, staging, and assembly.</p>
+</div>
+</div>
+</div>
+<div class="p-space-md rounded-xl bg-surface-canvas border border-border-subtle hover:border-brand-deep-green/40 transition-colors">
+<div class="flex items-start gap-space-md">
+<div class="w-8 h-8 rounded-lg bg-surface-container text-brand-deep-green flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[18px]">inventory_2</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-[1rem] text-text-primary font-bold mb-1">Organised Equipment &amp; Workstations</h4>
+<p class="font-body-sm text-body-sm text-text-muted">Commercial-grade cookware, induction lines, refrigeration, and staging racks maintained for smooth workflows.</p>
+</div>
+</div>
+</div>
+<div class="p-space-md rounded-xl bg-surface-canvas border border-border-subtle hover:border-brand-deep-green/40 transition-colors">
+<div class="flex items-start gap-space-md">
+<div class="w-8 h-8 rounded-lg bg-surface-container text-brand-deep-green flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[18px]">hvac</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-[1rem] text-text-primary font-bold mb-1">Operationally Suitable Environments</h4>
+<p class="font-body-sm text-body-sm text-text-muted">Hygienic, well-ventilated, and organized kitchen facilities designed for daily execution.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Side Photography Showcase -->
+<div class="lg:col-span-6">
+<div class="relative rounded-2xl overflow-hidden shadow-xl bg-surface-canvas">
+<img class="w-full h-[280px] sm:h-[380px] lg:h-[520px] object-cover" data-alt="Clean industrial commercial kitchen line with heavy duty stainless steel gas ranges, preparation counters, overhead hood system and organized pots and pans." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAP3X9qjqOFm7664jBknX4U3lNt3VQzfE4gbugp_XI4oyDq2DuAuNjgyuhfpW61QIw0lNIaHisfEcpeQOcbJuaWAOWQeoFT9PpuaZXW1QwBeJ5Zc-WBg5_uigb4u2Bo9bA2-vQB50XjO6Ut1cMk-VxWQN_olL5AfG9MNXgFGErrjlW-UC4mnz09ZCHThnfzYyRXLi9-FSJDmLucS_BCGImScBm54cUt0f0bQ8EvvXf"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/75 via-transparent to-transparent"></div>
+<div class="absolute bottom-6 left-6 right-6 p-space-md rounded-xl bg-brand-deep-green/90 backdrop-blur-md text-surface-canvas border border-white/10">
+<div class="flex items-center justify-between">
+<div>
+<span class="text-accent-lime font-caption text-caption uppercase tracking-wider block font-bold">Standard Layout</span>
+<span class="font-headline-sm text-sm sm:text-base font-semibold">Modular Line Configuration</span>
+</div>
+<div class="flex items-center gap-1 text-surface-variant font-caption text-xs">
+<span class="material-symbols-outlined text-accent-lime text-[16px]">check_circle</span>
+<span>Turnkey Readiness</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. FOOD PREPARATION AND OPERATIONS (Core Culinary Capabilities) -->
+<section class="w-full bg-surface-canvas py-space-2xl lg:py-space-3xl">
+<div class="max-w-[1280px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-space-2xl gap-space-md">
+<div class="max-w-2xl">
+<span class="font-eyebrow text-eyebrow text-secondary uppercase tracking-widest block mb-space-xs">Culinary Execution</span>
+<h2 class="font-headline-lg text-headline-lg-mobile lg:text-headline-lg text-text-primary font-bold tracking-tight">
+            Supporting the work behind every food product.
+          </h2>
+<p class="font-body-md text-body-md text-text-muted mt-space-sm leading-relaxed">
+            Our teams execute precise preparation routines according to brand specifications, ensuring taste profiles, portioning, and presentation remain uncompromised.
+          </p>
+</div>
+<div class="flex items-center gap-2">
+<span class="ws-editorial-label inline-flex items-center gap-1.5 font-caption text-caption text-[#013125] font-bold">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#A6F134]"></span>
+            Standard Operating Procedures (SOP)
+          </span>
+</div>
+</div>
+<!-- 6 Core Capabilities Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-space-md mb-space-2xl">
+<!-- Thaw -->
+<div class="p-space-lg rounded-xl bg-surface-alt border border-border-subtle flex flex-col justify-between hover:shadow-sm transition-all duration-200">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<span class="w-10 h-10 rounded-lg bg-surface-canvas text-brand-deep-green border border-border-subtle flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">ac_unit</span>
+</span>
+<span class="font-eyebrow text-eyebrow text-secondary font-bold uppercase tracking-wider">Step 01</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-text-primary font-bold mb-space-xs">Thaw</h3>
+<p class="font-body-sm text-body-sm text-text-muted leading-relaxed">
+              Controlled thawing according to brand instructions and temperature schedules.
+            </p>
+</div>
+<div class="mt-space-md pt-space-sm border-t border-border-subtle text-caption text-[11px] text-text-muted flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-brand-deep-green"></span>
+<span>Temperature monitored</span>
+</div>
+</div>
+<!-- Heat -->
+<div class="p-space-lg rounded-xl bg-surface-alt border border-border-subtle flex flex-col justify-between hover:shadow-sm transition-all duration-200">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<span class="w-10 h-10 rounded-lg bg-surface-canvas text-brand-deep-green border border-border-subtle flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">local_fire_department</span>
+</span>
+<span class="font-eyebrow text-eyebrow text-secondary font-bold uppercase tracking-wider">Step 02</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-text-primary font-bold mb-space-xs">Heat</h3>
+<p class="font-body-sm text-body-sm text-text-muted leading-relaxed">
+              Uniform heating and reheating for ready-to-eat products.
+            </p>
+</div>
+<div class="mt-space-md pt-space-sm border-t border-border-subtle text-caption text-[11px] text-text-muted flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-brand-deep-green"></span>
+<span>Uniform core temp</span>
+</div>
+</div>
+<!-- Fry -->
+<div class="p-space-lg rounded-xl bg-surface-alt border border-border-subtle flex flex-col justify-between hover:shadow-sm transition-all duration-200">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<span class="w-10 h-10 rounded-lg bg-surface-canvas text-brand-deep-green border border-border-subtle flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">soup_kitchen</span>
+</span>
+<span class="font-eyebrow text-eyebrow text-secondary font-bold uppercase tracking-wider">Step 03</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-text-primary font-bold mb-space-xs">Fry</h3>
+<p class="font-body-sm text-body-sm text-text-muted leading-relaxed">
+              Precise frying operations adhering to prescribed preparation SOPs.
+            </p>
+</div>
+<div class="mt-space-md pt-space-sm border-t border-border-subtle text-caption text-[11px] text-text-muted flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-brand-deep-green"></span>
+<span>Calibrated cook times</span>
+</div>
+</div>
+<!-- Grill -->
+<div class="p-space-lg rounded-xl bg-surface-alt border border-border-subtle flex flex-col justify-between hover:shadow-sm transition-all duration-200">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<span class="w-10 h-10 rounded-lg bg-surface-canvas text-brand-deep-green border border-border-subtle flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">outdoor_grill</span>
+</span>
+<span class="font-eyebrow text-eyebrow text-secondary font-bold uppercase tracking-wider">Step 04</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-text-primary font-bold mb-space-xs">Grill</h3>
+<p class="font-body-sm text-body-sm text-text-muted leading-relaxed">
+              Searing, grilling, and surface finishing of food items.
+            </p>
+</div>
+<div class="mt-space-md pt-space-sm border-t border-border-subtle text-caption text-[11px] text-text-muted flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-brand-deep-green"></span>
+<span>Surface finishing</span>
+</div>
+</div>
+<!-- Blend -->
+<div class="p-space-lg rounded-xl bg-surface-alt border border-border-subtle flex flex-col justify-between hover:shadow-sm transition-all duration-200">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<span class="w-10 h-10 rounded-lg bg-surface-canvas text-brand-deep-green border border-border-subtle flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">blender</span>
+</span>
+<span class="font-eyebrow text-eyebrow text-secondary font-bold uppercase tracking-wider">Step 05</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-text-primary font-bold mb-space-xs">Blend</h3>
+<p class="font-body-sm text-body-sm text-text-muted leading-relaxed">
+              Controlled blending for beverages, purees, and specialized ingredients.
+            </p>
+</div>
+<div class="mt-space-md pt-space-sm border-t border-border-subtle text-caption text-[11px] text-text-muted flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-brand-deep-green"></span>
+<span>Consistent texture</span>
+</div>
+</div>
+<!-- Finish & Pack -->
+<div class="p-space-lg rounded-xl bg-surface-alt border border-border-subtle flex flex-col justify-between hover:shadow-sm transition-all duration-200">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<span class="w-10 h-10 rounded-lg bg-surface-canvas text-brand-deep-green border border-border-subtle flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">takeout_dining</span>
+</span>
+<span class="font-eyebrow text-eyebrow text-secondary font-bold uppercase tracking-wider">Step 06</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-text-primary font-bold mb-space-xs">Finish &amp; Pack</h3>
+<p class="font-body-sm text-body-sm text-text-muted leading-relaxed">
+              Final garnish, plate assembly, tamper-evident packaging, and dispatch handoff.
+            </p>
+</div>
+<div class="mt-space-md pt-space-sm border-t border-border-subtle text-caption text-[11px] text-text-muted flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-brand-deep-green"></span>
+<span>Tamper-evident sealing</span>
+</div>
+</div>
+</div>
+<!-- Key Thematic Pillars Bar -->
+<div class="p-space-lg rounded-2xl bg-brand-deep-green text-surface-canvas grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-lg">
+<div class="flex items-center gap-3">
+<div class="w-2.5 h-2.5 rounded-full bg-accent-lime shrink-0"></div>
+<div>
+<span class="block font-headline-sm text-sm font-bold text-surface-canvas">Food Preparation Processes</span>
+<span class="block font-caption text-xs text-surface-variant">SOP-governed kitchen routines</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-2.5 h-2.5 rounded-full bg-accent-lime shrink-0"></div>
+<div>
+<span class="block font-headline-sm text-sm font-bold text-surface-canvas">Kitchen Workflow Organisation</span>
+<span class="block font-caption text-xs text-surface-variant">Ergonomic line stationing</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-2.5 h-2.5 rounded-full bg-accent-lime shrink-0"></div>
+<div>
+<span class="block font-headline-sm text-sm font-bold text-surface-canvas">Operational Coordination</span>
+<span class="block font-caption text-xs text-surface-variant">Real-time order synchronization</span>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-2.5 h-2.5 rounded-full bg-accent-lime shrink-0"></div>
+<div>
+<span class="block font-headline-sm text-sm font-bold text-surface-canvas">Consistent Working Procedures</span>
+<span class="block font-caption text-xs text-surface-variant">Repeatable output from 1st to last</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. DAY-TO-DAY KITCHEN OPERATIONS (4-Stage Sequential Flow) -->
+<section class="w-full bg-surface-alt py-space-2xl lg:py-space-3xl border-y border-border-subtle">
+<div class="max-w-[1280px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop">
+<div class="text-center max-w-2xl mx-auto mb-space-2xl">
+<span class="font-eyebrow text-eyebrow text-secondary uppercase tracking-widest block mb-space-xs">Workflow Architecture</span>
+<h2 class="font-headline-lg text-headline-lg-mobile lg:text-headline-lg text-text-primary font-bold tracking-tight">
+          Helping kitchen operations work together.
+        </h2>
+<p class="font-body-md text-body-md text-text-muted mt-space-sm leading-relaxed">
+          Every shift runs through structured milestones to ensure sanitary standards, recipe integrity, and reliable dispatch times.
+        </p>
+</div>
+<!-- 4 Stages Grid with Connectors -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter-desktop relative">
+<!-- Stage 01 -->
+<div class="p-space-lg rounded-xl bg-surface-canvas border border-border-subtle relative flex flex-col justify-between hover:border-brand-deep-green/40 transition-colors">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<span class="w-10 h-10 rounded-full bg-brand-deep-green text-accent-lime font-label-step text-label-step flex items-center justify-center font-bold">
+                01
+              </span>
+<span class="material-symbols-outlined text-text-muted text-[20px]">cleaning_services</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-text-primary font-bold mb-space-xs">Kitchen Setup</h3>
+<p class="font-body-sm text-body-sm text-text-muted leading-relaxed">
+              An organised workspace for food-related operations, sanitized stations, and ingredient staging.
+            </p>
+</div>
+<div class="mt-space-lg pt-space-sm border-t border-border-subtle text-caption text-xs text-secondary font-semibold">
+            Stage 01: Pre-Shift Audit
+          </div>
+</div>
+<!-- Stage 02 -->
+<div class="p-space-lg rounded-xl bg-surface-canvas border border-border-subtle relative flex flex-col justify-between hover:border-brand-deep-green/40 transition-colors">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<span class="w-10 h-10 rounded-full bg-brand-deep-green text-accent-lime font-label-step text-label-step flex items-center justify-center font-bold">
+                02
+              </span>
+<span class="material-symbols-outlined text-text-muted text-[20px]">skillet</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-text-primary font-bold mb-space-xs">Preparation</h3>
+<p class="font-body-sm text-body-sm text-text-muted leading-relaxed">
+              Support for active food preparation activities strictly following brand-provided SOPs.
+            </p>
+</div>
+<div class="mt-space-lg pt-space-sm border-t border-border-subtle text-caption text-xs text-secondary font-semibold">
+            Stage 02: Active Assembly
+          </div>
+</div>
+<!-- Stage 03 -->
+<div class="p-space-lg rounded-xl bg-surface-canvas border border-border-subtle relative flex flex-col justify-between hover:border-brand-deep-green/40 transition-colors">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<span class="w-10 h-10 rounded-full bg-brand-deep-green text-accent-lime font-label-step text-label-step flex items-center justify-center font-bold">
+                03
+              </span>
+<span class="material-symbols-outlined text-text-muted text-[20px]">tune</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-text-primary font-bold mb-space-xs">Operational Coordination</h3>
+<p class="font-body-sm text-body-sm text-text-muted leading-relaxed">
+              Organised coordination of kitchen activities, shift handovers, and queue management.
+            </p>
+</div>
+<div class="mt-space-lg pt-space-sm border-t border-border-subtle text-caption text-xs text-secondary font-semibold">
+            Stage 03: Queue Management
+          </div>
+</div>
+<!-- Stage 04 -->
+<div class="p-space-lg rounded-xl bg-surface-canvas border border-border-subtle relative flex flex-col justify-between hover:border-brand-deep-green/40 transition-colors">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<span class="w-10 h-10 rounded-full bg-brand-deep-green text-accent-lime font-label-step text-label-step flex items-center justify-center font-bold">
+                04
+              </span>
+<span class="material-symbols-outlined text-text-muted text-[20px]">fact_check</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-text-primary font-bold mb-space-xs">Daily Operations</h3>
+<p class="font-body-sm text-body-sm text-text-muted leading-relaxed">
+              Support for ongoing kitchen workflows, end-of-shift reconciliation, and equipment maintenance.
+            </p>
+</div>
+<div class="mt-space-lg pt-space-sm border-t border-border-subtle text-caption text-xs text-secondary font-semibold">
+            Stage 04: Continuous Cycle
+          </div>
+</div>
+</div>
+</div>
+</section>
+<!-- 6. PEOPLE BEHIND THE OPERATIONS -->
+<section class="w-full bg-surface-canvas py-space-2xl lg:py-space-3xl">
+<div class="max-w-[1280px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop items-center">
+<!-- Left Photography -->
+<div class="lg:col-span-6 relative rounded-2xl overflow-hidden bg-surface-container">
+<img class="w-full h-[260px] sm:h-[360px] lg:h-[480px] object-cover" data-alt="Experienced kitchen team working at stainless steel counter station organizing and packaging takeaway food orders, professional and focused commercial environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPNKgTnYA2bo_P9RtpW1GCKJuo4V9n8DnvrI5pwXQ0zWV4wlKs8o27KpPTIaPUpdy5Q7HSovplA4JGBAK8c9vcOpw-Ppf2RnDEnnWccpI-iaSDdIpogmMRWr-lTb1Z7IXmT6DzQJKP3g1Y6as34NM_h8m0LODnwJCIv0mkcT31-VWrdl9ckDJFWpk06P25GgZShf7ihDQyawZg9MRkB_Fas_afCSxanAdKjw1cUNHj"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/70 via-transparent to-transparent"></div>
+<div class="absolute bottom-6 left-6 right-6 p-space-md rounded-xl bg-surface-canvas/10 backdrop-blur-md border border-white/20 text-surface-canvas">
+<span class="text-accent-lime font-caption text-caption uppercase tracking-wider block font-bold mb-1">On-Site Teams</span>
+<p class="font-body-sm text-sm text-surface-canvas">Trained staff adhering to specific preparation profiles and hygienic station management.</p>
+</div>
+</div>
+<!-- Right Content & Disciplines -->
+<div class="lg:col-span-6 flex flex-col gap-space-lg">
+<div>
+<span class="font-eyebrow text-eyebrow text-secondary uppercase tracking-widest block mb-space-xs">Human Infrastructure</span>
+<h2 class="font-headline-lg text-headline-lg-mobile lg:text-headline-lg text-text-primary font-bold tracking-tight">
+              People make kitchen operations work.
+            </h2>
+<p class="font-body-lg text-body-lg text-text-muted mt-space-sm leading-relaxed">
+              Behind every organised kitchen operation are people, processes and the right working environment. WhiteStores brings these operational elements together to support food businesses.
+            </p>
+</div>
+<!-- 3 Disciplines -->
+<div class="flex flex-col gap-space-md">
+<div class="p-space-md rounded-xl bg-surface-alt border border-border-subtle flex items-start gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-surface-canvas text-brand-deep-green border border-border-subtle flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]">badge</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-[1rem] text-text-primary font-bold mb-0.5">Trained Kitchen Staff</h4>
+<p class="font-body-sm text-body-sm text-text-muted leading-relaxed">Personnel trained in brand-specific preparation SOPs, hygiene standards, and station discipline.</p>
+</div>
+</div>
+<div class="p-space-md rounded-xl bg-surface-alt border border-border-subtle flex items-start gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-surface-canvas text-brand-deep-green border border-border-subtle flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]">table_bar</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-[1rem] text-text-primary font-bold mb-0.5">Standardized Workstations</h4>
+<p class="font-body-sm text-body-sm text-text-muted leading-relaxed">Ergonomic stainless-steel lines with isolated staging, digital order tracking, and clear prep boundaries.</p>
+</div>
+</div>
+<div class="p-space-md rounded-xl bg-surface-alt border border-border-subtle flex items-start gap-space-md">
+<div class="w-10 h-10 rounded-lg bg-surface-canvas text-brand-deep-green border border-border-subtle flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]">assignment_turned_in</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-[1rem] text-text-primary font-bold mb-0.5">Accountable Execution</h4>
+<p class="font-body-sm text-body-sm text-text-muted leading-relaxed">Order-triggered preparation ensuring freshness, portion accuracy, and timely dispatch handover.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 7. WHY WHITESTORES (4 Key Value Themes) -->
+<section class="w-full bg-surface-alt py-space-2xl lg:py-space-3xl border-t border-border-subtle">
+<div class="max-w-[1280px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop">
+<div class="max-w-2xl mb-space-2xl">
+<span class="font-eyebrow text-eyebrow text-secondary uppercase tracking-widest block mb-space-xs">The WhiteStores Standard</span>
+<h2 class="font-headline-lg text-headline-lg-mobile lg:text-headline-lg text-text-primary font-bold tracking-tight">
+          Kitchen support that works around your business.
+        </h2>
+<p class="font-body-md text-body-md text-text-muted mt-space-sm leading-relaxed">
+          Flexible, scalable kitchen infrastructure built to integrate with your existing brand models and culinary requirements.
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter-desktop">
+<div class="p-space-lg rounded-xl bg-surface-canvas border border-border-subtle flex flex-col justify-between hover:shadow-sm transition-all duration-200">
+<div>
+<div class="w-12 h-12 rounded-xl bg-surface-container text-brand-deep-green flex items-center justify-center mb-space-md">
+<span class="material-symbols-outlined text-[26px]">apartment</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-text-primary font-bold mb-space-xs">Kitchen Infrastructure</h3>
+<p class="font-body-sm text-body-sm text-text-muted leading-relaxed">
+              Dedicated facilities without the capital expenditure and overhead of building your own spaces.
+            </p>
+</div>
+<div class="mt-space-lg pt-space-sm border-t border-border-subtle font-caption text-xs text-secondary font-bold">
+            Zero Capex Overhead
+          </div>
+</div>
+<div class="p-space-lg rounded-xl bg-surface-canvas border border-border-subtle flex flex-col justify-between hover:shadow-sm transition-all duration-200">
+<div>
+<div class="w-12 h-12 rounded-xl bg-surface-container text-brand-deep-green flex items-center justify-center mb-space-md">
+<span class="material-symbols-outlined text-[26px]">dinner_dining</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-text-primary font-bold mb-space-xs">Food Preparation Support</h3>
+<p class="font-body-sm text-body-sm text-text-muted leading-relaxed">
+              Skilled line support executing recipes exactly to brand specifications.
+            </p>
+</div>
+<div class="mt-space-lg pt-space-sm border-t border-border-subtle font-caption text-xs text-secondary font-bold">
+            Recipe Fidelity
+          </div>
+</div>
+<div class="p-space-lg rounded-xl bg-surface-canvas border border-border-subtle flex flex-col justify-between hover:shadow-sm transition-all duration-200">
+<div>
+<div class="w-12 h-12 rounded-xl bg-surface-container text-brand-deep-green flex items-center justify-center mb-space-md">
+<span class="material-symbols-outlined text-[26px]">hub</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-text-primary font-bold mb-space-xs">Operational Coordination</h3>
+<p class="font-body-sm text-body-sm text-text-muted leading-relaxed">
+              Seamless communication between incoming channel demand and kitchen output.
+            </p>
+</div>
+<div class="mt-space-lg pt-space-sm border-t border-border-subtle font-caption text-xs text-secondary font-bold">
+            Integrated Flow
+          </div>
+</div>
+<div class="p-space-lg rounded-xl bg-surface-canvas border border-border-subtle flex flex-col justify-between hover:shadow-sm transition-all duration-200">
+<div>
+<div class="w-12 h-12 rounded-xl bg-surface-container text-brand-deep-green flex items-center justify-center mb-space-md">
+<span class="material-symbols-outlined text-[26px]">checklist_rtl</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-text-primary font-bold mb-space-xs">Organised Workflows</h3>
+<p class="font-body-sm text-body-sm text-text-muted leading-relaxed">
+              Reliable everyday processes built for repeatable consistency across order cycles.
+            </p>
+</div>
+<div class="mt-space-lg pt-space-sm border-t border-border-subtle font-caption text-xs text-secondary font-bold">
+            Repeatable Delivery
+          </div>
+</div>
+</div>
+</div>
+</section>
+<!-- 8. FINAL CALL TO ACTION (Deep Green #013125) -->
+<section class="w-full bg-brand-deep-green text-surface-canvas py-space-3xl relative overflow-hidden">
+<!-- Ambient backlights -->
+<div class="absolute top-0 right-1/4 w-80 h-80 bg-accent-lime/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute bottom-0 left-10 w-96 h-96 bg-surface-tint/20 rounded-full blur-3xl pointer-events-none"></div>
+<div class="max-w-[1280px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop relative z-10 text-center flex flex-col items-center">
+<span class="ws-editorial-label ws-editorial-label-dark inline-flex items-center gap-2 text-accent-lime font-eyebrow text-eyebrow uppercase tracking-widest mb-space-md">
+        <span class="w-1.5 h-1.5 rounded-full bg-accent-lime"></span>
+        PARTNERSHIP ENQUIRIES
+      </span>
+<h2 class="font-headline-lg text-headline-lg-mobile lg:text-headline-lg text-surface-canvas font-extrabold tracking-tight max-w-2xl leading-tight">
+        Looking for kitchen operational support?
+      </h2>
+<p class="font-body-lg text-body-lg text-surface-variant max-w-xl mt-space-md leading-relaxed">
+        Let's discuss your kitchen requirements and explore how WhiteStores can support your food business.
+      </p>
+<div class="mt-space-xl flex flex-wrap items-center justify-center gap-space-md">
+<a class="group inline-flex items-center justify-center gap-space-xs px-8 py-4 rounded-lg bg-accent-lime text-primary font-label-action text-label-action font-semibold shadow-md hover:bg-[#95DC2B] transition-all duration-200" data-path="partner-with-us" href="partner-with-us.html">
+<span>Partner With Us</span>
+<span class="material-symbols-outlined text-[20px] transition-transform duration-200 group-hover:translate-x-1">arrow_forward</span>
+</a>
+<a class="inline-flex items-center justify-center px-7 py-3.5 rounded-lg border border-white/40 text-surface-canvas hover:bg-white/10 font-label-action text-label-action font-semibold transition-all duration-200" data-path="whitestores-home" href="solutions.html">
+          Explore All Solutions
+        </a>
+</div>
+<div class="mt-space-2xl pt-space-lg border-t border-white/10 flex flex-wrap items-center justify-center gap-space-xl text-surface-variant font-caption text-caption">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-accent-lime text-[18px]">lock_clock</span>
+          Flexible Shift Engagements
+        </span>
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-accent-lime text-[18px]">verified</span>
+          FSSAI &amp; Hygiene Compliant Units
+        </span>
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-accent-lime text-[18px]">support_agent</span>
+          Direct Operations Liaison
+        </span>
+</div>
+</div>
+</section>
+</div></main>  <!-- ==========================================================================
+       FOOD-COMMERCE CAPABILITIES SHOWCASE STRIP (Immediately above footer)
+       ========================================================================== -->
+  <section aria-label="Food Commerce Infrastructure Capabilities" class="ws-brand-strip">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="ws-brand-strip-inner">
+        
+        <!-- Left Introductory Text (Stationary) -->
+        <div class="ws-brand-text">
+          <p class="text-[11px] md:text-xs font-extrabold text-[#69736D] uppercase tracking-wider mb-0.5">DIFFERENT FLAVOURS. ONE NETWORK.</p>
+          <p class="text-sm md:text-[15px] font-bold text-[#013125] tracking-tight whitespace-nowrap">Infrastructure that powers food businesses.</p>
+        </div>
+
+        <!-- Right Continuous Moving Capabilities Marquee -->
+        <div class="ws-brand-marquee-container">
+          <div class="ws-brand-marquee-track">
+            
+            <!-- Capability Sequence 1 -->
+            <div class="ws-brand-marquee-group">
+              <div class="ws-capability-badge" title="Storage &amp; Distribution Capability">
+                <span class="ws-capability-icon-wrap">
+                  <span class="material-symbols-outlined ws-capability-icon">warehouse</span>
+                </span>
+                <span class="ws-capability-label">STORAGE &amp; DISTRIBUTION</span>
+              </div>
+              <div class="ws-capability-badge" title="Cold-Chain Infrastructure Capability">
+                <span class="ws-capability-icon-wrap">
+                  <span class="material-symbols-outlined ws-capability-icon">ac_unit</span>
+                </span>
+                <span class="ws-capability-label">COLD-CHAIN INFRASTRUCTURE</span>
+              </div>
+              <div class="ws-capability-badge" title="Commerce Operations Capability">
+                <span class="ws-capability-icon-wrap">
+                  <span class="material-symbols-outlined ws-capability-icon">hub</span>
+                </span>
+                <span class="ws-capability-label">COMMERCE OPERATIONS</span>
+              </div>
+              <div class="ws-capability-badge" title="Quick Kitchen Capability">
+                <span class="ws-capability-icon-wrap">
+                  <span class="material-symbols-outlined ws-capability-icon">restaurant</span>
+                </span>
+                <span class="ws-capability-label">QUICK KITCHEN</span>
+              </div>
+              <div class="ws-capability-badge" title="Order Fulfilment Capability">
+                <span class="ws-capability-icon-wrap">
+                  <span class="material-symbols-outlined ws-capability-icon">local_shipping</span>
+                </span>
+                <span class="ws-capability-label">ORDER FULFILMENT</span>
+              </div>
+              <div class="ws-capability-badge" title="Food Commerce Capability">
+                <span class="ws-capability-icon-wrap">
+                  <span class="material-symbols-outlined ws-capability-icon">storefront</span>
+                </span>
+                <span class="ws-capability-label">FOOD COMMERCE</span>
+              </div>
+            </div>
+
+            <!-- Capability Sequence 2 (Duplicate for Seamless Infinite Loop) -->
+            <div aria-hidden="true" class="ws-brand-marquee-group">
+              <div class="ws-capability-badge" title="Storage &amp; Distribution Capability">
+                <span class="ws-capability-icon-wrap">
+                  <span class="material-symbols-outlined ws-capability-icon">warehouse</span>
+                </span>
+                <span class="ws-capability-label">STORAGE &amp; DISTRIBUTION</span>
+              </div>
+              <div class="ws-capability-badge" title="Cold-Chain Infrastructure Capability">
+                <span class="ws-capability-icon-wrap">
+                  <span class="material-symbols-outlined ws-capability-icon">ac_unit</span>
+                </span>
+                <span class="ws-capability-label">COLD-CHAIN INFRASTRUCTURE</span>
+              </div>
+              <div class="ws-capability-badge" title="Commerce Operations Capability">
+                <span class="ws-capability-icon-wrap">
+                  <span class="material-symbols-outlined ws-capability-icon">hub</span>
+                </span>
+                <span class="ws-capability-label">COMMERCE OPERATIONS</span>
+              </div>
+              <div class="ws-capability-badge" title="Quick Kitchen Capability">
+                <span class="ws-capability-icon-wrap">
+                  <span class="material-symbols-outlined ws-capability-icon">restaurant</span>
+                </span>
+                <span class="ws-capability-label">QUICK KITCHEN</span>
+              </div>
+              <div class="ws-capability-badge" title="Order Fulfilment Capability">
+                <span class="ws-capability-icon-wrap">
+                  <span class="material-symbols-outlined ws-capability-icon">local_shipping</span>
+                </span>
+                <span class="ws-capability-label">ORDER FULFILMENT</span>
+              </div>
+              <div class="ws-capability-badge" title="Food Commerce Capability">
+                <span class="ws-capability-icon-wrap">
+                  <span class="material-symbols-outlined ws-capability-icon">storefront</span>
+                </span>
+                <span class="ws-capability-label">FOOD COMMERCE</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+<footer class="ws-footer w-full bg-[#01281e] text-white border-t border-white/15">
+    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Main 4-Column Grid -->
+      <div class="ws-footer-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- COLUMN 1: Brand (4 cols on lg ~ 1.33fr) -->
+        <div class="lg:col-span-4 flex flex-col items-start gap-2">
+          <a class="inline-block focus:outline-none focus-visible:ring-2 focus-visible:ring-[#A6F134] rounded" data-path="home" href="index.html">
+            <img alt="WhiteStores" class="ws-footer-logo h-11 md:h-12 w-auto object-contain block" src="assets/whitestores-logo-footer.jpg"/>
+          </a>
+          <p class="text-sm font-bold text-[#A6F134] ws-footer-lime leading-snug">Your Brand. Our Infrastructure. Your Growth.</p>
+          <p class="text-xs text-white/70 leading-relaxed max-w-sm">
+            Food-commerce infrastructure and operations for growing brands across ambient, chilled, and automated network nodes.
+          </p>
+          <div class="pt-1">
+            <span class="inline-block px-3 py-1 rounded-full bg-white/10 text-white/80 text-[11px] font-medium tracking-wide">
+              By PropelPad Business Solutions Private Limited
+            </span>
+          </div>
+        </div>
+
+        <!-- COLUMN 2: Explore (2 cols on lg ~ 1fr) -->
+        <div class="lg:col-span-2 flex flex-col items-start gap-2.5">
+          <h4 class="text-xs font-bold uppercase tracking-widest text-[#A6F134] ws-footer-lime">Explore</h4>
+          <ul class="flex flex-col gap-2 text-xs text-white/75">
+            <li><a class="hover:text-[#A6F134] transition-colors" data-path="home" href="index.html">Home</a></li>
+            <li><a class="hover:text-[#A6F134] transition-colors" data-path="about-us" href="about-us.html">About Us</a></li>
+            <li><a class="hover:text-[#A6F134] transition-colors" data-path="our-network" href="our-network.html">Our Network</a></li>
+            <li><a class="hover:text-[#A6F134] transition-colors" data-path="partner-with-us" href="partner-with-us.html">Partner With Us</a></li>
+          </ul>
+        </div>
+
+        <!-- COLUMN 3: Solutions (3 cols on lg ~ 1.25fr) -->
+        <div class="lg:col-span-3 flex flex-col items-start gap-2.5">
+          <h4 class="text-xs font-bold uppercase tracking-widest text-[#A6F134] ws-footer-lime">Solutions</h4>
+          <ul class="flex flex-col gap-2 text-xs text-white/75">
+            <li><a class="hover:text-[#A6F134] transition-colors" data-path="storage-and-distribution" href="storage-distribution.html">Storage &amp; Distribution</a></li>
+            <li><a class="hover:text-[#A6F134] transition-colors" data-path="commerce-operations" href="commerce-operations.html">Commerce Operations</a></li>
+            <li><a class="hover:text-[#A6F134] transition-colors" data-path="quick-kitchen" href="quick-kitchen.html">Quick Kitchen</a></li>
+          </ul>
+        </div>
+
+        <!-- COLUMN 4: Connect (3 cols on lg ~ 1.25fr) -->
+        <div class="lg:col-span-3 flex flex-col items-start gap-2.5 w-full">
+          <h4 class="text-xs font-bold uppercase tracking-widest text-[#A6F134] ws-footer-lime">Connect</h4>
+          <ul class="flex flex-col gap-2.5 text-xs text-white/75 w-full">
+            <li class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-[16px] text-[#A6F134] ws-footer-lime shrink-0">mail</span>
+              <a class="hover:text-[#A6F134] transition-colors whitespace-nowrap" href="mailto:partners@whitestores.in">partners@whitestores.in</a>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-[16px] text-[#A6F134] ws-footer-lime shrink-0">call</span>
+              <a class="hover:text-[#A6F134] transition-colors whitespace-nowrap" href="tel:+918040008800">+91 80 4000 8800</a>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-[16px] text-[#A6F134] ws-footer-lime shrink-0">share</span>
+              <a class="hover:text-[#A6F134] transition-colors whitespace-nowrap" href="#" rel="noopener noreferrer" target="_blank">LinkedIn Official</a>
+            </li>
+            <li class="pt-1 text-xs text-white/75 leading-relaxed">
+              207, PropelPad Business Solutions, Shree Ganesh Industrial Estate, WT Marg, Chembur 400071
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Copyright Section -->
+      <div class="pt-3.5 pb-0 text-center">
+        <p class="text-xs text-white/60">
+          &copy; WhiteStores is a brand of PropelPad Business Solutions Private Limited. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+
+<div aria-hidden="true" aria-label="Mobile Navigation" class="ws-mobile-drawer" id="ws-mobile-drawer" role="dialog" aria-modal="true">
+  <!-- Mobile Header -->
+  <div class="ws-mobile-header">
+    <a aria-label="WhiteStores Home" class="focus:outline-none" href="index.html">
+      <img alt="WhiteStores" class="ws-mobile-logo" src="assets/whitestores-logo.png?v=ws-new-logo-2026"/>
+    </a>
+    <button aria-label="Close navigation" class="ws-close-btn" id="ws-close-menu" type="button">
+      <span class="material-symbols-outlined text-[24px]">close</span>
+    </button>
+  </div>
+
+  <!-- Scrollable Navigation Body -->
+  <div class="ws-mobile-nav-scroll">
+    <nav aria-label="Mobile navigation" class="ws-mobile-links">
+      
+      <!-- 1. Home -->
+      <div class="ws-nav-item">
+        <a class="ws-link " href="index.html">
+          <span>Home</span>
+          
+        </a>
+      </div>
+
+      <!-- 2. Solutions Accordion -->
+      <div class="ws-nav-item ws-solutions-item">
+        <div class="ws-solutions-row">
+          <a class="ws-link ws-solutions-link ws-active" href="solutions.html">
+            <span>Solutions</span>
+          </a>
+          <button aria-controls="ws-solutions-submenu" aria-expanded="true" aria-label="Toggle Solutions submenu" class="ws-submenu-toggle is-active" id="ws-solutions-toggle" type="button">
+            <span class="material-symbols-outlined ws-chevron-icon">expand_more</span>
+          </button>
+        </div>
+        
+        <!-- Vertical Submenu Rows -->
+        <div class="ws-submenu is-open" id="ws-solutions-submenu">
+          <a class="ws-sublink " href="storage-distribution.html">
+            <span class="ws-sublink-dot"></span>
+            <span>Storage &amp; Distribution</span>
+          </a>
+          <a class="ws-sublink " href="commerce-operations.html">
+            <span class="ws-sublink-dot"></span>
+            <span>Commerce Operations</span>
+          </a>
+          <a class="ws-sublink ws-active" href="quick-kitchen.html">
+            <span class="ws-sublink-dot"></span>
+            <span>Quick Kitchen</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- 3. Our Network -->
+      <div class="ws-nav-item">
+        <a class="ws-link " href="our-network.html">
+          <span>Our Network</span>
+          
+        </a>
+      </div>
+
+      <!-- 4. About Us -->
+      <div class="ws-nav-item">
+        <a class="ws-link " href="about-us.html">
+          <span>About Us</span>
+          
+        </a>
+      </div>
+
+    </nav>
+  </div>
+
+  <!-- Mobile Footer / Compact CTA Area (Fixed at bottom) -->
+  <div class="ws-mobile-footer">
+    <a class="ws-mobile-cta" href="partner-with-us.html">
+      <span>Partner With Us</span>
+      <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+    </a>
+    <p class="ws-mobile-bottom-text">
+      By PropelPad Business Solutions Private Limited
+    </p>
+  </div>
+</div>
+<script src="js/navigation.js?v=compact-white-menu-1" defer></script>
+</body>
+</html>
