@@ -1,7 +1,7 @@
 /**
  * WhiteStores Interactive 3D / Isometric India Network Map
  * Renders complete official India map with state boundaries,
- * handles city selection (Mumbai & Thane, Bengaluru, Delhi) with
+ * handles city selection (Mumbai & Thane) with
  * stable unique IDs, verified locality data, and zero DOM flickering or glitches.
  */
 (function () {
@@ -20,7 +20,7 @@
       footerLiveDot: true,
       pinId: 'ws-pin-mumbai',
       stateSlug: 'maharashtra',
-      activeRoutes: ['ws-route-mumbai-bangalore', 'ws-route-mumbai-delhi'],
+      activeRoutes: [],
       baseCoord: { x: 148.8, y: 318.8 },
       isUpcoming: false,
       locations: [
@@ -33,62 +33,6 @@
         { id: '07', name: 'Khopat (Thane West)', region: 'Central Thane', type: 'Omnichannel Hub', status: 'Active Node', catchment: 'Thane Central & Mulund Catchment', temp: '-18°C Stable', offset: { dx: 16, dy: -8 } },
         { id: '08', name: 'Fort', region: 'South Mumbai (CBD)', type: 'Commercial Dispatch Node', status: 'Active Node', catchment: 'South Mumbai Corporate & Premium D2C', temp: '-18°C Stable', offset: { dx: -4, dy: 22 } },
         { id: '09', name: 'Versova', region: 'Western Coastal Hub', type: 'Quick Kitchen & Storage', status: 'Active Node', catchment: 'Versova & Juhu High Density Zone', temp: '-18°C Stable', offset: { dx: -20, dy: -2 } }
-      ]
-    },
-    bangalore: {
-      id: 'bangalore',
-      cityName: 'Bengaluru',
-      statusBadge: 'Upcoming Cluster',
-      badgeClass: 'bg-[#013125]/10 text-[#013125] border-[#013125]/20',
-      nodesCount: 'Phase 2 Expansion',
-      headerTitle: 'Planned Deployment Zones',
-      footerPrompt: 'Strategic southern fulfillment corridors',
-      footerText: 'Bengaluru Cluster • Launching Soon',
-      footerLiveDot: false,
-      pinId: 'ws-pin-bangalore',
-      stateSlug: 'karnataka',
-      activeRoutes: ['ws-route-mumbai-bangalore', 'ws-route-delhi-bangalore'],
-      baseCoord: { x: 221.1, y: 416.3 },
-      isUpcoming: true,
-      locations: [
-        { id: '01', name: 'Indiranagar', region: 'East Bengaluru Corridor', type: 'Planned Fulfilment Hub', status: 'Upcoming', catchment: 'CBD & Inner East High-Demand Pockets', temp: '-18°C Ready', offset: { dx: 10, dy: -8 } },
-        { id: '02', name: 'Koramangala', region: 'South-East Corridor', type: 'Planned Fulfilment Hub', status: 'Upcoming', catchment: 'High-Density Consumer & Food Belt', temp: '-18°C Ready', offset: { dx: 6, dy: 8 } },
-        { id: '03', name: 'HSR Layout', region: 'South Corridor', type: 'Planned Fulfilment Hub', status: 'Upcoming', catchment: 'Quick Commerce High Velocity Node', temp: '-18°C Ready', offset: { dx: 8, dy: 16 } },
-        { id: '04', name: 'Whitefield', region: 'East Tech Corridor', type: 'Planned Fulfilment Hub', status: 'Upcoming', catchment: 'IT Corridor & Gated Residential Communities', temp: '-18°C Ready', offset: { dx: 20, dy: -4 } }
-      ]
-    },
-    delhi: {
-      id: 'delhi',
-      cityName: 'Delhi',
-      statusBadge: 'Upcoming Cluster',
-      badgeClass: 'bg-[#013125]/10 text-[#013125] border-[#013125]/20',
-      nodesCount: 'Network Expansion',
-      headerTitle: 'Upcoming Expansion',
-      footerPrompt: 'NCR distribution network in development',
-      footerText: 'Delhi NCR • Expansion in Progress',
-      footerLiveDot: false,
-      pinId: 'ws-pin-delhi',
-      stateSlug: 'delhi',
-      activeRoutes: ['ws-route-mumbai-delhi', 'ws-route-delhi-bangalore'],
-      baseCoord: { x: 215.2, y: 160.2 },
-      isUpcoming: true,
-      locations: [], // No fictional operational stores
-      upcomingInfo: [
-        {
-          title: 'Strategic NCR Cold Hub',
-          desc: 'Planned central cold-chain storage and cross-dock distribution facility serving Delhi, Gurugram and Noida.',
-          badge: 'Phase 3 Corridor'
-        },
-        {
-          title: 'Hyperlocal Dark Store Integration',
-          desc: 'Engineered for 15-minute quick commerce delivery networks and high-velocity food brand logistics.',
-          badge: 'Evaluation Phase'
-        },
-        {
-          title: 'Dual-Zone Temperature Control',
-          desc: 'Continuous -18°C frozen and +4°C chilled temperature integrity with real-time IoT monitoring.',
-          badge: '-18°C / +4°C'
-        }
       ]
     }
   };
@@ -124,46 +68,15 @@
         var tempEl = floatCard.querySelector('.ws-float-card-temp');
         var titleEl = floatCard.querySelector('.ws-float-card-title');
         var regionEl = floatCard.querySelector('.ws-float-card-region');
-        var typeEl = floatCard.querySelector('.ws-float-card-type');
-        var statusTextEl = floatCard.querySelector('.ws-float-card-status-text');
-        var statusWrapper = floatCard.querySelector('.ws-float-card-status-wrapper');
-
-        if (cityData.id === 'delhi') {
-          if (badgeEl) {
-            badgeEl.textContent = 'UPCOMING CLUSTER';
-            badgeEl.className = 'ws-float-card-badge text-[9px] font-extrabold uppercase tracking-widest text-[#013125] bg-[#013125]/10 px-2 py-0.5 rounded-full';
-          }
-          if (tempEl) tempEl.textContent = '-18°C / +4°C';
-          if (titleEl) titleEl.textContent = 'WHITE STORES / Delhi Hub ↗';
-          if (regionEl) regionEl.textContent = 'National Capital Region (NCR)';
-          if (typeEl) typeEl.textContent = 'Planned Regional Cold Distribution Facility';
-          if (statusTextEl) statusTextEl.textContent = 'Expansion Planned';
-          if (statusWrapper) statusWrapper.className = 'ws-float-card-status-wrapper text-[#013125] font-bold flex items-center gap-1';
-        } else if (cityData.id === 'bangalore') {
-          if (badgeEl) {
-            badgeEl.textContent = 'UPCOMING CLUSTER';
-            badgeEl.className = 'ws-float-card-badge text-[9px] font-extrabold uppercase tracking-widest text-[#013125] bg-[#013125]/10 px-2 py-0.5 rounded-full';
-          }
-          if (tempEl) tempEl.textContent = loc ? loc.temp : '-18°C Ready';
-          if (titleEl) titleEl.textContent = loc ? ('WHITE STORE / ' + loc.id + ' - ' + loc.name + ' ↗') : 'WHITE STORES / Bengaluru Hub ↗';
-          if (regionEl) regionEl.textContent = loc ? (loc.region + ' (Karnataka)') : 'Southern Tech Corridor (Karnataka)';
-          if (typeEl) typeEl.textContent = loc ? loc.type : 'Planned Cold Fulfilment Facility';
-          if (statusTextEl) statusTextEl.textContent = 'Expansion Planned';
-          if (statusWrapper) statusWrapper.className = 'ws-float-card-status-wrapper text-[#013125] font-bold flex items-center gap-1';
-        } else {
-          // Mumbai (Active)
-          if (badgeEl) {
-            badgeEl.textContent = 'ACTIVE NODE';
-            badgeEl.className = 'ws-float-card-badge text-[9px] font-extrabold uppercase tracking-widest text-[#013125] bg-[#A6F134]/30 px-2 py-0.5 rounded-full';
-          }
-          if (loc) {
-            if (tempEl) tempEl.textContent = loc.temp;
-            if (titleEl) titleEl.textContent = 'WHITE STORE / ' + loc.id + ' - ' + loc.name + ' ↗';
-            if (regionEl) regionEl.textContent = loc.region + ' (Mumbai & Thane)';
-            if (typeEl) typeEl.textContent = loc.type;
-          }
-          if (statusTextEl) statusTextEl.textContent = 'Live Synced';
-          if (statusWrapper) statusWrapper.className = 'ws-float-card-status-wrapper text-[#82D616] font-bold flex items-center gap-1';
+        // Mumbai & Thane (Active)
+        if (badgeEl) {
+          badgeEl.textContent = 'ACTIVE NODE';
+          badgeEl.className = 'ws-float-card-badge text-[9px] font-extrabold uppercase tracking-widest text-[#013125] bg-[#A6F134]/30 px-2 py-0.5 rounded-full';
+        }
+        if (loc) {
+          if (tempEl) tempEl.textContent = loc.temp;
+          if (titleEl) titleEl.textContent = 'WHITE STORE / ' + loc.id + ' - ' + loc.name + ' ↗';
+          if (regionEl) regionEl.textContent = loc.region + ' (Mumbai & Thane)';
         }
       }
 
@@ -262,26 +175,11 @@
         if (!listEl) return;
         var cityData = NETWORK_DATA[cityKey];
 
-        if (cityData.id === 'delhi') {
-          // Delhi: Render clean upcoming expansion cards (no fictional stores)
-          var html = '<div class="space-y-2 py-1">';
-          cityData.upcomingInfo.forEach(function (info) {
-            html += '<div class="p-3 rounded-xl bg-[#F8FAF7] border border-[#E9ECE8] transition-all hover:border-[#A6F134]/60 hover:bg-[#F2F7F3]">';
-            html += '  <div class="flex items-center justify-between gap-2 mb-1">';
-            html += '    <span class="text-xs font-bold text-[#013125]">' + info.title + '</span>';
-            html += '    <span class="text-[9.5px] font-bold text-[#013125] bg-[#A6F134]/25 px-2 py-0.5 rounded-full flex-shrink-0">' + info.badge + '</span>';
-            html += '  </div>';
-            html += '  <p class="text-[11px] text-[#55605B] leading-relaxed">' + info.desc + '</p>';
-            html += '</div>';
-          });
-          html += '</div>';
-          listEl.innerHTML = html;
-        } else {
-          // Mumbai or Bengaluru: Render locations list
-          var listHtml = '';
-          cityData.locations.forEach(function (loc) {
+        // Mumbai & Thane: Render verified locations list
+        var listHtml = '';
+        cityData.locations.forEach(function (loc) {
             var isActive = loc.id === activeLocationId;
-            var numBg = cityData.isUpcoming ? 'bg-[#EBF1EC] text-[#013125]' : 'bg-[#F0F4F0] text-[#69736D]';
+            var numBg = 'bg-[#F0F4F0] text-[#69736D]';
             listHtml += '<li class="ws-loc-item ' + (isActive ? 'is-active' : '') + '" data-id="' + loc.id + '" role="option" aria-selected="' + (isActive ? 'true' : 'false') + '" tabindex="0">';
             listHtml += '  <div class="flex items-center gap-2.5 min-w-0">';
             listHtml += '    <span class="ws-loc-number w-6 h-6 rounded-md flex items-center justify-center text-[10.5px] font-bold ' + numBg + ' flex-shrink-0 transition-colors">' + loc.id + '</span>';
@@ -310,10 +208,9 @@
               }
             });
           });
-        }
       }
 
-      // Core City Switcher: Uses immutable unique city ID ('mumbai', 'bangalore', 'delhi')
+      // Core City Switcher: Mumbai & Thane
       function selectCity(cityId) {
         if (!NETWORK_DATA[cityId]) return;
         currentCityId = cityId;
@@ -424,10 +321,6 @@
           var slug = path.getAttribute('data-slug');
           if (slug === 'maharashtra' && currentCityId !== 'mumbai') {
             selectCity('mumbai');
-          } else if (slug === 'karnataka' && currentCityId !== 'bangalore') {
-            selectCity('bangalore');
-          } else if (slug === 'delhi' && currentCityId !== 'delhi') {
-            selectCity('delhi');
           }
         });
       });

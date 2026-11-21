@@ -27,17 +27,15 @@
         <!-- Dropdown Card (White, Consistent Dimensions) -->
         <div class="ws-dropdown-wrapper">
           <div class="ws-dropdown-menu">
-            <a class="ws-dropdown-item group/item" data-path="storage-and-distribution" href="storage-distribution.html">
-              <span class="ws-dropdown-item-title">Storage &amp; Distribution</span>
-              <span class="ws-dropdown-item-desc">Ambient &amp; cold-chain spaces</span>
-            </a>
             <a class="ws-dropdown-item group/item" data-path="commerce-operations" href="commerce-operations.html">
               <span class="ws-dropdown-item-title">Commerce Operations</span>
               <span class="ws-dropdown-item-desc">FMCG fulfillment workflows</span>
-            </a>
-            <a class="ws-dropdown-item group/item" data-path="quick-kitchen" href="quick-kitchen.html">
+            </a>             <a class="ws-dropdown-item group/item" data-path="quick-kitchen" href="quick-kitchen.html">
               <span class="ws-dropdown-item-title">Quick Kitchen</span>
               <span class="ws-dropdown-item-desc">Plug-and-play dark facilities</span>
+            </a>             <a class="ws-dropdown-item group/item" data-path="storage-and-distribution" href="storage-distribution.html">
+              <span class="ws-dropdown-item-title">Storage &amp; Distribution</span>
+              <span class="ws-dropdown-item-desc">Ambient &amp; cold-chain spaces</span>
             </a>
           </div>
         </div>
@@ -73,10 +71,10 @@
 
   <!-- Hero Content Container -->
   <div class="ws-hero-content relative z-10 w-full max-w-[1280px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop py-6 sm:py-8 lg:py-10 text-center flex flex-col items-center">
-    <div class="max-w-[1040px] w-full mx-auto text-center flex flex-col items-center gap-3 sm:gap-4">
+    <div class="max-w-[1280px] w-full mx-auto text-center flex flex-col items-center gap-3 sm:gap-4">
       
       <!-- Main Heading -->
-      <h1 class="ws-hero-title font-display-hero text-3xl sm:text-4xl lg:text-[3.25rem] text-surface-canvas tracking-tight font-extrabold leading-[1.12] max-w-[1040px] mx-auto">
+      <h1 class="ws-hero-title font-display-hero text-3xl sm:text-4xl lg:text-[3.25rem] text-surface-canvas tracking-tight font-extrabold leading-[1.12] max-w-[1280px] mx-auto">
         Let's talk about your <span class="text-accent-lime">operations.</span>
       </h1>
 
@@ -128,28 +126,16 @@
     <!-- Top Header: Eyebrow, Heading, City Switcher Controls -->
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-3 mb-2 sm:mb-3 flex-shrink-0">
       <div>
-        <div class="ws-editorial-label inline-flex items-center gap-1.5 text-[10.5px] sm:text-[11px] font-extrabold uppercase tracking-wider text-[#013125] mb-1">
-          <span class="w-1.5 h-1.5 rounded-full bg-[#A6F134]"></span>
-          <span>STRATEGIC MULTI-NODE NETWORK</span>
-        </div>
         <h2 class="text-xl sm:text-2xl lg:text-[1.85rem] font-extrabold text-[#013125] tracking-tight leading-tight">
           Hyperlocal cold coverage across high-demand clusters.
         </h2>
       </div>
 
-      <!-- City Switcher Controls: Mumbai, Bengaluru, Delhi -->
+      <!-- City Switcher Controls -->
       <div class="flex items-center gap-2 flex-wrap">
         <button type="button" class="ws-city-pill is-active" data-city="mumbai" aria-pressed="true">
           <span class="w-2 h-2 rounded-full ws-city-dot"></span>
           <span>Mumbai &amp; Thane (Active)</span>
-        </button>
-        <button type="button" class="ws-city-pill" data-city="bangalore" aria-pressed="false">
-          <span class="w-2 h-2 rounded-full ws-city-dot"></span>
-          <span>Bengaluru (Upcoming)</span>
-        </button>
-        <button type="button" class="ws-city-pill" data-city="delhi" aria-pressed="false">
-          <span class="w-2 h-2 rounded-full ws-city-dot"></span>
-          <span>Delhi (Upcoming)</span>
         </button>
       </div>
     </div>
@@ -177,13 +163,6 @@
             <p class="ws-float-card-region text-[11px] font-semibold text-[#69736D] mb-1.5">
               Western Suburbs (North)
             </p>
-            <div class="pt-1.5 border-t border-[#E9ECE8] flex items-center justify-between text-[10.5px]">
-              <span class="ws-float-card-type font-bold text-[#013125]">Cold Fulfilment Node</span>
-              <span class="ws-float-card-status-wrapper text-[#82D616] font-bold flex items-center gap-1">
-                <span class="w-1.5 h-1.5 rounded-full bg-[#82D616] animate-pulse"></span>
-                <span class="ws-float-card-status-text">Live Synced</span>
-              </span>
-            </div>
           </div>
 
           <!-- 3D Vector Map Graphic with Complete India & State Boundaries -->
@@ -312,17 +291,7 @@
               <!-- Inter-Cluster National Logistics Routes -->
               <g id="ws-map-routes-layer">
                 <!-- Mumbai <-> Bengaluru Route -->
-                <path id="ws-route-mumbai-bangalore" class="ws-route-line is-active" d="M 148.8,318.8 Q 180,370 221.1,416.3" fill="none" stroke="#A6F134" stroke-width="2.2" stroke-dasharray="5 7" filter="url(#ws-route-glow)">
-                  <animate attributeName="stroke-dashoffset" from="48" to="0" dur="2.5s" repeatCount="indefinite"/>
-                </path>
                 <!-- Mumbai <-> Delhi Route -->
-                <path id="ws-route-mumbai-delhi" class="ws-route-line" d="M 148.8,318.8 Q 175,235 215.2,160.2" fill="none" stroke="#7BA684" stroke-width="1.8" stroke-dasharray="4 6" opacity="0.75">
-                  <animate attributeName="stroke-dashoffset" from="40" to="0" dur="3s" repeatCount="indefinite"/>
-                </path>
-                <!-- Delhi <-> Bengaluru Transit Route -->
-                <path id="ws-route-delhi-bangalore" class="ws-route-line" d="M 215.2,160.2 Q 245,290 221.1,416.3" fill="none" stroke="#7BA684" stroke-width="1.5" stroke-dasharray="4 6" opacity="0.6">
-                  <animate attributeName="stroke-dashoffset" from="40" to="0" dur="3.5s" repeatCount="indefinite"/>
-                </path>
               </g>
 
               <!-- Subnode Locality Markers Layer (Dynamic for Active City) -->
@@ -331,19 +300,6 @@
               </g>
 
               <!-- City Hub Markers & High-Contrast Badges -->
-              <!-- 1. Delhi Hub (lat 28.61, lon 77.21 -> x=215.2, y=160.2) -->
-              <g id="ws-pin-delhi" class="ws-map-pin" data-city="delhi" transform="translate(215.2, 160.2)" role="button" tabindex="0" aria-label="Delhi Hub - Upcoming">
-                <circle cx="0" cy="0" r="14" class="ws-pin-pulse-ring" fill="none" stroke="#A6F134" stroke-width="2"/>
-                <ellipse cx="0" cy="5" rx="8" ry="3.5" fill="rgba(1, 49, 37, 0.25)"/>
-                <circle cx="0" cy="0" r="11" class="ws-pin-shield" fill="#FFFFFF" stroke="#013125" stroke-width="1.8" filter="drop-shadow(0 2px 4px rgba(1,49,37,0.2))"/>
-                <circle cx="0" cy="0" r="7.5" class="ws-pin-core" fill="#013125"/>
-                <circle cx="0" cy="0" r="3.5" class="ws-pin-dot" fill="#A6F134"/>
-                <g class="ws-pin-badge" transform="translate(18, -4)">
-                  <rect x="0" y="-11" width="108" height="22" rx="11" class="ws-pin-badge-bg" fill="#013125" stroke="#A6F134" stroke-width="1.2" filter="drop-shadow(0 2px 4px rgba(1,49,37,0.25))"/>
-                  <text x="54" y="0" text-anchor="middle" dominant-baseline="central" font-family="'Manrope', sans-serif" font-size="8.5" font-weight="800" fill="#FFFFFF" letter-spacing="0.04em">DELHI – UPCOMING</text>
-                </g>
-              </g>
-
               <!-- 2. Mumbai & Thane Hub (lat 18.92, lon 72.83 -> x=148.8, y=318.8) -->
               <g id="ws-pin-mumbai" class="ws-map-pin is-active" data-city="mumbai" transform="translate(148.8, 318.8)" role="button" tabindex="0" aria-label="Mumbai and Thane Hub - Active">
                 <circle cx="0" cy="0" r="14" class="ws-pin-pulse-ring" fill="none" stroke="#A6F134" stroke-width="2"/>
@@ -356,20 +312,7 @@
                   <text x="0" y="0" text-anchor="middle" dominant-baseline="central" font-family="'Manrope', sans-serif" font-size="8.5" font-weight="800" fill="#FFFFFF" letter-spacing="0.04em">MUMBAI &amp; THANE</text>
                 </g>
               </g>
-
-              <!-- 3. Bengaluru Hub (lat 12.97, lon 77.59 -> x=221.1, y=416.3) -->
-              <g id="ws-pin-bangalore" class="ws-map-pin" data-city="bangalore" transform="translate(221.1, 416.3)" role="button" tabindex="0" aria-label="Bengaluru Hub - Upcoming">
-                <circle cx="0" cy="0" r="14" class="ws-pin-pulse-ring" fill="none" stroke="#A6F134" stroke-width="2"/>
-                <ellipse cx="0" cy="5" rx="8" ry="3.5" fill="rgba(1, 49, 37, 0.25)"/>
-                <circle cx="0" cy="0" r="11" class="ws-pin-shield" fill="#FFFFFF" stroke="#013125" stroke-width="1.8" filter="drop-shadow(0 2px 4px rgba(1,49,37,0.2))"/>
-                <circle cx="0" cy="0" r="7.5" class="ws-pin-core" fill="#013125"/>
-                <circle cx="0" cy="0" r="3.5" class="ws-pin-dot" fill="#A6F134"/>
-                <g class="ws-pin-badge" transform="translate(18, -4)">
-                  <rect x="0" y="-11" width="128" height="22" rx="11" class="ws-pin-badge-bg" fill="#013125" stroke="#A6F134" stroke-width="1.2" filter="drop-shadow(0 2px 4px rgba(1,49,37,0.25))"/>
-                  <text x="64" y="0" text-anchor="middle" dominant-baseline="central" font-family="'Manrope', sans-serif" font-size="8.5" font-weight="800" fill="#FFFFFF" letter-spacing="0.04em">BENGALURU – UPCOMING</text>
-                </g>
-              </g>
-            </svg>
+</svg>
           </div>
         </div>
       </div>
@@ -416,34 +359,12 @@
 
     </div>
 
-    <!-- Bottom Summary Pillars -->
-    <div class="pt-2 sm:pt-2.5 border-t border-[#E2E8E0] mt-2 flex flex-wrap items-center justify-center gap-2 sm:gap-6 text-xs sm:text-[12.5px] text-[#55605B] font-semibold text-center flex-shrink-0">
-      <span class="flex items-center gap-2">
-        <span class="w-1.5 h-1.5 rounded-full bg-[#A6F134]"></span>
-        <span>Wider reach</span>
-      </span>
-      <span class="hidden sm:inline text-[#D0D7D0]">•</span>
-      <span class="flex items-center gap-2">
-        <span class="w-1.5 h-1.5 rounded-full bg-[#A6F134]"></span>
-        <span>Network resilience</span>
-      </span>
-      <span class="hidden sm:inline text-[#D0D7D0]">•</span>
-      <span class="flex items-center gap-2">
-        <span class="w-1.5 h-1.5 rounded-full bg-[#A6F134]"></span>
-        <span>Hyperlocal demand intelligence</span>
-      </span>
-    </div>
-
   </div>
 </section>
 <!-- DEDICATED CONTACT INFORMATION SECTION -->
 <section id="contact" class="w-full bg-[#F6F7F3] py-space-3xl border-b border-[#E9ECE8] scroll-mt-24" style="scroll-margin-top: 90px;">
 <div class="w-full max-w-[1280px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop">
 <div class="max-w-2xl mb-space-2xl">
-<div class="ws-editorial-label inline-flex items-center gap-2 mb-space-sm">
-<span class="w-1.5 h-1.5 rounded-full bg-[#A6F134]"></span>
-<span class="font-eyebrow text-eyebrow tracking-widest uppercase text-[#013125] font-extrabold">GET IN TOUCH</span>
-</div>
 <h2 class="font-headline-lg text-headline-lg text-[#252C29] tracking-tight mb-space-sm">
         Let's connect and explore possibilities.
       </h2>
@@ -742,17 +663,17 @@
         
         <!-- Vertical Submenu Rows -->
         <div class="ws-submenu " id="ws-solutions-submenu">
-          <a class="ws-sublink " href="storage-distribution.html">
-            <span class="ws-sublink-dot"></span>
-            <span>Storage &amp; Distribution</span>
-          </a>
-          <a class="ws-sublink " href="commerce-operations.html">
+<a class="ws-sublink " href="commerce-operations.html">
             <span class="ws-sublink-dot"></span>
             <span>Commerce Operations</span>
           </a>
-          <a class="ws-sublink " href="quick-kitchen.html">
+<a class="ws-sublink " href="quick-kitchen.html">
             <span class="ws-sublink-dot"></span>
             <span>Quick Kitchen</span>
+          </a>
+<a class="ws-sublink " href="storage-distribution.html">
+            <span class="ws-sublink-dot"></span>
+            <span>Storage &amp; Distribution</span>
           </a>
         </div>
       </div>
@@ -788,6 +709,6 @@
   </div>
 </div>
 <script src="js/navigation.js?v=compact-white-menu-1" defer></script>
-<script src="js/network-map.js" defer></script>
+<script src="js/network-map.js?v=mumbai-only-2" defer></script>
 </body>
 </html>
