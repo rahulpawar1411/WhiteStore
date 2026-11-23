@@ -35,6 +35,20 @@
       if (closeBtn) closeBtn.focus();
     }
 
+    function restoreScrollY(y) {
+      var html = document.documentElement;
+      var prev = html.style.scrollBehavior;
+      html.style.scrollBehavior = 'auto';
+      if (typeof window.scrollTo === 'function') {
+        window.scrollTo({ top: y, left: 0, behavior: 'auto' });
+      } else {
+        window.scrollTo(0, y);
+      }
+      html.scrollTop = y;
+      document.body.scrollTop = y;
+      html.style.scrollBehavior = prev;
+    }
+
     function closeMenu() {
       if (!drawer || !drawer.classList.contains('is-open')) return;
 
@@ -51,7 +65,8 @@
       document.body.style.width = '';
       document.body.style.overflow = '';
 
-      window.scrollTo(0, savedScrollY);
+      // Instant restore — avoid smooth auto-scroll from html { scroll-behavior }
+      restoreScrollY(savedScrollY);
 
       if (openBtn) {
         openBtn.setAttribute('aria-expanded', 'false');
@@ -122,11 +137,18 @@
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && drawer && drawer.classList.contains('is-open')) {
         closeMenu();
-        if (openBtn) openBtn.focus();
+        if (openBtn) {
+          // preventFocusScroll: don't jump page when returning focus to hamburger
+          try {
+            openBtn.focus({ preventScroll: true });
+          } catch (err) {
+            openBtn.focus();
+          }
+        }
       }
     });
 
-    // Close drawer when navigating via link
+    // Close drawer when navigating via link (same-page #hash still needs close)
     if (drawer) {
       drawer.querySelectorAll('a').forEach(function (link) {
         link.addEventListener('click', function () {

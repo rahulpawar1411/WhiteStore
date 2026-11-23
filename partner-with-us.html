@@ -131,20 +131,18 @@
         </h2>
       </div>
 
-            <!-- City Switcher Controls -->
-      <div class="flex items-center gap-2 flex-wrap">
-        <button type="button" class="ws-city-pill is-active" data-city="mumbai" aria-pressed="true">
+            <!-- Location dropdown -->
+      <div class="ws-city-dd ws-location-dd">
+        <button type="button" class="ws-city-pill ws-city-dd-btn is-active" aria-expanded="false" aria-haspopup="listbox">
           <span class="w-2 h-2 rounded-full ws-city-dot"></span>
-          <span>Mumbai Metropolitan</span>
+          <span class="ws-location-dd-label">Location</span>
+          <span class="material-symbols-outlined ws-city-dd-chevron">expand_more</span>
         </button>
-        <button type="button" class="ws-city-pill" data-city="bangalore" aria-pressed="false">
-          <span class="w-2 h-2 rounded-full ws-city-dot"></span>
-          <span>Bengaluru</span>
-        </button>
-        <button type="button" class="ws-city-pill" data-city="delhi" aria-pressed="false">
-          <span class="w-2 h-2 rounded-full ws-city-dot"></span>
-          <span>Delhi NCR</span>
-        </button>
+        <ul class="ws-city-dd-menu" role="listbox" aria-label="Select location" hidden>
+          <li role="none"><button type="button" class="ws-city-dd-option is-active" data-city="mumbai" aria-selected="true"><span>Mumbai</span></button></li>
+          <li role="none"><button type="button" class="ws-city-dd-option" data-city="bangalore" aria-selected="false"><span>Bengaluru</span></button></li>
+          <li role="none"><button type="button" class="ws-city-dd-option" data-city="delhi" aria-selected="false"><span>Delhi</span></button></li>
+        </ul>
       </div>
     </div>
 
@@ -158,9 +156,6 @@
           <!-- Floating Active Location Card -->
                     <div class="ws-map-float-card" aria-live="polite">
             <div class="flex items-center justify-between gap-2 mb-1">
-              <span class="ws-float-card-badge text-[9px] font-extrabold uppercase tracking-widest text-[#013125] bg-[#A6F134]/30 px-2 py-0.5 rounded-full">
-                ACTIVE STORE
-              </span>
               <span class="ws-float-card-temp text-[10px] font-bold text-[#013125] bg-[#F0F4F0] px-2 py-0.5 rounded-full">
                 -18°C Ready
               </span>
@@ -346,23 +341,47 @@
         </div>
       </div>
 
+      <!-- Mobile Stores Drawer Toggle -->
+      <button type="button" class="ws-map-stores-toggle" aria-expanded="false" aria-controls="ws-map-stores-panel" aria-label="Open stores list">
+        <span class="ws-map-stores-toggle-label">Stores</span>
+        <span class="material-symbols-outlined ws-map-stores-toggle-icon">chevron_left</span>
+      </button>
+      <div class="ws-map-stores-backdrop" hidden></div>
+
       <!-- Right Column: Location List & Cluster Summary Card -->
-      <div class="ws-list-col">
+      <div class="ws-list-col" id="ws-map-stores-panel">
+
         <div class="ws-loc-card-container h-full p-3.5 sm:p-4 lg:p-4.5 flex flex-col justify-between">
           
           <!-- Card Header: Title & Cluster Metadata -->
           <div class="flex items-center justify-between pb-2.5 border-b border-[#E9ECE8] mb-2 flex-shrink-0">
             <div class="flex items-center gap-2">
+              <button type="button" class="ws-map-stores-close" aria-label="Close stores list">
+                <span class="material-symbols-outlined text-[20px]">chevron_right</span>
+              </button>
               <span class="w-2 h-2 rounded-full bg-[#A6F134]"></span>
               <span class="ws-cluster-header-title text-xs font-extrabold text-[#013125] uppercase tracking-wider">Stores</span>
             </div>
             <div class="flex items-center gap-1.5">
-              <span class="ws-cluster-badge inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold border bg-[#A6F134]/25 text-[#013125] border-[#A6F134]/40">
-                Active
-              </span>
               <span class="ws-cluster-count text-[10.5px] font-bold text-[#69736D]">
                 9 stores
               </span>
+            </div>
+          </div>
+
+          <!-- Location dropdown (panel) -->
+          <div class="ws-map-zone-row flex items-center gap-1.5 pb-2.5 mb-2 border-b border-[#E9ECE8] flex-shrink-0">
+            <div class="ws-city-dd ws-location-dd ws-zone-dd">
+              <button type="button" class="ws-city-pill ws-zone-pill ws-city-dd-btn is-active" aria-expanded="false" aria-haspopup="listbox">
+                <span class="w-1.5 h-1.5 rounded-full ws-city-dot"></span>
+                <span class="ws-location-dd-label">Location</span>
+                <span class="material-symbols-outlined ws-city-dd-chevron">expand_more</span>
+              </button>
+              <ul class="ws-city-dd-menu" role="listbox" aria-label="Select location" hidden>
+                <li role="none"><button type="button" class="ws-city-dd-option is-active" data-city="mumbai" aria-selected="true"><span>Mumbai</span></button></li>
+                <li role="none"><button type="button" class="ws-city-dd-option" data-city="bangalore" aria-selected="false"><span>Bengaluru</span></button></li>
+                <li role="none"><button type="button" class="ws-city-dd-option" data-city="delhi" aria-selected="false"><span>Delhi</span></button></li>
+              </ul>
             </div>
           </div>
 
@@ -379,7 +398,6 @@
             </span>
             <span class="ws-cluster-footer-status font-bold text-[#013125] flex items-center gap-0.5">
               <span class="ws-cluster-footer-text">9 Stores</span>
-              <span class="text-[#82D616] ws-cluster-live-dot">• Live</span>
             </span>
           </div>
 
@@ -391,85 +409,47 @@
   </div>
 </section>
 <!-- DEDICATED CONTACT INFORMATION SECTION -->
-<section id="contact" class="w-full bg-[#F6F7F3] py-space-3xl border-b border-[#E9ECE8] scroll-mt-24" style="scroll-margin-top: 90px;">
-<div class="w-full max-w-[1280px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop">
-<div class="max-w-2xl mb-space-2xl">
-<h2 class="font-headline-lg text-headline-lg text-[#252C29] tracking-tight mb-space-sm">
+<section id="contact" class="ws-connect-section w-full bg-[#F6F7F3] py-10 sm:py-12 lg:py-14 border-b border-[#E9ECE8] scroll-mt-24" style="scroll-margin-top: 90px;">
+  <div class="w-full max-w-[1280px] mx-auto px-margin md:px-margin-tablet lg:px-margin-desktop">
+    <div class="max-w-3xl mb-8 sm:mb-10">
+      <h2 class="ws-connect-heading font-extrabold text-[#013125] tracking-tight mb-3">
         Let's connect and explore possibilities.
       </h2>
-<p class="font-body-md text-body-md text-[#69736D]">
-        Have a question about our services or looking to discuss an operational partnership? Choose a contact option below and connect with our team.
+      <div class="w-12 h-1 bg-[#A6F134] rounded-full my-3" aria-hidden="true"></div>
+      <p class="text-sm sm:text-base text-[#69736D] leading-relaxed max-w-2xl">
+        Have a question about our services or looking to discuss an operational partnership? Reach us using the details below.
       </p>
-</div>
-<!-- 3 Interactive Cards in 1 horizontal row on desktop -->
-<div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
-<!-- CARD 1: Business Email -->
-<div class="group relative bg-[#FFFFFF] rounded-2xl p-space-xl border border-[#E9ECE8] shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_16px_36px_rgba(1,49,37,0.08)] hover:border-[#A6F134] transition-all duration-300 transform hover:-translate-y-1.5 flex flex-col justify-between cursor-pointer focus-within:ring-2 focus-within:ring-[#A6F134]" tabindex="0">
-<div>
-<div class="w-14 h-14 rounded-2xl bg-[#A6F134]/20 flex items-center justify-center mb-space-lg group-hover:scale-105 transition-transform duration-300">
-<svg class="w-7 h-7" viewBox="0 49.4 512 399.42" xmlns="http://www.w3.org/2000/svg" aria-label="Gmail">
-  <g fill="none" fill-rule="evenodd">
-    <g fill-rule="nonzero">
-      <path fill="#4285f4" d="M34.91 448.818h81.454V251L0 163.727V413.91c0 19.287 15.622 34.91 34.91 34.91z"/>
-      <path fill="#34a853" d="M395.636 448.818h81.455c19.287 0 34.909-15.622 34.909-34.909V163.727L395.636 251z"/>
-      <path fill="#fbbc04" d="M395.636 99.727V251L512 163.727v-46.545c0-43.142-49.25-67.782-83.782-41.891z"/>
-    </g>
-    <path fill="#ea4335" d="M116.364 251V99.727L256 204.455 395.636 99.727V251L256 355.727z"/>
-    <path fill="#c5221f" fill-rule="nonzero" d="M0 117.182v46.545L116.364 251V99.727L83.782 75.291C49.25 49.4 0 74.04 0 117.18z"/>
-  </g>
-</svg>
-</div>
-<h3 class="font-headline-sm text-headline-sm text-[#252C29] font-bold mb-space-xs group-hover:text-[#013125] transition-colors">
-            Business Email
-          </h3>
-<p class="font-body-sm text-body-sm text-[#69736D] leading-relaxed mb-space-lg">
-            Connect with our team for business enquiries and partnership discussions.
-          </p>
-</div>
-<div class="pt-space-md border-t border-[#E9ECE8] flex items-center justify-between text-[#013125] font-label-action text-label-action font-semibold">
-<a class="hover:text-[#436900] transition-colors break-all" href="mailto:hello@whitestores.in">hello@whitestores.in</a>
-<span class="material-symbols-outlined text-[20px] transition-transform duration-300 group-hover:translate-x-1.5 text-[#436900]">arrow_forward</span>
-</div>
-</div>
-<!-- CARD 2: Contact Number -->
-<div class="group relative bg-[#FFFFFF] rounded-2xl p-space-xl border border-[#E9ECE8] shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_16px_36px_rgba(1,49,37,0.08)] hover:border-[#A6F134] transition-all duration-300 transform hover:-translate-y-1.5 flex flex-col justify-between cursor-pointer focus-within:ring-2 focus-within:ring-[#A6F134]" tabindex="0">
-<div>
-<div class="w-14 h-14 rounded-2xl bg-[#A6F134]/20 flex items-center justify-center mb-space-lg group-hover:scale-105 transition-transform duration-300">
-<svg class="w-7 h-7 text-[#013125] fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-label="Telephone">
-  <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-1.57 1.97c-2.83-1.44-5.15-3.75-6.59-6.59l1.97-1.57c.28-.28.36-.67.25-1.02A11.36 11.36 0 0 1 8.97 3.99c0-.55-.45-1-1-1H4.01c-.55 0-1 .45-1 1 0 9.39 7.63 17.02 17 17.02.55 0 1-.45 1-1v-3.99c0-.55-.45-1-1-1.04z"/>
-</svg>
-</div>
-<h3 class="font-headline-sm text-headline-sm text-[#252C29] font-bold mb-space-xs group-hover:text-[#013125] transition-colors">
-            Contact Number
-          </h3>
-<p class="font-body-sm text-body-sm text-[#69736D] leading-relaxed mb-space-lg">
-            Speak with our team about your business requirements and operational needs.
-          </p>
-</div>
-<div class="pt-space-md border-t border-[#E9ECE8] flex items-center justify-between text-[#013125] font-label-action text-label-action font-semibold">
-<a class="hover:text-[#436900] transition-colors" href="tel:+9172018127706">+91 72018 127706</a>
-<span class="material-symbols-outlined text-[20px] transition-transform duration-300 group-hover:translate-x-1.5 text-[#436900]">arrow_forward</span>
-</div>
-</div>
-<!-- CARD 3: Office Address -->
-<div class="group relative bg-[#FFFFFF] rounded-2xl p-space-xl border border-[#E9ECE8] shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_16px_36px_rgba(1,49,37,0.08)] hover:border-[#A6F134] transition-all duration-300 transform hover:-translate-y-1.5 flex flex-col justify-between focus-within:ring-2 focus-within:ring-[#A6F134]" tabindex="0">
-<div>
-<div class="w-14 h-14 rounded-2xl bg-[#A6F134]/20 flex items-center justify-center mb-space-lg group-hover:scale-105 transition-transform duration-300">
-<span class="material-symbols-outlined text-[28px] text-[#013125]">location_on</span>
-</div>
-<h3 class="font-headline-sm text-headline-sm text-[#252C29] font-bold mb-space-xs group-hover:text-[#013125] transition-colors">
-            Office Address
-          </h3>
-<p class="font-body-sm text-body-sm text-[#69736D] leading-relaxed mb-space-lg">
-            Visit our office for partnership discussions and operational planning.
-          </p>
-</div>
-<div class="pt-space-md border-t border-[#E9ECE8] text-[#013125] font-label-action text-label-action font-semibold leading-relaxed">
-<span>Office no. 605, Chirag Infotech, Road no. 16Z, Ambica Nagar, Wagle Industrial Estate Thane West, Thane, Maharashtra 400604</span>
-</div>
-</div>
-</div>
-</div>
+    </div>
+
+    <div class="ws-connect-row">
+      <!-- Left: Address -->
+      <div class="ws-connect-address">
+        <p class="ws-connect-label">Address</p>
+        <a
+          class="ws-connect-value ws-connect-address-value"
+          href="https://www.google.com/maps/search/?api=1&amp;query=Office+no.+605%2C+Chirag+Infotech%2C+Road+no.+16Z%2C+Ambica+Nagar%2C+Wagle+Industrial+Estate+Thane+West%2C+Thane%2C+Maharashtra+400604"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-tip="Open address in Google Maps"
+          title="Open address in Google Maps"
+        >
+          Office no. 605, Chirag Infotech, Road no. 16Z, Ambica Nagar, Wagle Industrial Estate Thane West, Thane, Maharashtra 400604
+        </a>
+      </div>
+
+      <!-- Right: Number + Email -->
+      <div class="ws-connect-contacts">
+        <div class="ws-connect-item">
+          <p class="ws-connect-label">Number</p>
+          <a class="ws-connect-value" href="tel:+9172018127706" data-tip="Call us directly" title="Call us directly">+91 72018 127706</a>
+        </div>
+        <div class="ws-connect-item">
+          <p class="ws-connect-label">Email</p>
+          <a class="ws-connect-value" href="mailto:hello@whitestores.in" data-tip="Send mail directly" title="Send mail directly">hello@whitestores.in</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 </div></main>  <!-- ==========================================================================
        FOOD-COMMERCE CAPABILITIES SHOWCASE STRIP (Immediately above footer)
@@ -597,7 +577,7 @@
         </div>
 
         <!-- COLUMN 2: Explore (2 cols on lg ~ 1fr) -->
-        <div class="lg:col-span-2 flex flex-col items-start gap-2.5">
+        <div class="ws-footer-explore lg:col-span-2 flex flex-col items-start gap-2.5">
           <h4 class="text-xs font-bold uppercase tracking-widest text-[#A6F134] ws-footer-lime">Explore</h4>
           <ul class="flex flex-col gap-2 text-xs text-white/75">
             <li><a class="hover:text-[#A6F134] transition-colors" data-path="home" href="index.html">Home</a></li>
@@ -733,6 +713,6 @@
 </div>
 
 <script src="js/navigation.js?v=slide-top-1" defer></script>
-<script src="js/network-map.js?v=full-default-1" defer></script>
+<script src="js/network-map.js?v=stores-close-select-1" defer></script>
 </body>
 </html>

@@ -8,17 +8,20 @@
 
   var TEMP_READY = '-18°C Ready';
 
+  var CITY_LABELS = {
+    mumbai: 'Mumbai',
+    bangalore: 'Bengaluru',
+    delhi: 'Delhi'
+  };
+
   var NETWORK_DATA = {
     mumbai: {
       id: 'mumbai',
       cityName: 'Mumbai Metropolitan',
-      statusBadge: 'Active',
-      badgeClass: 'bg-[#A6F134]/25 text-[#013125] border-[#A6F134]/40',
       nodesCount: '9 stores',
       headerTitle: 'Stores',
       footerPrompt: 'Select a store',
       footerText: '9 stores',
-      footerLiveDot: true,
       pinId: 'ws-pin-mumbai',
       stateSlug: 'maharashtra',
       activeRoutes: ['ws-route-mumbai-bangalore', 'ws-route-mumbai-delhi'],
@@ -38,13 +41,10 @@
     bangalore: {
       id: 'bangalore',
       cityName: 'Bengaluru',
-      statusBadge: 'Live + Upcoming',
-      badgeClass: 'bg-[#013125]/10 text-[#013125] border-[#013125]/20',
       nodesCount: '6 stores',
       headerTitle: 'Stores',
       footerPrompt: 'Select a store',
       footerText: '6 stores',
-      footerLiveDot: true,
       pinId: 'ws-pin-bangalore',
       stateSlug: 'karnataka',
       activeRoutes: ['ws-route-mumbai-bangalore', 'ws-route-delhi-bangalore'],
@@ -61,13 +61,10 @@
     delhi: {
       id: 'delhi',
       cityName: 'Delhi NCR',
-      statusBadge: 'Live + Upcoming',
-      badgeClass: 'bg-[#013125]/10 text-[#013125] border-[#013125]/20',
       nodesCount: '6 stores',
       headerTitle: 'Stores',
       footerPrompt: 'Select a store',
       footerText: '6 stores',
-      footerLiveDot: true,
       pinId: 'ws-pin-delhi',
       stateSlug: 'delhi',
       activeRoutes: ['ws-route-mumbai-delhi', 'ws-route-delhi-bangalore'],
@@ -93,21 +90,88 @@
 
       var listEl = container.querySelector('.ws-map-location-list');
       var floatCard = container.querySelector('.ws-map-float-card');
-      var cityPills = container.querySelectorAll('.ws-city-pill');
-      var clusterBadge = container.querySelector('.ws-cluster-badge');
       var clusterCount = container.querySelector('.ws-cluster-count');
       var headerTitleEl = container.querySelector('.ws-cluster-header-title');
       var footerPromptEl = container.querySelector('.ws-cluster-prompt-text');
       var footerTextEl = container.querySelector('.ws-cluster-footer-text');
-      var footerLiveDotEl = container.querySelector('.ws-cluster-live-dot');
+      var locationDropdowns = container.querySelectorAll('.ws-location-dd');
       var subnodesLayer = container.querySelector('#ws-map-subnodes-layer');
       var statePaths = container.querySelectorAll('.ws-state-path');
       var mapPins = container.querySelectorAll('.ws-map-pin');
       var routeLines = container.querySelectorAll('.ws-route-line');
       var mapSvg = container.querySelector('.ws-map-svg');
+      var storesToggle = container.querySelector('.ws-map-stores-toggle');
+      var storesClose = container.querySelector('.ws-map-stores-close');
+      var storesBackdrop = container.querySelector('.ws-map-stores-backdrop');
       var defaultViewBox = { x: 0, y: 0, width: 600, height: 540 };
       var zoomRaf = 0;
       var currentView = { x: 0, y: 0, width: 600, height: 540 };
+      var storesScrollY = 0;
+
+      function lockPageScroll() {
+        storesScrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+        document.documentElement.classList.add('ws-menu-locked');
+        document.body.classList.add('ws-menu-locked');
+        document.body.style.position = 'fixed';
+        document.body.style.top = '-' + storesScrollY + 'px';
+        document.body.style.left = '0';
+        document.body.style.right = '0';
+        document.body.style.width = '100%';
+        document.body.style.overflow = 'hidden';
+      }
+
+      function unlockPageScroll() {
+        document.documentElement.classList.remove('ws-menu-locked');
+        document.body.classList.remove('ws-menu-locked');
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.left = '';
+        document.body.style.right = '';
+        document.body.style.width = '';
+        document.body.style.overflow = '';
+        var html = document.documentElement;
+        var prev = html.style.scrollBehavior;
+        html.style.scrollBehavior = 'auto';
+        window.scrollTo(0, storesScrollY);
+        html.style.scrollBehavior = prev;
+      }
+
+      function setStoresOpen(open) {
+        var wasOpen = container.classList.contains('is-stores-open');
+        container.classList.toggle('is-stores-open', open);
+        if (storesToggle) storesToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        if (storesToggle) {
+          var icon = storesToggle.querySelector('.ws-map-stores-toggle-icon');
+          if (icon) icon.textContent = open ? 'chevron_right' : 'chevron_left';
+        }
+        if (storesBackdrop) {
+          if (open) storesBackdrop.removeAttribute('hidden');
+          else storesBackdrop.setAttribute('hidden', '');
+        }
+        // Stop background site scroll while mini menu is open
+        if (open && !wasOpen) lockPageScroll();
+        else if (!open && wasOpen) unlockPageScroll();
+      }
+
+      if (storesToggle) {
+        storesToggle.addEventListener('click', function () {
+          setStoresOpen(!container.classList.contains('is-stores-open'));
+        });
+      }
+      if (storesClose) {
+        storesClose.addEventListener('click', function () {
+          setStoresOpen(false);
+        });
+      }
+      if (storesBackdrop) {
+        storesBackdrop.addEventListener('click', function () {
+          setStoresOpen(false);
+        });
+      }
+      // Close drawer on desktop resize
+      window.addEventListener('resize', function () {
+        if (window.innerWidth >= 1024) setStoresOpen(false);
+      });
 
       function setViewBox(box) {
         if (!mapSvg) return;
@@ -212,22 +276,12 @@
 
       function updateFloatCard(loc) {
         if (!floatCard || !loc) return;
-        var badgeEl = floatCard.querySelector('.ws-float-card-badge');
         var tempEl = floatCard.querySelector('.ws-float-card-temp');
         var titleEl = floatCard.querySelector('.ws-float-card-title');
         var regionEl = floatCard.querySelector('.ws-float-card-region');
         var typeEl = floatCard.querySelector('.ws-float-card-type');
         var statusWrap = floatCard.querySelector('.ws-float-card-status-wrapper');
 
-        if (badgeEl) {
-          if (loc.live) {
-            badgeEl.textContent = 'ACTIVE STORE';
-            badgeEl.className = 'ws-float-card-badge text-[9px] font-extrabold uppercase tracking-widest text-[#013125] bg-[#A6F134]/30 px-2 py-0.5 rounded-full';
-          } else {
-            badgeEl.textContent = 'UPCOMING';
-            badgeEl.className = 'ws-float-card-badge text-[9px] font-extrabold uppercase tracking-widest text-[#013125] bg-[#013125]/10 px-2 py-0.5 rounded-full';
-          }
-        }
         if (tempEl) tempEl.textContent = TEMP_READY;
         if (titleEl) titleEl.textContent = 'WHITE STORE / ' + loc.id + ' — ' + loc.name;
         if (regionEl) {
@@ -309,6 +363,33 @@
         }
 
         if (loc) updateFloatCard(loc);
+        syncCityDropdownActive();
+
+        // Highlight selected store on map graph (bring marker forward)
+        if (subnodesLayer && loc) {
+          var activeMarker = subnodesLayer.querySelector('.ws-subnode-marker[data-id="' + loc.id + '"]');
+          if (activeMarker && activeMarker.parentNode) {
+            activeMarker.parentNode.appendChild(activeMarker);
+          }
+        }
+
+        // Soft focus selected store on map
+        if (loc && cityData.baseCoord) {
+          var sx = cityData.baseCoord.x + loc.offset.dx;
+          var sy = cityData.baseCoord.y + loc.offset.dy;
+          var focusSize = window.innerWidth < 1024 ? 220 : 300;
+          animateViewBox({
+            x: sx - focusSize / 2,
+            y: sy - focusSize / 2,
+            width: focusSize,
+            height: focusSize * (defaultViewBox.height / defaultViewBox.width)
+          });
+        }
+
+        // Mobile: close stores mini-menu so map + selected pin are visible
+        if (window.innerWidth < 1024 && container.classList.contains('is-stores-open')) {
+          setStoresOpen(false);
+        }
       }
 
       function renderPanel(cityKey) {
@@ -318,14 +399,12 @@
 
         cityData.locations.forEach(function (loc) {
           var isActive = loc.id === activeLocationId;
-          var statusLabel = loc.live ? 'Live' : 'Upcoming';
-          var statusClass = loc.live ? 'text-[#436900]' : 'text-[#69736D]';
           listHtml += '<li class="ws-loc-item ' + (isActive ? 'is-active' : '') + '" data-id="' + loc.id + '" role="option" aria-selected="' + (isActive ? 'true' : 'false') + '" tabindex="0">';
           listHtml += '  <div class="flex items-center gap-2.5 min-w-0">';
           listHtml += '    <span class="ws-loc-number w-6 h-6 rounded-md flex items-center justify-center text-[10.5px] font-bold bg-[#F0F4F0] text-[#69736D] flex-shrink-0 transition-colors">' + loc.id + '</span>';
           listHtml += '    <div class="flex flex-col min-w-0">';
           listHtml += '      <span class="ws-loc-name text-xs sm:text-[13px] font-bold text-[#252C29] transition-colors truncate">' + loc.name + '</span>';
-          listHtml += '      <span class="text-[10px] text-[#69736D] truncate leading-tight">' + loc.region + ' · <span class="' + statusClass + ' font-semibold">' + statusLabel + '</span></span>';
+          listHtml += '      <span class="text-[10px] text-[#69736D] truncate leading-tight">' + loc.region + '</span>';
           listHtml += '    </div>';
           listHtml += '  </div>';
           listHtml += '  <span class="ws-loc-arrow text-[#69736D] text-xs font-bold transition-transform flex-shrink-0">↗</span>';
@@ -357,12 +436,6 @@
           ? cityData.locations[0].id
           : null;
 
-        cityPills.forEach(function (pill) {
-          var on = pill.getAttribute('data-city') === cityId;
-          pill.classList.toggle('is-active', on);
-          pill.setAttribute('aria-pressed', on ? 'true' : 'false');
-        });
-
         mapPins.forEach(function (pin) {
           pin.classList.toggle('is-active', pin.getAttribute('data-city') === cityId);
         });
@@ -384,15 +457,10 @@
           route.setAttribute('stroke-width', on ? '2.2' : '1.5');
         });
 
-        if (clusterBadge) {
-          clusterBadge.textContent = cityData.statusBadge;
-          clusterBadge.className = 'ws-cluster-badge inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold border ' + cityData.badgeClass;
-        }
         if (clusterCount) clusterCount.textContent = cityData.nodesCount;
         if (headerTitleEl) headerTitleEl.textContent = cityData.headerTitle;
         if (footerPromptEl) footerPromptEl.textContent = cityData.footerPrompt;
         if (footerTextEl) footerTextEl.textContent = cityData.footerText;
-        if (footerLiveDotEl) footerLiveDotEl.style.display = cityData.footerLiveDot ? 'inline' : 'none';
 
         updateSubnodes(cityId);
         renderPanel(cityId);
@@ -413,13 +481,67 @@
 
         var firstLoc = (cityData.locations && cityData.locations.length > 0) ? cityData.locations[0] : null;
         if (firstLoc) updateFloatCard(firstLoc);
+        syncCityDropdownActive();
       }
 
-      cityPills.forEach(function (pill) {
-        pill.addEventListener('click', function () {
-          var targetCity = pill.getAttribute('data-city');
-          if (targetCity && targetCity !== currentCityId) selectCity(targetCity);
+      function closeAllCityDropdowns() {
+        locationDropdowns.forEach(function (dd) {
+          dd.classList.remove('is-open');
+          var btn = dd.querySelector('.ws-city-dd-btn');
+          var menu = dd.querySelector('.ws-city-dd-menu');
+          if (btn) btn.setAttribute('aria-expanded', 'false');
+          if (menu) menu.setAttribute('hidden', '');
         });
+      }
+
+      function syncCityDropdownActive() {
+        var label = CITY_LABELS[currentCityId] || 'Location';
+        locationDropdowns.forEach(function (dd) {
+          var labelEl = dd.querySelector('.ws-location-dd-label');
+          if (labelEl) labelEl.textContent = label;
+          dd.querySelectorAll('.ws-city-dd-option').forEach(function (opt) {
+            var on = opt.getAttribute('data-city') === currentCityId;
+            opt.classList.toggle('is-active', on);
+            opt.setAttribute('aria-selected', on ? 'true' : 'false');
+          });
+        });
+      }
+
+      locationDropdowns.forEach(function (dd) {
+        var btn = dd.querySelector('.ws-city-dd-btn');
+        var menu = dd.querySelector('.ws-city-dd-menu');
+        if (!btn || !menu) return;
+
+        btn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          var willOpen = !dd.classList.contains('is-open');
+          closeAllCityDropdowns();
+          if (willOpen) {
+            dd.classList.add('is-open');
+            btn.setAttribute('aria-expanded', 'true');
+            menu.removeAttribute('hidden');
+          }
+        });
+      });
+
+      container.addEventListener('click', function (e) {
+        var opt = e.target.closest('.ws-city-dd-option');
+        if (!opt || !container.contains(opt)) return;
+        e.preventDefault();
+        e.stopPropagation();
+        var cityKey = opt.getAttribute('data-city');
+        if (!cityKey) return;
+        if (cityKey !== currentCityId) selectCity(cityKey);
+        else syncCityDropdownActive();
+        closeAllCityDropdowns();
+      });
+
+      document.addEventListener('click', function (e) {
+        if (!e.target.closest('.ws-location-dd')) closeAllCityDropdowns();
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeAllCityDropdowns();
       });
 
       mapPins.forEach(function (pin) {
